@@ -7,7 +7,7 @@ RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs ya
 RUN gem install foreman
 RUN mkdir -p /app
 WORKDIR /app
-COPY Gemfile Gemfile.lock package.json ./
+COPY Gemfile Gemfile.lock package.json yarn.lock ./
 RUN bundle install
 RUN yarn install
 
