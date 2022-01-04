@@ -5,8 +5,8 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | APT_KEY_DONT_WARN_ON_DAN
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs yarn default-mysql-client
 RUN gem install foreman
-RUN mkdir -p /app
-WORKDIR /app
+RUN mkdir -p /kids-toy-store
+WORKDIR /kids-toy-store
 COPY Gemfile Gemfile.lock package.json yarn.lock ./
 RUN bundle install
 RUN yarn install
