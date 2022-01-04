@@ -6,7 +6,7 @@
 export default {
   data: function () {
     return {
-      message: "Hello Store!"
+      message: "Hellddse!"
     }
   },
   created () {
