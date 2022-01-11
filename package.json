@@ -1,6 +1,11 @@
 {
   "name": "app",
   "private": "true",
+  "scripts": {
+    "eslint": "eslint app/javascript --fix",
+    "webpacker-start": "webpack-dev-server -d",
+    "start:dev": "foreman start -f ./Procfile.dev"
+  },
   "dependencies": {
     "@hotwired/stimulus": "^3.0.1",
     "@hotwired/turbo-rails": "^7.1.0",
@@ -16,6 +21,13 @@
     "webpack-cli": "^3.3.12"
   },
   "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.2.0",
+    "eslint-plugin-vue": "^8.2.0",
     "webpack-dev-server": "^3"
   }
 }
