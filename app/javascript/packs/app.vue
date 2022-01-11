@@ -3,10 +3,11 @@
 </template>
 
 <script>
+
 export default {
   data: function () {
     return {
-      message: "dsdsdsdsdsddsdsdsddd!2"
+      message: "Main page"
     }
   },
   created () {
