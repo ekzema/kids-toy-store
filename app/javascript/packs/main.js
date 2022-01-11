@@ -5,6 +5,7 @@ import store from './store/shop'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap'
 import 'pe7-icon/dist/scss/pe-icon-7-stroke'
+import './assets/css/style.css'
 
 document.addEventListener('DOMContentLoaded', () => {
   createApp(App)
