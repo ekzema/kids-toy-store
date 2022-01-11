@@ -4,6 +4,7 @@ import router from './router/shop.js'
 import store from './store/shop'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap'
+import 'pe7-icon/dist/scss/pe-icon-7-stroke'
 
 document.addEventListener('DOMContentLoaded', () => {
   createApp(App)
