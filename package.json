@@ -4,9 +4,10 @@
   "scripts": {
     "eslint": "eslint app/javascript --fix",
     "webpacker-start": "webpack-dev-server -d",
-    "start:dev": "foreman start -f ./Procfile.dev"
+    "dev": "foreman start -f ./Procfile.dev"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.4",
     "@hotwired/stimulus": "^3.0.1",
     "@hotwired/turbo-rails": "^7.1.0",
     "@popperjs/core": "^2.11.2",
