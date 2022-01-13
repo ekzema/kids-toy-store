@@ -1,10 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import App from '../app'
+import HomeIndex from '../views/home/Index'
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    { path: '/', component: App }
+    { path: '/', component: HomeIndex }
   ]
 })
 
