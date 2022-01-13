@@ -5,7 +5,7 @@ import store from './store/shop'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap'
 import 'pe7-icon/dist/scss/pe-icon-7-stroke'
-import '@fortawesome/fontawesome-free/css/all'
+import 'font-awesome/css/font-awesome.css'
 import './assets/css/style.css'
 
 document.addEventListener('DOMContentLoaded', () => {
