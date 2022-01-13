@@ -1,9 +1,14 @@
 <template>
-  <h1>Body Component</h1>
+  <main-slider/>
 </template>
 
 <script>
+import MainSlider from './components/Slider'
+
 export default {
+  components: {
+    MainSlider
+  },
   data () {
     {
     }

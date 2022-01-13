@@ -1,0 +1,48 @@
+<template>
+  <section class="home-slider-area slider-default">
+    <div class="home-slider-content">
+      <div class="swiper-container home-slider-container">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <!-- Start Slide Item -->
+            <div class="home-slider-item">
+              <div class="thumb-one bg-img" data-bg-img="./../../../assets/img/slider/1.png"></div>
+              <div class="slider-content-area">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <div class="content">
+                        <div class="inner-content">
+                          <h2>Best Kids Store & Online Shop</h2>
+                          <p>Give The Gift Of Your Children Everyday</p>
+                          <a href="shop.html" class="btn-theme">Shop This Now</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <img class="thumb-two" src="./../../../assets/img/slider/2.png" alt="Image">
+                <img class="thumb-three" src="./../../../assets/img/slider/3.png" alt="Image">
+                <img class="thumb-four" src="./../../../assets/img/photos/3.png" alt="Image">
+              </div>
+              <div class="shape-top bg-img" data-bg-img="./../../../assets/img/photos/1.png"></div>
+              <div class="shape-bottom bg-img" data-bg-img="./../../../assets/img/photos/2.png"></div>
+            </div>
+            <!-- End Slide Item -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
+
+<script>
+export default {
+  data () {
+    {
+    }
+  },
+  methods: {
+  }
+}
+</script>

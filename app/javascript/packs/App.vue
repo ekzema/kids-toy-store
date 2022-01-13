@@ -1,7 +1,9 @@
 <template>
   <div class="wrapper home-default-wrapper">
     <app-header/>
-    <router-view></router-view>
+    <main class="main-content">
+      <router-view></router-view>
+    </main>
     <app-footer/>
   </div>
 </template>
@@ -11,13 +13,13 @@ import AppHeader from './components/app/Header'
 import AppFooter from './components/app/Footer'
 
 export default {
-  data () {
-    {
-    }
-  },
   components: {
     AppHeader,
     AppFooter
+  },
+  data () {
+    {
+    }
   },
   created () {
   }
