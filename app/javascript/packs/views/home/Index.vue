@@ -5,6 +5,7 @@
 
 <script>
 import MainSlider from './components/Slider'
+
 export default {
   components: {
     MainSlider
