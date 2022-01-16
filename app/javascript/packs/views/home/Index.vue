@@ -1,10 +1,10 @@
 <template>
   <main-slider/>
+  {{}}
 </template>
 
 <script>
 import MainSlider from './components/Slider'
-
 export default {
   components: {
     MainSlider
@@ -14,6 +14,9 @@ export default {
     }
   },
   methods: {
+  },
+  created() {
+
   }
 }
 </script>
