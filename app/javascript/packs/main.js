@@ -11,6 +11,7 @@ import '@popperjs/core'
 import 'fancybox'
 import 'aos'
 import 'slicknav/dist/slicknav.min.css'
+import 'swiper/swiper.min.css'
 import './assets/css/style.css'
 
 document.addEventListener('DOMContentLoaded', () => {
