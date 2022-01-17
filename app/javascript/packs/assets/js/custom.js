@@ -1,2 +1,2 @@
 import AOS from 'aos'
-import 'slicknav/jquery.slicknav'
+import 'slicknav/dist/jquery.slicknav.min'

@@ -10,6 +10,7 @@ import 'font-awesome/css/font-awesome.css'
 import '@popperjs/core'
 import 'fancybox'
 import 'aos'
+import 'slicknav/dist/slicknav.min.css'
 import './assets/css/style.css'
 
 document.addEventListener('DOMContentLoaded', () => {
