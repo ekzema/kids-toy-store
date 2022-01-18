@@ -4085,6 +4085,11 @@ interpret@^1.4.0:
   resolved "https://registry.npmjs.org/interpret/-/interpret-1.4.0.tgz"
   integrity sha512-agE4QfB2Lkp9uICn7BAqoscw4SZP9kTE2hxiFI3jBPmXJfdqiahTbUuKGsMoN2GtqL9AxhYioAcVvgsb1HvRbA==
 
+ionicons201@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/ionicons201/-/ionicons201-1.0.0.tgz#5ce2aa950e907957c7306ca113115a24129d5260"
+  integrity sha1-XOKqlQ6QeVfHMGyhExFaJBKdUmA=
+
 ip-regex@^2.1.0:
   version "2.1.0"
   resolved "https://registry.npmjs.org/ip-regex/-/ip-regex-2.1.0.tgz"
