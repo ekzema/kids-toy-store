@@ -14,6 +14,7 @@ import 'slicknav/dist/slicknav.min.css'
 import 'swiper/swiper.min.css'
 import 'slick-carousel/slick/slick.css'
 import 'ionicons201/css/ionicons.min.css'
+import 'animate.css/animate.min.css'
 import './assets/css/style.css'
 
 document.addEventListener('DOMContentLoaded', () => {
