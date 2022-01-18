@@ -4,8 +4,8 @@ import Swiper from 'swiper'
 import 'jquery.countdown/jquery.countdown' // use method countDown
 import jQueryBridget from 'jquery-bridget'
 import Isotope from 'isotope-layout'
-
 jQueryBridget('isotope', Isotope, $)
+import 'slick-carousel/slick/slick.min'
 
 
 
