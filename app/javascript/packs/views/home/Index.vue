@@ -1,6 +1,5 @@
 <template>
   <main-slider/>
-  {{}}
 </template>
 
 <script>
