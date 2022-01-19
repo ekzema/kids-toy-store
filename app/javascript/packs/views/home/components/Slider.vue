@@ -6,7 +6,7 @@
           <div class="swiper-slide">
             <!-- Start Slide Item -->
             <div class="home-slider-item">
-              <div class="thumb-one bg-img" data-bg-img="./../../../assets/img/slider/1.png"></div>
+              <div class="thumb-one bg-img" data-bg-img="/img/slider/1.png"></div>
               <div class="slider-content-area">
                 <div class="container">
                   <div class="row">
@@ -21,12 +21,12 @@
                     </div>
                   </div>
                 </div>
-                <img class="thumb-two" src="./../../../assets/img/slider/2.png" alt="Image">
-                <img class="thumb-three" src="./../../../assets/img/slider/3.png" alt="Image">
-                <img class="thumb-four" src="./../../../assets/img/photos/3.png" alt="Image">
+                <img class="thumb-two" src="/img/slider/2.png" alt="Image">
+                <img class="thumb-three" src="/img/slider/3.png" alt="Image">
+                <img class="thumb-four" src="/img/photos/3.png" alt="Image">
               </div>
-              <div class="shape-top bg-img" data-bg-img="./../../../assets/img/photos/1.png"></div>
-              <div class="shape-bottom bg-img" data-bg-img="./../../../assets/img/photos/2.png"></div>
+              <div class="shape-top bg-img" data-bg-img="/assets/img/photos/1.png"></div>
+              <div class="shape-bottom bg-img" data-bg-img="/img/photos/2.png"></div>
             </div>
             <!-- End Slide Item -->
           </div>
