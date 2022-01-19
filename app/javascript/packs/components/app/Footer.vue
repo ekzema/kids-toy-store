@@ -104,7 +104,7 @@
         </div>
       </div>
     </div>
-    <div class="footer-shape bg-img" data-bg-img="./../../assets/img/photos/footer1.png"></div>
+    <div class="footer-shape bg-img" data-bg-img="/img/photos/footer1.png"></div>
   </footer>
 </template>
 
