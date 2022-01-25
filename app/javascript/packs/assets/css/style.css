@@ -2112,10 +2112,10 @@ table p {
 }
 .main-menu > li > a {
   color: #fcdcea;
-  display: block;
+  display: inline-block;
   font-size: 12.5px;
   font-weight: 700;
-  line-height: 22px;
+  line-height: 50px;
   padding: 7px 25px;
   position: relative;
   text-transform: uppercase;
@@ -9480,4 +9480,85 @@ table p {
     background-color: #535353;
     padding: 22px 22px 20px;
   }
+}
+
+.menu__btn {
+  position: relative;
+  z-index: 6;
+  width: 300px;
+  height: 50px;
+  border: none;
+  padding-right: 20px;
+  background: #f379a7;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+}
+.menu__btn .menu__text,
+.menu__burger {
+  display: inline-block;
+  vertical-align: middle;
+}
+.menu__burger {
+  margin-right: 20px;
+  width: 25px;
+  height: 16px;
+  text-align: center;
+  -webkit-tap-highlight-color: transparent;
+}
+.menu__burger span,
+.menu__burger:after,
+.menu__burger:before {
+  display: block;
+  width: 25px;
+  height: 2px;
+  background: #fff;
+  transition: transform 0.3s, width 0.3s, background 0.3s;
+}
+.menu__burger:after,
+.menu__burger:before {
+  content: "";
+  margin: 0 auto;
+}
+.menu__burger span {
+  margin: 5px auto;
+}
+.menu__btn.active .menu__burger span,
+.menu__btn.active .menu__burger:after,
+.menu__btn.active .menu__burger:before {
+  background: #fff;
+}
+.menu__btn.active .menu__burger:before {
+  -ms-transform: translateY(7px) rotate(45deg);
+  transform: translateY(7px) rotate(45deg);
+}
+.menu__btn.active .menu__burger span {
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+.menu__btn.active .menu__burger:after {
+  -ms-transform: translateY(-7px) rotate(45deg);
+  transform: translateY(-7px) rotate(45deg);
+}
+
+body:not(.touch-device) .menu:hover .menu__burger span,
+body:not(.touch-device) .menu:hover .menu__burger:after,
+body:not(.touch-device) .menu:hover .menu__burger:before {
+  background: #fff;
+}
+body:not(.touch-device) .menu:hover .menu__burger:before {
+  -ms-transform: translateY(7px) rotate(45deg);
+  transform: translateY(7px) rotate(45deg);
+}
+body:not(.touch-device) .menu:hover .menu__burger span {
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+body:not(.touch-device) .menu:hover .menu__burger:after {
+  -ms-transform: translateY(-7px) rotate(45deg);
+  transform: translateY(-7px) rotate(45deg);
 }
