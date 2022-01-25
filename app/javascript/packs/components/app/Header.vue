@@ -70,16 +70,16 @@
     <div class="header-area header-default sticky-header">
       <div class="container">
         <div class="row row-gutter-0 align-items-center">
+          <div class="col-4 col-sm-6 col-lg-2">
+            <div class="menu">
+              <button class="menu__btn js-menu-btn">
+                <span class="menu__burger"><span></span></span><span class="menu__text">Каталог товаров</span>
+              </button>
+            </div>
+          </div>
           <div class="col-lg-8 sticky-md-none">
             <div class="header-navigation-area d-none d-md-block">
               <ul class="main-menu nav position-relative">
-                <li>
-                  <div class="menu">
-                    <button class="menu__btn js-menu-btn">
-                      <span class="menu__burger"><span></span></span><span class="menu__text">Каталог товаров</span>
-                    </button>
-                  </div>
-                </li>
                 <li><a href="contact.html">Contact</a></li>
                 <li><a href="contact.html">About</a></li>
                 <li><a href="contact.html">Blogs</a></li>
