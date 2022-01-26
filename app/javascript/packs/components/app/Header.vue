@@ -92,7 +92,23 @@
                 <div class="menu__item js-menu-item" data-id="806" data-childs="13"><a class="menu__head js-menu-head" href="//mamazin.com.ua/den-rozhdene-rebenka/">Товары для праздника, подарки</a></div>
                 <div class="menu__item js-menu-item" data-id="929" data-childs="10"><a class="menu__head js-menu-head" href="//mamazin.com.ua/odezhda/">Постельное белье, текстиль</a></div>
                 <div class="menu__item js-menu-item" data-id="1251" data-childs="42"><a class="menu__head js-menu-head" href="//mamazin.com.ua/khoztovary-dlja-kukhni/">ХОЗТОВАРЫ</a></div>
-                <div class="menu__item js-menu-item" data-id="1797" data-childs="2"><a class="menu__head js-menu-head" href="//mamazin.com.ua/akcii-magazina/">Акции магазина</a></div>
+                <div class="menu__item js-menu-item" data-id="1797" data-childs="2">
+                  <a class="menu__head js-menu-head" href="//mamazin.com.ua/akcii-magazina/">Акции магазина</a>
+                  <div class="menu__body js-menu-body" id="drop1797">
+                    <div class="menu__back js-menu-back">
+                      <svg class="icon icon-arrow-prev">
+                        <use xlink:href="img/sprite.svg#icon-arrow-prev"></use>
+                      </svg>назад</div>
+                    <ul class="menu__list menu__list_1">
+                    <li>
+                      <a class="menu__link" href="#" title="Акция 'Лови момент'">Акция "Лови момент"</a>
+                    </li>
+                    <li>
+                      <a class="menu__link" href="#" title="Акция 'Удачная покупка'">Акция "Удачная покупка"</a>
+                    </li>
+                  </ul>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

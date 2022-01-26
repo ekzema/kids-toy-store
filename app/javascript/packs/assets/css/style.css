@@ -9486,7 +9486,6 @@ table p {
 .menu {
   position: relative;
 }
-
 .menu__btn {
   position: relative;
   z-index: 6;
@@ -9549,25 +9548,6 @@ table p {
   -ms-transform: translateY(-7px) rotate(45deg);
   transform: translateY(-7px) rotate(45deg);
 }
-
-body:not(.touch-device) .menu:hover .menu__burger span,
-body:not(.touch-device) .menu:hover .menu__burger:after,
-body:not(.touch-device) .menu:hover .menu__burger:before {
-  background: #fff;
-}
-body:not(.touch-device) .menu:hover .menu__burger:before {
-  -ms-transform: translateY(7px) rotate(45deg);
-  transform: translateY(7px) rotate(45deg);
-}
-body:not(.touch-device) .menu:hover .menu__burger span {
-  -ms-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-}
-body:not(.touch-device) .menu:hover .menu__burger:after {
-  -ms-transform: translateY(-7px) rotate(45deg);
-  transform: translateY(-7px) rotate(45deg);
-}
-
 .menu__wrapper {
   display: none;
   position: absolute;
@@ -9646,7 +9626,29 @@ body:not(.touch-device) .menu:hover .menu__burger:after {
   width: 215px;
   margin-bottom: 15px;
 }
-
+.menu__list_1 {
+  column-count: 1;
+}
+.menu__list_2 {
+  column-count: 2;
+  column-gap: 15px;
+}
+.menu__list_3 {
+  column-count: 3;
+  column-gap: 15px;
+}
+.menu__list_4 {
+  column-count: 4;
+  column-gap: 15px;
+}
+.menu__list_5 {
+  column-count: 5;
+  column-gap: 15px;
+}
+.menu__list_6 {
+  column-count: 6;
+  column-gap: 15px;
+}
 .menu__list::-webkit-scrollbar {
   width: 6px !important;
 }
@@ -9681,9 +9683,133 @@ body:not(.touch-device) .menu:hover .menu__burger:after {
   font-size: 10px;
   fill: #f27022;
 }
-
+body:not(.touch-device) .menu:hover .menu__burger span,
+body:not(.touch-device) .menu:hover .menu__burger:after,
+body:not(.touch-device) .menu:hover .menu__burger:before {
+  background: #fff;
+}
+body:not(.touch-device) .menu:hover .menu__burger:before {
+  -ms-transform: translateY(7px) rotate(45deg);
+  transform: translateY(7px) rotate(45deg);
+}
+body:not(.touch-device) .menu:hover .menu__burger span {
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+body:not(.touch-device) .menu:hover .menu__burger:after {
+  -ms-transform: translateY(-7px) rotate(45deg);
+  transform: translateY(-7px) rotate(45deg);
+}
 body:not(.touch-device) .menu:hover .menu__wrapper {
   display: block;
+}
+body:not(.touch-device) .menu__item:hover .menu__head {
+  background-color: #f5f5f5;
+  border-color: #11c358;
+  color: #11c358;
+}
+body:not(.touch-device) .menu__item:hover .menu__head:after {
+  opacity: 1;
+}
+body:not(.touch-device) .menu__item:hover .menu__body {
+  display: block;
+}
+
+@media only screen and (max-width: 1279px) {
+  .menu__btn {
+    width: 280px;
+    padding: 0;
+  }
+  .menu__burger {
+    margin-right: 15px;
+  }
+  .menu__wrapper {
+    width: 280px;
+    padding: 5px 0;
+  }
+  .menu__head {
+    padding: 0 25px 0 15px;
+  }
+  .menu__head:after,
+  .menu__head:before {
+    right: 0;
+    width: 28px;
+    height: 28px;
+  }
+  .menu__body {
+    top: -5px;
+    padding: 15px 20px 10px;
+  }
+  .menu__list li {
+    width: 205px;
+    margin-bottom: 17px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .menu {
+    position: static;
+  }
+  .menu__btn {
+    width: 210px;
+    height: 45px;
+  }
+  .menu__wrapper {
+    right: 0;
+    width: 100%;
+  }
+  .menu__item {
+    position: static;
+  }
+  .menu__item.open .menu__head {
+    border-color: transparent;
+    color: #333332;
+  }
+  .menu__item.open .menu__head:after {
+    opacity: 0;
+  }
+  .menu__item.open .menu__body {
+    -ms-transform: translateX(0);
+    transform: translateX(0);
+  }
+  .menu__body {
+    display: block;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+    padding: 40px 10px 25px 15px;
+    -ms-transform: translateX(100%);
+    transform: translateX(100%);
+    transition: all 0.4s;
+  }
+  .menu__list {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    height: 100%;
+    padding-right: 20px;
+    overflow-y: auto;
+  }
+  .menu__list li {
+    width: 100%;
+    margin: 0;
+  }
+  .menu__list li:not(:last-child) {
+    margin-bottom: 10px;
+  }
+  .menu__back {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    color: #f27022;
+  }
 }
 
 /*END Categories menu*/
