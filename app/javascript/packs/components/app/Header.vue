@@ -153,6 +153,7 @@
         </div>
       </div>
     </div>
+    <div class="header__bg"></div>
   </header>
 </template>
 
