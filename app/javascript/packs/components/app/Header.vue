@@ -76,26 +76,26 @@
                 <span class="menu__burger"><span></span></span><span class="menu__text">Каталог товаров</span>
               </button>
               <div class="menu__wrapper">
-                <div class="menu__item js-menu-item" data-id="93" data-childs="31"><a class="menu__head js-menu-head" href="//mamazin.com.ua/igrushki-razvivajushhie/">Игрушки РАЗВИВАЮЩИЕ</a></div>
-                <div class="menu__item js-menu-item" data-id="260" data-childs="42"><a class="menu__head js-menu-head" href="//mamazin.com.ua/tvorchestvo-obuchenie/">ТВОРЧЕСТВО, поделки</a></div>
-                <div class="menu__item js-menu-item" data-id="1971" data-childs="10"><a class="menu__head js-menu-head" href="//mamazin.com.ua/knigi-magazin/">КНИГИ</a></div>
-                <div class="menu__item js-menu-item" data-id="721" data-childs="14"><a class="menu__head js-menu-head" href="//mamazin.com.ua/obuchenie-opyty/">Наборы для обучения и опытов</a></div>
-                <div class="menu__item js-menu-item" data-id="117" data-childs="20"><a class="menu__head js-menu-head" href="//mamazin.com.ua/igrushki-dlja-devochek/">Игрушки для ДЕВОЧЕК</a></div>
-                <div class="menu__item js-menu-item" data-id="168" data-childs="23"><a class="menu__head js-menu-head" href="//mamazin.com.ua/igrushki-dlja-malchikov/">Игрушки для МАЛЬЧИКОВ</a></div>
-                <div class="menu__item js-menu-item" data-id="224" data-childs="11"><a class="menu__head js-menu-head" href="//mamazin.com.ua/konstruktory/">КОНСТРУКТОРЫ</a></div>
-                <div class="menu__item js-menu-item" data-id="133" data-childs="18"><a class="menu__head js-menu-head" href="//mamazin.com.ua/igry-nastolnye/">Настольные игры</a></div>
-                <div class="menu__item js-menu-item" data-id="59" data-childs="19"><a class="menu__head js-menu-head" href="//mamazin.com.ua/igrushki/">Детские Игрушки</a></div>
-                <div class="menu__item js-menu-item" data-id="198" data-childs="17"><a class="menu__head js-menu-head" href="//mamazin.com.ua/igry-ulica-voda-pesok/">Товары для улицы, воды</a></div>
-                <div class="menu__item js-menu-item" data-id="1401" data-childs="21"><a class="menu__head js-menu-head" href="//mamazin.com.ua/zakolki/">Детские сумки, аксессуары</a></div>
-                <div class="menu__item js-menu-item" data-id="1137" data-childs="57"><a class="menu__head js-menu-head" href="//mamazin.com.ua/shkolnyjj-bazar/">Канцтовары, школьный базар</a></div>
-                <div class="menu__item js-menu-item" data-id="946" data-childs="20"><a class="menu__head js-menu-head" href="//mamazin.com.ua/igrushki-0-12-mes/">Игрушки, товары 0-12 мес</a></div>
-                <div class="menu__item js-menu-item" data-id="806" data-childs="13"><a class="menu__head js-menu-head" href="//mamazin.com.ua/den-rozhdene-rebenka/">Товары для праздника, подарки</a></div>
-                <div class="menu__item js-menu-item" data-id="929" data-childs="10"><a class="menu__head js-menu-head" href="//mamazin.com.ua/odezhda/">Постельное белье, текстиль</a></div>
-                <div class="menu__item js-menu-item" data-id="1251" data-childs="42"><a class="menu__head js-menu-head" href="//mamazin.com.ua/khoztovary-dlja-kukhni/">ХОЗТОВАРЫ</a></div>
-                <div class="menu__item js-menu-item" data-id="1797" data-childs="2">
-                  <a class="menu__head js-menu-head" href="//mamazin.com.ua/akcii-magazina/">Акции магазина</a>
-                  <div class="menu__body js-menu-body" id="drop1797">
-                    <div class="menu__back js-menu-back">
+                <div class="menu__item" data-id="93" data-childs="31"><a class="menu__head" href="//mamazin.com.ua/igrushki-razvivajushhie/">Игрушки РАЗВИВАЮЩИЕ</a></div>
+                <div class="menu__item" data-id="260" data-childs="42"><a class="menu__head" href="//mamazin.com.ua/tvorchestvo-obuchenie/">ТВОРЧЕСТВО, поделки</a></div>
+                <div class="menu__item" data-id="1971" data-childs="10"><a class="menu__head" href="//mamazin.com.ua/knigi-magazin/">КНИГИ</a></div>
+                <div class="menu__item" data-id="721" data-childs="14"><a class="menu__head" href="//mamazin.com.ua/obuchenie-opyty/">Наборы для обучения и опытов</a></div>
+                <div class="menu__item" data-id="117" data-childs="20"><a class="menu__head" href="//mamazin.com.ua/igrushki-dlja-devochek/">Игрушки для ДЕВОЧЕК</a></div>
+                <div class="menu__item" data-id="168" data-childs="23"><a class="menu__head" href="//mamazin.com.ua/igrushki-dlja-malchikov/">Игрушки для МАЛЬЧИКОВ</a></div>
+                <div class="menu__item" data-id="224" data-childs="11"><a class="menu__head" href="//mamazin.com.ua/konstruktory/">КОНСТРУКТОРЫ</a></div>
+                <div class="menu__item" data-id="133" data-childs="18"><a class="menu__head" href="//mamazin.com.ua/igry-nastolnye/">Настольные игры</a></div>
+                <div class="menu__item" data-id="59" data-childs="19"><a class="menu__head" href="//mamazin.com.ua/igrushki/">Детские Игрушки</a></div>
+                <div class="menu__item" data-id="198" data-childs="17"><a class="menu__head" href="//mamazin.com.ua/igry-ulica-voda-pesok/">Товары для улицы, воды</a></div>
+                <div class="menu__item" data-id="1401" data-childs="21"><a class="menu__head" href="//mamazin.com.ua/zakolki/">Детские сумки, аксессуары</a></div>
+                <div class="menu__item" data-id="1137" data-childs="57"><a class="menu__head" href="//mamazin.com.ua/shkolnyjj-bazar/">Канцтовары, школьный базар</a></div>
+                <div class="menu__item" data-id="946" data-childs="20"><a class="menu__head" href="//mamazin.com.ua/igrushki-0-12-mes/">Игрушки, товары 0-12 мес</a></div>
+                <div class="menu__item" data-id="806" data-childs="13"><a class="menu__head" href="//mamazin.com.ua/den-rozhdene-rebenka/">Товары для праздника, подарки</a></div>
+                <div class="menu__item" data-id="929" data-childs="10"><a class="menu__head" href="//mamazin.com.ua/odezhda/">Постельное белье, текстиль</a></div>
+                <div class="menu__item" data-id="1251" data-childs="42"><a class="menu__head" href="//mamazin.com.ua/khoztovary-dlja-kukhni/">ХОЗТОВАРЫ</a></div>
+                <div class="menu__item" data-id="1797" data-childs="2">
+                  <a class="menu__head" href="//mamazin.com.ua/akcii-magazina/">Акции магазина</a>
+                  <div class="menu__body" id="drop1797">
+                    <div class="menu__back">
                       <svg class="icon icon-arrow-prev">
                         <use xlink:href="img/sprite.svg#icon-arrow-prev"></use>
                       </svg>назад</div>
@@ -113,7 +113,7 @@
               <div class="header__bg"></div>
             </div>
           </div>
-          <div class="col-lg-8 sticky-md-none">
+          <div class="col-lg-6 sticky-md-none">
             <div class="header-navigation-area d-none d-md-block">
               <ul class="main-menu nav position-relative">
                 <li><a href="contact.html">Contact</a></li>
