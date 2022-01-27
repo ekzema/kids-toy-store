@@ -9496,18 +9496,24 @@ table p {
   transition: all 0.3s;
 }
 
-.header__bg.visible {
+.menu {
+  position: relative;
+  width: max-content;
+}
+
+.menu:hover .header__bg {
   visibility: visible;
   opacity: 1;
   z-index: 10;
 }
 
-.menu {
-  position: relative;
+.header__bg:hover {
+  display: none;
 }
+
 .menu__btn {
   position: relative;
-  z-index: 6;
+  z-index: 11;
   width: 300px;
   height: 50px;
   border: none;

@@ -70,7 +70,7 @@
     <div class="header-area header-default sticky-header">
       <div class="container">
         <div class="row row-gutter-0 align-items-center">
-          <div class="col-4 col-sm-6 col-lg-2">
+          <div class="col-4 col-sm-6 col-lg-4">
             <div class="menu">
               <button class="menu__btn">
                 <span class="menu__burger"><span></span></span><span class="menu__text">Каталог товаров</span>
@@ -110,6 +110,7 @@
                   </div>
                 </div>
               </div>
+              <div class="header__bg"></div>
             </div>
           </div>
           <div class="col-lg-8 sticky-md-none">
@@ -153,7 +154,6 @@
         </div>
       </div>
     </div>
-    <div class="header__bg"></div>
   </header>
 </template>
 
