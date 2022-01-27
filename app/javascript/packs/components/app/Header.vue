@@ -116,6 +116,7 @@
           <div class="col-lg-6 sticky-md-none">
             <div class="header-navigation-area d-none d-md-block">
               <ul class="main-menu nav position-relative">
+                <li><a href="contact.html">Main page</a></li>
                 <li><a href="contact.html">Contact</a></li>
                 <li><a href="contact.html">About</a></li>
                 <li><a href="contact.html">Blogs</a></li>
@@ -154,6 +155,33 @@
         </div>
       </div>
     </div>
+    <!--== Start Side Menu ==-->
+    <aside class="off-canvas-wrapper">
+      <div class="off-canvas-inner">
+        <div class="off-canvas-overlay d-none"></div>
+        <!-- Start Off Canvas Content Wrapper -->
+        <div class="off-canvas-content">
+          <!-- Off Canvas Header -->
+          <div class="off-canvas-header">
+            <div class="close-action">
+              <button class="btn-close"><i class="pe-7s-close"></i></button>
+            </div>
+          </div>
+
+          <div class="off-canvas-item">
+            <!-- Start Mobile Menu Wrapper -->
+            <div class="res-mobile-menu">
+              <!-- Note Content Auto Generate By Jquery From Main Menu -->
+            </div>
+            <!-- End Mobile Menu Wrapper -->
+          </div>
+          <!-- Off Canvas Footer -->
+          <div class="off-canvas-footer"></div>
+        </div>
+        <!-- End Off Canvas Content Wrapper -->
+      </div>
+    </aside>
+    <!--== End Side Menu ==-->
   </header>
 </template>
 
