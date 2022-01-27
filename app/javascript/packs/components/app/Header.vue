@@ -72,10 +72,10 @@
         <div class="row row-gutter-0 align-items-center">
           <div class="col-4 col-sm-6 col-lg-2">
             <div class="menu">
-              <button class="menu__btn js-menu-btn">
+              <button class="menu__btn">
                 <span class="menu__burger"><span></span></span><span class="menu__text">Каталог товаров</span>
               </button>
-              <div class="menu__wrapper js-menu-wrapper">
+              <div class="menu__wrapper">
                 <div class="menu__item js-menu-item" data-id="93" data-childs="31"><a class="menu__head js-menu-head" href="//mamazin.com.ua/igrushki-razvivajushhie/">Игрушки РАЗВИВАЮЩИЕ</a></div>
                 <div class="menu__item js-menu-item" data-id="260" data-childs="42"><a class="menu__head js-menu-head" href="//mamazin.com.ua/tvorchestvo-obuchenie/">ТВОРЧЕСТВО, поделки</a></div>
                 <div class="menu__item js-menu-item" data-id="1971" data-childs="10"><a class="menu__head js-menu-head" href="//mamazin.com.ua/knigi-magazin/">КНИГИ</a></div>
