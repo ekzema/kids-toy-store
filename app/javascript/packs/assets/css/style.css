@@ -9556,6 +9556,13 @@ table p {
 .menu__burger span {
   margin: 5px auto;
 }
+
+.header__bg.visible {
+  visibility: visible;
+  opacity: 1;
+  z-index: 10;
+}
+
 .menu__btn.active .menu__burger span,
 .menu__btn.active .menu__burger:after,
 .menu__btn.active .menu__burger:before {
@@ -9573,6 +9580,20 @@ table p {
   -ms-transform: translateY(-7px) rotate(45deg);
   transform: translateY(-7px) rotate(45deg);
 }
+
+.menu__btn.inactive .menu__burger:before {
+  -ms-transform: rotate(0) !important;
+  transform: rotate(0) !important;
+}
+.menu__btn.inactive .menu__burger span {
+  -ms-transform: rotate(0) !important;
+  transform: rotate(0) !important;
+}
+.menu__btn.inactive .menu__burger:after {
+  -ms-transform: rotate(0) !important;
+  transform:  rotate(0) !important;
+}
+
 .menu__wrapper {
   display: none;
   position: absolute;
@@ -9601,9 +9622,9 @@ table p {
   transition: all 0.3s;
   -webkit-tap-highlight-color: transparent;
 }
-.menu__head:after,
-.menu__head:before {
-  content: "";
+
+.sub_button {
+  background-image: url('../img/angle-right_black.png');
   position: absolute;
   top: 52%;
   right: 20px;
@@ -9615,26 +9636,12 @@ table p {
   background-position: 50% 50%;
   background-size: 6px 10px;
 }
-.menu__head:before {
-  background-image: url('../img/angle-right_black.png');
-}
-.menu__head:after {
-  z-index: 2;
-  opacity: 0;
-  background-image: url('../img/angle-right_pink.png');
-  transition: all 0.3s;
-}
-.menu__item:hover .menu__head:after,
-.menu__item:hover .menu__head:before {
+
+.menu__item:hover .menu__head .sub_button {
   right: 17px;
+  background-image: url('../img/angle-right_pink.png');
 }
-.menu__item.open .menu__head {
-  border-color: #f379a7;
-  color: #f379a7;
-}
-.menu__item.open .menu__head:after {
-  opacity: 1;
-}
+
 .menu__item.open .menu__body {
   display: block;
 }
