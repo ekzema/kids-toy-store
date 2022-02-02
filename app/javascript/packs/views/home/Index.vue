@@ -1,13 +1,16 @@
 <template>
-  <main-slider/>
+<!--  <main-slider/>-->
+  <new-products />
 </template>
 
 <script>
-import MainSlider from './components/Slider'
+// import MainSlider from './components/Slider'
+import NewProducts from "./components/NewProducts"
 
 export default {
   components: {
-    MainSlider
+    // MainSlider,
+    NewProducts
   },
   data () {
     {
