@@ -12,6 +12,18 @@ environment.plugins.prepend('Provide',
     })
 )
 
+environment.config.merge({
+    module: {
+        rules: [
+            {
+                test: /\.mjs$/,
+                include: /node_modules/,
+                type: "javascript/auto",
+            }
+        ]
+    }
+})
+
 environment.plugins.prepend('VueLoaderPlugin', new VueLoaderPlugin())
 environment.loaders.prepend('vue', vue)
 environment.loaders.prepend('eslint', eslint)

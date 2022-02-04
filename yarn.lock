@@ -7703,6 +7703,11 @@ vue@^3.2.26:
     "@vue/server-renderer" "3.2.26"
     "@vue/shared" "3.2.26"
 
+vuetify@^3.0.0-alpha.10:
+  version "3.0.0-alpha.10"
+  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-3.0.0-alpha.10.tgz#b088c38d30a4b42286d8ec242c5e051157e0ee0d"
+  integrity sha512-+y8ooacEJvDVLSJ0EuazUlJ8dFEjZv00WLGlCjTSP1Nb114a6SvCwyUvyMJItOiJktdOBQlTz7iBS8Syu9YVNw==
+
 vuex@^4.0.2:
   version "4.0.2"
   resolved "https://registry.npmjs.org/vuex/-/vuex-4.0.2.tgz"
