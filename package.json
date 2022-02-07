@@ -9,6 +9,7 @@
   "dependencies": {
     "@hotwired/stimulus": "^3.0.1",
     "@hotwired/turbo-rails": "^7.1.0",
+    "@mdi/font": "^6.5.95",
     "@popperjs/core": "^2.11.2",
     "@rails/webpacker": "5.4.3",
     "@vue/compiler-sfc": "^3.2.26",
