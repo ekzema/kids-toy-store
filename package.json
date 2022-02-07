@@ -9,7 +9,6 @@
   "dependencies": {
     "@hotwired/stimulus": "^3.0.1",
     "@hotwired/turbo-rails": "^7.1.0",
-    "@mdi/font": "^6.5.95",
     "@popperjs/core": "^2.11.2",
     "@rails/webpacker": "5.4.3",
     "@vue/compiler-sfc": "^3.2.26",
@@ -39,6 +38,7 @@
     "webpack-cli": "^3.3.12"
   },
   "devDependencies": {
+    "@mdi/font": "^6.5.95",
     "eslint": "^7.32.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-loader": "^4.0.2",
