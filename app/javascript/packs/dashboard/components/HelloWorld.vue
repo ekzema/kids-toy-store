@@ -9,16 +9,16 @@
         >
     </v-navigation-drawer>
     <v-app-bar
-        color="blue-darken-2"
+        color="primary"
     >
 
-      <v-app-bar-nav-icon  class="text-white" color="blue-darken-2" @click="drawer=false"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon color="primary" @click="drawer=false"></v-app-bar-nav-icon>
 
-      <v-app-bar-title class="text-white">Dashboard</v-app-bar-title>
+      <v-app-bar-title>Dashboard</v-app-bar-title>
 
       <v-spacer></v-spacer>
 
-      <v-btn icon class="text-white" color="blue-darken-2">
+      <v-btn icon color="primary">
         <v-icon>mdi-dots-vertical</v-icon>
       </v-btn>
     </v-app-bar>
