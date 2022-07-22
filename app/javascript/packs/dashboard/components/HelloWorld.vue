@@ -1,85 +1,39 @@
 <template>
-  <v-app>
-    <v-navigation-drawer
-        color="grey-darken-2"
-        absolute
-        permanent
-        v-model="drawer"
-        temporary
-        >
-    </v-navigation-drawer>
-    <v-app-bar
-        color="primary"
-    >
+  <v-navigation-drawer :rail="rail" permanent>
+    <v-list density="compact" nav>
+      <v-list-item prepend-icon="mdi-home-city" title="Home" value="home"></v-list-item>
+      <v-list-item prepend-icon="mdi-account" title="My Account" value="account"></v-list-item>
+      <v-list-item prepend-icon="mdi-account-group-outline" title="Users" value="users"></v-list-item>
+    </v-list>
+  </v-navigation-drawer>
+  <v-app-bar color="primary">
+    <v-app-bar-nav-icon @click="rail = !rail"></v-app-bar-nav-icon>
+    <p>Dashboard</p>
+    <v-spacer></v-spacer>
+    <v-btn icon>
+      <v-icon>mdi-dots-vertical</v-icon>
+    </v-btn>
+  </v-app-bar>
+  <v-main>
+    <v-container fluid style="outline: 1px solid green">
+      <v-card style="outline: 1px solid red" fluid>
+        dsds
+      </v-card>
 
-      <v-app-bar-nav-icon color="primary" @click="drawer=false"></v-app-bar-nav-icon>
-
-      <v-app-bar-title>Dashboard</v-app-bar-title>
-
-      <v-spacer></v-spacer>
-
-      <v-btn icon color="primary">
-        <v-icon>mdi-dots-vertical</v-icon>
-      </v-btn>
-    </v-app-bar>
-    <v-main>
-      <v-card></v-card>
-    </v-main>
-  </v-app>
+    </v-container>
+  </v-main>
 </template>
 
 <script>
-
 export default {
-  name: 'HelloWorld',
-
+  name: 'App',
   data: () => ({
+    rail: false,
     drawer: true,
-    ecosystem: [
-      {
-        text: 'vuetify-loader',
-        href: 'https://github.com/vuetifyjs/vuetify-loader',
-      },
-      {
-        text: 'github',
-        href: 'https://github.com/vuetifyjs/vuetify',
-      },
-      {
-        text: 'awesome-vuetify',
-        href: 'https://github.com/vuetifyjs/awesome-vuetify',
-      },
-    ],
-    importantLinks: [
-      {
-        text: 'Chat',
-        href: 'https://community.vuetifyjs.com',
-      },
-      {
-        text: 'Made with Vuetify',
-        href: 'https://madewithvuejs.com/vuetify',
-      },
-      {
-        text: 'Twitter',
-        href: 'https://twitter.com/vuetifyjs',
-      },
-      {
-        text: 'Articles',
-        href: 'https://medium.com/vuetify',
-      },
-    ],
-    whatsNext: [
-      {
-        text: 'Explore components',
-        href: 'https://vuetifyjs.com',
-      },
-      {
-        text: 'Roadmap',
-        href: 'https://vuetifyjs.com/introduction/roadmap/',
-      },
-      {
-        text: 'Frequently Asked Questions',
-        href: 'https://vuetifyjs.com/getting-started/frequently-asked-questions',
-      },
+    items: [
+      { title: 'Home', icon: 'mdi-home-city' },
+      { title: 'My Account', icon: 'mdi-account' },
+      { title: 'Users', icon: 'mdi-account-group-outline' },
     ],
   }),
 }

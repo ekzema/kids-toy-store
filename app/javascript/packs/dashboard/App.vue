@@ -1,8 +1,6 @@
 <template>
   <v-app>
-    <v-main>
       <HelloWorld/>
-    </v-main>
   </v-app>
 </template>
 
@@ -21,3 +19,9 @@ export default {
   }),
 }
 </script>
+
+<style>
+  html {
+    overflow-y: auto !important;
+  }
+</style>
