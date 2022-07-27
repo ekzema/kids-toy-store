@@ -12,7 +12,13 @@ export default createVuetify({
         themes: {
             light: {
                 colors: {
-                    primary: colors.blue.darken2
+                    primary: colors.blue.darken2,
+                    secondary: '#5CBBF6'
+                }
+            },
+            dark: {
+                colors: {
+                    surface: '#424242',
                 }
             }
         },
