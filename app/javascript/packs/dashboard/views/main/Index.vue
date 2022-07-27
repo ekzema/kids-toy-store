@@ -3,9 +3,14 @@
 </template>
 
 <script>
+import config from "../../config"
+
 export default {
   name: 'App',
   data: () => ({
   }),
+  created() {
+    console.log(config.baseUrl,'test')
+  }
 }
 </script>

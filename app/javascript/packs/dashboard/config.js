@@ -1,8 +1,7 @@
 const baseUrl = 'api/v1'
-let config = {
-    api: baseUrl
+const config = {
+    baseUrl
 }
 
-global.config = config
 
 export default config
