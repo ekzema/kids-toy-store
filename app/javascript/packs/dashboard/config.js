@@ -1,7 +1,5 @@
-const baseUrl = 'api/v1'
 const config = {
-    baseUrl
+    baseUrl: 'api/v1'
 }
-
 
 export default config

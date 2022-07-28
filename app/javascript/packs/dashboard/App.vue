@@ -41,19 +41,19 @@ export default {
         title: 'home',
         value: 'primary',
         icon: 'mdi-home-city',
-        path: '/dsdsd'
+        path: '/dashboard'
       },
       {
         title: 'My Account',
         value: 'account',
         icon: 'mdi-account',
-        path: '/dashboard'
+        path: '/dsdsd'
       },
       {
-        title: 'Users',
-        value: 'users',
+        title: 'Categories',
+        value: 'categories',
         icon: 'mdi-account-group-outline',
-        path: '/dsdsd'
+        path: '/dashboard/categories'
       }
     ]
   }),

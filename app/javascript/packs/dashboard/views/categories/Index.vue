@@ -1,16 +1,14 @@
 <template>
-  <h1>Main page</h1>
+  <h1>Categories page</h1>
 </template>
 
 <script>
-import config from "../../config"
 
 export default {
   name: 'index',
   data: () => ({
   }),
   created() {
-    console.log(config.baseUrl,'test')
   }
 }
 </script>

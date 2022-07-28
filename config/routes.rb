@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
-  root "store#index"
-  get 'dashboard', to: 'dashboard#index'
-
   namespace :api do
     namespace :v1 do
       resources :products
     end
   end
+
+  get 'dashboard', to: 'dashboard#index'
+  match "/dashboard/*path", to: "dashboard#index", format: false, via: :get
+
+  root "store#index"
+  match "*path", to: "store#index", format: false, via: :get
 end

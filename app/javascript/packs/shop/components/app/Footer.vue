@@ -110,6 +110,7 @@
 
 <script>
 export default {
+  name: 'footer',
   data () {
     {
     }
