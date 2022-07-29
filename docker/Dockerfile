@@ -1,4 +1,4 @@
-FROM ruby:3.0.3
+FROM ruby:3.1.2
 
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1  apt-key add -
