@@ -1,14 +1,14 @@
-class Api::V1::CategoriesController < ApplicationController
+class Api::V1::CategoriesController < ApiController
   def index
     categories = Category.all
-    render json: categories
+    render_response(categories)
   end
 
   def create
     category = Category.new(category_params)
 
     if category.save
-      render json: category, status: :created
+      render_response(category, status: :created)
     else
       render json: category.errors, status: :unprocessable_entity
     end
