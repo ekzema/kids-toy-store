@@ -1,12 +1,18 @@
 class ApiController < ActionController::API
   def prepare_serializer(data, class_serializer = nil, options = {})
-    class_serializer ||= "#{data.klass.to_s.downcase}_serializer".camelize.constantize
+
+    class_serializer ||= "#{fetch_object_class(data)}_serializer".camelize.constantize
     type_serialize = data.respond_to?(:each) ? :each_serializer : :serializer
 
     ActiveModelSerializers::SerializableResource.new(data, type_serialize => class_serializer, **options)
   end
 
   private
+
+  def fetch_object_class(object)
+    object_class = object.respond_to?(:klass) ? object.klass : object.class
+    object_class.to_s.downcase
+  end
 
   def render_response(data = {}, *options_serializer, expand: {}, status: :ok)
     response = { success: true }
