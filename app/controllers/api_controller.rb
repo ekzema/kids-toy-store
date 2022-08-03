@@ -14,7 +14,7 @@ class ApiController < ActionController::API
     object_class.to_s.downcase
   end
 
-  def render_response(data = {}, *options_serializer, expand: {}, status: :ok)
+  def render_response(data = nil, *options_serializer, expand: {}, status: :ok)
     response = { success: true }
     response.merge! expand if expand.present? && expand.instance_of?(Hash)
     prepare_data = (data.instance_of?(Hash) || data.instance_of?(Array) || data.nil?) ? data : prepare_serializer(data, *options_serializer)
