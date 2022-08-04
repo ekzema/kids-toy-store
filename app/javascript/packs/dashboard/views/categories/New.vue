@@ -7,6 +7,7 @@
         lg="6"
     >
       <v-form ref="form" >
+        <h1 class="text-center mb-3">Create new category</h1>
             <v-text-field
                 ref="name"
                 v-model="name"
