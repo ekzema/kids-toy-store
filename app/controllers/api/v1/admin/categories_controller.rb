@@ -1,4 +1,4 @@
-class Api::V1::CategoriesController < ApiController
+class Api::V1::Admin::CategoriesController < AdminController
   def index
     categories = Category.all
     render_response(categories)
