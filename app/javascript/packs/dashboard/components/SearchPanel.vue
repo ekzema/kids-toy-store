@@ -2,6 +2,7 @@
   <v-card flat>
     <v-row align="center">
       <v-col
+          class="flex"
           cols="12"
           xs="12"
           sm="4"
@@ -20,7 +21,7 @@
           </v-text-field>
         </v-card-text>
       </v-col>
-      <v-row
+      <v-col
           cols="12"
           xs="12"
           sm="8"
@@ -44,7 +45,7 @@
             <span>Search</span>
           </v-tooltip>
         </v-card-actions>
-      </v-row>
+      </v-col>
     </v-row>
   </v-card>
 
