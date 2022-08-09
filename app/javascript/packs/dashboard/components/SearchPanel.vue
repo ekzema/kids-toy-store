@@ -28,7 +28,7 @@
           lg="2"
       >
         <v-card-actions>
-          <v-tooltip top>
+          <v-tooltip location="bottom">
             <template v-slot:activator="{ props }">
               <v-btn
                   color="secondary-dark-blue"
@@ -42,6 +42,7 @@
             </template>
             <span>Search</span>
           </v-tooltip>
+          <slot></slot>
         </v-card-actions>
       </v-col>
     </v-row>
