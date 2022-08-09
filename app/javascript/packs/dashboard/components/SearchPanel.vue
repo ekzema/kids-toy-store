@@ -1,12 +1,12 @@
 <template>
   <v-card flat>
-    <v-row align="center">
+    <v-row class="flex justify-end">
       <v-col
           cols="12"
           xs="12"
           sm="4"
-          md="7"
-          lg="8"
+          md="6"
+          lg="3"
       >
         <v-card-text>
           <v-text-field
@@ -24,11 +24,10 @@
           cols="12"
           xs="12"
           sm="8"
-          md="5"
-          lg="4"
+          md="6"
+          lg="2"
       >
         <v-card-actions>
-          <v-spacer></v-spacer>
           <v-tooltip top>
             <template v-slot:activator="{ props }">
               <v-btn
