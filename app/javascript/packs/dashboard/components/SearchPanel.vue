@@ -2,7 +2,6 @@
   <v-card flat>
     <v-row align="center">
       <v-col
-          class="flex"
           cols="12"
           xs="12"
           sm="4"
