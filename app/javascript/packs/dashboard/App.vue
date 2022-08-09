@@ -3,7 +3,13 @@
     <v-navigation-drawer :rail="rail" permanent theme="dark">
       <v-list>
         <template v-for="item in drawerItems">
-          <v-list-item :prepend-icon="item.icon" :title="item.title" :value="item.value" :to="item.path"></v-list-item>
+          <v-list-item
+              :prepend-icon="item.icon"
+              :title="item.title"
+              :value="item.value"
+              :to="item.path"
+              :active="$route.path.includes(item.path) && item.path !== '/dashboard'"
+          ></v-list-item>
         </template>
       </v-list>
     </v-navigation-drawer>
