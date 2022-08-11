@@ -3,14 +3,13 @@
 </template>
 
 <script>
-import config from "../../config"
 
 export default {
   name: 'index',
   data: () => ({
   }),
   created() {
-    console.log(config.baseUrl,'test')
+    console.log('test','test')
   }
 }
 </script>
