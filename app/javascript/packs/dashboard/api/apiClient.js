@@ -3,7 +3,8 @@ import axios from 'axios'
 
 class ApiClient {
     constructor(resource) {
-        this.url = `${baseUrl}/${resource}`
+        axios.defaults.baseURL = baseUrl
+        this.url = resource
     }
 
     get() {

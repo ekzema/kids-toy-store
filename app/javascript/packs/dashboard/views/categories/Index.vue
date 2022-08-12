@@ -29,7 +29,13 @@ export default {
   },
   data: () => ({
   }),
-  created() {
+  mounted() {
+    this.fetchCategories()
+  },
+  methods: {
+    fetchCategories() {
+      this.$store.dispatch('fetchCategories').then(response => console.log(response,'tesresponseresponseresponset'))
+    }
   }
 }
 </script>
