@@ -1,5 +1,5 @@
 const getters = {
-    fetchCategdsdsories(state) {
+    categories(state) {
         return state.categories
     }
 }

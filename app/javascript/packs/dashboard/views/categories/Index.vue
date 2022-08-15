@@ -1,4 +1,5 @@
 <template>
+  <h1>{{categories[0].name}}</h1>
   <search-panel>
     <v-tooltip location="bottom">
       <template v-slot:activator="{ props }">
@@ -21,6 +22,7 @@
 
 <script>
 import SearchPanel from '../../components/SearchPanel'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'index',
@@ -29,13 +31,17 @@ export default {
   },
   data: () => ({
   }),
-  mounted() {
+  computed: {
+    ...mapGetters([
+      'categories'
+    ]),
+  },
+  created () {
     this.fetchCategories()
   },
   methods: {
     fetchCategories() {
       this.$store.dispatch('fetchCategories')
-      console.log(this.$store.getters.fetchCategdsdsories, 'test')
     }
   }
 }
