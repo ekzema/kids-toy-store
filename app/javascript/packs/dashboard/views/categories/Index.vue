@@ -34,7 +34,8 @@ export default {
   },
   methods: {
     fetchCategories() {
-      this.$store.dispatch('fetchCategories').then(response => console.log(response,'tesresponseresponseresponset'))
+      this.$store.dispatch('fetchCategories')
+      console.log(this.$store.getters.fetchCategdsdsories, 'test')
     }
   }
 }
