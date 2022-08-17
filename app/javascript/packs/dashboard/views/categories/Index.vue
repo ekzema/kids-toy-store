@@ -1,6 +1,5 @@
 <template>
   <h1>{{categories[0].name}}</h1>
-  <h1>{{cadsdsd}}</h1>
   <p v-for="(value, index) in categories" :key="index">{{value.name}}</p>
   <search-panel>
     <v-tooltip location="bottom">
