@@ -7,8 +7,9 @@ class ApiClient {
         this.url = resource
     }
 
-    get() {
-        return axios.get(this.url)
+    async get() {
+        const { data } = await axios.get(this.url)
+        return data
     }
 
     show(id) {
