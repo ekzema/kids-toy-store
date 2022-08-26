@@ -4,7 +4,8 @@ import getters from './getters'
 
 const state = {
     loader: false,
-    categories: []
+    categories: [],
+    prentCategories: []
 }
 
 export default {

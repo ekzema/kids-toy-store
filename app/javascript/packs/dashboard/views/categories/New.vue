@@ -6,35 +6,57 @@
         md="8"
         lg="6"
     >
-      <v-form ref="form" >
+      <v-form @submit.prevent="submitForm" ref="form">
         <h1 class="text-center mb-3">Create new category</h1>
             <v-text-field
                 ref="name"
-                v-model="name"
+                v-model="formData.name"
                 label="Name"
                 variant="underlined"
                 color="primary"
             ></v-text-field>
             <v-text-field
-                v-model="parent_id"
+                v-model="formData.parent_id"
                 label="Parent category"
                 variant="underlined"
                 color="primary"
             ></v-text-field>
+        <v-btn type="submit" color="success">Create</v-btn>
       </v-form>
     </v-col>
   </v-row>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'new',
   data: () => ({
-    name: '',
-    parent_id: ''
+    formData: {
+      name: '',
+      parent_id: ''
+    }
   }),
+  computed: {
+    ...mapGetters([
+      'categories',
+      'parentCategories'
+    ]),
+  },
   created() {
+    this.fetchParentCategories()
+  },
+  methods: {
+    fetchParentCategories() {
+      this.$store.dispatch('fetchParentCategories')
+    },
+    submitForm() {
+      this.createCategories()
+    },
+    createCategories() {
+      this.$store.dispatch('createCategory', this.formData)
+    }
   }
 }
 </script>

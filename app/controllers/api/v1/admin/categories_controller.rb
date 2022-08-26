@@ -8,10 +8,15 @@ class Api::V1::Admin::CategoriesController < AdminController
     category = Category.new(category_params)
 
     if category.save
-      render_response(category, status: :created)
+      render_response(status: :created)
     else
       render json: category.errors, status: :unprocessable_entity
     end
+  end
+
+  def parents
+    categories = Category.where(parent_id: nil)
+    render_response(categories, Admin::ParentCategorySerializer)
   end
 
   private

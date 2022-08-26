@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
-  namespace :api, defaults: { format: 'json' } do
+  namespace :api, defaults: { format: :json } do
     namespace :v1 do
       namespace :admin do
         resources :products
-        resources :categories
+        resources :categories do
+          collection do
+            get :parents
+          end
+        end
       end
     end
   end

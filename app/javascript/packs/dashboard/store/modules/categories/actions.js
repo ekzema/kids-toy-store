@@ -9,9 +9,17 @@ const actions = {
             console.log(error, 'error')
         }
     },
+    async fetchParentCategories({ commit }) {
+        try {
+            const { data } = await Categories.parents()
+            commit('setParentCategories', data)
+        } catch (error) {
+            console.log(error, 'error')
+        }
+    },
     async createCategory({ commit }, data) {
         try {
-            const response = await Categories.create(data)
+            return await Categories.create(data)
         } catch (error) {
             console.log(error, 'error')
         }
