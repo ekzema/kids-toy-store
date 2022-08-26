@@ -15,12 +15,15 @@
                 variant="underlined"
                 color="primary"
             ></v-text-field>
-            <v-text-field
+            <v-select
                 v-model="formData.parent_id"
-                label="Parent category"
+                label="Select parent category"
                 variant="underlined"
+                :items="parentCategories"
+                item-value="id"
+                item-title="name"
                 color="primary"
-            ></v-text-field>
+            ></v-select>
         <v-btn type="submit" color="success">Create</v-btn>
       </v-form>
     </v-col>
