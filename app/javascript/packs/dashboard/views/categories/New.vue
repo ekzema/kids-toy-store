@@ -56,9 +56,15 @@ export default {
     },
     submitForm() {
       this.createCategories()
+      this.clearForm()
     },
     createCategories() {
       this.$store.dispatch('createCategory', this.formData)
+    },
+    clearForm() {
+      Object.keys(this.formData).forEach(key => {
+        this.formData[key] = ''
+      })
     }
   }
 }
