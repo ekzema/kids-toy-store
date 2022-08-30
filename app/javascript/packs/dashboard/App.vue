@@ -22,6 +22,14 @@
       </v-btn>
     </v-app-bar>
     <v-main>
+      <div v-show="loader" class="spinner-block">
+        <v-progress-circular
+            class="spinner-loader"
+            :width="5" :size=100
+            indeterminate
+            color="primary">
+        </v-progress-circular>
+      </div>
       <v-container fluid>
         <router-view></router-view>
       </v-container>
@@ -31,11 +39,17 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'App',
   components: {
     HelloWorld,
+  },
+  computed: {
+    ...mapGetters([
+      'loader'
+    ]),
   },
   data: () => ({
     rail: false,
@@ -68,4 +82,21 @@ export default {
   html {
     overflow-y: auto !important;
   }
+
+  .spinner-block {
+    margin: auto;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    background-color: white;
+    opacity: 0.5;
+    top: 0;
+  }
+
+  .spinner-loader {
+    left: calc(50% - 50px);
+    top: calc(50% - 50px);
+  }
+
 </style>

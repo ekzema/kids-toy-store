@@ -1,10 +1,6 @@
 const getters = {
-    categories(state) {
-        return state.categories
-    },
-    parentCategories(state) {
-        return state.prentCategories
-    }
+    categories: state => state.categories,
+    parentCategories: state => state.parentCategories
 }
 
 export default getters
