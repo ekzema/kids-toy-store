@@ -1,14 +1,12 @@
-import ApiClient from './apiClient'
-import axios from 'axios'
+import MainApi from './mainApi'
 
-class Categories extends ApiClient {
+class Categories extends MainApi {
     constructor() {
         super('categories')
     }
 
-    async parents() {
-        const { data } = await axios.get(`${this.url}/parents`)
-        return data
+    parents() {
+        return this.api.query('get', `${this.url}/parents`)
     }
 }
 
