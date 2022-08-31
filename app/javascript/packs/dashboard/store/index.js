@@ -10,18 +10,25 @@ const getters = {
 }
 
 const mutations = {
-    showLoader(state) {
-        state.loader = true
-    },
-    hideLoader(state) {
-        state.loader = false
+    setLoader(state, payload) {
+        state.loader = payload
     }
+}
+
+const actions = {
+    showLoader({ commit }) {
+        commit('setLoader', true)
+    },
+    hideLoader({ commit }) {
+        commit('setLoader', false)
+    },
 }
 
 const store = createStore({
     state,
     getters,
     mutations,
+    actions,
     modules: {
         categories,
     },
