@@ -99,4 +99,5 @@ export default {
     top: calc(50% - 50px);
   }
 
+  tbody tr:nth-child(odd) {background-color: #f2f2f2;}
 </style>
