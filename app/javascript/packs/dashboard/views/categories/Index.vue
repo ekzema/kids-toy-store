@@ -24,17 +24,17 @@
           Name
         </th>
         <th class="text-left">
-          Calories
+          Parent category
         </th>
       </tr>
       </thead>
       <tbody>
       <tr
-          v-for="item in desserts"
-          :key="item.name"
+          v-for="category in categories"
+          :key="category.name"
       >
-        <td>{{ item.name }}</td>
-        <td>{{ item.calories }}</td>
+        <td>{{ category.name }}</td>
+        <td>{{ category.parent_id }}</td>
       </tr>
       </tbody>
     </v-table>
