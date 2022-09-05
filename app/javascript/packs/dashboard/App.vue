@@ -21,7 +21,7 @@
         <v-icon>mdi-dots-vertical</v-icon>
       </v-btn>
     </v-app-bar>
-    <v-main>
+    <v-main class="custom-main-color">
       <div v-show="loader" class="spinner-block">
         <v-progress-circular
             class="spinner-loader"
@@ -82,22 +82,4 @@ export default {
   html {
     overflow-y: auto !important;
   }
-
-  .spinner-block {
-    margin: auto;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 10000;
-    background-color: white;
-    opacity: 0.5;
-    top: 0;
-  }
-
-  .spinner-loader {
-    left: calc(50% - 50px);
-    top: calc(50% - 50px);
-  }
-
-  tbody tr:nth-child(odd) {background-color: #f2f2f2;}
 </style>

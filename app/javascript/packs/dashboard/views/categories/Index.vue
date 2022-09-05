@@ -1,5 +1,5 @@
 <template>
-  <search-panel>
+  <search-panel class="custom-main-color">
     <v-tooltip location="bottom">
       <template v-slot:activator="{ props }">
         <v-btn
@@ -16,8 +16,8 @@
       <span>Add category</span>
     </v-tooltip>
   </search-panel>
-  <h1>Categories page</h1>
-    <v-table class="elevation-4">
+<!--  <h1>Categories page</h1>-->
+    <v-table class="tr-odd elevation-4">
       <thead>
       <tr>
         <th class="text-left">

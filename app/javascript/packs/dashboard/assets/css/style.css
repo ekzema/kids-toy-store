@@ -1,3 +1,32 @@
 h1 {
     color: #525252;
 }
+
+.spinner-block {
+    margin: auto;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    background-color: white;
+    opacity: 0.5;
+    top: 0;
+}
+
+.spinner-loader {
+    left: calc(50% - 50px);
+    top: calc(50% - 50px);
+}
+
+.tr-odd tbody tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+.tr-odd tbody tr:hover {
+    outline: 1px solid #b9b7b7;
+}
+
+.custom-main-color {
+    background-color: #edf4f8;
+}
+

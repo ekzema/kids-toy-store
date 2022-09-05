@@ -6,6 +6,10 @@
         md="8"
         lg="6"
     >
+      <v-sheet
+          elevation="4"
+          class="pa-4"
+      >
       <v-form @submit.prevent="submitForm" ref="form">
         <h1 class="text-center mb-3">Create new category</h1>
             <v-text-field
@@ -26,6 +30,7 @@
             ></v-select>
         <v-btn type="submit" color="success">Create</v-btn>
       </v-form>
+      </v-sheet>
     </v-col>
   </v-row>
 </template>
