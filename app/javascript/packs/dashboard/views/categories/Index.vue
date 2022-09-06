@@ -93,8 +93,8 @@ export default {
     onCancel() {
       this.hideDialog()
     },
-    onDelete() {
-      this.deleteCategory()
+    async onDelete() {
+      await this.deleteCategory()
       this.fetchCategories()
       this.hideDialog()
     },
@@ -104,8 +104,8 @@ export default {
     hideDialog() {
       this.dialog = false
     },
-    deleteCategory() {
-      this.$store.dispatch('deleteCategory', this.selectCategory.id)
+    async deleteCategory() {
+      await this.$store.dispatch('deleteCategory', this.selectCategory.id)
     }
   }
 }
