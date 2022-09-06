@@ -23,8 +23,8 @@ class MainApi {
     }
 
     delete(id) {
-        // return axios.delete(`${this.url}/${id}`)
+        return this.api.query('delete', `${this.url}/${id}`)
     }
 }
 
-export default MainApi;
+export default MainApi

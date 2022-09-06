@@ -22,11 +22,19 @@ h1 {
     background-color: #f2f2f2;
 }
 
-.tr-odd tbody tr:hover {
-    outline: 1px solid #b9b7b7;
+.tr-odd tbody tr:nth-child(even):hover {
+    background-color: white !important;
+}
+
+.tr-odd tbody tr:nth-child(odd):hover {
+    background-color: #F8F8F8 !important;
 }
 
 .custom-main-color {
     background-color: #edf4f8;
+}
+
+tbody tr button:hover {
+    background-color: #EBEDF0;
 }
 

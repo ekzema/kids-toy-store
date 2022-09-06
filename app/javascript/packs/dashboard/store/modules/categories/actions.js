@@ -23,6 +23,13 @@ const actions = {
         } catch (error) {
             console.log(error, 'error')
         }
+    },
+    async deleteCategory({ commit }, id) {
+        try {
+            return await Categories.delete(id)
+        } catch (error) {
+            console.log(error, 'error')
+        }
     }
 }
 

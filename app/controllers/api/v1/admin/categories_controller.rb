@@ -1,4 +1,5 @@
 class Api::V1::Admin::CategoriesController < AdminController
+  before_action :set_category, only: [:destroy]
   def index
     categories = Category.all
     render_response(categories)
@@ -19,7 +20,15 @@ class Api::V1::Admin::CategoriesController < AdminController
     render_response(categories, Admin::ParentCategorySerializer)
   end
 
+  def destroy
+    @category.destroy
+  end
+
   private
+
+  def set_category
+    @category = Category.find(params[:id])
+  end
 
   def category_params
     params.require(:category).permit(:name, :parent_id)

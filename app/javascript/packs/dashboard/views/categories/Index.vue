@@ -35,11 +35,25 @@
         <td>{{ category.name }}</td>
         <td>{{ category.parent_name }}</td>
         <td>
-          Edit | Delete
+          <v-btn
+              icon
+              variant="text"
+              @click="handleDelete(category)">
+            <v-icon color="pink">mdi-delete</v-icon>
+          </v-btn>
         </td>
       </tr>
       </tbody>
     </v-table>
+  <v-dialog v-model="dialog">
+    <v-card>
+      <v-card-text class="headline">Delete <strong>{{ selectCategory.name }}</strong> category?</v-card-text>
+      <v-card-actions class="justify-center">
+        <v-btn color="primary" @click="onCancel">Cancel</v-btn>
+        <v-btn color="red" @click="onDelete">Delete</v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
 </template>
 
 <script>
@@ -52,6 +66,8 @@ export default {
     SearchPanel,
   },
   data: () => ({
+    selectCategory: {},
+    dialog: false,
     headers: [
       'Title',
       'Parent category',
@@ -69,6 +85,27 @@ export default {
   methods: {
     fetchCategories() {
       this.$store.dispatch('fetchCategories')
+    },
+    handleDelete(category) {
+      this.selectCategory = category
+      this.showDialog()
+    },
+    onCancel() {
+      this.hideDialog()
+    },
+    onDelete() {
+      this.deleteCategory()
+      this.fetchCategories()
+      this.hideDialog()
+    },
+    showDialog() {
+      this.dialog = true
+    },
+    hideDialog() {
+      this.dialog = false
+    },
+    deleteCategory() {
+      this.$store.dispatch('deleteCategory', this.selectCategory.id)
     }
   }
 }
