@@ -59,12 +59,13 @@ export default {
     fetchParentCategories() {
       this.$store.dispatch('fetchParentCategories')
     },
-    submitForm() {
-      this.createCategories()
+    async submitForm() {
+      await this.createCategories()
       this.clearForm()
+      this.fetchParentCategories()
     },
-    createCategories() {
-      this.$store.dispatch('createCategory', this.formData)
+    async createCategories() {
+      await this.$store.dispatch('createCategory', this.formData)
     },
     clearForm() {
       Object.keys(this.formData).forEach(key => {
