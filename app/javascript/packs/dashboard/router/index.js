@@ -3,6 +3,7 @@ import MainIndex from '../views/main/Index'
 import PageNotFound from "../../errors/PageNotFound"
 import CategoriesIndex from "../views/categories/Index"
 import CategoriesNew from "../views/categories/New"
+import CategoriesEdit from "../views/categories/Edit"
 
 const router = createRouter({
     history: createWebHistory(),
@@ -21,6 +22,11 @@ const router = createRouter({
             name: 'CategoriesNew',
             path: '/dashboard/categories/new',
             component: CategoriesNew
+        },
+        {
+            name: 'CategoriesEdit',
+            path: '/dashboard/categories/edit/:id',
+            component: CategoriesEdit
         },
         {
             name: 'PageNotFound',

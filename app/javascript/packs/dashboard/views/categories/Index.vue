@@ -34,12 +34,19 @@
       >
         <td>{{ category.name }}</td>
         <td>{{ category.parent_name }}</td>
-        <td>
+        <td class="d-flex justify-center">
           <v-btn
               icon
               variant="text"
               @click="handleDelete(category)">
             <v-icon color="pink">mdi-delete</v-icon>
+          </v-btn>
+          <v-btn
+              icon
+              variant="text"
+              :to="'/dashboard/categories/edit/' + category.id"
+              >
+            <v-icon color="teal">mdi-pencil</v-icon>
           </v-btn>
         </td>
       </tr>
