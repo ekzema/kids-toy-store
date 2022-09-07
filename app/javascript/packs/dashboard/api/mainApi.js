@@ -11,7 +11,7 @@ class MainApi {
     }
 
     show(id) {
-        // return axios.get(`${this.url}/${id}`)
+        return this.api.query('get', `${this.url}/${id}`)
     }
 
     create(data) {
@@ -19,7 +19,7 @@ class MainApi {
     }
 
     update(id, data) {
-        // return axios.patch(`${this.url}/${id}`, data)
+        return this.api.query('put', `${this.url}/${id}`, data)
     }
 
     delete(id) {

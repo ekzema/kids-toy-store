@@ -1,8 +1,13 @@
 class Api::V1::Admin::CategoriesController < AdminController
-  before_action :set_category, only: [:destroy]
+  before_action :set_category, only: [:destroy, :show, :update]
+
   def index
     categories = Category.all
     render_response(categories)
+  end
+
+  def show
+    render_response(@category)
   end
 
   def create
@@ -12,6 +17,14 @@ class Api::V1::Admin::CategoriesController < AdminController
       render_response(status: :created)
     else
       render json: category.errors, status: :unprocessable_entity
+    end
+  end
+
+  def update
+    if @category.update(category_params)
+      render_response(@category)
+    else
+      render json: @category.errors, status: :unprocessable_entity
     end
   end
 

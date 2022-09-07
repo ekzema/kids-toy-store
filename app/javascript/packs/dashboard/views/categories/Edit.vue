@@ -48,29 +48,38 @@ export default {
   }),
   computed: {
     ...mapGetters([
-      'categories',
-      'parentCategories'
+      'category',
+      'parentCategories',
     ]),
   },
   created() {
     this.fetchParentCategories()
+    this.fetchCategory()
   },
   methods: {
-    fetchParentCategories() {
-      this.$store.dispatch('fetchParentCategories')
+    async fetchParentCategories() {
+      await this.$store.dispatch('fetchParentCategories')
+    },
+    async fetchCategory() {
+      await this.$store.dispatch('fetchCategory', this.$route.params.id)
+      this.setFormData()
     },
     async submitForm() {
-      await this.createCategories()
-      this.clearForm()
+      await this.updateCategories()
       this.fetchParentCategories()
     },
-    async createCategories() {
-      await this.$store.dispatch('createCategory', this.formData)
+    async updateCategories() {
+      const data = { id: this.$route.params.id, form: this.formData }
+      await this.$store.dispatch('updateCategory', data)
     },
     clearForm() {
       Object.keys(this.formData).forEach(key => {
         this.formData[key] = ''
       })
+    },
+    setFormData() {
+      this.formData.name = this.category.name
+      this.formData.parent_id = this.category.parent_id
     }
   }
 }

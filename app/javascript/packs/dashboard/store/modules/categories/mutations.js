@@ -4,6 +4,9 @@ const mutations = {
     },
     setParentCategories(state, payload) {
         state.parentCategories = payload
+    },
+    setCategory(state, payload) {
+        state.category = payload
     }
 }
 
