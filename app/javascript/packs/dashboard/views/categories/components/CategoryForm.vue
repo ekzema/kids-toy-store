@@ -51,7 +51,8 @@ export default {
   },
   methods: {
     async fetchParentCategories() {
-      await this.$store.dispatch('fetchParentCategories')
+      const params = this.category ? {id: this.$route.params.id} : {}
+      await this.$store.dispatch('fetchParentCategories', params)
     },
     async submitForm() {
       await this.$emit('submitForm', this.formData)

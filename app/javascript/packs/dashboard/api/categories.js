@@ -5,8 +5,8 @@ class Categories extends MainApi {
         super('categories')
     }
 
-    parents() {
-        return this.api.query('get', `${this.url}/parents`)
+    parents(params) {
+        return this.api.query('get', `${this.url}/parents`, {params: {...params}})
     }
 }
 
