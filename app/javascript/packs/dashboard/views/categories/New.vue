@@ -10,66 +10,29 @@
           elevation="4"
           class="pa-4"
       >
-      <v-form @submit.prevent="submitForm" ref="form">
-        <h1 class="text-center mb-3">Create new category</h1>
-            <v-text-field
-                ref="name"
-                v-model="formData.name"
-                label="Name"
-                variant="underlined"
-                color="primary"
-            ></v-text-field>
-            <v-select
-                v-model="formData.parent_id"
-                label="Select parent category"
-                variant="underlined"
-                :items="parentCategories"
-                item-value="id"
-                item-title="name"
-                color="primary"
-            ></v-select>
-        <v-btn type="submit" color="success">Create</v-btn>
-      </v-form>
+      <h1 class="text-center mb-3">Create new category</h1>
+      <Form
+          @submit-form="submitForm"
+          btn-name="Create"
+      />
       </v-sheet>
     </v-col>
   </v-row>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import Form from "./components/ Form";
 
 export default {
   name: 'new',
+  components: {
+    Form,
+  },
   data: () => ({
-    formData: {
-      name: '',
-      parent_id: ''
-    }
   }),
-  computed: {
-    ...mapGetters([
-      'parentCategories'
-    ]),
-  },
-  created() {
-    this.fetchParentCategories()
-  },
   methods: {
-    fetchParentCategories() {
-      this.$store.dispatch('fetchParentCategories')
-    },
-    async submitForm() {
-      await this.createCategories()
-      this.clearForm()
-      this.fetchParentCategories()
-    },
-    async createCategories() {
-      await this.$store.dispatch('createCategory', this.formData)
-    },
-    clearForm() {
-      Object.keys(this.formData).forEach(key => {
-        this.formData[key] = ''
-      })
+    async submitForm(formData) {
+      await this.$store.dispatch('createCategory', formData)
     }
   }
 }
