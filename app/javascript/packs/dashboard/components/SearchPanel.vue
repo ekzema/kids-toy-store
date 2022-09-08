@@ -31,6 +31,7 @@
           <v-tooltip location="bottom">
             <template v-slot:activator="{ props }">
               <v-btn
+                  @click="search"
                   color="secondary-dark-blue"
                   v-bind="props"
                   size="x-large"
@@ -58,7 +59,7 @@ export default {
   }),
   methods: {
     search () {
-      console.log('test search')
+      this.$emit('search', this.selectedText)
     }
   }
 }

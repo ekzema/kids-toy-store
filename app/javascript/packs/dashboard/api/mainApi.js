@@ -6,8 +6,8 @@ class MainApi {
         this.api = new apiClient()
     }
 
-    get() {
-        return this.api.query('get', this.url)
+    get(params) {
+        return this.api.query('get', this.url, {params: {...params}})
     }
 
     show(id) {

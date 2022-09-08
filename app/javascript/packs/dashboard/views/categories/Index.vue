@@ -1,5 +1,5 @@
 <template>
-  <search-panel class="custom-main-color">
+  <search-panel @search="search" class="custom-main-color">
     <v-tooltip location="bottom">
       <template v-slot:activator="{ props }">
         <v-btn
@@ -16,42 +16,42 @@
       <span>Add category</span>
     </v-tooltip>
   </search-panel>
-<!--  <h1>Categories page</h1>-->
-    <v-table class="tr-odd elevation-4">
-      <thead>
-      <tr>
-        <th v-for="(header, index) in headers"
-            :key="index"
-          class="text-left">
-          {{ header }}
-        </th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr
-          v-for="(category, index) in categories"
+
+  <v-table class="tr-odd elevation-4">
+    <thead>
+    <tr>
+      <th v-for="(header, index) in headers"
           :key="index"
-      >
-        <td>{{ category.name }}</td>
-        <td>{{ category.parent_name }}</td>
-        <td class="d-flex justify-center">
-          <v-btn
-              icon
-              variant="text"
-              @click="handleDelete(category)">
-            <v-icon color="pink">mdi-delete</v-icon>
-          </v-btn>
-          <v-btn
-              icon
-              variant="text"
-              :to="'/dashboard/categories/edit/' + category.id"
-              >
-            <v-icon color="teal">mdi-pencil</v-icon>
-          </v-btn>
-        </td>
-      </tr>
-      </tbody>
-    </v-table>
+          class="text-left">
+        {{ header }}
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr
+        v-for="(category, index) in categories"
+        :key="index"
+    >
+      <td>{{ category.name }}</td>
+      <td>{{ category.parent_name }}</td>
+      <td class="d-flex justify-center">
+        <v-btn
+            icon
+            variant="text"
+            @click="handleDelete(category)">
+          <v-icon color="pink">mdi-delete</v-icon>
+        </v-btn>
+        <v-btn
+            icon
+            variant="text"
+            :to="'/dashboard/categories/edit/' + category.id"
+        >
+          <v-icon color="teal">mdi-pencil</v-icon>
+        </v-btn>
+      </td>
+    </tr>
+    </tbody>
+  </v-table>
   <v-dialog v-model="dialog">
     <v-card>
       <v-card-text class="headline">Delete <strong>{{ selectCategory.name }}</strong> category?</v-card-text>
@@ -75,6 +75,7 @@ export default {
   data: () => ({
     selectCategory: {},
     dialog: false,
+    searchText: '',
     headers: [
       'Title',
       'Parent category',
@@ -91,7 +92,8 @@ export default {
   },
   methods: {
     fetchCategories() {
-      this.$store.dispatch('fetchCategories')
+      const params = this.searchText ? {q: this.searchText} : {}
+      this.$store.dispatch('fetchCategories', params)
     },
     handleDelete(category) {
       this.selectCategory = category
@@ -113,6 +115,10 @@ export default {
     },
     async deleteCategory() {
       await this.$store.dispatch('deleteCategory', this.selectCategory.id)
+    },
+    search(text) {
+      this.searchText = text
+      this.fetchCategories()
     }
   }
 }
