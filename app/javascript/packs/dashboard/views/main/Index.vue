@@ -9,7 +9,6 @@ export default {
   data: () => ({
   }),
   created() {
-    console.log('test','test')
   }
 }
 </script>

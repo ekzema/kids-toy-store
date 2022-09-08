@@ -24,7 +24,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'form',
+  name: 'category-form',
   data: () => ({
     formData: {
       name: '',
@@ -35,6 +35,10 @@ export default {
     btnName: {
       type: String,
       default: 'Save'
+    },
+    category: {
+      type: Object,
+      default: null
     }
   },
   computed: {
@@ -46,18 +50,27 @@ export default {
     this.fetchParentCategories()
   },
   methods: {
-    fetchParentCategories() {
-      this.$store.dispatch('fetchParentCategories')
+    async fetchParentCategories() {
+      await this.$store.dispatch('fetchParentCategories')
     },
     async submitForm() {
       await this.$emit('submitForm', this.formData)
-      this.clearForm()
-      this.fetchParentCategories()
+      await this.fetchParentCategories()
+      if(!this.category) this.clearForm()
     },
     clearForm() {
       Object.keys(this.formData).forEach(key => {
         this.formData[key] = ''
       })
+    },
+    setFormData() {
+      this.formData.name = this.category.name
+      this.formData.parent_id = this.category.parent_id
+    }
+  },
+  watch: {
+    category() {
+      this.setFormData()
     }
   }
 }

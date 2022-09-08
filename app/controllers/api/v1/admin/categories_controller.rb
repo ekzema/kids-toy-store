@@ -29,7 +29,7 @@ class Api::V1::Admin::CategoriesController < AdminController
   end
 
   def parents
-    categories = Category.where(parent_id: nil)
+    categories = Category.where.not(id: params[:id]).where(parent_id: nil)
     render_response(categories, Admin::ParentCategorySerializer)
   end
 

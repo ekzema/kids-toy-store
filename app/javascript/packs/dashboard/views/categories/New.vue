@@ -11,7 +11,7 @@
           class="pa-4"
       >
       <h1 class="text-center mb-3">Create new category</h1>
-      <Form
+      <category-form
           @submit-form="submitForm"
           btn-name="Create"
       />
@@ -21,12 +21,12 @@
 </template>
 
 <script>
-import Form from "./components/ Form";
+import CategoryForm from "./components/CategoryForm";
 
 export default {
   name: 'new',
   components: {
-    Form,
+    CategoryForm,
   },
   data: () => ({
   }),
