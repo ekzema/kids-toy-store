@@ -34,7 +34,7 @@
     >
       <td>{{ category.name }}</td>
       <td>{{ category.parent_name }}</td>
-      <td class="d-flex justify-left">
+      <td class="d-flex justify-center">
         <v-btn
             icon
             variant="text"
@@ -79,7 +79,7 @@ export default {
     headers: [
       'Title',
       'Parent category',
-      'Actions'
+      ''
     ],
   }),
   computed: {
