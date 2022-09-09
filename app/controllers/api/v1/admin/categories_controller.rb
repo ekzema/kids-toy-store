@@ -2,7 +2,7 @@ class Api::V1::Admin::CategoriesController < AdminController
   before_action :set_category, only: [:destroy, :show, :update]
 
   def index
-    categories = Category.all
+    categories = Category.includes(:parent).all
     categories = categories.search(params[:q]) if params[:q]
 
     render_response(categories)
