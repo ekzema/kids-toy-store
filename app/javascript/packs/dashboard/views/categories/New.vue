@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import CategoryForm from "./components/CategoryForm";
+import CategoryForm from "./components/CategoryForm"
 
 export default {
   name: 'new',
