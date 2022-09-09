@@ -3,6 +3,8 @@ class Api::V1::Admin::CategoriesController < AdminController
 
   def index
     categories = Category.all
+    categories = categories.search(params[:q]) if params[:q]
+
     render_response(categories)
   end
 
@@ -29,7 +31,9 @@ class Api::V1::Admin::CategoriesController < AdminController
   end
 
   def parents
-    categories = Category.where.not(id: params[:id]).where(parent_id: nil)
+    categories = Category.where(parent_id: nil)
+    categories = categories.where.not(id: params[:id]) if params[:id]
+
     render_response(categories, Admin::ParentCategorySerializer)
   end
 

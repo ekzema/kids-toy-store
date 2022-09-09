@@ -8,4 +8,8 @@ class Category < ApplicationRecord
   def clean_dependence_child
     Category.where(parent_id: id).update_all(parent_id: nil)
   end
+
+  def self.search(query)
+    where('LOWER(name) LIKE ?', "%#{query&.downcase}%")
+  end
 end
