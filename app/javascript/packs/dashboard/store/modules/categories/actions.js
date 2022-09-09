@@ -6,7 +6,7 @@ const actions = {
             const { data } = await Categories.get(params)
             commit('setCategories', data)
         } catch (error) {
-            console.log(error, 'error')
+            commit('setErrorMessage')
         }
     },
     async fetchParentCategories({ commit }, params) {
@@ -14,28 +14,31 @@ const actions = {
             const { data } = await Categories.parents(params)
             commit('setParentCategories', data)
         } catch (error) {
-            console.log(error, 'error')
+            commit('setErrorMessage')
         }
     },
     async createCategory({ commit }, data) {
         try {
-            return await Categories.create(data)
+            await Categories.create(data)
+            commit('setSuccessMessage', 'Category created successfully')
         } catch (error) {
-            console.log(error, 'error')
+            commit('setErrorMessage')
         }
     },
     async updateCategory({ commit }, data) {
         try {
-            return await Categories.update(data.id, data.form)
+            await Categories.update(data.id, data.form)
+            commit('setSuccessMessage', 'Category updated successfully')
         } catch (error) {
-            console.log(error, 'error')
+            commit('setErrorMessage')
         }
     },
     async deleteCategory({ commit }, id) {
         try {
-            return await Categories.delete(id)
+            await Categories.delete(id)
+            commit('setSuccessMessage', 'Category deleted successfully')
         } catch (error) {
-            console.log(error, 'error')
+            commit('setErrorMessage')
         }
     },
     async fetchCategory({ commit }, id) {
@@ -43,7 +46,7 @@ const actions = {
             const { data } = await Categories.show(id)
             commit('setCategory', data)
         } catch (error) {
-            console.log(error, 'error')
+            commit('setErrorMessage')
         }
     }
 }

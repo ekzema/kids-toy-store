@@ -1,6 +1,9 @@
 class Category < ApplicationRecord
   belongs_to :parent, :class_name => "Category", optional: true
+
   validates :name, presence: true
+  validates :name, uniqueness: true
+
   after_destroy :clean_dependence_child
 
   private

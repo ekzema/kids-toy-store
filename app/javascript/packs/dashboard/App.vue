@@ -34,17 +34,18 @@
         <router-view></router-view>
       </v-container>
     </v-main>
+    <alert />
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Alert from './components/Alert'
 import { mapGetters } from 'vuex'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld,
+    Alert,
   },
   computed: {
     ...mapGetters([

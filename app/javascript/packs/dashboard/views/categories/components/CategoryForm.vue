@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     async fetchParentCategories() {
-      const params = this.category ? {id: this.$route.params.id} : {}
+      const params = this.category ? { id: this.$route.params.id } : {}
       await this.$store.dispatch('fetchParentCategories', params)
     },
     async submitForm() {
@@ -65,8 +65,10 @@ export default {
       })
     },
     setFormData() {
-      this.formData.name = this.category.name
-      this.formData.parent_id = this.category.parent_id
+      this.formData = {
+        name: this.category.name,
+        parent_id: this.category.parent_id
+      }
     }
   },
   watch: {
