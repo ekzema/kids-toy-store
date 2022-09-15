@@ -3,6 +3,7 @@ class Category < ApplicationRecord
 
   validates :name, presence: true
   validates :name, uniqueness: true
+  validate  :is_parent, on: :update
 
   after_destroy :clean_dependence_child
 
@@ -14,5 +15,10 @@ class Category < ApplicationRecord
 
   def self.search(query)
     where('LOWER(name) LIKE ?', "%#{query&.downcase}%")
+  end
+
+  def is_parent
+    categories_count =  Category.where(parent_id: id).count
+    errors.add(:category, "This category is already a parent!") unless categories_count.zero?
   end
 end
