@@ -1,11 +1,18 @@
 <template>
-  <v-form @submit.prevent="submitForm" ref="form">
+  <v-form
+      @submit.prevent="submitForm"
+      ref="form"
+      v-model="valid"
+      lazy-validation
+  >
     <v-text-field
         ref="name"
         v-model="formData.name"
+        :rules="nameRules"
         label="Name"
         variant="underlined"
         color="primary"
+        required
     ></v-text-field>
     <v-select
         v-model="formData.parent_id"
@@ -15,6 +22,7 @@
         item-value="id"
         item-title="name"
         color="primary"
+        :disabled="formData.is_parent"
     ></v-select>
     <v-btn type="submit" color="success">{{ btnName }}</v-btn>
   </v-form>
@@ -26,9 +34,14 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'category-form',
   data: () => ({
+    valid: false,
+    nameRules: [
+      v => !!v || 'Name is required'
+    ],
     formData: {
       name: '',
-      parent_id: ''
+      parent_id: '',
+      is_parent: false
     }
   }),
   props: {
@@ -55,19 +68,20 @@ export default {
       await this.$store.dispatch('fetchParentCategories', params)
     },
     async submitForm() {
+      if(!this.valid) return
+
       await this.$emit('submitForm', this.formData)
       await this.fetchParentCategories()
       if(!this.category) this.clearForm()
     },
     clearForm() {
-      Object.keys(this.formData).forEach(key => {
-        this.formData[key] = ''
-      })
+      this.$refs.form.reset()
     },
     setFormData() {
       this.formData = {
         name: this.category.name,
-        parent_id: this.category.parent_id
+        parent_id: this.category.parent_id,
+        is_parent: this.category.is_parent
       }
     }
   },
