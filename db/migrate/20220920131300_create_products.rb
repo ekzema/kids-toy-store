@@ -3,9 +3,10 @@ class CreateProducts < ActiveRecord::Migration[7.0]
     create_table :products do |t|
       t.string :name
       t.text :description
-      t.integer :status
+      t.integer :status, default: 1
       t.integer :price
-      t.boolean :new
+      t.boolean :new, default: false
+      t.boolean :visible, default: false
       t.integer :code
       t.boolean :discount
       t.integer :discount_price

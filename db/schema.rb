@@ -10,13 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_01_094636) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_20_131300) do
   create_table "categories", charset: "utf8", force: :cascade do |t|
     t.string "name"
     t.integer "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["parent_id"], name: "index_categories_on_parent_id"
+  end
+
+  create_table "products", charset: "utf8", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "status", default: 1
+    t.integer "price"
+    t.boolean "new", default: false
+    t.boolean "visible", default: false
+    t.integer "code"
+    t.boolean "discount"
+    t.integer "discount_price"
+    t.text "specifications"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
