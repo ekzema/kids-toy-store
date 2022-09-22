@@ -28,7 +28,7 @@ class Api::V1::Admin::ProductsController < AdminController
   end
 
   def destroy
-    @product.destroy
+    @product.soft_delete!
   end
 
   private
