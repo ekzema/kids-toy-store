@@ -63,10 +63,10 @@ export default {
         path: '/dashboard'
       },
       {
-        title: 'My Account',
-        value: 'account',
-        icon: 'mdi-account-outline',
-        path: '/dashboard/dsdsd'
+        title: 'Products',
+        value: 'Products',
+        icon: 'mdi-duck',
+        path: '/dashboard/products'
       },
       {
         title: 'Categories',

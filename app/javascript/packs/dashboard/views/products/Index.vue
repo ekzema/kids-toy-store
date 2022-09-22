@@ -1,0 +1,125 @@
+<template>
+  <search-panel @search="search" class="custom-main-color">
+    <v-tooltip location="bottom">
+      <template v-slot:activator="{ props }">
+        <v-btn
+            color="success"
+            v-bind="props"
+            size="x-large"
+            variant="elevated"
+            icon
+            to="/dashboard/products/new"
+        >
+          <v-icon>mdi-plus</v-icon>
+        </v-btn>
+      </template>
+      <span>Add product</span>
+    </v-tooltip>
+  </search-panel>
+
+  <v-table class="tr-odd elevation-4">
+    <thead>
+    <tr>
+      <th v-for="(header, index) in headers"
+          :key="index"
+          class="text-left">
+        {{ header }}
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr
+        v-for="(product, index) in products"
+        :key="index"
+    >
+      <td>{{ product.name }}</td>
+      <td>{{ product.description }}</td>
+      <td class="d-flex justify-center">
+        <v-btn
+            icon
+            variant="text"
+            :to="'/dashboard/products/edit/' + product.id"
+        >
+          <v-icon color="teal">mdi-pencil</v-icon>
+        </v-btn>
+        <v-btn
+            icon
+            variant="text"
+            @click="handleDelete(product)">
+          <v-icon color="pink">mdi-delete</v-icon>
+        </v-btn>
+      </td>
+    </tr>
+    </tbody>
+  </v-table>
+  <v-dialog v-model="dialog" max-width="400">
+    <v-card>
+      <v-card-text class="headline text-center">Delete <strong>{{ selectProduct.name }}</strong> product?</v-card-text>
+      <v-card-actions class="justify-center">
+        <v-btn color="primary" @click="onCancel">Cancel</v-btn>
+        <v-btn color="red" @click="onDelete">Delete</v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
+</template>
+
+<script>
+import SearchPanel from '../../components/SearchPanel'
+import { mapGetters } from 'vuex'
+
+export default {
+  name: 'index',
+  components: {
+    SearchPanel,
+  },
+  data: () => ({
+    selectProduct: {},
+    dialog: false,
+    searchText: '',
+    headers: [
+      'Title',
+      'Description',
+      ''
+    ],
+  }),
+  computed: {
+    ...mapGetters([
+      'products'
+    ]),
+  },
+  created () {
+    this.fetchProducts()
+  },
+  methods: {
+    fetchProducts() {
+      const params = this.searchText ? {q: this.searchText} : {}
+      this.$store.dispatch('fetchProducts', params)
+    },
+    handleDelete(product) {
+      this.selectProduct = product
+      this.showDialog()
+    },
+    onCancel() {
+      this.hideDialog()
+    },
+    async onDelete() {
+      await this.deleteProduct()
+      this.fetchProducts()
+      this.hideDialog()
+    },
+    showDialog() {
+      this.dialog = true
+    },
+    hideDialog() {
+      this.dialog = false
+    },
+    async deleteProduct() {
+      await this.$store.dispatch('deleteProduct', this.selectProduct.id)
+    },
+    search(text) {
+      this.searchText = text
+      this.fetchProducts()
+    }
+  }
+}
+</script>

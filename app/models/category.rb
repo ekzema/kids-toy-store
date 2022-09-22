@@ -13,10 +13,6 @@ class Category < ApplicationRecord
     Category.where(parent_id: id).update_all(parent_id: nil)
   end
 
-  def self.search(query)
-    where('LOWER(name) LIKE ?', "%#{query&.downcase}%")
-  end
-
   def is_parent
     categories_count =  Category.where(parent_id: id).count
     errors.add(:category, "This category is already a parent!") unless categories_count.zero?

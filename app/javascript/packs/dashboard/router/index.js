@@ -4,6 +4,7 @@ import PageNotFound from "../../errors/PageNotFound"
 import CategoriesIndex from "../views/categories/Index"
 import CategoriesNew from "../views/categories/New"
 import CategoriesEdit from "../views/categories/Edit"
+import ProductsIndex from "../views/products/Index"
 
 const router = createRouter({
     history: createWebHistory(),
@@ -32,6 +33,11 @@ const router = createRouter({
             name: 'PageNotFound',
             path: '/:pathMatch(.*)*',
             component: PageNotFound
+        },
+        {
+            name: 'ProductsIndex',
+            path: '/dashboard/products',
+            component: ProductsIndex
         }
     ]
 })

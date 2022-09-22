@@ -1,4 +1,4 @@
-import apiClient from "../helpers/apiClient";
+import apiClient from "../helpers/apiClient"
 
 class MainApi {
     constructor(resource) {

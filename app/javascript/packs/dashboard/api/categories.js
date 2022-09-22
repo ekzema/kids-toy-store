@@ -10,4 +10,4 @@ class Categories extends MainApi {
     }
 }
 
-export default new Categories();
+export default new Categories()
