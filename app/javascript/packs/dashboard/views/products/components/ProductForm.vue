@@ -26,7 +26,7 @@
     <v-row justify="center"  v-for="(specification, index) in formData.specifications" :key="index">
       <v-col
           cols="12"
-          sm="6"
+          sm="3"
       >
         <v-text-field
             ref="specification_key"
@@ -40,7 +40,7 @@
       </v-col>
       <v-col
           cols="12"
-          sm="6"
+          sm="8"
       >
         <v-text-field
             ref="specification_value"
@@ -51,6 +51,37 @@
             color="primary"
             required
         ></v-text-field>
+      </v-col>
+      <v-col
+          cols="12"
+          sm="1"
+      >
+        <v-btn
+            icon
+            variant="text"
+            @click="removeSpec(index)">
+          <v-icon color="pink">mdi-delete</v-icon>
+        </v-btn>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col
+          cols="12"
+      >
+        <v-spacer></v-spacer>
+        <div class="text-right">
+        Add specification
+        <v-btn
+            icon
+            size="x-small"
+            color="primary"
+            @click="addSpec"
+        >
+          <v-icon dark>
+            mdi-plus
+          </v-icon>
+        </v-btn>
+        </div>
       </v-col>
     </v-row>
     <v-btn type="submit" color="success">{{ btnName }}</v-btn>
@@ -111,6 +142,9 @@ export default {
     },
     addSpec() {
       this.formData.specifications.push({key: '', value: ''})
+    },
+    removeSpec(index) {
+      this.formData.specifications.splice(index, 1)
     }
   },
   watch: {
