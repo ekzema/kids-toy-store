@@ -1,5 +1,5 @@
 class Product < ApplicationRecord
-  validates :name, :description, :price, :specifications, presence: true
+  validates :name, :description, :price, presence: true
 
   enum status: { available: 1, not_available: 2 }
 
