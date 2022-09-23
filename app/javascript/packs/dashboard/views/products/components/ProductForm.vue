@@ -114,10 +114,6 @@ export default {
       default: null
     }
   },
-  computed: {
-    ...mapGetters([
-    ]),
-  },
   created() {
   },
   methods: {
@@ -131,13 +127,11 @@ export default {
       this.$refs.form.reset()
       this.formData.specifications = []
     },
-    resetValidation () {
-      this.$refs.form.resetValidation()
-    },
     setFormData() {
       this.formData = {
         name: this.product.name,
         description: this.product.description,
+        specifications: this.product.specifications
       }
     },
     addSpec() {

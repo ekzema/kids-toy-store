@@ -33,7 +33,7 @@ const actions = {
             commit('setErrorMessage')
         }
     },
-    async fetchCategory({ commit }, id) {
+    async fetchProduct({ commit }, id) {
         try {
             const { data } = await Products.show(id)
             commit('setProduct', data)

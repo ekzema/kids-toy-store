@@ -6,6 +6,7 @@ import CategoriesNew from "../views/categories/New"
 import CategoriesEdit from "../views/categories/Edit"
 import ProductsIndex from "../views/products/Index"
 import ProductsNew from "../views/products/New"
+import ProductsEdit from "../views/products/Edit"
 
 const router = createRouter({
     history: createWebHistory(),
@@ -44,6 +45,11 @@ const router = createRouter({
             name: 'ProductsNew',
             path: '/dashboard/products/new',
             component: ProductsNew
+        },
+        {
+            name: 'ProductsEdit',
+            path: '/dashboard/products/edit/:id',
+            component: ProductsEdit
         }
     ]
 })
