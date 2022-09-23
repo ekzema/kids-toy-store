@@ -55,8 +55,6 @@
     </v-row>
     <v-btn type="submit" color="success">{{ btnName }}</v-btn>
   </v-form>
-  <p>{{formData}}</p>
-  <p @click="resetValidation">RESET</p>
 </template>
 
 <script>
@@ -90,7 +88,6 @@ export default {
     ]),
   },
   created() {
-    if(!this.product) this.addSpec()
   },
   methods: {
     async submitForm() {
@@ -102,8 +99,6 @@ export default {
     clearForm() {
       this.$refs.form.reset()
       this.formData.specifications = []
-      this.resetValidation()
-      this.addSpec()
     },
     resetValidation () {
       this.$refs.form.resetValidation()
