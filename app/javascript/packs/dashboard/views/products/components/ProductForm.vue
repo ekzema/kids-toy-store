@@ -8,7 +8,7 @@
     <v-text-field
         ref="name"
         v-model="formData.name"
-        :rules="nameRules"
+        :rules="requiredRules"
         label="Name"
         variant="underlined"
         color="primary"
@@ -19,12 +19,44 @@
         v-model="formData.description"
         label="Description"
         color="primary"
-        :rules="descriptionRules"
+        :rules="requiredRules"
         variant="underlined"
         required
     ></v-textarea>
+    <v-row justify="center"  v-for="(specification, index) in formData.specifications" :key="index">
+      <v-col
+          cols="12"
+          sm="6"
+      >
+        <v-text-field
+            ref="specification_key"
+            v-model="specification.key"
+            :rules="requiredRules"
+            label="Title"
+            variant="underlined"
+            color="primary"
+            required
+        ></v-text-field>
+      </v-col>
+      <v-col
+          cols="12"
+          sm="6"
+      >
+        <v-text-field
+            ref="specification_value"
+            v-model="specification.value"
+            :rules="requiredRules"
+            label="Description"
+            variant="underlined"
+            color="primary"
+            required
+        ></v-text-field>
+      </v-col>
+    </v-row>
     <v-btn type="submit" color="success">{{ btnName }}</v-btn>
   </v-form>
+  <p>{{formData}}</p>
+  <p @click="resetValidation">RESET</p>
 </template>
 
 <script>
@@ -34,15 +66,13 @@ export default {
   name: 'product-form',
   data: () => ({
     valid: false,
-    nameRules: [
-      v => !!v || 'Name is required'
-    ],
-    descriptionRules: [
-      v => !!v || 'Name is required'
+    requiredRules: [
+      v => !!v || 'This field is required'
     ],
     formData: {
       name: '',
-      description: ''
+      description: '',
+      specifications: []
     }
   }),
   props: {
@@ -60,6 +90,7 @@ export default {
     ]),
   },
   created() {
+    if(!this.product) this.addSpec()
   },
   methods: {
     async submitForm() {
@@ -70,12 +101,21 @@ export default {
     },
     clearForm() {
       this.$refs.form.reset()
+      this.formData.specifications = []
+      this.resetValidation()
+      this.addSpec()
+    },
+    resetValidation () {
+      this.$refs.form.resetValidation()
     },
     setFormData() {
       this.formData = {
         name: this.product.name,
         description: this.product.description,
       }
+    },
+    addSpec() {
+      this.formData.specifications.push({key: '', value: ''})
     }
   },
   watch: {

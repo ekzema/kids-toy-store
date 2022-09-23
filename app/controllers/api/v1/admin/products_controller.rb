@@ -55,7 +55,7 @@ class Api::V1::Admin::ProductsController < AdminController
       :code,
       :discount,
       :discount_price,
-      specifications: [:title, :value]
+      specifications: [:key, :value]
     )
   end
 end
