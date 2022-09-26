@@ -8,9 +8,9 @@
     >
       <v-sheet
           elevation="4"
-          className="pa-4"
+          class="pa-4"
       >
-        <h1 className="text-center mb-3">Edit product</h1>
+        <h1 class="text-center mb-3">Edit product</h1>
         <product-form
             @submit-form="submitForm"
             btn-name="Update"
