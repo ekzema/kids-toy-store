@@ -41,6 +41,7 @@
 
 /public/packs
 /public/packs-test
+/public/uploads
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
