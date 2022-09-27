@@ -1,5 +1,7 @@
 class Product < ApplicationRecord
-  validates :name, :description, :price, presence: true
+  mount_uploader :logo, ProductLogoUploader
+
+  # validates :name, :description, presence: true
 
   enum status: { available: 1, not_available: 2 }
 

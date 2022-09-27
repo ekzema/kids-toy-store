@@ -1,13 +1,26 @@
 <template>
+  <v-img
+      :src="form.logoPreview ? form.logoPreview : require('./../../../assets/img/quickadd_300X300.png')"
+      @click="triggerUpload('logo')"
+      max-height="200"
+  ></v-img>
   <v-form
       @submit.prevent="submitForm"
       ref="form"
       v-model="valid"
       lazy-validation
   >
+    <v-file-input
+        ref="logo"
+        @change="logoOnChange"
+        accept="image/*"
+        label="Logo"
+        variant="underlined"
+        style="display: none"
+    ></v-file-input>
     <v-text-field
         ref="name"
-        v-model="formData.name"
+        v-model="form.data.name"
         :rules="requiredRules"
         label="Name"
         variant="underlined"
@@ -16,14 +29,14 @@
     ></v-text-field>
     <v-textarea
         ref="description"
-        v-model="formData.description"
+        v-model="form.data.description"
         label="Description"
         color="primary"
         :rules="requiredRules"
         variant="underlined"
         required
     ></v-textarea>
-    <v-row justify="center"  v-for="(specification, index) in formData.specifications" :key="index">
+    <v-row justify="center"  v-for="(specification, index) in form.data.specifications" :key="index">
       <v-col
           cols="12"
           sm="3"
@@ -97,10 +110,14 @@ export default {
     requiredRules: [
       v => !!v || 'This field is required'
     ],
-    formData: {
-      name: '',
-      description: '',
-      specifications: []
+    form: {
+      data: {
+        logo: '',
+        name: '',
+        description: '',
+        specifications: []
+      },
+      logoPreview: ''
     }
   }),
   props: {
@@ -116,28 +133,52 @@ export default {
   created() {
   },
   methods: {
+    triggerUpload(input) {
+      this.$refs[input].click()
+    },
+    logoOnChange(event) {
+      this.form.data.logo =
+          event.target.files[0] && event.target.files[0].type.includes("image/")
+              ? event.target.files[0]
+              : ''
+
+      this.form.logoPreview = this.form.data.logo ? URL.createObjectURL(this.form.data.logo) : ''
+    },
     async submitForm() {
       if(!this.valid) return
 
-      await this.$emit('submitForm', this.formData)
+      let formData = new FormData()
+      formData.append("product[name]", this.form.data.name)
+      formData.append("product[description]", this.form.data.description)
+      formData.append('product[logo]', this.form.data.logo)
+      formData.append('product[specifications]', JSON.stringify(this.form.data.specifications))
+      // Object.keys(this.form.data).forEach(key => {
+      //   if(Array.isArray(this.form.data[key])) {
+      //     formData.append(`product[${key}]`, JSON.stringify(this.form.data[key]))
+      //   } else {
+      //     formData.append(`product[${key}]`, this.form.data[key])
+      //   }
+      // })
+
+      await this.$emit('submitForm', formData)
       if(!this.product) this.clearForm()
     },
     clearForm() {
       this.$refs.form.reset()
-      this.formData.specifications = []
+      this.form.data.specifications = []
     },
     setFormData() {
-      this.formData = {
+      this.form.data = {
         name: this.product.name,
         description: this.product.description,
         specifications: this.product.specifications
       }
     },
     addSpec() {
-      this.formData.specifications.push({key: '', value: ''})
+      this.form.data.specifications.push({key: '', value: ''})
     },
     removeSpec(index) {
-      this.formData.specifications.splice(index, 1)
+      this.form.data.specifications.splice(index, 1)
     }
   },
   watch: {

@@ -47,6 +47,9 @@ gem 'webpacker', '~> 5.4', '>= 5.4.3'
 #API
 gem 'active_model_serializers', '~> 0.10.13'
 
+# Upload files
+gem 'carrierwave', '~> 2.2', '>= 2.2.2'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 

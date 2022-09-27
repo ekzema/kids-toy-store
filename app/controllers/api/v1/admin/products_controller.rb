@@ -46,6 +46,7 @@ class Api::V1::Admin::ProductsController < AdminController
 
   def product_params
     params.require(:product).permit(
+      :logo,
       :name,
       :description,
       :status,
