@@ -56,8 +56,9 @@ class Api::V1::Admin::ProductsController < AdminController
       :code,
       :discount,
       :discount_price,
+      :specifications
     ).tap do | product |
-      product[:specifications] = JSON.parse(params[:specifications]) if params[:specifications]
+      product[:specifications] = JSON.parse(product[:specifications]) if product[:specifications]
     end
   end
 end
