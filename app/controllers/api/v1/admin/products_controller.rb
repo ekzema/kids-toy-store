@@ -45,7 +45,7 @@ class Api::V1::Admin::ProductsController < AdminController
   end
 
   def product_params
-    params.require(:product).permit(
+    @product_params ||= params.require(:product).permit(
       :logo,
       :name,
       :description,
@@ -56,7 +56,8 @@ class Api::V1::Admin::ProductsController < AdminController
       :code,
       :discount,
       :discount_price,
-      specifications: [:key, :value]
-    )
+    ).tap do | product |
+      product[:specifications] = JSON.parse(params[:specifications]) if params[:specifications]
+    end
   end
 end
