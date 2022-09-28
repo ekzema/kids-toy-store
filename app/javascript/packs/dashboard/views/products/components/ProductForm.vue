@@ -1,4 +1,5 @@
 <template>
+  <h1>sds{{form.data.logo}}</h1>
   <v-img
       :src="form.logoPreview ? form.logoPreview : require('./../../../assets/img/quickadd_300X300.png')"
       @click="triggerUpload('logo')"
@@ -172,7 +173,7 @@ export default {
         description: this.product.description,
         specifications: this.product.specifications ? this.product.specifications : []
       }
-      this.form.logoPreview = this.product.logo_thumb
+      this.form.logoPreview = this.product.logo.thumb.url
     },
     addSpec() {
       this.form.data.specifications.push({key: '', value: ''})
