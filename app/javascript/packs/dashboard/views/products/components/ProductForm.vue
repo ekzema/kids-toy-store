@@ -164,6 +164,7 @@ export default {
       this.$refs.form.reset()
       this.form.data.specifications = []
       this.form.data.logo = ''
+      this.form.logoPreview = ''
     },
     setFormData() {
       this.form.data = {
@@ -171,6 +172,7 @@ export default {
         description: this.product.description,
         specifications: this.product.specifications
       }
+      this.form.logoPreview = this.product.logo_thumb
     },
     addSpec() {
       this.form.data.specifications.push({key: '', value: ''})
