@@ -4,20 +4,20 @@
       @click="triggerUpload('logo')"
       max-height="200"
   ></v-img>
+  <v-file-input
+      ref="logo"
+      @change="logoOnChange"
+      accept="image/*"
+      label="Logo"
+      variant="underlined"
+      style="display: none"
+  ></v-file-input>
   <v-form
       @submit.prevent="submitForm"
       ref="form"
       v-model="valid"
       lazy-validation
   >
-    <v-file-input
-        ref="logo"
-        @change="logoOnChange"
-        accept="image/*"
-        label="Logo"
-        variant="underlined"
-        style="display: none"
-    ></v-file-input>
     <v-text-field
         ref="name"
         v-model="form.data.name"
@@ -147,10 +147,7 @@ export default {
     async submitForm() {
       if(!this.valid) return
 
-      let formData = new FormData()
-      formData.append("product[name]", this.form.data.name)
-      formData.append("product[description]", this.form.data.description)
-      formData.append('product[logo]', this.form.data.logo)
+      const formData = new FormData()
       if(this.form.data.specifications.length) formData.append('product[specifications]', JSON.stringify(this.form.data.specifications))
       Object.keys(this.form.data).forEach(key => {
         if(Array.isArray(this.form.data[key])) {
@@ -166,6 +163,7 @@ export default {
     clearForm() {
       this.$refs.form.reset()
       this.form.data.specifications = []
+      this.form.data.logo = ''
     },
     setFormData() {
       this.form.data = {
