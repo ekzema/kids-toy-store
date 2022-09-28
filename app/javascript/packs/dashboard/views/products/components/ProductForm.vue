@@ -1,7 +1,6 @@
 <template>
-  <h1>sds{{form.data.logo}}</h1>
   <v-img
-      :src="form.logoPreview ? form.logoPreview : require('./../../../assets/img/quickadd_300X300.png')"
+      :src="form.logoPreview ? form.logoPreview : form.defaultLogo"
       @click="triggerUpload('logo')"
       max-height="200"
   ></v-img>
@@ -118,6 +117,7 @@ export default {
         description: '',
         specifications: []
       },
+      defaultLogo: require('./../../../assets/img/quickadd_300X300.png'),
       logoPreview: ''
     }
   }),
