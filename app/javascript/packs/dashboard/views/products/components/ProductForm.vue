@@ -149,7 +149,6 @@ export default {
       if(!this.valid) return
 
       const formData = new FormData()
-      if(this.form.data.specifications.length) formData.append('product[specifications]', JSON.stringify(this.form.data.specifications))
       Object.keys(this.form.data).forEach(key => {
         if(Array.isArray(this.form.data[key])) {
           if(this.form.data[key].length) formData.append(`product[${key}]`, JSON.stringify(this.form.data[key]))
