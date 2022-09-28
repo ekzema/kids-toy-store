@@ -170,7 +170,7 @@ export default {
       this.form.data = {
         name: this.product.name,
         description: this.product.description,
-        specifications: this.product.specifications
+        specifications: this.product.specifications ? this.product.specifications : []
       }
       this.form.logoPreview = this.product.logo_thumb
     },
