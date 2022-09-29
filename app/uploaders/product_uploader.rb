@@ -1,4 +1,4 @@
-class ProductLogoUploader < ApplicationUploader
+class ProductUploader < ApplicationUploader
   storage :file
 
   def store_dir
