@@ -1,6 +1,6 @@
 <template>
   <v-img
-      :src="form.logoPreview ? form.logoPreview : form.defaultLogo"
+      :src="form.previews.logo ? form.previews.logo : form.defaultLogo"
       @click="triggerUpload('logo')"
       max-height="200"
   ></v-img>
@@ -112,13 +112,14 @@ export default {
     ],
     form: {
       data: {
-        logo: '',
         name: '',
         description: '',
         specifications: []
       },
       defaultLogo: require('./../../../assets/img/quickadd_300X300.png'),
-      logoPreview: ''
+      previews: {
+        logo: ''
+      }
     }
   }),
   props: {
@@ -143,7 +144,7 @@ export default {
               ? event.target.files[0]
               : ''
 
-      this.form.logoPreview = this.form.data.logo ? URL.createObjectURL(this.form.data.logo) : ''
+      this.form.previews.logo = this.form.data.logo ? URL.createObjectURL(this.form.data.logo) : ''
     },
     async submitForm() {
       if(!this.valid) return
@@ -164,7 +165,7 @@ export default {
       this.$refs.form.reset()
       this.form.data.specifications = []
       this.form.data.logo = ''
-      this.form.logoPreview = ''
+      this.form.previews.logo = ''
     },
     setFormData() {
       this.form.data = {
@@ -172,7 +173,7 @@ export default {
         description: this.product.description,
         specifications: this.product.specifications ? this.product.specifications : []
       }
-      this.form.logoPreview = this.product.logo.thumb.url
+      this.form.previews.logo = this.product.logo.thumb.url
     },
     addSpec() {
       this.form.data.specifications.push({key: '', value: ''})
