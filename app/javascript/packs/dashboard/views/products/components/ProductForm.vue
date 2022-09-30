@@ -168,11 +168,9 @@ export default {
       this.form.previews.logo = ''
     },
     setFormData() {
-      this.form.data = {
-        name: this.product.name,
-        description: this.product.description,
-        specifications: this.product.specifications ? this.product.specifications : []
-      }
+      this.form.data.name = this.product.name
+      this.form.data.description = this.product.description
+      this.form.data.specifications = this.product.specifications ? this.product.specifications : []
       this.form.previews.logo = this.product.logo.thumb.url
     },
     addSpec() {
