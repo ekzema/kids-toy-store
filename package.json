@@ -28,7 +28,7 @@
     "slick-carousel": "^1.8.1",
     "slicknav": "^1.0.8",
     "swiper": "^7.4.1",
-    "vue": "^3.2.26",
+    "vue": "3.2.40",
     "vue-axios": "^3.4.0",
     "vue-loader": "^17.0.0",
     "vue-router": "4",
