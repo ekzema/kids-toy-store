@@ -1,5 +1,5 @@
 <template>
-  <v-row justify="center">
+  <v-row justify="center" v-for="(specification, index) in specifications" :key="index">
     <v-col
         cols="12"
         sm="3"
@@ -40,6 +40,26 @@
       </v-btn>
     </v-col>
   </v-row>
+  <v-row>
+    <v-col
+        cols="12"
+    >
+      <v-spacer></v-spacer>
+      <div class="text-right">
+        Add specification
+        <v-btn
+            icon
+            size="x-small"
+            color="primary"
+            @click="addSpec"
+        >
+          <v-icon dark>
+            mdi-plus
+          </v-icon>
+        </v-btn>
+      </div>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
@@ -49,20 +69,20 @@ export default {
   data: () => ({
   }),
   props: {
-    specification: {
+    specifications: {
       type: Object,
-      default: null
+      default: []
     }
   },
   created() {
   },
   methods: {
-
+    addSpec() {
+      this.specifications.push({key: '', value: ''})
+    },
     removeSpec(index) {
-      this.form.data.specifications.splice(index, 1)
+      this.specifications.splice(index, 1)
     }
-  },
-  watch: {
   }
 }
 </script>
