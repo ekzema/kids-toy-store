@@ -36,21 +36,75 @@
         variant="underlined"
         required
     ></v-textarea>
-     <nested-specification
-         v-model:specifications="form.data.specifications"
-     />
+    <v-row justify="center"  v-for="(specification, index) in form.data.specifications" :key="index">
+      <v-col
+          cols="12"
+          sm="3"
+      >
+        <v-text-field
+            ref="specification_key"
+            v-model="specification.key"
+            :rules="requiredRules"
+            label="Title"
+            variant="underlined"
+            color="primary"
+            required
+        ></v-text-field>
+      </v-col>
+      <v-col
+          cols="12"
+          sm="8"
+      >
+        <v-text-field
+            ref="specification_value"
+            v-model="specification.value"
+            :rules="requiredRules"
+            label="Description"
+            variant="underlined"
+            color="primary"
+            required
+        ></v-text-field>
+      </v-col>
+      <v-col
+          cols="12"
+          sm="1"
+      >
+        <v-btn
+            icon
+            variant="text"
+            @click="removeSpec(index)">
+          <v-icon color="pink">mdi-delete</v-icon>
+        </v-btn>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col
+          cols="12"
+      >
+        <v-spacer></v-spacer>
+        <div class="text-right">
+          Add specification
+          <v-btn
+              icon
+              size="x-small"
+              color="primary"
+              @click="addSpec"
+          >
+            <v-icon dark>
+              mdi-plus
+            </v-icon>
+          </v-btn>
+        </div>
+      </v-col>
+    </v-row>
     <v-btn type="submit" color="success">{{ btnName }}</v-btn>
   </v-form>
 </template>
 
 <script>
-import NestedSpecification from "./NestedSpecification";
 
 export default {
   name: 'product-form',
-  components: {
-    NestedSpecification,
-  },
   data: () => ({
     valid: false,
     requiredRules: [
@@ -114,10 +168,18 @@ export default {
       this.form.previews.logo = ''
     },
     setFormData() {
-      this.form.data.name = this.product.name
-      this.form.data.description = this.product.description
-      this.form.data.specifications = this.product.specifications ? this.product.specifications : []
+      this.form.data = {
+        name: this.product.name,
+        description: this.product.description,
+        specifications: this.product.specifications ? this.product.specifications : []
+      }
       this.form.previews.logo = this.product.logo.thumb.url
+    },
+    addSpec() {
+      this.form.data.specifications.push({key: '', value: ''})
+    },
+    removeSpec(index) {
+      this.form.data.specifications.splice(index, 1)
     }
   },
   watch: {
