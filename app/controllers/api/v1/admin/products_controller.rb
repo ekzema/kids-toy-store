@@ -45,6 +45,9 @@ class Api::V1::Admin::ProductsController < AdminController
   end
 
   def product_params
+    puts '------------'
+    pp params
+    puts '------------'
     @product_params ||= params.require(:product).permit(
       :logo,
       :name,
@@ -57,7 +60,7 @@ class Api::V1::Admin::ProductsController < AdminController
       :discount,
       :discount_price,
       :specifications,
-      { gallery: [] }
+      gallery: []
     ).tap do | product |
       product[:specifications] = JSON.parse(product[:specifications]) if product[:specifications]
     end
