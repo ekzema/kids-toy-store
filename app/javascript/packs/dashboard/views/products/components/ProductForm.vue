@@ -183,7 +183,6 @@ export default {
   watch: {
     product() {
       this.setFormData()
-      console.log(this.form.data.description,'test')
     }
   }
 }
