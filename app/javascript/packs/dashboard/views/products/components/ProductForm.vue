@@ -42,7 +42,6 @@
           sm="3"
       >
         <v-text-field
-            ref="specification_key"
             v-model="specification.key"
             :rules="requiredRules"
             label="Title"
@@ -56,7 +55,6 @@
           sm="8"
       >
         <v-text-field
-            ref="specification_value"
             v-model="specification.value"
             :rules="requiredRules"
             label="Description"
