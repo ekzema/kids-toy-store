@@ -150,7 +150,7 @@ export default {
       const formData = new FormData()
       Object.keys(this.form.data).forEach(key => {
         if(Array.isArray(this.form.data[key])) {
-          if(this.form.data[key].length) formData.append(`product[${key}]`, JSON.stringify(this.form.data[key]))
+          formData.append(`product[${key}]`, JSON.stringify(this.form.data[key]))
         } else {
           formData.append(`product[${key}]`, this.form.data[key])
         }
