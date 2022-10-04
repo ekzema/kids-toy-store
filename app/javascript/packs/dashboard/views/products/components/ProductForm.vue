@@ -1,6 +1,6 @@
 <template>
   <v-img
-      :src="form.previews.logo ? form.previews.logo : form.defaultLogo"
+      :src="form.previews.logo"
       @click="triggerUpload('logo')"
       max-height="200"
   ></v-img>
@@ -114,7 +114,6 @@ export default {
         description: '',
         specifications: []
       },
-      defaultLogo: require('./../../../assets/img/quickadd_300X300.png'),
       previews: {
         logo: ''
       }
