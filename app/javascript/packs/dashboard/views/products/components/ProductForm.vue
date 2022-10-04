@@ -145,7 +145,7 @@ export default {
       this.form.previews.logo = this.form.data.logo ? URL.createObjectURL(this.form.data.logo) : ''
     },
     async submitForm() {
-      if(!this.valid) return
+      if(this.specIsError()) return
 
       const formData = new FormData()
       Object.keys(this.form.data).forEach(key => {
@@ -176,6 +176,9 @@ export default {
     },
     removeSpec(index) {
       this.form.data.specifications.splice(index, 1)
+    },
+    specIsError() {
+      return this.form.data.specifications.some(item => !item.key || !item.value)
     }
   },
   watch: {
