@@ -45,9 +45,6 @@ class Api::V1::Admin::ProductsController < AdminController
   end
 
   def product_params
-    puts '------------'
-    pp params
-    puts '------------'
     @product_params ||= params.require(:product).permit(
       :logo,
       :name,
