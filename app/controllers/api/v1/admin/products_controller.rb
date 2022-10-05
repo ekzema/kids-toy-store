@@ -57,7 +57,7 @@ class Api::V1::Admin::ProductsController < AdminController
       :discount,
       :discount_price,
       :specifications,
-      project_images_attributes: [:id, :image, :_destroy]
+      product_images_attributes: [:id, :image, :_destroy]
     ).tap do | product |
       product[:specifications] = JSON.parse(product[:specifications]) if product[:specifications]
     end

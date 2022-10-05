@@ -154,7 +154,7 @@ export default {
           formData.append(`product[${key}]`, this.form.data[key])
         }
       })
-
+      // formData.append('product[product_images_attributes][0][image]', this.form.data.logo)
       await this.$emit('submitForm', formData)
       if(!this.product) this.clearForm()
     },
