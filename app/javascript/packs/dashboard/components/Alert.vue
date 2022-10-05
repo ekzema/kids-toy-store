@@ -2,9 +2,9 @@
   <div class="text-center ma-2" v-if="alert.show">
     <v-snackbar
         :timeout="5000"
-        @input="hideAlert"
         :model-value="true"
         :color="alert.type"
+        @update:modelValue="hideAlert"
     >
       {{ alert.text }}
       <template v-slot:actions>
