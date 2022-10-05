@@ -1,6 +1,5 @@
 class Product < ApplicationRecord
   mount_uploader :logo, ProductUploader
-  mount_uploaders :gallery, ProductUploader
 
   # validates :name, :description, presence: true
 
