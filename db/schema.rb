@@ -10,8 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_29_074727) do
-  create_table "categories", charset: "utf8", force: :cascade do |t|
+ActiveRecord::Schema[7.0].define(version: 2022_09_26_122821) do
+  create_table "categories", charset: "utf8mb3", force: :cascade do |t|
     t.string "name"
     t.integer "parent_id"
     t.datetime "created_at", null: false
@@ -19,7 +19,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_29_074727) do
     t.index ["parent_id"], name: "index_categories_on_parent_id"
   end
 
-  create_table "products", charset: "utf8", force: :cascade do |t|
+  create_table "products", charset: "utf8mb3", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.integer "status", default: 1
@@ -34,7 +34,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_29_074727) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "logo"
-    t.json "gallery"
   end
 
 end
