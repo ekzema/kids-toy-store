@@ -3,7 +3,16 @@
       :src="form.previews.logo"
       @click="triggerUpload('logo')"
       max-height="200"
-  ></v-img>
+  >
+    <template v-slot:placeholder>
+      <v-row class="fill-height ma-0" align="center" justify="center">
+        <v-progress-circular
+            indeterminate
+            color="grey lighten-5"
+        ></v-progress-circular>
+      </v-row>
+    </template>
+  </v-img>
   <v-file-input
       ref="logo"
       @change="logoOnChange"
@@ -12,6 +21,37 @@
       variant="underlined"
       style="display: none"
   ></v-file-input>
+<!--  Start gallery-->
+  <v-row class="ma-4">
+    <v-col v-for="n in 7" :key="n" class="d-flex child-flex" cols="3">
+      <v-img
+          :src="`https://picsum.photos/200/100?image=${n * 10 + 5}`"
+          :lazy-src="`https://picsum.photos/10/6?image=${n * 10 + 10}`"
+      >
+        <template v-slot:placeholder>
+          <v-row class="fill-height ma-0" align="center" justify="center">
+            <v-progress-circular
+                indeterminate
+                color="grey lighten-5"
+            ></v-progress-circular>
+          </v-row>
+        </template>
+      </v-img>
+    </v-col>
+  </v-row>
+  <div class="text-right">
+    Add image
+    <v-btn
+        icon
+        size="x-small"
+        color="primary"
+    >
+      <v-icon dark>
+        mdi-plus
+      </v-icon>
+    </v-btn>
+  </div>
+<!--  End gallery-->
   <v-form
       @submit.prevent="submitForm"
       ref="form"
