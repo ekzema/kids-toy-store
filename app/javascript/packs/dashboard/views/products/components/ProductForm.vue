@@ -39,9 +39,17 @@
       </v-img>
     </v-col>
   </v-row>
+  <v-file-input
+      ref="gallery"
+      @change="galleryOnChange"
+      accept="image/*"
+      variant="underlined"
+      style="display: none"
+  ></v-file-input>
   <div class="text-center">
     Add image
     <v-btn
+        @click="triggerUpload('gallery')"
         icon
         size="x-small"
         color="primary"
@@ -182,6 +190,9 @@ export default {
               : ''
 
       this.form.previews.logo = this.form.data.logo ? URL.createObjectURL(this.form.data.logo) : ''
+    },
+    galleryOnChange(event) {
+        console.log('dsd','test')
     },
     async submitForm() {
       if(this.specIsError()) return
