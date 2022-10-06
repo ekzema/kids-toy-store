@@ -26,7 +26,7 @@
     <v-col v-for="n in 7" :key="n" class="d-flex child-flex" cols="3">
       <v-img
           :src="`https://picsum.photos/200/100?image=${n * 10 + 5}`"
-          :lazy-src="`https://picsum.photos/10/6?image=${n * 10 + 10}`"
+          :lazy-src="form.previews.lazy.gallery"
       >
         <template v-slot:placeholder>
           <v-row class="fill-height ma-0" align="center" justify="center">
@@ -163,6 +163,9 @@ export default {
         specifications: []
       },
       previews: {
+        lazy: {
+          gallery: require('./../../../assets/img/lazy_image_160x80.jpg')
+        },
         logo: ''
       }
     }
