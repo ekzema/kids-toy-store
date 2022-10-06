@@ -23,9 +23,9 @@
   ></v-file-input>
 <!--  Start gallery-->
   <v-row class="ma-4">
-    <v-col v-for="n in 7" :key="n" class="d-flex child-flex" cols="3">
+    <v-col v-for="(value, index) in form.previews.gallery" :key="index" class="d-flex child-flex" cols="3">
       <v-img
-          :src="`https://picsum.photos/200/100?image=${n * 10 + 5}`"
+          :src="value.blob"
           :lazy-src="form.previews.lazy.gallery"
       >
         <template v-slot:placeholder>
@@ -166,7 +166,8 @@ export default {
         lazy: {
           gallery: require('./../../../assets/img/lazy_image_160x80.jpg')
         },
-        logo: ''
+        logo: '',
+        gallery: []
       }
     }
   }),
@@ -180,6 +181,8 @@ export default {
       default: null
     }
   },
+  computed: {
+  },
   created() {
   },
   methods: {
@@ -187,15 +190,15 @@ export default {
       this.$refs[input].click()
     },
     logoOnChange(event) {
-      this.form.data.logo =
-          event.target.files[0] && event.target.files[0].type.includes("image/")
-              ? event.target.files[0]
-              : ''
-
-      this.form.previews.logo = this.form.data.logo ? URL.createObjectURL(this.form.data.logo) : ''
+      this.form.data.logo = this.fetchFile(event)
+      this.form.previews.logo = this.form.data.logo ? this.preparePreview(this.form.data.logo) : ''
     },
     galleryOnChange(event) {
-        console.log('dsd','test')
+      const image = this.fetchFile(event)
+        this.form.previews.gallery.push({
+          origin: image,
+          blob: this.preparePreview(image)
+        })
     },
     async submitForm() {
       if(this.specIsError()) return
@@ -208,6 +211,11 @@ export default {
           formData.append(`product[${key}]`, this.form.data[key])
         }
       })
+
+      this.form.previews.gallery.forEach((value, index) => {
+        formData.append(`product[product_images_attributes][${index}][image]`, value.origin)
+      })
+
       // formData.append('product[product_images_attributes][0][image]', this.form.data.logo)
       await this.$emit('submitForm', formData)
       if(!this.product) this.clearForm()
@@ -217,6 +225,7 @@ export default {
       this.form.data.specifications = []
       this.form.data.logo = ''
       this.form.previews.logo = ''
+      this.form.previews.gallery = []
     },
     setFormData() {
       this.form.data.name = this.product.name
@@ -232,6 +241,14 @@ export default {
     },
     specIsError() {
       return this.form.data.specifications.some(item => !item.key || !item.value)
+    },
+    preparePreview(image) {
+      return URL.createObjectURL(image)
+    },
+    fetchFile(event) {
+      return event.target.files[0] && event.target.files[0].type.includes("image/")
+          ? event.target.files[0]
+          : ''
     }
   },
   watch: {
