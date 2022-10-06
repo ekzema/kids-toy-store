@@ -25,7 +25,7 @@
   <v-row class="ma-4">
     <v-col v-for="(value, index) in form.previews.gallery" :key="index" class="d-flex child-flex" cols="3">
       <v-img
-          :src="value.blob"
+          :src="value.blob ? value.blob : value.image.thumb.url"
           :lazy-src="form.previews.lazy.gallery"
       >
         <template v-slot:placeholder>
@@ -213,10 +213,10 @@ export default {
       })
 
       this.form.previews.gallery.forEach((value, index) => {
-        formData.append(`product[product_images_attributes][${index}][image]`, value.origin)
+        if(value.blob)
+          formData.append(`product[product_images_attributes][${index}][image]`, value.origin)
       })
 
-      // formData.append('product[product_images_attributes][0][image]', this.form.data.logo)
       await this.$emit('submitForm', formData)
       if(!this.product) this.clearForm()
     },
@@ -232,6 +232,7 @@ export default {
       this.form.data.description = this.product.description
       this.form.data.specifications = this.product.specifications ? this.product.specifications : []
       this.form.previews.logo = this.product.logo.thumb.url
+      this.form.previews.gallery = [...this.product.product_images]
     },
     addSpec() {
       this.form.data.specifications.push({key: '', value: ''})
