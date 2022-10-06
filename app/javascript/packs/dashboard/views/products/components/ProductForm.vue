@@ -39,7 +39,7 @@
       </v-img>
     </v-col>
   </v-row>
-  <div class="text-right">
+  <div class="text-center">
     Add image
     <v-btn
         icon
