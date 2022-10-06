@@ -222,17 +222,18 @@ export default {
     },
     clearForm() {
       this.$refs.form.reset()
-      this.form.data.specifications = []
+
       this.form.data.logo = ''
       this.form.previews.logo = ''
       this.form.previews.gallery = []
+      this.form.data.specifications = []
     },
     setFormData() {
       this.form.data.name = this.product.name
-      this.form.data.description = this.product.description
-      this.form.data.specifications = this.product.specifications ? this.product.specifications : []
       this.form.previews.logo = this.product.logo.thumb.url
+      this.form.data.description = this.product.description
       this.form.previews.gallery = [...this.product.product_images]
+      this.form.data.specifications = this.product.specifications ? this.product.specifications : []
     },
     addSpec() {
       this.form.data.specifications.push({key: '', value: ''})
