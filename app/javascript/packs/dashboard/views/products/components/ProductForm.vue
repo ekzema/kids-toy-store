@@ -1,6 +1,6 @@
 <template>
   <v-img
-      :src="form.previews.logo"
+      :src="form.previews.logo ? form.previews.logo : form.previews.defaultLogo"
       @click="triggerUpload('logo')"
       max-height="200"
   >
@@ -166,6 +166,7 @@ export default {
         lazy: {
           gallery: require('./../../../assets/img/lazy_image_160x80.jpg')
         },
+        defaultLogo: require('./../../../assets/img/logo_default.png'),
         logo: '',
         gallery: []
       }
