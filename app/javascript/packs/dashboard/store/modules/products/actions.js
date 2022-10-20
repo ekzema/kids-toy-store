@@ -19,7 +19,8 @@ const actions = {
     },
     async updateProduct({ commit }, data) {
         try {
-            await Products.update(data.id, data.form)
+            const response = await Products.update(data.id, data.form)
+            commit('setProduct', response.data)
             commit('setSuccessMessage', 'Product updated successfully')
         } catch (error) {
             commit('setErrorMessage')
