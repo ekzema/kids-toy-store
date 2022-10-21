@@ -23,7 +23,7 @@
   ></v-file-input>
 <!--  Start gallery-->
   <v-row class="ma-4">
-    <v-col v-for="(value, index) in form.previews.gallery" :key="index" class="d-flex child-flex" cols="3">
+    <v-col v-for="(value, index) in form.previews.gallery" :key="index" class="wrapImg d-flex child-flex" cols="3">
       <v-img
           :src="value.blob ? value.blob : value.image.thumb.url"
           :lazy-src="form.previews.lazy.gallery"
@@ -37,6 +37,14 @@
           </v-row>
         </template>
       </v-img>
+      <v-btn
+          icon
+          variant="text"
+          size="x-small"
+          @click="removeImage(index)"
+      >
+        <v-icon color="pink">mdi-delete</v-icon>
+      </v-btn>
     </v-col>
   </v-row>
   <v-file-input
@@ -252,6 +260,9 @@ export default {
       return event.target.files[0] && event.target.files[0].type.includes("image/")
           ? event.target.files[0]
           : ''
+    },
+    removeImage(index) {
+      this.form.previews.gallery.splice(index, 1)
     }
   },
   watch: {
@@ -261,3 +272,23 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.wrapImg{
+  position: relative;
+}
+
+.wrapImg:hover button {
+  opacity: 1;
+}
+
+.wrapImg button {
+  position: absolute;
+  bottom: 10px;
+  left: calc(50% - 20px);
+  background-color: rgba(255,255,255, 0.6);
+  opacity: 0;
+  transition: .5s all;
+  z-index: 999;
+}
+</style>
