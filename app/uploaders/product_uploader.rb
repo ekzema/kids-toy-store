@@ -10,7 +10,7 @@ class ProductUploader < ApplicationUploader
   end
 
   def extension_allowlist
-    %w[jpg jpeg gif png]
+    %w[jpg jpeg gif png webp]
   end
 
   process resize_to_fit: [500, 500]

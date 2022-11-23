@@ -261,7 +261,10 @@ export default {
           ? event.target.files[0]
           : ''
     },
-    removeImage(index) {
+    async removeImage(index) {
+      const image = this.form.previews.gallery[index]
+      if (image.id) await this.$store.dispatch('deleteProductImage', image.id)
+
       this.form.previews.gallery.splice(index, 1)
     }
   },

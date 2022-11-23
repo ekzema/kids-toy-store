@@ -1,6 +1,7 @@
 import { createStore } from "vuex"
 import categories from './modules/categories'
 import products from './modules/products'
+import productImages from './modules/product_images'
 
 const state = {
     loader: false,
@@ -51,7 +52,8 @@ const store = createStore({
     actions,
     modules: {
         categories,
-        products
+        products,
+        productImages
     },
 });
 
