@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       namespace :admin do
         resources :products
+        resources :product_images, only: [:destroy]
         resources :categories do
           collection do
             get :parents
