@@ -14,7 +14,8 @@ h1 {
 }
 
 .spinner-loader {
-    left: calc(50% - 50px);
+    position: absolute;
+    left: calc(50% + 50px);
     top: calc(50% - 50px);
 }
 
