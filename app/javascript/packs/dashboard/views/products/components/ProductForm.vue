@@ -75,6 +75,15 @@
       lazy-validation
   >
     <v-text-field
+        v-model="form.data.price"
+        :rules="priceRules"
+        label="Price"
+        type="number"
+        variant="underlined"
+        color="primary"
+        required
+    ></v-text-field>
+    <v-text-field
         ref="name"
         v-model="form.data.name"
         :rules="requiredRules"
@@ -164,8 +173,13 @@ export default {
     requiredRules: [
       v => !!v || 'This field is required'
     ],
+    priceRules: [
+        v => !!v  || 'This field is required',
+        v => v > 100 || 'Price cannot be less than 100'
+    ],
     form: {
       data: {
+        price: '',
         name: '',
         description: '',
         specifications: []
@@ -210,14 +224,15 @@ export default {
         })
     },
     async submitForm() {
-      if(this.specIsError()) return
+      const { valid } = await this.$refs.form.validate()
+      if(!valid) return
 
       const formData = new FormData()
       Object.keys(this.form.data).forEach(key => {
         if(Array.isArray(this.form.data[key])) {
           formData.append(`product[${key}]`, JSON.stringify(this.form.data[key]))
         } else {
-          formData.append(`product[${key}]`, this.form.data[key])
+          if(this.form.data[key]) formData.append(`product[${key}]`, this.form.data[key])
         }
       })
 
@@ -239,6 +254,7 @@ export default {
     },
     setFormData() {
       this.form.data.name = this.product.name
+      this.form.data.price = this.product.price
       this.form.previews.logo = this.product.logo.thumb.url
       this.form.data.description = this.product.description
       this.form.previews.gallery = [...this.product.product_images]
@@ -249,9 +265,6 @@ export default {
     },
     removeSpec(index) {
       this.form.data.specifications.splice(index, 1)
-    },
-    specIsError() {
-      return this.form.data.specifications.some(item => !item.key || !item.value)
     },
     preparePreview(image) {
       return URL.createObjectURL(image)

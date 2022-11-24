@@ -11,12 +11,14 @@ class ApiClient {
     }
 
     async query(method, url, payload = null) {
-        if (this.loader) store.dispatch('showLoader')
+        try {
+            if (this.loader) store.dispatch('showLoader')
+            const { data } = await this.axios[method](url, payload)
 
-        const { data } = await this.axios[method](url, payload)
-        if (this.loader) store.dispatch('hideLoader')
-
-        return data
+            return data
+        } finally {
+            if (this.loader) store.dispatch('hideLoader')
+        }
     }
 }
 

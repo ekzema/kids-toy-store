@@ -10,8 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_05_130920) do
-  create_table "categories", charset: "utf8mb3", force: :cascade do |t|
+ActiveRecord::Schema[7.0].define(version: 2022_11_24_173224) do
+  create_table "categories", charset: "utf8", force: :cascade do |t|
     t.string "name"
     t.integer "parent_id"
     t.datetime "created_at", null: false
@@ -19,7 +19,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_05_130920) do
     t.index ["parent_id"], name: "index_categories_on_parent_id"
   end
 
-  create_table "product_images", charset: "utf8mb3", force: :cascade do |t|
+  create_table "product_images", charset: "utf8", force: :cascade do |t|
     t.bigint "product_id"
     t.string "image"
     t.datetime "created_at", null: false
@@ -27,7 +27,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_05_130920) do
     t.index ["product_id"], name: "index_product_images_on_product_id"
   end
 
-  create_table "products", charset: "utf8mb3", force: :cascade do |t|
+  create_table "products", charset: "utf8", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.integer "status", default: 1
@@ -35,7 +35,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_05_130920) do
     t.boolean "new", default: false
     t.boolean "visible", default: false
     t.integer "code"
-    t.boolean "discount"
+    t.boolean "discount", default: false
     t.integer "discount_price"
     t.text "specifications"
     t.datetime "deleted_at"
