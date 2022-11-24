@@ -6,6 +6,7 @@ class Categories extends MainApi {
     }
 
     parents(params) {
+        this.api.loader = false
         return this.api.query('get', `${this.url}/parents`, {params: {...params}})
     }
 }

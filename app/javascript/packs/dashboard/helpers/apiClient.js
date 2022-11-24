@@ -3,8 +3,9 @@ import axios from 'axios'
 import store from '../store'
 
 class ApiClient {
-    constructor(loader = true) {
-        this.loader = loader
+    constructor() {
+        this.defaultLoader = true
+        this.loader = this.defaultLoader
         this.axios = axios.create({
             baseURL: baseUrl
         })
@@ -14,10 +15,11 @@ class ApiClient {
         try {
             if (this.loader) store.dispatch('showLoader')
             const { data } = await this.axios[method](url, payload)
+            this.loader = this.defaultLoader
 
             return data
         } finally {
-            if (this.loader) store.dispatch('hideLoader')
+            store.dispatch('hideLoader')
         }
     }
 }
