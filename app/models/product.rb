@@ -5,8 +5,9 @@ class Product < ApplicationRecord
   accepts_nested_attributes_for :product_images, allow_destroy: true, reject_if: :all_blank
 
   validates :name, :description, presence: true
+  validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 100 }
 
-  enum status: { available: 1, not_available: 2 }
+  enum status: { available: 1, not_available: 2, ends: 3, on_the_way: 4 }
 
   serialize :specifications, JSON
 

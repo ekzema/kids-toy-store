@@ -83,6 +83,51 @@
         color="primary"
         required
     ></v-text-field>
+    <v-row class="justify-center align-center">
+      <v-col
+          class="justify-center align-center"
+          cols="12"
+          xs="12"
+          sm="8"
+          md="6"
+          lg="4"
+      >
+        <v-switch
+            v-model="form.data.new"
+            hide-details
+            color="primary"
+            :label="`New: ${form.data.new ? 'on' : 'off'}`"
+        ></v-switch>
+      </v-col>
+      <v-col
+          cols="12"
+          xs="12"
+          sm="8"
+          md="6"
+          lg="4"
+      >
+        <v-switch
+            v-model="form.data.visible"
+            hide-details
+            color="primary"
+            :label="`Visible: ${form.data.visible ? 'on' : 'off'}`"
+        ></v-switch>
+      </v-col>
+      <v-col
+          cols="12"
+          xs="12"
+          sm="8"
+          md="6"
+          lg="4"
+      >
+        <v-switch
+            v-model="form.data.discount"
+            hide-details
+            color="primary"
+            :label="`Discount: ${form.data.discount ? 'on' : 'off'}`"
+        ></v-switch>
+      </v-col>
+    </v-row>
     <v-text-field
         ref="name"
         v-model="form.data.name"
@@ -179,8 +224,11 @@ export default {
     ],
     form: {
       data: {
-        price: '',
+        new: false,
         name: '',
+        price: 0,
+        visible: false,
+        discount: false,
         description: '',
         specifications: []
       },
@@ -232,7 +280,7 @@ export default {
         if(Array.isArray(this.form.data[key])) {
           formData.append(`product[${key}]`, JSON.stringify(this.form.data[key]))
         } else {
-          if(this.form.data[key]) formData.append(`product[${key}]`, this.form.data[key])
+          formData.append(`product[${key}]`, this.form.data[key])
         }
       })
 
@@ -253,8 +301,11 @@ export default {
       this.form.data.specifications = []
     },
     setFormData() {
+      this.form.data.new = this.product.new
       this.form.data.name = this.product.name
       this.form.data.price = this.product.price
+      this.form.data.visible = this.product.visible
+      this.form.data.discount = this.product.discount
       this.form.previews.logo = this.product.logo.thumb.url
       this.form.data.description = this.product.description
       this.form.previews.gallery = [...this.product.product_images]
