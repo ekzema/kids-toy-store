@@ -12,13 +12,16 @@ class ApiClient {
     }
 
     async query(method, url, payload = null) {
-        try {
+        let timeoutID = setTimeout(() => {
             if (this.loader) store.dispatch('showLoader')
+        }, 100)
+        try {
             const { data } = await this.axios[method](url, payload)
             this.loader = this.defaultLoader
 
             return data
         } finally {
+            clearTimeout(timeoutID)
             store.dispatch('hideLoader')
         }
     }
