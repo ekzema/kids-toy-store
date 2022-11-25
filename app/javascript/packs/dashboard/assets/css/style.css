@@ -15,8 +15,15 @@ h1 {
 
 .spinner-loader {
     position: absolute;
-    left: calc(50% + 50px);
     top: calc(50% - 50px);
+}
+
+.drawer-on {
+    left: calc(50% - 178px);
+}
+
+.drawer-off {
+    left: calc(50% - 78px);
 }
 
 .tr-odd tbody tr:nth-child(odd) {

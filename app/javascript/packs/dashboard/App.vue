@@ -23,15 +23,15 @@
     </v-app-bar>
     <v-main class="custom-main-color">
       <div v-show="loader" class="spinner-block">
-      </div>
-      <v-container fluid>
         <v-progress-circular
-            v-show="loader"
             class="spinner-loader"
+            :class="{'drawer-on': !rail, 'drawer-off': rail }"
             :width="5" :size=100
             indeterminate
             color="primary">
         </v-progress-circular>
+      </div>
+      <v-container fluid>
         <router-view></router-view>
       </v-container>
     </v-main>
