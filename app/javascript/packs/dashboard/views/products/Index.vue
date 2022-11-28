@@ -32,6 +32,7 @@
         v-for="(product, index) in products"
         :key="index"
     >
+      <td>{{ product.id }}</td>
       <td>{{ product.name }}</td>
       <td>{{ product.description }}</td>
       <td class="d-flex justify-center">
@@ -77,6 +78,7 @@ export default {
     dialog: false,
     searchText: '',
     headers: [
+      'ID',
       'Title',
       'Description',
       ''

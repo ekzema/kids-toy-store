@@ -2,7 +2,7 @@ class Api::V1::Admin::ProductsController < AdminController
   before_action :set_product, only: [:destroy, :show, :update]
 
   def index
-    render_response(products)
+    render_response(products, Admin::ProductListSerializer)
   end
 
   def show
