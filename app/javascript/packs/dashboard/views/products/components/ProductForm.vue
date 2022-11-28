@@ -286,7 +286,7 @@ export default {
     ],
     codeRules: [
       v => !!v  || 'This field is required',
-      v => v.length > 3 || 'Number length must be >= 4'
+      v => v.toString().length > 3 || 'Number length must be >= 4'
     ],
     form: {
       data: {
