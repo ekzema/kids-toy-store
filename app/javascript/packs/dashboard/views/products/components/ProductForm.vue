@@ -74,6 +74,16 @@
       v-model="valid"
       lazy-validation
   >
+    <v-autocomplete
+        label="Select categories"
+        :items="['California', 'Colorado', 'Florida', 'Georgia', 'Texas', 'Wyoming']"
+        variant="underlined"
+        color="primary"
+        chips
+        closable-chips
+        multiple
+        search
+    ></v-autocomplete>
     <v-text-field
         ref="name"
         v-model="form.data.name"
