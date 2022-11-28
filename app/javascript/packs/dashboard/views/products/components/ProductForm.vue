@@ -63,7 +63,7 @@
         color="primary"
     >
       <v-icon dark>
-        mdi-plus
+        mdi-panorama
       </v-icon>
     </v-btn>
   </div>
@@ -74,60 +74,6 @@
       v-model="valid"
       lazy-validation
   >
-    <v-text-field
-        v-model="form.data.price"
-        :rules="priceRules"
-        label="Price"
-        type="number"
-        variant="underlined"
-        color="primary"
-        required
-    ></v-text-field>
-    <v-row class="justify-center align-center">
-      <v-col
-          class="justify-center align-center"
-          cols="12"
-          xs="12"
-          sm="8"
-          md="6"
-          lg="4"
-      >
-        <v-switch
-            v-model="form.data.new"
-            hide-details
-            color="primary"
-            :label="`New: ${form.data.new ? 'on' : 'off'}`"
-        ></v-switch>
-      </v-col>
-      <v-col
-          cols="12"
-          xs="12"
-          sm="8"
-          md="6"
-          lg="4"
-      >
-        <v-switch
-            v-model="form.data.visible"
-            hide-details
-            color="primary"
-            :label="`Visible: ${form.data.visible ? 'on' : 'off'}`"
-        ></v-switch>
-      </v-col>
-      <v-col
-          cols="12"
-          xs="12"
-          sm="8"
-          md="6"
-          lg="4"
-      >
-        <v-switch
-            v-model="form.data.discount"
-            hide-details
-            color="primary"
-            :label="`Discount: ${form.data.discount ? 'on' : 'off'}`"
-        ></v-switch>
-      </v-col>
-    </v-row>
     <v-text-field
         ref="name"
         v-model="form.data.name"
@@ -146,6 +92,122 @@
         variant="underlined"
         required
     ></v-textarea>
+    <v-row>
+      <v-col
+          cols="12"
+          xs="12"
+          sm="6"
+          md="6"
+          lg="6"
+      >
+        <v-text-field
+            v-model="form.data.code"
+            :rules="codeRules"
+            label="Product code"
+            type="number"
+            variant="underlined"
+            color="primary"
+            required
+        ></v-text-field>
+      </v-col>
+      <v-col
+          cols="12"
+          xs="12"
+          sm="6"
+          md="6"
+          lg="6"
+      >
+        <v-select
+            v-model="form.data.status"
+            label="Select parent category"
+            variant="underlined"
+            :items="form.status_items"
+            item-value="id"
+            item-title="title"
+            color="primary"
+        ></v-select>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col
+          cols="12"
+          xs="12"
+          sm="6"
+          md="4"
+          lg="4"
+      >
+        <v-text-field
+            v-model="form.data.price"
+            :rules="priceRules"
+            label="Price"
+            type="number"
+            variant="underlined"
+            color="primary"
+            required
+        ></v-text-field>
+      </v-col>
+      <v-col
+          cols="12"
+          xs="12"
+          sm="6"
+          md="4"
+          lg="4"
+      >
+        <v-switch
+            v-model="form.data.new"
+            hide-details
+            color="primary"
+            label="New"
+        ></v-switch>
+      </v-col>
+      <v-col
+          cols="12"
+          xs="12"
+          sm="6"
+          md="4"
+          lg="4"
+      >
+        <v-switch
+            class="d-flex justify-left"
+            v-model="form.data.visible"
+            hide-details
+            color="primary"
+            label="Visible"
+        ></v-switch>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col
+          cols="12"
+          xs="12"
+          sm="4"
+          md="4"
+          lg="4"
+      >
+        <v-text-field
+            v-model="form.data.discount_price"
+            label="Discount price"
+            type="number"
+            variant="underlined"
+            color="primary"
+            required
+        ></v-text-field>
+      </v-col>
+      <v-col
+          cols="12"
+          xs="12"
+          sm="8"
+          md="8"
+          lg="8"
+      >
+        <v-switch
+            v-model="form.data.discount"
+            hide-details
+            color="primary"
+            label="Discount"
+        ></v-switch>
+      </v-col>
+    </v-row>
     <v-row justify="center"  v-for="(specification, index) in form.data.specifications" :key="index">
       <v-col
           cols="12"
@@ -222,16 +284,24 @@ export default {
         v => !!v  || 'This field is required',
         v => v > 100 || 'Price cannot be less than 100'
     ],
+    codeRules: [
+      v => !!v  || 'This field is required',
+      v => v.length > 3 || 'Number length must be >= 4'
+    ],
     form: {
       data: {
         new: false,
+        code: '',
         name: '',
         price: 0,
+        status: false,
         visible: false,
         discount: false,
         description: '',
+        discount_price: 0,
         specifications: []
       },
+      status_items: [],
       previews: {
         lazy: {
           gallery: require('./../../../assets/img/lazy_image_160x80.jpg')
@@ -302,14 +372,19 @@ export default {
     },
     setFormData() {
       this.form.data.new = this.product.new
+      this.form.data.code = this.product.code
       this.form.data.name = this.product.name
       this.form.data.price = this.product.price
+      this.form.data.status = this.product.status.current
       this.form.data.visible = this.product.visible
       this.form.data.discount = this.product.discount
-      this.form.previews.logo = this.product.logo.thumb.url
       this.form.data.description = this.product.description
-      this.form.previews.gallery = [...this.product.product_images]
+      this.form.data.discount_price = this.product.discount_price
       this.form.data.specifications = this.product.specifications ? this.product.specifications : []
+
+      this.form.status_items = this.product.status.items
+      this.form.previews.logo = this.product.logo.thumb.url
+      this.form.previews.gallery = [...this.product.product_images]
     },
     addSpec() {
       this.form.data.specifications.push({key: '', value: ''})
