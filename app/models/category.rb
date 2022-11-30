@@ -1,5 +1,6 @@
 class Category < ApplicationRecord
   belongs_to :parent, :class_name => "Category", optional: true
+  has_many :product_categories
 
   validates :name, presence: true
   validates :name, uniqueness: true
