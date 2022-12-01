@@ -76,13 +76,37 @@
   >
     <v-autocomplete
         label="Select categories"
-        :items="['California', 'Colorado', 'Florida', 'Georgia', 'Texas', 'Wyoming']"
+        v-model="selectPeople"
+        :items="people"
         variant="underlined"
+        item-title="name"
+        item-value="name"
         color="primary"
-        chips
-        closable-chips
         multiple
-    ></v-autocomplete>
+    >
+      <template v-slot:chip="{ props, item }">
+        <v-chip
+            class="ma-1"
+            v-bind="props"
+            :text="item.raw.name"
+            color="primary"
+            closable
+            size="default"
+            variant="outlined"
+        >
+          <strong>{{ item.raw.name }}</strong>&nbsp;
+          <span style="font-size: 11px">{{ item.raw.group }}</span>
+        </v-chip>
+      </template>
+      <template v-slot:item="{ props, item }">
+        <v-list-item
+            v-bind="props"
+            :title="item.raw.name"
+            :subtitle="item.raw.group"
+            color="primary"
+        ></v-list-item>
+      </template>
+    </v-autocomplete>
     <v-text-field
         ref="name"
         v-model="form.data.name"
@@ -285,6 +309,17 @@
 export default {
   name: 'product-form',
   data: () => ({
+    people: [
+      { name: 'Sandra Adams', group: 'Group 1' },
+      { name: 'Ali Connors', group: 'Group 1' },
+      { name: 'Trevor Hansen', group: 'Group 1' },
+      { name: 'Tucker Smith', group: 'Group 1' },
+      { name: 'Britta Holt', group: 'Group 2' },
+      { name: 'Jane Smith ', group: 'Group 2' },
+      { name: 'John Smith', group: 'Group 2' },
+      { name: 'Sandra Williams', group: 'Group 2' },
+    ],
+    selectPeople: [],
     valid: false,
     requiredRules: [
       v => !!v || 'This field is required'
