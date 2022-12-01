@@ -82,7 +82,6 @@
         chips
         closable-chips
         multiple
-        search
     ></v-autocomplete>
     <v-text-field
         ref="name"
