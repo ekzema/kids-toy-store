@@ -44,7 +44,7 @@ export default {
     async fetchCategory() {
       await this.$store.dispatch('fetchCategory', this.$route.params.id)
     },
-    async submitForm(formData) {
+    async submitForm(formData, _fetchParentCategories) {
       const data = { id: this.$route.params.id, form: formData }
       await this.$store.dispatch('updateCategory', data)
     }

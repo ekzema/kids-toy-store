@@ -68,10 +68,10 @@ export default {
       await this.$store.dispatch('fetchParentCategories', params)
     },
     async submitForm() {
-      if(!this.valid) return
+      const { valid } = await this.$refs.form.validate()
+      if(!valid) return
 
-      await this.$emit('submitForm', this.formData)
-      await this.fetchParentCategories()
+      this.$emit('submitForm', this.formData, () => this.fetchParentCategories())
       if(!this.category) this.clearForm()
     },
     clearForm() {

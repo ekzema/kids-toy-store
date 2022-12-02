@@ -31,8 +31,9 @@ export default {
   data: () => ({
   }),
   methods: {
-    async submitForm(formData) {
+    async submitForm(formData, fetchParentCategories) {
       await this.$store.dispatch('createCategory', formData)
+      fetchParentCategories()
     }
   }
 }
