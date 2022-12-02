@@ -6,7 +6,7 @@ class Product < ApplicationRecord
   has_many :categories, through: :product_categories, dependent: :destroy
 
   accepts_nested_attributes_for :product_images, allow_destroy: true, reject_if: :all_blank
-  accepts_nested_attributes_for :product_categories, reject_if: :all_blank
+  accepts_nested_attributes_for :product_categories, allow_destroy: true, reject_if: :all_blank
 
   validates :code, :name, :description, presence: true
   validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 100 }

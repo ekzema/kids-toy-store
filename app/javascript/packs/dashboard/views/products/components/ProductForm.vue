@@ -76,7 +76,7 @@
   >
     <v-autocomplete
         label="Select categories"
-        v-model="selectPeople"
+        v-model="form.data.categories"
         :items="categories"
         variant="underlined"
         item-title="name"
@@ -310,17 +310,6 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'product-form',
   data: () => ({
-    people: [
-      { name: 'Sandra Adams', group: 'Group 1' },
-      { name: 'Ali Connors', group: 'Group 1' },
-      { name: 'Trevor Hansen', group: 'Group 1' },
-      { name: 'Tucker Smith', group: 'Group 1' },
-      { name: 'Britta Holt', group: 'Group 2' },
-      { name: 'Jane Smith ', group: 'Group 2' },
-      { name: 'John Smith', group: 'Group 2' },
-      { name: 'Sandra Williams', group: 'Group 2' },
-    ],
-    selectPeople: [],
     valid: false,
     requiredRules: [
       v => !!v || 'This field is required'
@@ -342,6 +331,7 @@ export default {
         status: false,
         visible: false,
         discount: false,
+        categories: [],
         description: '',
         discount_price: 0,
         specifications: []
@@ -397,7 +387,8 @@ export default {
       const formData = new FormData()
       Object.keys(this.form.data).forEach(key => {
         if(Array.isArray(this.form.data[key])) {
-          formData.append(`product[${key}]`, JSON.stringify(this.form.data[key]))
+          if(key === 'specifications') formData.append(`product[${key}]`, JSON.stringify(this.form.data[key]))
+          if(key === 'categories') this.setCategories(formData)
         } else {
           formData.append(`product[${key}]`, this.form.data[key])
         }
@@ -427,6 +418,7 @@ export default {
       this.form.data.status = this.product.status.current
       this.form.data.visible = this.product.visible
       this.form.data.discount = this.product.discount
+      this.form.data.categories = this.product.category_ids
       this.form.data.description = this.product.description
       this.form.data.discount_price = this.product.discount_price
       this.form.data.specifications = this.product.specifications ? this.product.specifications : []
@@ -454,7 +446,12 @@ export default {
       if (image.id) await this.$store.dispatch('deleteProductImage', image.id)
 
       this.form.previews.gallery.splice(index, 1)
-    }
+    },
+    setCategories(formData) {
+      this.form.data.categories.forEach((value, index) => {
+        formData.append(`product[product_categories_attributes][${index}][category_id]`, value)
+      })
+    },
   },
   watch: {
     product() {
