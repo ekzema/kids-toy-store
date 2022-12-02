@@ -77,10 +77,10 @@
     <v-autocomplete
         label="Select categories"
         v-model="selectPeople"
-        :items="people"
+        :items="categories"
         variant="underlined"
         item-title="name"
-        item-value="name"
+        item-value="id"
         color="primary"
         multiple
     >
@@ -95,7 +95,7 @@
             variant="outlined"
         >
           <strong>{{ item.raw.name }}</strong>&nbsp;
-          <span style="font-size: 11px">{{ item.raw.group }}</span>
+          <span style="font-size: 11px">{{ item.raw.parent_name || 'parent' }}</span>
         </v-chip>
       </template>
       <template v-slot:item="{ props, item }">
@@ -305,6 +305,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'product-form',
@@ -367,8 +368,12 @@ export default {
     }
   },
   computed: {
+    ...mapGetters([
+      'categories',
+    ])
   },
   created() {
+    this.$store.dispatch('fetchCategories')
   },
   methods: {
     triggerUpload(input) {
