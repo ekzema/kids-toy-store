@@ -306,6 +306,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import {uniqNumber} from '../../../helpers/utils'
 
 export default {
   name: 'product-form',
@@ -418,7 +419,7 @@ export default {
       this.form.data.status = this.product.status.current
       this.form.data.visible = this.product.visible
       this.form.data.discount = this.product.discount
-      this.form.data.categories = this.product.category_ids
+      this.form.data.categories = this.prepareCategories()
       this.form.data.description = this.product.description
       this.form.data.discount_price = this.product.discount_price
       this.form.data.specifications = this.product.specifications ? this.product.specifications : []
@@ -447,10 +448,30 @@ export default {
 
       this.form.previews.gallery.splice(index, 1)
     },
+    prepareCategories() {
+      return this.product.product_categories.map(product_category => product_category.category_id);
+    },
     setCategories(formData) {
-      this.form.data.categories.forEach((value, index) => {
-        formData.append(`product[product_categories_attributes][${index}][category_id]`, value)
-      })
+      if(this.product && this.product.product_categories.length) {
+        this.product.product_categories.forEach(product_category => {
+          if(!this.form.data.categories.some(category => category === product_category.category_id)) {
+            let uniqIndex = uniqNumber()
+            formData.append(`product[product_categories_attributes][${uniqIndex}][id]`, product_category.id)
+            formData.append(`product[product_categories_attributes][${uniqIndex}][_destroy]`, true)
+          }
+        })
+
+        this.form.data.categories.forEach(category => {
+          if(!this.prepareCategories().some(prepareCategory => prepareCategory === category)) {
+
+            formData.append(`product[product_categories_attributes][${uniqNumber()}][category_id]`, category)
+          }
+        })
+      } else {
+        this.form.data.categories.forEach((category, index) => {
+          formData.append(`product[product_categories_attributes][${index}][category_id]`, category)
+        })
+      }
     },
   },
   watch: {
