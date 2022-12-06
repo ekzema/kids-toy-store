@@ -329,7 +329,7 @@ export default {
         code: '',
         name: '',
         price: 0,
-        status: false,
+        status: null,
         visible: false,
         discount: false,
         categories: [],
