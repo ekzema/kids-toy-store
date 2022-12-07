@@ -6,10 +6,6 @@ class Admin::ProductSerializer < ActiveModel::Serializer
   has_many :product_categories
 
   def status
-    statuses = Product.statuses
-    {
-      items: statuses.map { |key, value| {id: value, title: key.humanize} },
-      current: statuses[object.status]
-    }
+    Product.statuses[object.status]
   end
 end

@@ -41,6 +41,14 @@ const actions = {
         } catch (error) {
             commit('setErrorMessage')
         }
+    },
+    async fetchDetailConstructor({ commit }, params) {
+        try {
+            const { data } = await Products.detailConstructor(params)
+            commit('setDetailConstructor', data)
+        } catch (error) {
+            commit('setErrorMessage')
+        }
     }
 }
 

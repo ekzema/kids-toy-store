@@ -4,6 +4,9 @@ const mutations = {
     },
     setProduct(state, payload) {
         state.product = payload
+    },
+    setDetailConstructor(state, payload) {
+        state.detailConstructor = payload
     }
 }
 

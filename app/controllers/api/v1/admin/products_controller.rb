@@ -31,6 +31,11 @@ class Api::V1::Admin::ProductsController < AdminController
     @product.soft_delete!
   end
 
+  def detail_constructor
+    detail = Products::DetailBuilder.new.perform
+    render_response(detail)
+  end
+
   private
 
   def products

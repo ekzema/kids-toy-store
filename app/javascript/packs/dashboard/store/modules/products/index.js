@@ -5,6 +5,7 @@ import getters from './getters'
 const state = {
     products: [],
     product: {},
+    detailConstructor: {}
 }
 
 export default {

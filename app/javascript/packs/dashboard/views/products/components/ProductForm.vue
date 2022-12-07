@@ -77,7 +77,7 @@
     <v-autocomplete
         label="Select categories"
         v-model="form.data.categories"
-        :items="categories"
+        :items="detailConstructor.categories"
         variant="underlined"
         item-title="name"
         item-value="id"
@@ -154,7 +154,7 @@
             v-model="form.data.status"
             label="Select parent category"
             variant="underlined"
-            :items="form.status_items"
+            :items="detailConstructor.statuses"
             item-value="id"
             item-title="title"
             color="primary"
@@ -329,7 +329,7 @@ export default {
         code: '',
         name: '',
         price: 0,
-        status: null,
+        status: 1,
         visible: false,
         discount: false,
         categories: [],
@@ -360,11 +360,11 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'categories',
+      'detailConstructor',
     ])
   },
   created() {
-    this.$store.dispatch('fetchCategories')
+    this.$store.dispatch('fetchDetailConstructor')
   },
   methods: {
     triggerUpload(input) {
@@ -416,7 +416,7 @@ export default {
       this.form.data.code = this.product.code
       this.form.data.name = this.product.name
       this.form.data.price = this.product.price
-      this.form.data.status = this.product.status.current
+      this.form.data.status = this.product.status
       this.form.data.visible = this.product.visible
       this.form.data.discount = this.product.discount
       this.form.data.categories = this.prepareCategories()
@@ -424,7 +424,6 @@ export default {
       this.form.data.discount_price = this.product.discount_price
       this.form.data.specifications = this.product.specifications ? this.product.specifications : []
 
-      this.form.status_items = this.product.status.items
       this.form.previews.logo = this.product.logo.thumb.url
       this.form.previews.gallery = [...this.product.product_images]
     },
