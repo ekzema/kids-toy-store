@@ -1,0 +1,16 @@
+
+.v-radio {
+  opacity: 0.4;
+}
+
+.edit_lang-ru {
+  background-image: url('../img/ru.svg');
+}
+
+.edit_lang-uk {
+  background-image: url('../img/uk.svg');
+}
+
+.v-selection-control--dirty {
+  opacity: 1;
+}

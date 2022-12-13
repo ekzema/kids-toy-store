@@ -68,6 +68,10 @@
     </v-btn>
   </div>
 <!--  End gallery-->
+  <select-language
+      class="d-flex flex-row-reverse"
+      v-model:language="language"
+  />
   <v-form
       @submit.prevent="submitForm"
       ref="form"
@@ -306,10 +310,14 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import {uniqNumber} from '../../../helpers/utils'
+import { uniqNumber } from '../../../helpers/utils'
+import SelectLanguage from '../../../components/SelectLanguage'
 
 export default {
   name: 'product-form',
+  components: {
+    SelectLanguage,
+  },
   data: () => ({
     valid: false,
     requiredRules: [
@@ -323,6 +331,7 @@ export default {
       v => !!v  || 'This field is required',
       v => v.toString().length > 3 || 'Number length must be >= 4'
     ],
+    language: 'uk',
     form: {
       data: {
         new: false,
