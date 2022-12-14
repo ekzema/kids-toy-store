@@ -7889,10 +7889,10 @@ vue@3.2.40:
     "@vue/server-renderer" "3.2.40"
     "@vue/shared" "3.2.40"
 
-vuetify@^3.0.4:
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-3.0.4.tgz#1d5b7ffe8edd673cf4053dd73fbbc097fd075180"
-  integrity sha512-znJjQbOeVhPqtI7y50wepiq/jMWXhAXEl43FUIgrppWNWDDoL00NiGQiJMEkc5/GTTq1gxkpg4QlCUaHXAMpBg==
+vuetify@^3.0.5:
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-3.0.5.tgz#f9dc3942ce81d7f00e3aabce23074df37a14705d"
+  integrity sha512-ciX+9XuHQ4zx27dEceHrs6xuCeqPgo91DhvCm+udbp0Qg95phad03uVcdHvyv1XW/stgdZGneiqg5dxQvLGzPw==
 
 vuex@^4.0.2:
   version "4.0.2"
