@@ -66,6 +66,8 @@ class Api::V1::Admin::ProductsController < AdminController
       product_categories_attributes: [:id, :category_id, :_destroy]
     ).tap do | product |
       product[:specifications] = JSON.parse(product[:specifications]) if product[:specifications]
+      product[:description] = JSON.parse(product[:description]) if product[:description]
+      product[:name] = JSON.parse(product[:name]) if product[:name]
       product[:status] = product[:status].to_i if product[:status]
     end
   end

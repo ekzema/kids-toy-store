@@ -16,6 +16,8 @@ class Product < ApplicationRecord
   enum status: { available: 1, not_available: 2, ends: 3, on_the_way: 4 }
 
   serialize :specifications, JSON
+  serialize :description, JSON
+  serialize :name, JSON
 
   def soft_delete!
     update(deleted_at: Time.now)

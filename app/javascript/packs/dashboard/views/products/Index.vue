@@ -33,8 +33,8 @@
         :key="index"
     >
       <td>{{ product.id }}</td>
-      <td>{{ product.name }}</td>
-      <td>{{ product.description }}</td>
+      <td>{{ product.name[language] }}</td>
+      <td>{{ product.description[language] }}</td>
       <td class="d-flex justify-center">
         <v-btn
             icon
@@ -74,6 +74,7 @@ export default {
     SearchPanel,
   },
   data: () => ({
+    language: 'uk',
     selectProduct: {},
     dialog: false,
     searchText: '',

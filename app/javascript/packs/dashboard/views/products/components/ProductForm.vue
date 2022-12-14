@@ -113,7 +113,7 @@
     </v-autocomplete>
     <v-text-field
         ref="name"
-        v-model="form.data.name"
+        v-model="form.data.name[language]"
         :rules="requiredRules"
         label="Name"
         variant="underlined"
@@ -122,7 +122,7 @@
     ></v-text-field>
     <v-textarea
         ref="description"
-        v-model="form.data.description"
+        v-model="form.data.description[language]"
         label="Description"
         color="primary"
         :rules="requiredRules"
@@ -312,6 +312,7 @@
 import { mapGetters } from 'vuex'
 import { uniqNumber } from '../../../helpers/utils'
 import SelectLanguage from '../../../components/SelectLanguage'
+import { languages } from '../../../config'
 
 export default {
   name: 'product-form',
@@ -336,13 +337,13 @@ export default {
       data: {
         new: false,
         code: '',
-        name: '',
+        name: {},
         price: 0,
         status: 1,
         visible: false,
         discount: false,
         categories: [],
-        description: '',
+        description: {},
         discount_price: 0,
         specifications: []
       },
@@ -391,6 +392,8 @@ export default {
         })
     },
     async submitForm() {
+      this.checkValidDataLang()
+
       const { valid } = await this.$refs.form.validate()
       if(!valid) return
 
@@ -400,6 +403,11 @@ export default {
           if(key === 'specifications') formData.append(`product[${key}]`, JSON.stringify(this.form.data[key]))
           if(key === 'categories') this.setCategories(formData)
         } else {
+          if(key === 'description' || key === 'name'){
+            formData.append(`product[${key}]`, JSON.stringify(this.form.data[key]))
+            return
+          }
+
           formData.append(`product[${key}]`, this.form.data[key])
         }
       })
@@ -481,6 +489,14 @@ export default {
         })
       }
     },
+    checkValidDataLang() {
+      languages.some(language => {
+        if(!this.form.data.name[language.code] || !this.form.data.description[language.code]) {
+          this.language = language.code
+          return true
+        }
+      })
+    }
   },
   watch: {
     product() {
