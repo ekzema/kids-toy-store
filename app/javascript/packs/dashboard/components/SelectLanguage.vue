@@ -7,6 +7,7 @@
       row
       inline
       active-class="active"
+      @update:modelValue="onSelectLang"
   >
     <v-radio
       class="mx-2"
@@ -32,20 +33,15 @@ export default {
     }
   },
   props: {
-    defaultLang: {
-      type: String,
-      default: 'uk'
-    },
     language: {
       type: String
     }
   },
   created () {
-    this.language
   },
-  watch: {
-    language () {
-      // this.$emit('lang-selected', this.language)
+  methods: {
+    onSelectLang(event) {
+      this.$emit('update:language', event)
     }
   }
 }
