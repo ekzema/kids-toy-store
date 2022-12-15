@@ -55,7 +55,7 @@
   </v-table>
   <v-dialog v-model="dialog" max-width="400">
     <v-card>
-      <v-card-text class="headline text-center">Delete <strong>{{ selectProduct.name }}</strong> product?</v-card-text>
+      <v-card-text class="headline text-center">Delete <strong>{{ selectProduct.name[language] }}</strong> product?</v-card-text>
       <v-card-actions class="justify-center">
         <v-btn color="primary" @click="onCancel">Cancel</v-btn>
         <v-btn color="red" @click="onDelete">Delete</v-btn>
