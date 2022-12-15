@@ -8,6 +8,8 @@ class Category < ApplicationRecord
 
   after_destroy :clean_dependence_child
 
+  serialize :name, JSON
+
   private
 
   def clean_dependence_child

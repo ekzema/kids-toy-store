@@ -48,6 +48,6 @@ class Api::V1::Admin::CategoriesController < AdminController
   end
 
   def category_params
-    params.require(:category).permit(:name, :parent_id)
+    params.require(:category).permit(:parent_id, name: {})
   end
 end

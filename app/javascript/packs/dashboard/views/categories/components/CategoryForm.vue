@@ -1,4 +1,8 @@
 <template>
+  <select-language
+      class="d-flex flex-row-reverse"
+      v-model:language="language"
+  />
   <v-form
       @submit.prevent="submitForm"
       ref="form"
@@ -7,7 +11,7 @@
   >
     <v-text-field
         ref="name"
-        v-model="formData.name"
+        v-model="formData.name[language]"
         :rules="nameRules"
         label="Name"
         variant="underlined"
@@ -20,27 +24,42 @@
         variant="underlined"
         :items="parentCategories"
         item-value="id"
-        item-title="name"
         color="primary"
         :disabled="formData.is_parent"
-    ></v-select>
+    >
+      <template v-slot:item="{ props, item }">
+        <v-list-item
+            v-bind="props"
+            :title="item.raw.name[language]"
+        />
+      </template>
+      <template v-slot:selection="{ item }">
+        {{item.raw.name ? item.raw.name[language] : ''}}
+      </template>
+    </v-select>
     <v-btn type="submit" color="success">{{ btnName }}</v-btn>
   </v-form>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import SelectLanguage from '../../../components/SelectLanguage'
+import { languages } from '../../../config'
 
 export default {
   name: 'category-form',
+  components: {
+    SelectLanguage,
+  },
   data: () => ({
+    language: 'uk',
     valid: false,
     nameRules: [
       v => !!v || 'Name is required'
     ],
     formData: {
-      name: '',
-      parent_id: '',
+      name: {},
+      parent_id: null,
       is_parent: false
     }
   }),
@@ -68,6 +87,8 @@ export default {
       await this.$store.dispatch('fetchParentCategories', params)
     },
     async submitForm() {
+      await this.checkValidDataLang()
+
       const { valid } = await this.$refs.form.validate()
       if(!valid) return
 
@@ -76,6 +97,7 @@ export default {
     },
     clearForm() {
       this.$refs.form.reset()
+      this.formData.name = {}
     },
     setFormData() {
       this.formData = {
@@ -83,6 +105,14 @@ export default {
         parent_id: this.category.parent_id,
         is_parent: this.category.is_parent
       }
+    },
+    checkValidDataLang() {
+      languages.some(language => {
+        if(!this.formData.name[language.code]) {
+          this.language = language.code
+          return true
+        }
+      })
     }
   },
   watch: {

@@ -392,7 +392,7 @@ export default {
         })
     },
     async submitForm() {
-      this.checkValidDataLang()
+      await this.checkValidDataLang()
 
       const { valid } = await this.$refs.form.validate()
       if(!valid) return

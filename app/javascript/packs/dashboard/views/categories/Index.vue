@@ -32,8 +32,8 @@
         v-for="(category, index) in categories"
         :key="index"
     >
-      <td>{{ category.name }}</td>
-      <td>{{ category.parent_name }}</td>
+      <td>{{ category.name[language] }}</td>
+      <td>{{ category.parent_name ? category.parent_name[language] : ''}}</td>
       <td class="d-flex justify-center">
         <v-btn
             icon
@@ -73,6 +73,7 @@ export default {
     SearchPanel,
   },
   data: () => ({
+    language: 'uk',
     selectCategory: {},
     dialog: false,
     searchText: '',
