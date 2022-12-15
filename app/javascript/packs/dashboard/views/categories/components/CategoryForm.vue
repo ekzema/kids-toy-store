@@ -98,6 +98,7 @@ export default {
     clearForm() {
       this.$refs.form.reset()
       this.formData.name = {}
+      this.language = 'uk'
     },
     setFormData() {
       this.formData = {
