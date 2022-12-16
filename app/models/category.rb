@@ -17,6 +17,8 @@ class Category < ApplicationRecord
   end
 
   def is_parent
+    return unless parent_id
+
     categories_count =  Category.where(parent_id: id).count
     errors.add(:category, "This category is already a parent!") unless categories_count.zero?
   end
