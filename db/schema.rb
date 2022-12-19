@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_30_083647) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_16_131503) do
   create_table "categories", charset: "utf8", force: :cascade do |t|
     t.string "name"
     t.integer "parent_id"
@@ -51,6 +51,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_30_083647) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "logo"
+    t.integer "made_in"
+    t.integer "for_gender"
+    t.integer "brand_id"
+    t.integer "for_age"
   end
 
 end
