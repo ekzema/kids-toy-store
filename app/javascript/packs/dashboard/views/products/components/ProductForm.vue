@@ -92,14 +92,13 @@
         <v-chip
             class="ma-1"
             v-bind="props"
-            :text="item.raw.name[language]"
             color="primary"
             closable
             size="default"
             variant="outlined"
         >
-          <strong>{{ item.raw.name[language] }}</strong>&nbsp;
-          <span style="font-size: 11px">{{  item.raw.parent_name ? item.raw.parent_name[language] : 'parent' }}</span>
+          <strong>{{ item.raw.name ? item.raw.name[language] : '' }}</strong>&nbsp;
+          <span style="font-size: 11px">{{ item.raw.parent_name ? item.raw.parent_name[language] : 'parent' }}</span>
         </v-chip>
       </template>
       <template v-slot:item="{ props, item }">
