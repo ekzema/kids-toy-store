@@ -169,6 +169,33 @@
           cols="12"
           xs="12"
           sm="6"
+          md="6"
+          lg="6"
+      >
+        <v-select
+            v-model="form.data.for_age"
+            label="Select age children"
+            variant="underlined"
+            :items="detailConstructor.age"
+            color="primary"
+        >
+          <template v-slot:item="{ props, item }">
+            <v-list-item
+                v-bind="props"
+                :title="item.raw + '+'"
+            />
+          </template>
+          <template v-slot:selection="{ item }">
+            {{ item.raw + '+' }}
+          </template>
+        </v-select>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col
+          cols="12"
+          xs="12"
+          sm="6"
           md="4"
           lg="4"
       >
@@ -339,6 +366,7 @@ export default {
         name: {},
         price: 0,
         status: 1,
+        for_age: null,
         visible: false,
         discount: false,
         categories: [],
@@ -433,6 +461,7 @@ export default {
       this.form.data.name = this.product.name
       this.form.data.price = this.product.price
       this.form.data.status = this.product.status
+      this.form.data.for_age = this.product.for_age
       this.form.data.visible = this.product.visible
       this.form.data.discount = this.product.discount
       this.form.data.categories = this.prepareCategories()
