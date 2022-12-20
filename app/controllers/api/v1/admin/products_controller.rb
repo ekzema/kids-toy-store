@@ -51,20 +51,21 @@ class Api::V1::Admin::ProductsController < AdminController
 
   def product_params
     @product_params ||= params.require(:product).permit(
+      :new,
       :logo,
       :name,
-      :description,
-      :status,
-      :price,
-      :new,
-      :visible,
       :code,
+      :price,
+      :status,
+      :visible,
+      :for_age,
       :discount,
+      :description,
       :discount_price,
       :specifications,
       product_images_attributes: [:id, :image, :_destroy],
       product_categories_attributes: [:id, :category_id, :_destroy]
-    ).tap do | product |
+    ).tap do |product|
       product[:specifications] = JSON.parse(product[:specifications]) if product[:specifications]
       product[:description] = JSON.parse(product[:description]) if product[:description]
       product[:name] = JSON.parse(product[:name]) if product[:name]
