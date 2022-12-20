@@ -137,7 +137,7 @@
           lg="6"
       >
         <v-text-field
-            v-model="form.data.code"
+            v-model.number="form.data.code"
             :rules="codeRules"
             label="Product code"
             type="number"
@@ -154,7 +154,7 @@
           lg="6"
       >
         <v-select
-            v-model="form.data.status"
+            v-model.number="form.data.status"
             label="Select parent category"
             variant="underlined"
             :items="detailConstructor.statuses"
@@ -165,6 +165,23 @@
       </v-col>
     </v-row>
     <v-row>
+      <v-col
+          cols="12"
+          xs="12"
+          sm="6"
+          md="6"
+          lg="6"
+      >
+        <v-select
+            v-model="form.data.for_gender"
+            label="Select gender"
+            variant="underlined"
+            :items="detailConstructor.genders"
+            item-value="id"
+            item-title="title"
+            color="primary"
+        ></v-select>
+      </v-col>
       <v-col
           cols="12"
           xs="12"
@@ -369,12 +386,12 @@ export default {
         for_age: null,
         visible: false,
         discount: false,
+        for_gender: null,
         categories: [],
         description: {},
         discount_price: 0,
         specifications: []
       },
-      status_items: [],
       previews: {
         lazy: {
           gallery: require('./../../../assets/img/lazy_image_160x80.jpg')
@@ -464,6 +481,7 @@ export default {
       this.form.data.for_age = this.product.for_age
       this.form.data.visible = this.product.visible
       this.form.data.discount = this.product.discount
+      this.form.data.for_gender = this.product.for_gender
       this.form.data.categories = this.prepareCategories()
       this.form.data.description = this.product.description
       this.form.data.discount_price = this.product.discount_price

@@ -50,7 +50,7 @@ class Api::V1::Admin::ProductsController < AdminController
   end
 
   def product_params
-    @product_params ||= params.require(:product).permit(
+    params.require(:product).permit(
       :new,
       :logo,
       :name,
@@ -60,6 +60,7 @@ class Api::V1::Admin::ProductsController < AdminController
       :visible,
       :for_age,
       :discount,
+      :for_gender,
       :description,
       :discount_price,
       :specifications,
@@ -69,7 +70,6 @@ class Api::V1::Admin::ProductsController < AdminController
       product[:specifications] = JSON.parse(product[:specifications]) if product[:specifications]
       product[:description] = JSON.parse(product[:description]) if product[:description]
       product[:name] = JSON.parse(product[:name]) if product[:name]
-      product[:status] = product[:status].to_i if product[:status]
     end
   end
 end

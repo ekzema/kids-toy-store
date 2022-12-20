@@ -1,11 +1,11 @@
 class Admin::ProductSerializer < ActiveModel::Serializer
   attributes :id, :name, :description, :status, :price, :new, :visible, :code, :discount, :discount_price,
-             :specifications, :logo, :for_age
+             :specifications, :logo, :for_age, :for_gender
 
   has_many :product_images
   has_many :product_categories
 
   def status
-    Product.statuses[object.status]
+    object.status
   end
 end
