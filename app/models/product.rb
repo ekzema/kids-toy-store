@@ -14,8 +14,8 @@ class Product < ApplicationRecord
   validates :code, length: { minimum: 4 }
 
   enum status: { available: 1, not_available: 2, ends: 3, on_the_way: 4 }
-  enum country: { china: 1, ukraine: 2, japan: 3, germany: 4, usa: 5, taiwan: 6, turkey: 7 }
-  enum gender: { boy: 1, girl: 2, boy_girl: 3 }
+  enum production_country: { china: 1, ukraine: 2, japan: 3, germany: 4, usa: 5, taiwan: 6, turkey: 7 }
+  enum for_gender: { boy: 1, girl: 2, boy_girl: 3 }
 
   AGE = [*0..7]
 

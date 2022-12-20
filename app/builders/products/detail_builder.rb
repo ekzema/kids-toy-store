@@ -8,10 +8,10 @@ class Products::DetailBuilder
   def build_response
     {
       age: Product::AGE,
-      genders: Product.genders.keys.map { |key| {id: key, title: key.titleize.split(' ').join('/')} },
+      genders: Product.for_genders.keys.map { |key| {id: key, title: key.titleize.split(' ').join('/')} },
       statuses: prepare_enums('statuses'),
-      countries: prepare_enums('countries'),
-      categories: prepare_categories
+      categories: prepare_categories,
+      production_countries: prepare_enums('production_countries')
     }
   end
 

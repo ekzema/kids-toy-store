@@ -51,7 +51,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_16_131503) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "logo"
-    t.integer "made_in"
+    t.integer "production_country"
     t.integer "for_gender"
     t.integer "brand_id"
     t.integer "for_age"

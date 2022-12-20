@@ -64,6 +64,7 @@ class Api::V1::Admin::ProductsController < AdminController
       :description,
       :discount_price,
       :specifications,
+      :production_country,
       product_images_attributes: [:id, :image, :_destroy],
       product_categories_attributes: [:id, :category_id, :_destroy]
     ).tap do |product|

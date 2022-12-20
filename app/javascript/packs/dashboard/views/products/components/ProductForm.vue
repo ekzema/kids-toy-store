@@ -154,7 +154,7 @@
           lg="6"
       >
         <v-select
-            v-model.number="form.data.status"
+            v-model="form.data.status"
             label="Select parent category"
             variant="underlined"
             :items="detailConstructor.statuses"
@@ -206,6 +206,25 @@
             {{ item.raw + '+' }}
           </template>
         </v-select>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col
+          cols="12"
+          xs="12"
+          sm="6"
+          md="6"
+          lg="6"
+      >
+        <v-select
+            v-model="form.data.production_country"
+            label="Select country of manufacture"
+            variant="underlined"
+            :items="detailConstructor.production_countries"
+            item-value="id"
+            item-title="title"
+            color="primary"
+        ></v-select>
       </v-col>
     </v-row>
     <v-row>
@@ -390,7 +409,8 @@ export default {
         categories: [],
         description: {},
         discount_price: 0,
-        specifications: []
+        specifications: [],
+        production_country: null
       },
       previews: {
         lazy: {
@@ -486,6 +506,7 @@ export default {
       this.form.data.description = this.product.description
       this.form.data.discount_price = this.product.discount_price
       this.form.data.specifications = this.product.specifications ? this.product.specifications : []
+      this.form.data.production_country = this.product.production_country
 
       this.form.previews.logo = this.product.logo.thumb.url
       this.form.previews.gallery = [...this.product.product_images]
