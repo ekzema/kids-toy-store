@@ -81,6 +81,7 @@
     <v-autocomplete
         label="Select categories"
         v-model="form.data.categories"
+        :rules="requiredArrayRules"
         :items="detailConstructor.categories"
         variant="underlined"
         item-title="name"
@@ -397,6 +398,9 @@ export default {
     codeRules: [
       v => !!v  || 'This field is required',
       v => v.toString().length > 3 || 'Number length must be >= 4'
+    ],
+    requiredArrayRules: [
+      v => v.length > 0 || 'Please select a category.'
     ],
     language: 'uk',
     form: {
