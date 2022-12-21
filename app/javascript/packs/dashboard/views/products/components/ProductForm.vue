@@ -155,7 +155,8 @@
       >
         <v-select
             v-model="form.data.status"
-            label="Select parent category"
+            :rules="requiredRules"
+            label="Select product status"
             variant="underlined"
             :items="detailConstructor.statuses"
             item-value="id"
@@ -174,6 +175,7 @@
       >
         <v-select
             v-model="form.data.for_gender"
+            :rules="requiredRules"
             label="Select gender"
             variant="underlined"
             :items="detailConstructor.genders"
@@ -191,6 +193,7 @@
       >
         <v-select
             v-model="form.data.for_age"
+            :rules="requiredRules"
             label="Select age children"
             variant="underlined"
             :items="detailConstructor.age"
@@ -218,6 +221,7 @@
       >
         <v-select
             v-model="form.data.production_country"
+            :rules="requiredRules"
             label="Select country of manufacture"
             variant="underlined"
             :items="detailConstructor.production_countries"
@@ -401,7 +405,7 @@ export default {
         code: '',
         name: {},
         price: 0,
-        status: 1,
+        status: null,
         for_age: null,
         visible: false,
         discount: false,
