@@ -225,11 +225,28 @@
             :rules="requiredRules"
             label="Select country of manufacture"
             variant="underlined"
-            :items="detailConstructor.production_countries"
+            :items="detailConstructor.countries"
             item-value="id"
             item-title="title"
             color="primary"
         ></v-select>
+      </v-col>
+      <v-col
+          cols="12"
+          xs="12"
+          sm="6"
+          md="6"
+          lg="6"
+      >
+        <v-text-field
+            ref="name"
+            v-model="form.data.brand"
+            :rules="requiredRules"
+            label="Brand"
+            variant="underlined"
+            color="primary"
+            required
+        ></v-text-field>
       </v-col>
     </v-row>
     <v-row>
@@ -409,6 +426,7 @@ export default {
         code: '',
         name: {},
         price: 0,
+        brand: '',
         status: null,
         for_age: null,
         visible: false,

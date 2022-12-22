@@ -7,11 +7,11 @@ class Products::DetailBuilder
 
   def build_response
     {
-      age: Product::AGE,
-      genders: Product.for_genders.keys.map { |key| {id: key, title: key.titleize.split(' ').join('/')} },
-      statuses: prepare_enums('statuses'),
-      categories: prepare_categories,
-      production_countries: prepare_enums('production_countries')
+      age:        Product::AGE,
+      genders:    Product.for_genders.keys.map { |key| {id: key, title: key.titleize.split(' ').join('/')} },
+      statuses:   prepare_enums('statuses'),
+      countries:  prepare_enums('production_countries'),
+      categories: prepare_categories
     }
   end
 
