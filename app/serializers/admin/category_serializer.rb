@@ -6,7 +6,7 @@ class Admin::CategorySerializer < ActiveModel::Serializer
   end
 
   def is_parent
-    categories_count =  Category.where(parent_id: object.id).count
+    categories_count = Category.where(parent_id: object.id).count
     !categories_count.zero?
   end
 end
