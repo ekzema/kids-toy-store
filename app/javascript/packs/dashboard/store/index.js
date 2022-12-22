@@ -2,6 +2,7 @@ import { createStore } from "vuex"
 import categories from './modules/categories'
 import products from './modules/products'
 import productImages from './modules/product_images'
+import brands from './modules/brands'
 
 const state = {
     loader: false,
@@ -53,7 +54,8 @@ const store = createStore({
     modules: {
         categories,
         products,
-        productImages
+        productImages,
+        brands
     },
 });
 

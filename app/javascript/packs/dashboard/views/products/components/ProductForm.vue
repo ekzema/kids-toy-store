@@ -242,6 +242,7 @@
             ref="name"
             v-model="form.data.brand"
             :rules="requiredRules"
+            :items="brands"
             label="Brand"
             variant="underlined"
             color="primary"
@@ -461,6 +462,7 @@ export default {
   computed: {
     ...mapGetters([
       'detailConstructor',
+      'brands'
     ])
   },
   created() {
