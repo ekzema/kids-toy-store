@@ -1,5 +1,6 @@
 class Api::V1::Admin::ProductsController < AdminController
   before_action :set_product, only: [:destroy, :show, :update]
+  before_action :set_brand, only: [:create, :update]
 
   def index
     render_response(products, Admin::ProductListSerializer)
@@ -45,6 +46,14 @@ class Api::V1::Admin::ProductsController < AdminController
     products
   end
 
+  def set_brand
+    return if product_params[:brand_id]
+    return unless params[:brand]
+
+    brand = params[:brand].empty? ? nil : Brand.find_or_create_by!(name: params[:brand].downcase)
+    params[:product][:brand_id] = brand&.id
+  end
+
   def set_product
     @product = products.find(params[:id])
   end
@@ -59,6 +68,7 @@ class Api::V1::Admin::ProductsController < AdminController
       :status,
       :visible,
       :for_age,
+      :brand_id,
       :discount,
       :for_gender,
       :description,

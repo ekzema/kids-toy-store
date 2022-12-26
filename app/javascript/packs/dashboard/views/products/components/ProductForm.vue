@@ -522,6 +522,7 @@ export default {
       this.form.data.code = this.product.code
       this.form.data.name = this.product.name
       this.form.data.price = this.product.price
+      this.form.data.brand = this.product.brand
       this.form.data.status = this.product.status
       this.form.data.for_age = this.product.for_age
       this.form.data.visible = this.product.visible
@@ -582,7 +583,9 @@ export default {
       }
     },
     setBrand(formData) {
-      {{typeof this.form.data.brand}}
+      typeof this.form.data.brand === 'object'
+          ? formData.append('product[brand_id]', this.form.data.brand.id)
+          : formData.append('brand', this.form.data.brand)
     },
     checkValidDataLang() {
       languages.some(language => {
