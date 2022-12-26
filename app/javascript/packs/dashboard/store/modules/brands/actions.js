@@ -8,6 +8,9 @@ const actions = {
         } catch (error) {
             commit('setErrorMessage')
         }
+    },
+    clearBrands({ commit }) {
+        commit('clearBrands')
     }
 }
 

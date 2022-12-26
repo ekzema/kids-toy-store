@@ -238,16 +238,17 @@
           md="6"
           lg="6"
       >
-        <v-text-field
+        <v-combobox
             ref="name"
             v-model="form.data.brand"
-            :rules="requiredRules"
             :items="brands"
+            @update:modelValue="setBrands"
             label="Brand"
             variant="underlined"
+            item-title="name"
             color="primary"
             required
-        ></v-text-field>
+        ></v-combobox>
       </v-col>
     </v-row>
     <v-row>
@@ -427,7 +428,7 @@ export default {
         code: '',
         name: {},
         price: 0,
-        brand: '',
+        brand: null,
         status: null,
         for_age: null,
         visible: false,
@@ -491,17 +492,13 @@ export default {
 
       const formData = new FormData()
       Object.keys(this.form.data).forEach(key => {
-        if(Array.isArray(this.form.data[key])) {
-          if(key === 'specifications') formData.append(`product[${key}]`, JSON.stringify(this.form.data[key]))
-          if(key === 'categories') this.setCategories(formData)
-        } else {
-          if(key === 'description' || key === 'name'){
-            formData.append(`product[${key}]`, JSON.stringify(this.form.data[key]))
-            return
-          }
+        if(key === 'specifications') return formData.append(`product[${key}]`, JSON.stringify(this.form.data[key]))
+        if(key === 'categories') return this.setCategories(formData)
+        if(key === 'description') return formData.append(`product[${key}]`, JSON.stringify(this.form.data[key]))
+        if(key === 'name') return formData.append(`product[${key}]`, JSON.stringify(this.form.data[key]))
+        if(key === 'brand') return this.setBrand(formData)
 
-          formData.append(`product[${key}]`, this.form.data[key])
-        }
+        formData.append(`product[${key}]`, this.form.data[key])
       })
 
       this.form.previews.gallery.forEach((value, index) => {
@@ -584,6 +581,9 @@ export default {
         })
       }
     },
+    setBrand(formData) {
+      {{typeof this.form.data.brand}}
+    },
     checkValidDataLang() {
       languages.some(language => {
         if(!this.form.data.name[language.code] || !this.form.data.description[language.code]) {
@@ -591,6 +591,11 @@ export default {
           return true
         }
       })
+    },
+    setBrands(text) {
+      text.length
+          ? this.$store.dispatch('fetchBrands', {q: text})
+          : this.$store.dispatch('clearBrands')
     }
   },
   watch: {

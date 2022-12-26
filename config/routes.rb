@@ -13,6 +13,7 @@ Rails.application.routes.draw do
             get :parents
           end
         end
+        resources :brands, only: [:index]
       end
     end
   end
