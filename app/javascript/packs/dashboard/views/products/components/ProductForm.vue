@@ -428,7 +428,7 @@ export default {
         code: '',
         name: {},
         price: 0,
-        brand: null,
+        brand: '',
         status: null,
         for_age: null,
         visible: false,
