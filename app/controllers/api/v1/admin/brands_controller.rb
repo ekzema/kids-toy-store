@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Api::V1::Admin::BrandsController < AdminController
   def index
     brands = Brand.all

@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class Api::V1::Admin::CategoriesController < AdminController
-  before_action :set_category, only: [:destroy, :show, :update]
+  before_action :set_category, only: %i[destroy show update]
 
   def index
     categories = Category.includes(:parent).all

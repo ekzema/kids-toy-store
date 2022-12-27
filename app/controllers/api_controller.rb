@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApiController < ActionController::API
   def prepare_serializer(data, class_serializer = nil, options = {})
     object_class = "#{fetch_object_class(data)}_serializer".camelize
@@ -16,14 +18,16 @@ class ApiController < ActionController::API
     object_class.to_s.downcase
   end
 
+  # rubocop:disable Layout/LineLength
   def render_response(data = nil, *options_serializer, expand: {}, status: :ok)
     response = { success: true }
     response.merge! expand if expand.present? && expand.instance_of?(Hash)
-    prepare_data = (data.instance_of?(Hash) || data.instance_of?(Array) || data.nil?) ? data : prepare_serializer(data, *options_serializer)
-    response.merge!(data: prepare_data)
+    prepare_data = data.instance_of?(Hash) || data.instance_of?(Array) || data.nil? ? data : prepare_serializer(data, *options_serializer)
+    response[:data] = prepare_data
 
     render json: response, status: status
   end
+  # rubocop:enable Layout/LineLength
 
   def render_error_response(message = 'Bad Request', status = :bad_request)
     render json: { success: false, error: message }, status: status

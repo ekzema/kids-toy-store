@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Api::V1::Admin::ProductImagesController < AdminController
   before_action :set_product_image, only: [:destroy]
 

@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class Api::V1::Admin::ProductsController < AdminController
-  before_action :set_product, only: [:destroy, :show, :update]
-  before_action :set_brand, only: [:create, :update]
+  before_action :set_product, only: %i[destroy show update]
+  before_action :set_brand, only: %i[create update]
 
   def index
     render_response(products, Admin::ProductListSerializer)
@@ -58,6 +60,7 @@ class Api::V1::Admin::ProductsController < AdminController
     @product = products.find(params[:id])
   end
 
+  # rubocop:disable Metrics/MethodLength
   def product_params
     params.require(:product).permit(
       :new,
@@ -75,12 +78,13 @@ class Api::V1::Admin::ProductsController < AdminController
       :discount_price,
       :specifications,
       :production_country,
-      product_images_attributes: [:id, :image, :_destroy],
-      product_categories_attributes: [:id, :category_id, :_destroy]
+      product_images_attributes: %i[id image _destroy],
+      product_categories_attributes: %i[id category_id _destroy]
     ).tap do |product|
       product[:specifications] = JSON.parse(product[:specifications]) if product[:specifications]
       product[:description] = JSON.parse(product[:description]) if product[:description]
       product[:name] = JSON.parse(product[:name]) if product[:name]
     end
   end
+  # rubocop:enable Metrics/MethodLength
 end

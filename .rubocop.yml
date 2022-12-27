@@ -1,0 +1,69 @@
+require:
+  - rubocop-rails
+  - rubocop-performance
+  - rubocop-rspec
+
+AllCops:
+  Exclude:
+    - 'db/schema.rb'
+    - 'db/migrate/*.rb'
+    - 'vendor/**/*'
+    - 'test/**/*'
+    - 'config/**/*'
+    - 'db/**/*'
+    - 'bin/**/*'
+    - "**/*.gemspec"
+    - Gemfile
+    - Rakefile
+    - config.ru
+
+  TargetRubyVersion: 2.5.7
+  DisplayCopNames: true
+  NewCops: enable
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+Layout/HashAlignment:
+  Enabled: false
+Style/AsciiComments:
+  Enabled: false
+Lint/RaiseException:
+  Enabled: true
+Lint/StructNewOverride:
+  Enabled: true
+Style/HashEachMethods:
+  Enabled: true
+Style/HashTransformKeys:
+  Enabled: true
+Style/HashTransformValues:
+  Enabled: true
+
+Layout/LineLength:
+  Max: 120
+  Exclude:
+    - 'db/**/*'
+Style/Documentation:
+  Enabled: false
+Style/FormatStringToken:
+  Enabled: false
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - 'spec/**/*'
+Metrics/MethodLength:
+  Exclude:
+    - 'db/**/*'
+Metrics/AbcSize:
+  Exclude:
+    - 'db/**/*'
+Style/AndOr:
+  Exclude:
+    - 'app/controllers/**/*'
+
+RSpec/NestedGroups:
+  Max: 5
+
+RSpec/ImplicitExpect:
+  EnforcedStyle: should

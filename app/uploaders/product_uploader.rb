@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class ProductUploader < ApplicationUploader
   storage :file
 
-  def default_url(*args)
-    "/" + [mounted_as, "default.png"].compact.join('_')
+  def default_url(*_args)
+    "/#{[mounted_as, 'default.png'].compact.join('_')}"
   end
 
   def store_dir

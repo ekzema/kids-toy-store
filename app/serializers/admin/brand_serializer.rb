@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::BrandSerializer < ActiveModel::Serializer
   attributes :id, :name
 
