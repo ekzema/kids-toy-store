@@ -34,7 +34,7 @@
     >
       <td>{{ product.id }}</td>
       <td>{{ product.name[language] }}</td>
-      <td>{{ product.description[language] }}</td>
+      <td>{{ product.description[language].substring(0, 150) + '...' }}</td>
       <td class="d-flex justify-center">
         <v-btn
             icon
