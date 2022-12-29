@@ -1,27 +1,9 @@
 <template>
-  <v-img
-      :src="form.previews.logo ? form.previews.logo : form.previews.defaultLogo"
-      @click="triggerUpload('logo')"
-      max-height="200"
-  >
-    <template v-slot:placeholder>
-      <v-row class="fill-height ma-0" align="center" justify="center">
-        <v-progress-circular
-            indeterminate
-            color="grey lighten-5"
-        ></v-progress-circular>
-      </v-row>
-    </template>
-  </v-img>
-  <v-file-input
-      ref="logo"
-      @change="logoOnChange"
-      accept="image/*"
-      label="Logo"
-      variant="underlined"
-      style="display: none"
-  ></v-file-input>
-<!--  Start gallery-->
+  <logo-uploader
+      v-model:logo="form.data.logo"
+      v-model:preview="form.previews.logo"
+  />
+
   <v-row class="ma-4">
     <v-col v-for="(value, index) in form.previews.gallery" :key="index" class="wrapImg d-flex child-flex" cols="3">
       <v-img
@@ -398,12 +380,14 @@
 import { mapGetters } from 'vuex'
 import { uniqNumber } from '../../../helpers/utils'
 import SelectLanguage from '../../../components/SelectLanguage'
+import LogoUploader from "./LogoUploader.vue"
 import { languages } from '../../../config'
 
 export default {
   name: 'product-form',
   components: {
     SelectLanguage,
+    LogoUploader
   },
   data: () => ({
     valid: false,
@@ -425,6 +409,7 @@ export default {
     form: {
       data: {
         new: false,
+        logo: '',
         code: '',
         name: {},
         price: 0,
@@ -497,6 +482,7 @@ export default {
         if(key === 'description') return formData.append(`product[${key}]`, JSON.stringify(this.form.data[key]))
         if(key === 'name') return formData.append(`product[${key}]`, JSON.stringify(this.form.data[key]))
         if(key === 'brand') return this.setBrand(formData)
+        if(key === 'logo' && this.form.data[key].length === 0) return
 
         formData.append(`product[${key}]`, this.form.data[key])
       })
@@ -515,6 +501,7 @@ export default {
       this.form.data.logo = ''
       this.form.previews.logo = ''
       this.form.previews.gallery = []
+      this.form.data.categories = []
       this.form.data.specifications = []
     },
     setFormData() {
@@ -596,6 +583,8 @@ export default {
       })
     },
     setBrands(text) {
+      if(!text) return
+
       text.length
           ? this.$store.dispatch('fetchBrands', {q: text})
           : this.$store.dispatch('clearBrands')
