@@ -419,7 +419,7 @@ export default {
         visible: false,
         discount: false,
         for_gender: null,
-        categories: [],
+        categories: null,
         description: {},
         discount_price: 0,
         specifications: [],
@@ -478,10 +478,10 @@ export default {
       const formData = new FormData()
       Object.keys(this.form.data).forEach(key => {
         if(key === 'specifications') return formData.append(`product[${key}]`, JSON.stringify(this.form.data[key]))
-        if(key === 'categories') return this.setCategories(formData)
         if(key === 'description') return formData.append(`product[${key}]`, JSON.stringify(this.form.data[key]))
-        if(key === 'name') return formData.append(`product[${key}]`, JSON.stringify(this.form.data[key]))
+        if(key === 'categories') return this.setCategories(formData)
         if(key === 'brand') return this.setBrand(formData)
+        if(key === 'name') return formData.append(`product[${key}]`, JSON.stringify(this.form.data[key]))
         if(key === 'logo' && this.form.data[key].length === 0) return
 
         formData.append(`product[${key}]`, this.form.data[key])
@@ -499,10 +499,14 @@ export default {
       this.$refs.form.reset()
 
       this.form.data.logo = ''
+      this.form.data.name = {}
+      this.form.data.description = {}
+      this.form.data.categories = null
+      this.form.data.specifications = []
+
       this.form.previews.logo = ''
       this.form.previews.gallery = []
-      this.form.data.categories = []
-      this.form.data.specifications = []
+      this.language = 'uk'
     },
     setFormData() {
       this.form.data.new = this.product.new
