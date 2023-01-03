@@ -392,7 +392,7 @@ export default {
   data: () => ({
     valid: false,
     requiredRules: [
-      v => !!v || 'This field is required'
+      v => (!!v || v === 0)  || 'This field is required'
     ],
     priceRules: [
         v => !!v  || 'This field is required',
@@ -403,7 +403,7 @@ export default {
       v => v.toString().length > 3 || 'Number length must be >= 4'
     ],
     requiredArrayRules: [
-      v => v.length > 0 || 'Please select a category.'
+      v => (!!v && v.length > 0) || 'Please select a category.'
     ],
     language: 'uk',
     form: {
