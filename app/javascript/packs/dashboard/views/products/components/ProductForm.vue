@@ -3,7 +3,6 @@
       v-model:logo="form.data.logo"
       v-model:preview="form.previews.logo"
   />
-
   <v-row class="ma-4">
     <v-col v-for="(value, index) in form.previews.gallery" :key="index" class="wrapImg d-flex child-flex" cols="3">
       <v-img
