@@ -24,8 +24,11 @@
 </template>
 
 <script>
+import UploadMixin from '../mixins/UploadMixin'
+
 export default {
   name: 'logo-uploader',
+  mixins: [UploadMixin],
   data: () => ({
     defaultLogo: require('./../../../assets/img/logo_default.png')
   }),
@@ -40,23 +43,12 @@ export default {
   created () {
   },
   methods: {
-    triggerUpload(input) {
-      this.$refs[input].click()
-    },
     logoOnChange(event) {
       const logo = this.fetchFile(event)
       const preview = logo ? this.preparePreview(logo) : ''
 
       this.$emit('update:logo', logo)
       this.$emit('update:preview', preview)
-    },
-    preparePreview(image) {
-      return URL.createObjectURL(image)
-    },
-    fetchFile(event) {
-      return event.target.files[0] && event.target.files[0].type.includes("image/")
-          ? event.target.files[0]
-          : ''
     }
   }
 }

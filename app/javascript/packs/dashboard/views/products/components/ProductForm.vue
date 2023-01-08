@@ -3,52 +3,11 @@
       v-model:logo="form.data.logo"
       v-model:preview="form.previews.logo"
   />
-  <v-row class="ma-4">
-    <v-col v-for="(value, index) in form.previews.gallery" :key="index" class="wrapImg d-flex child-flex" cols="3">
-      <v-img
-          :src="value.blob ? value.blob : value.image.thumb.url"
-          :lazy-src="form.previews.lazy.gallery"
-      >
-        <template v-slot:placeholder>
-          <v-row class="fill-height ma-0" align="center" justify="center">
-            <v-progress-circular
-                indeterminate
-                color="grey lighten-5"
-            ></v-progress-circular>
-          </v-row>
-        </template>
-      </v-img>
-      <v-btn
-          icon
-          variant="text"
-          size="x-small"
-          @click="removeImage(index)"
-      >
-        <v-icon color="pink">mdi-delete</v-icon>
-      </v-btn>
-    </v-col>
-  </v-row>
-  <v-file-input
-      ref="gallery"
-      @change="galleryOnChange"
-      accept="image/*"
-      variant="underlined"
-      style="display: none"
-  ></v-file-input>
-  <div class="text-center">
-    Add image
-    <v-btn
-        @click="triggerUpload('gallery')"
-        icon
-        size="x-small"
-        color="primary"
-    >
-      <v-icon dark>
-        mdi-panorama
-      </v-icon>
-    </v-btn>
-  </div>
-<!--  End gallery-->
+
+  <gallery-uploader
+      v-model:galleryPreviews="form.previews.gallery"
+  />
+
   <select-language
       class="d-flex flex-row-reverse"
       v-model:language="language"
@@ -380,11 +339,13 @@ import { mapGetters } from 'vuex'
 import { uniqNumber } from '../../../helpers/utils'
 import SelectLanguage from '../../../components/SelectLanguage'
 import LogoUploader from "./LogoUploader.vue"
+import GalleryUploader from "./GalleryUploader"
 import { languages } from '../../../config'
 
 export default {
   name: 'product-form',
   components: {
+    GalleryUploader,
     SelectLanguage,
     LogoUploader
   },
@@ -454,19 +415,9 @@ export default {
     this.$store.dispatch('fetchDetailConstructor')
   },
   methods: {
-    triggerUpload(input) {
-      this.$refs[input].click()
-    },
     logoOnChange(event) {
       this.form.data.logo = this.fetchFile(event)
       this.form.previews.logo = this.form.data.logo ? this.preparePreview(this.form.data.logo) : ''
-    },
-    galleryOnChange(event) {
-      const image = this.fetchFile(event)
-        this.form.previews.gallery.push({
-          origin: image,
-          blob: this.preparePreview(image)
-        })
     },
     async submitForm() {
       await this.checkValidDataLang()
@@ -533,20 +484,6 @@ export default {
     removeSpec(index) {
       this.form.data.specifications.splice(index, 1)
     },
-    preparePreview(image) {
-      return URL.createObjectURL(image)
-    },
-    fetchFile(event) {
-      return event.target.files[0] && event.target.files[0].type.includes("image/")
-          ? event.target.files[0]
-          : ''
-    },
-    async removeImage(index) {
-      const image = this.form.previews.gallery[index]
-      if (image.id) await this.$store.dispatch('deleteProductImage', image.id)
-
-      this.form.previews.gallery.splice(index, 1)
-    },
     prepareCategories() {
       return this.product.product_categories.map(product_category => product_category.category_id);
     },
@@ -602,21 +539,4 @@ export default {
 </script>
 
 <style scoped>
-.wrapImg{
-  position: relative;
-}
-
-.wrapImg:hover button {
-  opacity: 1;
-}
-
-.wrapImg button {
-  position: absolute;
-  bottom: 10px;
-  left: calc(50% - 20px);
-  background-color: rgba(255,255,255, 0.6);
-  opacity: 0;
-  transition: .5s all;
-  z-index: 999;
-}
 </style>
