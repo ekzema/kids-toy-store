@@ -225,65 +225,9 @@
         ></v-switch>
       </v-col>
     </v-row>
-    <v-row justify="center"  v-for="(specification, index) in form.data.specifications" :key="index">
-      <v-col
-          cols="12"
-          sm="3"
-      >
-        <v-text-field
-            v-model="specification.key"
-            :rules="requiredRules"
-            label="Title"
-            variant="underlined"
-            color="primary"
-            required
-        ></v-text-field>
-      </v-col>
-      <v-col
-          cols="12"
-          sm="8"
-      >
-        <v-text-field
-            v-model="specification.value"
-            :rules="requiredRules"
-            label="Description"
-            variant="underlined"
-            color="primary"
-            required
-        ></v-text-field>
-      </v-col>
-      <v-col
-          cols="12"
-          sm="1"
-      >
-        <v-btn
-            icon
-            variant="text"
-            @click="removeSpec(index)">
-          <v-icon color="pink">mdi-delete</v-icon>
-        </v-btn>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col
-          cols="12"
-      >
-        <v-spacer></v-spacer>
-        <div class="text-right">
-          Add specification
-          <v-btn
-              icon
-              size="x-small"
-              color="primary"
-              @click="addSpec"
-          >
-            <v-icon dark>
-              mdi-plus
-            </v-icon>
-          </v-btn>
-        </div>
-      </v-col>
-    </v-row>
+    <specifications
+        v-model:specifications="form.data.specifications"
+    />
     <v-btn type="submit" color="success">{{ btnName }}</v-btn>
   </v-form>
 </template>
@@ -296,6 +240,7 @@ import LogoUploader from "./LogoUploader.vue"
 import GalleryUploader from "./GalleryUploader"
 import SelectCategories from "./SelectCategories.vue"
 import SelectAge from "./SelectAge.vue"
+import Specifications from "./Specifications.vue"
 import { languages } from '../../../config'
 
 export default {
@@ -305,7 +250,8 @@ export default {
     SelectLanguage,
     LogoUploader,
     SelectCategories,
-    SelectAge
+    SelectAge,
+    Specifications
   },
   data: () => ({
     valid: false,
@@ -428,12 +374,6 @@ export default {
 
       this.form.previews.logo = this.product.logo.thumb.url
       this.form.previews.gallery = [...this.product.product_images]
-    },
-    addSpec() {
-      this.form.data.specifications.push({key: '', value: ''})
-    },
-    removeSpec(index) {
-      this.form.data.specifications.splice(index, 1)
     },
     prepareCategories() {
       return this.product.product_categories.map(product_category => product_category.category_id);
