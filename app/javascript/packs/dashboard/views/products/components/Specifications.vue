@@ -71,6 +71,9 @@ export default {
   props: {
     specifications: {
       type: Array
+    },
+    language: {
+      type: String
     }
   },
   created () {

@@ -227,6 +227,7 @@
     </v-row>
     <specifications
         v-model:specifications="form.data.specifications"
+        language="language"
     />
     <v-btn type="submit" color="success">{{ btnName }}</v-btn>
   </v-form>
