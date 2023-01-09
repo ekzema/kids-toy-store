@@ -101,24 +101,9 @@
           md="6"
           lg="6"
       >
-        <v-select
-            v-model="form.data.for_age"
-            :rules="requiredRules"
-            label="Select age children"
-            variant="underlined"
-            :items="detailConstructor.age"
-            color="primary"
-        >
-          <template v-slot:item="{ props, item }">
-            <v-list-item
-                v-bind="props"
-                :title="item.raw + '+'"
-            />
-          </template>
-          <template v-slot:selection="{ item }">
-            {{ item.raw + '+' }}
-          </template>
-        </v-select>
+        <select-age
+            v-model:for_age="form.data.for_age"
+        />
       </v-col>
     </v-row>
     <v-row>
@@ -310,6 +295,7 @@ import SelectLanguage from '../../../components/SelectLanguage'
 import LogoUploader from "./LogoUploader.vue"
 import GalleryUploader from "./GalleryUploader"
 import SelectCategories from "./SelectCategories.vue"
+import SelectAge from "./SelectAge.vue"
 import { languages } from '../../../config'
 
 export default {
@@ -318,7 +304,8 @@ export default {
     GalleryUploader,
     SelectLanguage,
     LogoUploader,
-    SelectCategories
+    SelectCategories,
+    SelectAge
   },
   data: () => ({
     valid: false,
@@ -383,10 +370,6 @@ export default {
     this.$store.dispatch('fetchDetailConstructor')
   },
   methods: {
-    logoOnChange(event) {
-      this.form.data.logo = this.fetchFile(event)
-      this.form.previews.logo = this.form.data.logo ? this.preparePreview(this.form.data.logo) : ''
-    },
     async submitForm() {
       await this.checkValidDataLang()
 
