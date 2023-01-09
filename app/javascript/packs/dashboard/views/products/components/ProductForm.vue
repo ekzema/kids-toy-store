@@ -3,11 +3,9 @@
       v-model:logo="form.data.logo"
       v-model:preview="form.previews.logo"
   />
-
   <gallery-uploader
       v-model:galleryPreviews="form.previews.gallery"
   />
-
   <select-language
       class="d-flex flex-row-reverse"
       v-model:language="language"
@@ -18,39 +16,10 @@
       v-model="valid"
       lazy-validation
   >
-    <v-autocomplete
-        label="Select categories"
-        v-model="form.data.categories"
-        :rules="requiredArrayRules"
-        :items="detailConstructor.categories"
-        variant="underlined"
-        item-title="name"
-        item-value="id"
-        color="primary"
-        multiple
-    >
-      <template v-slot:chip="{ props, item }">
-        <v-chip
-            class="ma-1"
-            v-bind="props"
-            color="primary"
-            closable
-            size="default"
-            variant="outlined"
-        >
-          <strong>{{ item.raw.name ? item.raw.name[language] : '' }}</strong>&nbsp;
-          <span style="font-size: 11px">{{ item.raw.parent_name ? item.raw.parent_name[language] : 'parent' }}</span>
-        </v-chip>
-      </template>
-      <template v-slot:item="{ props, item }">
-        <v-list-item
-            v-bind="props"
-            :title="item.raw.name[language]"
-            :subtitle="item.raw.group"
-            color="primary"
-        ></v-list-item>
-      </template>
-    </v-autocomplete>
+    <select-categories
+        v-model:language="language"
+        v-model:categories="form.data.categories"
+    />
     <v-text-field
         ref="name"
         v-model="form.data.name[language]"
@@ -340,6 +309,7 @@ import { uniqNumber } from '../../../helpers/utils'
 import SelectLanguage from '../../../components/SelectLanguage'
 import LogoUploader from "./LogoUploader.vue"
 import GalleryUploader from "./GalleryUploader"
+import SelectCategories from "./SelectCategories.vue"
 import { languages } from '../../../config'
 
 export default {
@@ -347,7 +317,8 @@ export default {
   components: {
     GalleryUploader,
     SelectLanguage,
-    LogoUploader
+    LogoUploader,
+    SelectCategories
   },
   data: () => ({
     valid: false,
@@ -361,9 +332,6 @@ export default {
     codeRules: [
       v => !!v  || 'This field is required',
       v => v.toString().length > 3 || 'Number length must be >= 4'
-    ],
-    requiredArrayRules: [
-      v => (!!v && v.length > 0) || 'Please select a category.'
     ],
     language: 'uk',
     form: {

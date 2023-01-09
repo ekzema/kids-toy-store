@@ -1,9 +1,10 @@
 <template>
   <v-autocomplete
       label="Select categories"
-      v-model="form.data.categories"
+      v-model="categories"
       :rules="requiredArrayRules"
       :items="detailConstructor.categories"
+      @update:modelValue="onSelect"
       variant="underlined"
       item-title="name"
       item-value="id"
@@ -40,12 +41,17 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'select-categories',
   data: () => ({
+    requiredArrayRules: [
+      v => (!!v && v.length > 0) || 'Please select a category.'
+    ]
   }),
-  props: ['language'],
+  props: ['language', 'categories'],
   created () {
   },
   methods: {
-
+    onSelect() {
+      this.$emit('update:categories', this.categories)
+    }
   },
   computed: {
     ...mapGetters([
