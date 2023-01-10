@@ -1,5 +1,5 @@
 <template>
-  <v-row justify="center"  v-for="(specification, index) in specifications" :key="index">
+  <v-row justify="center"  v-for="(specification, index) in specifications[language]" :key="index">
     <v-col
         cols="12"
         sm="3"
@@ -70,7 +70,7 @@ export default {
   }),
   props: {
     specifications: {
-      type: Array
+      type: Object
     },
     language: {
       type: String
@@ -80,10 +80,11 @@ export default {
   },
   methods: {
     addSpec() {
-      this.specifications.push({key: '', value: ''})
+      if(!this.specifications[this.language]) this.specifications[this.language] = []
+      this.specifications[this.language].push({key: '', value: ''})
     },
     removeSpec(index) {
-      this.specifications.splice(index, 1)
+      this.specifications[this.language].splice(index, 1)
     }
   }
 }

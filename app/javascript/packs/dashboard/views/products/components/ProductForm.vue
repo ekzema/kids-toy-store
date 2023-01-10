@@ -227,7 +227,7 @@
     </v-row>
     <specifications
         v-model:specifications="form.data.specifications"
-        language="language"
+        :language="language"
     />
     <v-btn type="submit" color="success">{{ btnName }}</v-btn>
   </v-form>
@@ -284,7 +284,7 @@ export default {
         categories: null,
         description: {},
         discount_price: 0,
-        specifications: [],
+        specifications: {},
         production_country: null
       },
       previews: {
@@ -370,7 +370,7 @@ export default {
       this.form.data.categories = this.prepareCategories()
       this.form.data.description = this.product.description
       this.form.data.discount_price = this.product.discount_price
-      this.form.data.specifications = this.product.specifications ? this.product.specifications : []
+      this.form.data.specifications = this.product.specifications ? this.product.specifications : {}
       this.form.data.production_country = this.product.production_country
 
       this.form.previews.logo = this.product.logo.thumb.url
