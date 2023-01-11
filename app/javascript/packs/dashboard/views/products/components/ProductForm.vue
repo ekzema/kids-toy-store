@@ -28,7 +28,15 @@
         variant="underlined"
         color="primary"
         required
-    ></v-text-field>
+    >
+      <template v-slot:append-inner>
+          <img
+              height="20"
+              width="20"
+              :src="require(`./../../../assets/img/${language}.svg`)"
+          >
+      </template>
+    </v-text-field>
     <v-textarea
         ref="description"
         v-model="form.data.description[language]"
@@ -37,7 +45,16 @@
         :rules="requiredRules"
         variant="underlined"
         required
-    ></v-textarea>
+    >
+      <template v-slot:append-inner>
+        <img
+             class="mt-8"
+             height="20"
+             width="20"
+             :src="require(`./../../../assets/img/${language}.svg`)"
+        >
+      </template>
+    </v-textarea>
     <v-row>
       <v-col
           cols="12"

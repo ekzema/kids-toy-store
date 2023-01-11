@@ -24,7 +24,15 @@
           variant="underlined"
           color="primary"
           required
-      ></v-text-field>
+      >
+        <template v-slot:append-inner>
+          <img
+              height="20"
+              width="20"
+              :src="require(`./../../../assets/img/${language}.svg`)"
+          >
+        </template>
+      </v-text-field>
     </v-col>
     <v-col
         cols="12"
