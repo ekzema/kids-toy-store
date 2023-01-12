@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class ApiController < ActionController::API
+
+  private
+
   def prepare_serializer(data, class_serializer = nil, options = {})
     object_class = "#{fetch_object_class(data)}_serializer".camelize
     object_class = "#{yield}::" + object_class if block_given?
@@ -10,8 +13,6 @@ class ApiController < ActionController::API
 
     ActiveModelSerializers::SerializableResource.new(data, type_serialize => class_serializer, **options)
   end
-
-  private
 
   def fetch_object_class(object)
     object_class = object.respond_to?(:klass) ? object.klass : object.class

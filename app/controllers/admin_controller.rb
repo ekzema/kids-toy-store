@@ -5,6 +5,8 @@ class AdminController < ApiController
     self.namespace_for_serializer = Admin
   end
 
+  private
+
   def prepare_serializer(data, class_serializer = nil, options = {})
     super { 'Admin' }
   end
