@@ -5,7 +5,7 @@ class Api::V1::Admin::ProductsController < AdminController
   before_action :set_brand, only: %i[create update]
 
   def index
-    render_response(products, Admin::ProductListSerializer)
+    render_paginate(products, Admin::ProductListSerializer)
   end
 
   def show
