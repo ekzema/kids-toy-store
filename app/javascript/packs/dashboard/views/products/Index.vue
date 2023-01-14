@@ -62,7 +62,9 @@
       </v-card-actions>
     </v-card>
   </v-dialog>
-  <pagination />
+  <pagination
+      v-model:page="page"
+  />
 </template>
 
 <script>
@@ -81,6 +83,7 @@ export default {
     selectProduct: {},
     dialog: false,
     searchText: '',
+    page: 1,
     headers: [
       'ID',
       'Title',

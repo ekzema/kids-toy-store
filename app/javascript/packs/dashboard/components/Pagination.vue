@@ -3,9 +3,11 @@
     <v-pagination
         class="pt-5"
         v-model="page"
-        :length="6"
+        :length="100"
+        :total-visible="6"
+        @update:modelValue="onPage"
         rounded="circle"
-        color="primary"
+        active-color="primary"
     ></v-pagination>
   </div>
 </template>
@@ -15,15 +17,18 @@
 export default {
   name: 'pagination',
   data: () => ({
-    page: 1
   }),
   props: {
-
+    page:{
+      type: Number
+    }
   },
   created () {
   },
   methods: {
-
+    onPage() {
+      this.$emit('update:page', this.page)
+    }
   }
 }
 </script>
