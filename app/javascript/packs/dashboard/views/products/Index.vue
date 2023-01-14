@@ -62,16 +62,19 @@
       </v-card-actions>
     </v-card>
   </v-dialog>
+  <pagination />
 </template>
 
 <script>
 import SearchPanel from '../../components/SearchPanel'
+import Pagination from "../../components/Pagination.vue"
 import { mapGetters } from 'vuex'
 
 export default {
   name: 'index',
   components: {
     SearchPanel,
+    Pagination
   },
   data: () => ({
     language: 'uk',
