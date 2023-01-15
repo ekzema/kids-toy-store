@@ -394,7 +394,7 @@ export default {
       this.form.previews.gallery = [...this.product.product_images]
     },
     prepareCategories() {
-      return this.product.product_categories.map(product_category => product_category.category_id);
+      return this.product.product_categories.map(product_category => product_category.category_id)
     },
     setCategories(formData) {
       if(this.product && this.product.product_categories.length) {

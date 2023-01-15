@@ -53,6 +53,7 @@
     </tr>
     </tbody>
   </v-table>
+
   <v-dialog v-model="dialog" max-width="400">
     <v-card>
       <v-card-text class="headline text-center">Delete <strong>{{ selectProduct.name[language] }}</strong> product?</v-card-text>

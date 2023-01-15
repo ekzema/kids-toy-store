@@ -23,7 +23,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import CategoryForm from "./components/CategoryForm";
+import CategoryForm from "./components/CategoryForm"
 
 export default {
   name: 'edit',
