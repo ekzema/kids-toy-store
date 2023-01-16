@@ -3,8 +3,8 @@ import Products from '../../../api/products'
 const actions = {
     async fetchProducts({ commit }, params) {
         try {
-            const { data } = await Products.get(params)
-            commit('setProducts', data)
+            const { data, count } = await Products.get(params)
+            commit('setProducts', { items: data, count: count })
         } catch (error) {
             commit('setErrorMessage')
         }

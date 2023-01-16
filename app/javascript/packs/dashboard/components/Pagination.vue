@@ -3,7 +3,7 @@
     <v-pagination
         class="pt-5"
         v-model="page"
-        :length="100"
+        :length="totalPages"
         :total-visible="6"
         @update:modelValue="onPage"
         rounded="circle"
@@ -21,6 +21,10 @@ export default {
   props: {
     page:{
       type: Number
+    },
+    totalPages: {
+      type: Number,
+      default: 0
     }
   },
   created () {

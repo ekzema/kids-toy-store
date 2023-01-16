@@ -90,10 +90,10 @@ export default {
       await this.checkValidDataLang()
 
       const { valid } = await this.$refs.form.validate()
-      if(!valid) return
+      if (!valid) return
 
       this.$emit('submitForm', this.formData, () => this.fetchParentCategories())
-      if(!this.category) this.clearForm()
+      if (!this.category) this.clearForm()
     },
     clearForm() {
       this.$refs.form.reset()
@@ -109,7 +109,7 @@ export default {
     },
     checkValidDataLang() {
       languages.some(language => {
-        if(!this.formData.name[language.code]) {
+        if (!this.formData.name[language.code]) {
           this.language = language.code
           return true
         }

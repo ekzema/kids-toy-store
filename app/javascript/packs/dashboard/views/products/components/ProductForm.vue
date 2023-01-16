@@ -338,27 +338,27 @@ export default {
       await this.checkValidDataLang()
 
       const { valid } = await this.$refs.form.validate()
-      if(!valid) return
+      if (!valid) return
 
       const formData = new FormData()
       Object.keys(this.form.data).forEach(key => {
-        if(key === 'specifications') return formData.append(`product[${key}]`, JSON.stringify(this.form.data[key]))
-        if(key === 'description') return formData.append(`product[${key}]`, JSON.stringify(this.form.data[key]))
-        if(key === 'categories') return this.setCategories(formData)
-        if(key === 'brand') return this.setBrand(formData)
-        if(key === 'name') return formData.append(`product[${key}]`, JSON.stringify(this.form.data[key]))
-        if(key === 'logo' && this.form.data[key].length === 0) return
+        if (key === 'specifications') return formData.append(`product[${key}]`, JSON.stringify(this.form.data[key]))
+        if (key === 'description') return formData.append(`product[${key}]`, JSON.stringify(this.form.data[key]))
+        if (key === 'categories') return this.setCategories(formData)
+        if (key === 'brand') return this.setBrand(formData)
+        if (key === 'name') return formData.append(`product[${key}]`, JSON.stringify(this.form.data[key]))
+        if (key === 'logo' && this.form.data[key].length === 0) return
 
         formData.append(`product[${key}]`, this.form.data[key])
       })
 
       this.form.previews.gallery.forEach((value, index) => {
-        if(value.blob)
+        if (value.blob)
           formData.append(`product[product_images_attributes][${index}][image]`, value.origin)
       })
 
       await this.$emit('submitForm', formData)
-      if(!this.product) this.clearForm()
+      if (!this.product) this.clearForm()
     },
     clearForm() {
       this.$refs.form.reset()
@@ -397,9 +397,9 @@ export default {
       return this.product.product_categories.map(product_category => product_category.category_id)
     },
     setCategories(formData) {
-      if(this.product && this.product.product_categories.length) {
+      if (this.product && this.product.product_categories.length) {
         this.product.product_categories.forEach(product_category => {
-          if(!this.form.data.categories.some(category => category === product_category.category_id)) {
+          if (!this.form.data.categories.some(category => category === product_category.category_id)) {
             let uniqIndex = uniqNumber()
             formData.append(`product[product_categories_attributes][${uniqIndex}][id]`, product_category.id)
             formData.append(`product[product_categories_attributes][${uniqIndex}][_destroy]`, true)
@@ -407,7 +407,7 @@ export default {
         })
 
         this.form.data.categories.forEach(category => {
-          if(!this.prepareCategories().some(prepareCategory => prepareCategory === category)) {
+          if (!this.prepareCategories().some(prepareCategory => prepareCategory === category)) {
 
             formData.append(`product[product_categories_attributes][${uniqNumber()}][category_id]`, category)
           }
@@ -425,14 +425,14 @@ export default {
     },
     checkValidDataLang() {
       languages.some(language => {
-        if(!this.form.data.name[language.code] || !this.form.data.description[language.code]) {
+        if (!this.form.data.name[language.code] || !this.form.data.description[language.code]) {
           this.language = language.code
           return true
         }
       })
     },
     setBrands(text) {
-      if(!text) return
+      if (!text) return
 
       text.length
           ? this.$store.dispatch('fetchBrands', {q: text})

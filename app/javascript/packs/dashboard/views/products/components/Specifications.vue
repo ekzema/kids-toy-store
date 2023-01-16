@@ -88,7 +88,7 @@ export default {
   },
   methods: {
     addSpec() {
-      if(!this.specifications[this.language]) this.specifications[this.language] = []
+      if (!this.specifications[this.language]) this.specifications[this.language] = []
       this.specifications[this.language].push({key: '', value: ''})
     },
     removeSpec(index) {

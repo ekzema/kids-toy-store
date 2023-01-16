@@ -3,7 +3,10 @@ import mutations from './mutations'
 import getters from './getters'
 
 const state = {
-    products: [],
+    products: {
+        count: 0,
+        items: []
+    },
     product: {},
     detailConstructor: {}
 }

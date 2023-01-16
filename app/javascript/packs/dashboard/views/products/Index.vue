@@ -29,7 +29,7 @@
     </thead>
     <tbody>
     <tr
-        v-for="(product, index) in products"
+        v-for="(product, index) in products.items"
         :key="index"
     >
       <td>{{ product.id }}</td>
@@ -63,14 +63,16 @@
       </v-card-actions>
     </v-card>
   </v-dialog>
-  <pagination
+  <pagination v-if="totalPages > 1"
       v-model:page="page"
+      :totalPages="totalPages"
   />
 </template>
 
 <script>
 import SearchPanel from '../../components/SearchPanel'
 import Pagination from "../../components/Pagination.vue"
+import { PerPage } from "../../helpers/utils"
 import { mapGetters } from 'vuex'
 
 export default {
@@ -96,13 +98,18 @@ export default {
     ...mapGetters([
       'products'
     ]),
+    totalPages() {
+      return Math.ceil(this.products.count / PerPage)
+    }
   },
   created () {
     this.fetchProducts()
   },
   methods: {
-    fetchProducts() {
+    fetchProducts(page) {
       const params = this.searchText ? {q: this.searchText} : {}
+      if (page) params['page'] = page
+
       this.$store.dispatch('fetchProducts', params)
     },
     handleDelete(product) {
@@ -129,6 +136,11 @@ export default {
     search(text) {
       this.searchText = text
       this.fetchProducts()
+    }
+  },
+  watch: {
+    page() {
+      this.fetchProducts(this.page)
     }
   }
 }
