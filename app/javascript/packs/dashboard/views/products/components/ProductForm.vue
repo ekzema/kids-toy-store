@@ -154,6 +154,7 @@
             v-model="form.data.brand"
             :items="brands"
             @update:modelValue="setBrands"
+            filter-keys="name"
             label="Brand"
             variant="underlined"
             item-title="name"
