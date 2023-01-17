@@ -7,7 +7,7 @@ class Api::V1::Admin::CategoriesController < AdminController
     categories = Category.includes(:parent).all
     categories = categories.search(params[:q]) if params[:q]
 
-    render_response(categories)
+    render_paginate(categories)
   end
 
   def show

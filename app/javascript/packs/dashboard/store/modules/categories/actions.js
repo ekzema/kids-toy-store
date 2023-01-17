@@ -3,8 +3,8 @@ import Categories from '../../../api/categories'
 const actions = {
     async fetchCategories({ commit }, params) {
         try {
-            const { data } = await Categories.get(params)
-            commit('setCategories', data)
+            const { data, count } = await Categories.get(params)
+            commit('setCategories', { items: data, count: count })
         } catch (error) {
             commit('setErrorMessage')
         }

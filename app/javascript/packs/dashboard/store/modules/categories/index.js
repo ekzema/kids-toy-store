@@ -3,7 +3,10 @@ import mutations from './mutations'
 import getters from './getters'
 
 const state = {
-    categories: [],
+    categories:  {
+        count: 0,
+        items: []
+    },
     category: {},
     parentCategories: []
 }

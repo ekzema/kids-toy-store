@@ -72,7 +72,7 @@
 <script>
 import SearchPanel from '../../components/SearchPanel'
 import Pagination from "../../components/Pagination.vue"
-import { PerPage } from "../../helpers/utils"
+import { perPage } from "../../helpers/utils"
 import { mapGetters } from 'vuex'
 
 export default {
@@ -99,7 +99,7 @@ export default {
       'products'
     ]),
     totalPages() {
-      return Math.ceil(this.products.count / PerPage)
+      return Math.ceil(this.products.count / perPage)
     }
   },
   created () {

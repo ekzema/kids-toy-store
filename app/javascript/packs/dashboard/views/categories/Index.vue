@@ -29,7 +29,7 @@
     </thead>
     <tbody>
     <tr
-        v-for="(category, index) in categories"
+        v-for="(category, index) in categories.items"
         :key="index"
     >
       <td>{{ category.name[language] }}</td>
@@ -52,6 +52,12 @@
     </tr>
     </tbody>
   </v-table>
+
+  <pagination v-if="totalPages > 1"
+              v-model:page="page"
+              :totalPages="totalPages"
+  />
+
   <v-dialog v-model="dialog" max-width="400">
     <v-card>
       <v-card-text class="headline text-center">Delete <strong>{{ selectCategory.name[language] }}</strong> category?</v-card-text>
@@ -65,18 +71,22 @@
 
 <script>
 import SearchPanel from '../../components/SearchPanel'
+import Pagination from "../../components/Pagination.vue"
+import { perPage } from "../../helpers/utils";
 import { mapGetters } from 'vuex'
 
 export default {
   name: 'index',
   components: {
     SearchPanel,
+    Pagination
   },
   data: () => ({
     language: 'uk',
     selectCategory: {},
     dialog: false,
     searchText: '',
+    page: 1,
     headers: [
       'Title',
       'Parent category',
@@ -87,13 +97,18 @@ export default {
     ...mapGetters([
       'categories'
     ]),
+    totalPages() {
+      return Math.ceil(this.categories.count / perPage)
+    }
   },
   created () {
     this.fetchCategories()
   },
   methods: {
-    fetchCategories() {
+    fetchCategories(page) {
       const params = this.searchText ? {q: this.searchText} : {}
+      if (page) params['page'] = page
+
       this.$store.dispatch('fetchCategories', params)
     },
     handleDelete(category) {
@@ -120,6 +135,11 @@ export default {
     search(text) {
       this.searchText = text
       this.fetchCategories()
+    }
+  },
+  watch: {
+    page() {
+      this.fetchCategories(this.page)
     }
   }
 }
