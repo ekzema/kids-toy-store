@@ -74,6 +74,12 @@ export default {
         value: 'categories',
         icon: 'mdi-sticker-text-outline',
         path: '/dashboard/categories'
+      },
+      {
+        title: 'Settings',
+        value: 'settings',
+        icon: 'mdi-cog',
+        path: '/dashboard/settings'
       }
     ]
   }),

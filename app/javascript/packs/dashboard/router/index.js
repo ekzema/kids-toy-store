@@ -7,6 +7,7 @@ import CategoriesEdit from "../views/categories/Edit"
 import ProductsIndex from "../views/products/Index"
 import ProductsNew from "../views/products/New"
 import ProductsEdit from "../views/products/Edit"
+import Settings from "../views/settings/Index"
 
 const router = createRouter({
     history: createWebHistory(),
@@ -50,6 +51,11 @@ const router = createRouter({
             name: 'ProductsEdit',
             path: '/dashboard/products/edit/:id',
             component: ProductsEdit
+        },
+        {
+            name: 'Settings',
+            path: '/dashboard/settings',
+            component: Settings
         }
     ]
 })
