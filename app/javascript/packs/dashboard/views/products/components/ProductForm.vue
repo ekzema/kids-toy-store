@@ -391,7 +391,7 @@ export default {
       this.form.data.specifications = this.product.specifications ? this.product.specifications : {}
       this.form.data.production_country = this.product.production_country
 
-      this.form.previews.logo = this.product.logo.thumb.url
+      this.form.previews.logo = this.product.logo.medium.url
       this.form.previews.gallery = [...this.product.product_images]
     },
     prepareCategories() {

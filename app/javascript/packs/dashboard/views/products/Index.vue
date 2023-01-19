@@ -33,6 +33,11 @@
         :key="index"
     >
       <td>{{ product.id }}</td>
+      <td>
+        <v-img
+            :src="product.logo.small.url"
+        ></v-img>
+      </td>
       <td>{{ product.name[language] }}</td>
       <td>{{ product.description[language].substring(0, 150) + '...' }}</td>
       <td class="d-flex justify-center">
@@ -89,6 +94,7 @@ export default {
     page: 1,
     headers: [
       'ID',
+      'Logo',
       'Title',
       'Description',
       ''

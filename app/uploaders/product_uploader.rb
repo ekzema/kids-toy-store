@@ -15,9 +15,17 @@ class ProductUploader < ApplicationUploader
     %w[jpg jpeg gif png webp]
   end
 
-  process resize_to_fit: [500, 500]
+  process resize_to_fit: [1300, 1300]
+
+  version :medium do
+    process resize_to_fit: [500, 500]
+  end
 
   version :thumb do
-    process resize_to_fit: [150, 150]
+    process resize_to_fill: [160, 80]
+  end
+
+  version :small do
+    process resize_to_fill: [50, 50]
   end
 end
