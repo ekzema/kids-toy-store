@@ -57,6 +57,14 @@ gem 'carrierwave', '~> 2.2', '>= 2.2.2'
 # gem "image_processing", "~> 1.2"
 
 group :development, :test do
+  gem 'rspec-rails', '~> 6.0', '>= 6.0.1'
+  gem 'faker', '~> 3.1'
+  gem 'factory_bot_rails', '~> 6.2'
+  gem 'rubocop', '~> 1.41', '>= 1.41.1'
+  gem 'rubocop-performance', '~> 1.15', '>= 1.15.2'
+  gem 'rubocop-rails', '~> 2.17', '>= 2.17.4'
+  gem 'rubocop-rspec', '~> 2.16'
+
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
 end
@@ -70,11 +78,6 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
-
-  gem 'rubocop', '~> 1.41', '>= 1.41.1'
-  gem 'rubocop-performance', '~> 1.15', '>= 1.15.2'
-  gem 'rubocop-rails', '~> 2.17', '>= 2.17.4'
-  gem 'rubocop-rspec', '~> 2.16'
 end
 
 group :test do
@@ -82,4 +85,6 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+  gem 'shoulda-matchers', '~> 5.3'
+  gem 'database_cleaner', '~> 2.0', '>= 2.0.1'
 end
