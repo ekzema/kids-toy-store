@@ -172,7 +172,7 @@
           lg="4"
       >
         <v-text-field
-            v-model="form.data.price"
+            v-model.number="form.data.price"
             :rules="priceRules"
             label="Price"
             type="number"
@@ -220,7 +220,7 @@
           lg="4"
       >
         <v-text-field
-            v-model="form.data.discount_price"
+            v-model.number="form.data.discount_price"
             label="Discount price"
             type="number"
             variant="underlined"

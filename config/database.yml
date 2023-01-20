@@ -22,7 +22,6 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  host: db
   database: kids-toy-store_test
   username: root
   password: root
