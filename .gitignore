@@ -47,3 +47,5 @@ yarn-debug.log*
 .yarn-integrity
 .idea
 /db-data/
+
+coverage
