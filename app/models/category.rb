@@ -7,6 +7,8 @@ class Category < ApplicationRecord
   validates :name, presence: true
   validates :name, uniqueness: true
   validate  :parent?, on: :update
+  validate  :child?, on: :update
+  validate  :child?, on: :create
 
   after_destroy :clean_dependence_child
 
@@ -23,5 +25,12 @@ class Category < ApplicationRecord
 
     categories_count = Category.where(parent_id: id).count
     errors.add(:category, 'This category is already a parent!') unless categories_count.zero?
+  end
+
+  def child?
+    return unless parent_id
+
+    category = Category.find(parent_id)
+    errors.add(:category, "The #{category.name} category is already a child!") if category.parent_id
   end
 end
