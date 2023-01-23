@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-RSpec.describe Brand, type: :model do
+RSpec.describe Brand do
   it { should validate_presence_of(:name) }
 end
