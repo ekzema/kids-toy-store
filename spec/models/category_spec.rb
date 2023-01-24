@@ -34,5 +34,13 @@ RSpec.describe Category do
       it { expect(new_category.valid?).to be(false) }
       it { expect(new_category.errors.messages[:category]).to include('The selected category is already a child!') }
     end
+
+    describe 'after destroy' do
+      context 'with clean dependence child' do
+        let(:new_category) { create(:category, parent_id: category.id) }
+
+        it { expect { category.destroy }.to change { new_category.reload.parent_id }.from(category.id).to(nil) }
+      end
+    end
   end
 end
