@@ -5,6 +5,11 @@ require 'rails_helper'
 RSpec.describe Category do
   let(:category) { create(:category) }
 
+  describe 'associations' do
+    it { should have_many(:product_categories).dependent(:restrict_with_exception) }
+    it { should belong_to(:parent).class_name('Category').optional }
+  end
+
   describe 'validations' do
     it { should validate_presence_of(:name) }
     it { should validate_uniqueness_of(:name).ignoring_case_sensitivity }
