@@ -31,6 +31,6 @@ class Category < ApplicationRecord
     return unless parent_id
 
     category = Category.find(parent_id)
-    errors.add(:category, "The #{category.name} category is already a child!") if category.parent_id
+    errors.add(:category, 'The selected category is already a child!') if category.parent_id
   end
 end

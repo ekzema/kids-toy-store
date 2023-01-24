@@ -20,12 +20,14 @@ RSpec.describe Category do
       it { expect(category.errors.messages[:category]).to include('This category is already a parent!') }
     end
 
-    context 'with validate child before update' do
+    context 'with validate child before create' do
       let(:parent_category) { create(:category, parent_id: category.id) }
-      let(:new_category) { create(:category, parent_id: parent_category.id) }
+      let(:new_category) { build(:category, parent_id: parent_category.id) }
+
+      before { new_category.save }
 
       it { expect(new_category.valid?).to be(false) }
-      # it { expect(new_category.errors.messages[:category]).to include('This category is already a parent!') }
+      it { expect(new_category.errors.messages[:category]).to include('The selected category is already a child!') }
     end
   end
 end
