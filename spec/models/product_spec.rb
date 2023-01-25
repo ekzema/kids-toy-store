@@ -8,7 +8,7 @@ RSpec.describe Product do
   end
 
   describe 'validations' do
-    %i[name code description].each do |field|
+    %i[name code price description status for_gender for_age production_country].each do |field|
       it { should validate_presence_of(field) }
     end
 

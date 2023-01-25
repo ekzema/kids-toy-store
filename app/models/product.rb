@@ -11,7 +11,7 @@ class Product < ApplicationRecord
   accepts_nested_attributes_for :product_images, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :product_categories, allow_destroy: true, reject_if: :all_blank
 
-  validates :code, :name, :description, presence: true
+  validates :code, :price, :name, :description, :status, :for_gender, :for_age, :production_country, presence: true
   validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 100 }
   validates :code, numericality: { only_integer: true, greater_than_or_equal_to: 1000 }
 
