@@ -67,3 +67,6 @@ RSpec/NestedGroups:
 
 RSpec/ImplicitExpect:
   EnforcedStyle: should
+
+Rails/FilePath:
+  Enabled: false
