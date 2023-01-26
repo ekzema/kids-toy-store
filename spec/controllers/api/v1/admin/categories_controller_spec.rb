@@ -13,7 +13,8 @@ RSpec.describe Api::V1::Admin::CategoriesController do
   end
 
   describe 'GET#index' do
-    let(:send_request) { get :index, params: { q: 'books' }, format: :json }
+    let(:params) { nil }
+    let(:send_request) { get :index, params: params, format: :json }
 
     before do
       %w[books constructors puzzles].each do |name|
@@ -21,25 +22,32 @@ RSpec.describe Api::V1::Admin::CategoriesController do
       end
     end
 
-    context 'with token provided' do
-      it { expect(response.content_type).to include('application/json') }
-      it { expect(response).to have_http_status(:success) }
-    end
-
     context 'without token provided' do
       pending('waiting for user to be created')
     end
 
+    context 'with token provided' do
+      before { send_request }
+
+      it { expect(response.content_type).to include('application/json') }
+      it { expect(response).to have_http_status(:success) }
+    end
 
     context 'with search' do
+      let(:params) { { 'q' => 'constructors' } }
+
+      before { send_request }
+
+      it { expect(response.parsed_body['data'].count).to eq(1) }
+      it { expect(response.parsed_body['data'].first['name']).to eq('constructors') }
+    end
+
+    context 'without search' do
       before do
-        request.params[:q] = 'books'
         send_request
       end
 
-
+      it { expect(response.parsed_body['data'].count).to eq(3) }
     end
-
-
   end
 end
