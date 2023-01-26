@@ -74,6 +74,7 @@ GEM
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.2)
+    bcrypt (3.1.18)
     bindex (0.8.1)
     bootsnap (1.13.0)
       msgpack (~> 1.2)
@@ -112,6 +113,10 @@ GEM
     diff-lcs (1.5.0)
     digest (3.1.0)
     docile (1.4.0)
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
     erubi (1.10.0)
     factory_bot (6.2.1)
       activesupport (>= 5.0.0)
@@ -138,6 +143,9 @@ GEM
       railties (>= 6.0.0)
     json (2.6.3)
     jsonapi-renderer (0.2.2)
+    jwt (2.6.0)
+    jwt_sessions (3.0.1)
+      jwt (~> 2.6, < 3)
     loofah (2.18.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -176,6 +184,8 @@ GEM
       nio4r (~> 2.0)
     racc (1.6.0)
     rack (2.2.4)
+    rack-cors (1.1.1)
+      rack (>= 2.0.0)
     rack-proxy (0.7.2)
       rack
     rack-test (2.0.2)
@@ -316,17 +326,21 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers (~> 0.10.13)
+  bcrypt (~> 3.1.7)
   bootsnap
   capybara
   carrierwave (~> 2.2, >= 2.2.2)
   database_cleaner (~> 2.0, >= 2.0.1)
   debug
+  dotenv-rails (~> 2.8, >= 2.8.1)
   factory_bot_rails (~> 6.2)
   faker (~> 3.1)
   jbuilder
   jsbundling-rails
+  jwt_sessions (~> 3.0, >= 3.0.1)
   mysql2 (~> 0.5.4, < 0.6.0)
   puma (~> 5.0)
+  rack-cors (~> 1.1, >= 1.1.1)
   rails (~> 7.0, >= 7.0.3.1)
   redis (~> 4.0)
   rspec-rails (~> 6.0, >= 6.0.1)

@@ -49,3 +49,6 @@ yarn-debug.log*
 /db-data/
 
 coverage
+
+.env
+
