@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_27_090910) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_26_220722) do
   create_table "brands", charset: "utf8", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -63,6 +63,27 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_27_090910) do
     t.integer "for_gender"
     t.integer "brand_id"
     t.integer "for_age"
+  end
+
+  create_table "users", charset: "utf8", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "patronymic"
+    t.string "email"
+    t.string "phone"
+    t.boolean "admin", default: false
+    t.string "password_digest"
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+    t.index ["email"], name: "index_users_on_email"
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
 end

@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
 class ApiController < ActionController::API
+  include JWTSessions::RailsAuthorization
   include Paginate
+
+  rescue_from JWTSessions::Errors::Unauthorized, with: :not_authorized
 
   private
 
@@ -33,5 +36,9 @@ class ApiController < ActionController::API
 
   def render_error_response(message = 'Bad Request', status = :bad_request)
     render json: { success: false, error: message }, status: status
+  end
+
+  def not_authorized
+    render json: { error: 'Not Authorized' }, status: :unauthorized
   end
 end
