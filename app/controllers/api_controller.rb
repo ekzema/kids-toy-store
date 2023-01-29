@@ -42,7 +42,6 @@ class ApiController < ActionController::API
     @current_user ||= User.find(payload['user_id'])
   end
 
-
   def not_authorized
     render json: { error: 'Not Authorized' }, status: :unauthorized
   end
