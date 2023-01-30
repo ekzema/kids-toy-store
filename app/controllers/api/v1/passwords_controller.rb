@@ -2,7 +2,9 @@
 
 class Api::V1::PasswordsController < ApiController
   def create
-    user = User.find_by(email: create_password_params[:email])
+    return error_required_field('email') unless create_password_params[:email]
+
+    user = User.find_by(email: create_password_params[:email].downcase)
     return render_error_response('User not found', :not_found) unless user
 
     user.generate_password_token!
@@ -16,7 +18,7 @@ class Api::V1::PasswordsController < ApiController
     return render_error_response('Token not found or expired.', :not_found) unless user&.password_token_valid?
 
     if user.update(update_password_params)
-      render_response(expand: 'Your password has been updated.')
+      render_response(expand: { message: 'Your password has been updated.' })
     else
       render json: user.errors, status: :unprocessable_entity
     end

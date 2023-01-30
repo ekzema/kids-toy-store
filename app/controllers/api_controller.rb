@@ -38,6 +38,10 @@ class ApiController < ActionController::API
     render json: { success: false, error: message }, status: status
   end
 
+  def error_required_field(field)
+    render json: { success: false, error: "Params :#{field} required" }, status: :bad_request
+  end
+
   def current_user
     @current_user ||= User.find(payload['user_id'])
   end
