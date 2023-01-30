@@ -3,7 +3,11 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :passwords, :only => [:create, :update]
       resources :registrations, :only => [:create]
-      resources :sessions, :only => [:create, :destroy]
+      resources :sessions, :only => [:create] do
+        collection do
+          match "/", to: "sessions#destroy", via: "delete"
+        end
+      end
 
       namespace :admin do
         resources :products do
