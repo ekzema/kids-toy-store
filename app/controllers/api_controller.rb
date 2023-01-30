@@ -1,10 +1,17 @@
 # frozen_string_literal: true
 
 class ApiController < ActionController::API
-  include JWTSessions::RailsAuthorization
   include Paginate
+  include JWTSessions::RailsAuthorization
 
-  rescue_from JWTSessions::Errors::Unauthorized, with: :not_authorized
+  EXCEPTIONS = %w[JWTSessions::Errors::Error
+                  JWTSessions::Errors::Malconfigured
+                  JWTSessions::Errors::InvalidPayload
+                  JWTSessions::Errors::Unauthorized
+                  JWTSessions::Errors::ClaimsVerification
+                  JWTSessions::Errors::Expired].freeze
+
+  rescue_from(*EXCEPTIONS, with: :exception_handler)
 
   private
 
@@ -43,10 +50,14 @@ class ApiController < ActionController::API
   end
 
   def current_user
+    return unless request.headers['Authorization']
+
     @current_user ||= User.find(payload['user_id'])
+  rescue StandardError
+    nil
   end
 
-  def not_authorized
-    render json: { error: 'Not Authorized' }, status: :unauthorized
+  def exception_handler(exception)
+    render_error_response(exception.message, :unauthorized)
   end
 end
