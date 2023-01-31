@@ -11,7 +11,7 @@ class ApiController < ActionController::API
                   JWTSessions::Errors::ClaimsVerification
                   JWTSessions::Errors::Expired].freeze
 
-  rescue_from(*EXCEPTIONS, with: :exception_handler)
+  rescue_from(*EXCEPTIONS, with: :jwt_sessions_exception_handler)
 
   private
 
@@ -57,7 +57,7 @@ class ApiController < ActionController::API
     nil
   end
 
-  def exception_handler(exception)
+  def jwt_sessions_exception_handler(exception)
     render_error_response(exception.message, :unauthorized)
   end
 end
