@@ -7,15 +7,13 @@ class Api::V1::PasswordsController < ApiController
     user = User.find_by(email: create_password_params[:email].downcase)
     return render_error_response('User not found', :not_found) unless user
 
-    user.generate_password_token!
-    # TODO: SEND EMAIL HERE
-
+    user.send_password_reset_email!
     render_response(status: :no_content)
   end
 
   def update
-    user = User.find_by(reset_password_token: params[:id])
-    return render_error_response('Token not found or expired.', :not_found) unless user&.password_token_valid?
+    user = User.find_signed(params[:id], purpose: :reset_password)
+    return render_error_response('Invalid or expired token.', :not_found) unless user
 
     if user.update(update_password_params)
       render_response(expand: { message: 'Your password has been updated.' })
@@ -35,6 +33,6 @@ class Api::V1::PasswordsController < ApiController
   end
 
   def password_params
-    params.require(:category).permit(:password, :password_confirmation, :email)
+    params.require(:password).permit(:password, :password_confirmation, :email)
   end
 end
