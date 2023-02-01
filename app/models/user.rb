@@ -8,6 +8,8 @@ class User < ApplicationRecord
   before_save :downcase_email
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, presence: true, uniqueness: true # rubocop:disable Rails/UniqueValidationWithoutIndex
 
+  default_scope -> { where(deleted_at: nil).where.not(confirmed_at: nil) }
+
   # def generate_password_token!
   #   update!(reset_password_token: generate_token, reset_password_sent_at: Time.zone.now)
   # end
@@ -22,6 +24,11 @@ class User < ApplicationRecord
 
   def confirm!
     update!(confirmed_at: Time.current)
+  end
+
+  def send_confirmation_email!
+    confirmation_token = generate_confirmation_token
+    # UserMailer.confirmation(self, confirmation_token).deliver_now
   end
 
   def send_password_reset_email!
