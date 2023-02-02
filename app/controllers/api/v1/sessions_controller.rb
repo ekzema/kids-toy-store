@@ -8,15 +8,16 @@ class Api::V1::SessionsController < ApiController
     return render_error_response('Cannot find user') unless user&.authenticate(session_params[:password])
 
     payload = { user_id: user.id }
-    session = JWTSessions::Session.new(payload: payload)
+    session = JWTSessions::Session.new(payload: payload, refresh_by_access_allowed: true)
     tokens = session.login
 
-    render_response(tokens)
+    render_response({ access: tokens[:access], access_expires_at: tokens[:access_expires_at] })
   end
 
   def destroy
-    # session = JWTSessions::Session.new(payload: payload)
-    # session.flush_by_access_payload
+    session = JWTSessions::Session.new(payload: payload)
+    session.flush_by_access_payload
+
     render_response(status: :no_content)
   end
 
