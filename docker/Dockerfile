@@ -9,5 +9,6 @@ WORKDIR /rails-app
 COPY Gemfile Gemfile.lock package.json yarn.lock ./
 RUN bundle install
 RUN yarn install
-
+RUN useradd denis
 EXPOSE 3000
+USER denis
