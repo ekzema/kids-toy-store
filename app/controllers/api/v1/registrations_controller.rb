@@ -8,7 +8,7 @@ class Api::V1::RegistrationsController < ApiController
       user.send_confirmation_email!
       render_response(expand: { message: 'Please check your email for confirmation instructions.' }, status: :created)
     else
-      render json: product.errors, status: :unprocessable_entity
+      render json: user.errors, status: :unprocessable_entity
     end
   end
 
