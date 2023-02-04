@@ -8,7 +8,7 @@ class Api::V1::PasswordsController < ApiController
     return render_error_response('User not found', :not_found) unless user
 
     user.send_password_reset_email!
-    render_response(status: :no_content)
+    render_response
   end
 
   def update
