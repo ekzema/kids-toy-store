@@ -10,30 +10,18 @@ class User < ApplicationRecord
 
   default_scope -> { where(deleted_at: nil).where.not(confirmed_at: nil) }
 
-  # def generate_password_token!
-  #   update!(reset_password_token: generate_token, reset_password_sent_at: Time.zone.now)
-  # end
-
-  # def password_token_valid?
-  #   (reset_password_sent_at + 4.hours) > Time.zone.now
-  # end
-
-  # def reset_password!(password)
-  #   update!(reset_password_token: nil, password: password)
-  # end
-
   def confirm!
     update!(confirmed_at: Time.current)
   end
 
   def send_confirmation_email!
     confirmation_token = generate_confirmation_token
-    # UserMailer.confirmation(self, confirmation_token).deliver_now
+    UserMailer.confirmation(self, confirmation_token).deliver_now
   end
 
   def send_password_reset_email!
     password_reset_token = generate_password_reset_token
-    # UserMailer.password_reset(self, password_reset_token).deliver_now
+    UserMailer.password_reset(self, password_reset_token).deliver_now
   end
 
   private
