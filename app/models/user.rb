@@ -9,7 +9,7 @@ class User < ApplicationRecord
   before_save :downcase_email
 
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, presence: true, uniqueness: true # rubocop:disable Rails/UniqueValidationWithoutIndex
-  validates :email, 'valid_email_2/email': { mx: true, disposable: true }, if: :dev? # rubocop:disable Rails/I18nLocaleTexts
+  validates :email, 'valid_email_2/email': { mx: true, disposable: true, message: :bad_domain }, if: :dev_or_test?
 
   default_scope -> { where(deleted_at: nil).where.not(confirmed_at: nil) }
 
@@ -45,7 +45,7 @@ class User < ApplicationRecord
     signed_id(expires_in: CONFIRMATION_TOKEN_EXPIRATION, purpose: :reset_password)
   end
 
-  def dev?
-    Rails.env.development?
+  def dev_or_test?
+    Rails.env.development? || Rails.env.test?
   end
 end
