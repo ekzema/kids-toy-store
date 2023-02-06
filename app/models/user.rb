@@ -5,8 +5,11 @@ class User < ApplicationRecord
   PASSWORD_RESET_TOKEN_EXPIRATION = 30.minutes
 
   has_secure_password
+
   before_save :downcase_email
+
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, presence: true, uniqueness: true # rubocop:disable Rails/UniqueValidationWithoutIndex
+  validates :email, 'valid_email_2/email': { mx: true, disposable: true }, if: :dev? # rubocop:disable Rails/I18nLocaleTexts
 
   default_scope -> { where(deleted_at: nil).where.not(confirmed_at: nil) }
 
@@ -40,5 +43,9 @@ class User < ApplicationRecord
 
   def generate_password_reset_token
     signed_id(expires_in: CONFIRMATION_TOKEN_EXPIRATION, purpose: :reset_password)
+  end
+
+  def dev?
+    Rails.env.development?
   end
 end
