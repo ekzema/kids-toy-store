@@ -2,7 +2,8 @@
 
 FactoryBot.define do
   factory :user do
-    email { 'MyString' }
-    password_digest { 'MyString' }
+    email { 'example@test.com' }
+    password_digest { '123456789' }
+    confirmed_at { Time.zone.now }
   end
 end
