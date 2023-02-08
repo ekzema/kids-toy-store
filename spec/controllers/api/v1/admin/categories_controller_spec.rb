@@ -3,6 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::Admin::CategoriesController do
+  let(:user) { create(:user) }
+  let(:headers) { { 'Authorization' => fetch_token(user) } }
+
+  before { request.headers.merge! headers }
+
   describe 'routes' do
     it { should route(:get, '/api/v1/admin/categories').to(action: :index, format: :json) }
     it { should route(:get, '/api/v1/admin/categories/1').to(action: :show, id: 1, format: :json) }
