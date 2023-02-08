@@ -9,7 +9,7 @@ class User < ApplicationRecord
   before_save :downcase_email
 
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, presence: true, uniqueness: true # rubocop:disable Rails/UniqueValidationWithoutIndex
-  validates :email, 'valid_email_2/email': { mx: true, disposable: true, message: :bad_domain }, if: :dev_or_test?
+  validates :email, 'valid_email_2/email': { mx: true, disposable: true, message: :bad_domain }, unless: :dev_or_test?
 
   default_scope -> { where(deleted_at: nil).where.not(confirmed_at: nil) }
 
