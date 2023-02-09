@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::SessionsController < ApiController
-  before_action :authorize_by_access_header!, only: [:destroy]
+  before_action :authorize_access_request!, only: [:destroy]
 
   def create
     user = User.find_by(email: session_params[:email])
@@ -11,7 +11,12 @@ class Api::V1::SessionsController < ApiController
     session = JWTSessions::Session.new(payload: payload, refresh_by_access_allowed: true)
     tokens = session.login
 
-    render_response({ access: tokens[:access], access_expires_at: tokens[:access_expires_at] })
+    response.set_cookie(JWTSessions.access_cookie,
+                        value: tokens[:access],
+                        httponly: true,
+                        secure: Rails.env.production?)
+
+    render_response(tokens)
   end
 
   def destroy
