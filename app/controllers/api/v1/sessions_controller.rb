@@ -16,7 +16,7 @@ class Api::V1::SessionsController < ApiController
                         httponly: true,
                         secure: Rails.env.production?)
 
-    render_response(tokens)
+    render_response({ csrf: tokens[:csrf] })
   end
 
   def destroy
