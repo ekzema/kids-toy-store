@@ -1,17 +1,20 @@
-import { baseUrl } from '../config'
 import axios from 'axios'
-import store from '../store'
 
 class ApiClient {
-    constructor() {
+    constructor(store, baseUrl) {
         this.defaultLoader = true
         this.loader = this.defaultLoader
+        this.store = store
+
         this.axios = axios.create({
             baseURL: baseUrl
         })
     }
 
     async query(method, url, payload = null) {
+        const res = await this.store
+        const store = res.default
+
         let timeoutID = setTimeout(() => {
             if (this.loader) store.dispatch('showLoader')
         }, 100)
