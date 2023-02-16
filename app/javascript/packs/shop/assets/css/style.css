@@ -5221,7 +5221,7 @@ table p {
 }
 
 .login-register-area {
-  padding: 110px 0 100px;
+  padding: 100px 0 80px 0;
 }
 @media only screen and (max-width: 1199px) {
   .login-register-area {
@@ -5246,23 +5246,12 @@ table p {
   font-weight: 400;
   line-height: 1.6;
   color: #999;
-  width: 85%;
 }
 @media only screen and (max-width: 767px) {
   .login-register-title p {
     width: 100%;
   }
 }
-
-.login-register-pr {
-  padding-right: 100px;
-}
-@media only screen and (max-width: 1199px) {
-  .login-register-pr {
-    padding-right: 0;
-  }
-}
-
 .login-register-pl {
   padding-left: 100px;
 }
@@ -5274,15 +5263,6 @@ table p {
 @media only screen and (max-width: 767px) {
   .login-register-pl {
     margin-top: 40px;
-  }
-}
-
-.login-register-border {
-  border-right: 1px solid #e5e5e5;
-}
-@media only screen and (max-width: 767px) {
-  .login-register-border {
-    border: none;
   }
 }
 
