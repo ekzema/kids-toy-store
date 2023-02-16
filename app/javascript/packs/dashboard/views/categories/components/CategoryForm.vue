@@ -84,6 +84,7 @@ export default {
   methods: {
     async fetchParentCategories() {
       const params = this.category ? { id: this.$route.params.id } : {}
+      if (!this.category) this.clearForm()
       await this.$store.dispatch('fetchParentCategories', params)
     },
     async submitForm() {
@@ -93,7 +94,6 @@ export default {
       if (!valid) return
 
       this.$emit('submitForm', this.formData, () => this.fetchParentCategories())
-      if (!this.category) this.clearForm()
     },
     clearForm() {
       this.$refs.form.reset()
