@@ -6,7 +6,7 @@
           <div class="login-register-content">
             <div class="login-register-title mb-30">
               <h2 class="text-center">Forgot</h2>
-              <p class="text-center">Message for forgot password. </p>
+              <p class="text-center">If you forgot your password, leave your email from the account and wait for instructions to reset the password for it.. </p>
             </div>
             <div class="login-register-style">
               <form action="#" method="post">
