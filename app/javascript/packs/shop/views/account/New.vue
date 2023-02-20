@@ -17,7 +17,7 @@
                   <input type="password" name="user-password" placeholder="Password">
                 </div>
                 <div class="login-register-input">
-                  <input type="repeat_password" name="user-password" placeholder="Repeat password">
+                  <input type="password" name="password_confirmation" placeholder="Password confirmation">
                 </div>
                 <div class="login-register-paragraph">
                   <p>Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our <a href="#">privacy policy.</a></p>
