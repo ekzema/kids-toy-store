@@ -1,6 +1,6 @@
 <template>
   <v-select
-      v-model="for_age"
+      v-model="selectedAge"
       :rules="requiredRules"
       label="Select age children"
       variant="underlined"
@@ -25,14 +25,13 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'select-agr',
-  data: () => ({
-    requiredRules: [
-      v => (!!v || v === 0)  || 'This field is required'
-    ],
-  }),
-  props: {
-    for_age: {
-      type: Number
+  props: ['for_age'],
+  data() {
+    return {
+      selectedAge: '',
+      requiredRules: [
+        v => (!!v || v === 0)  || 'This field is required'
+      ],
     }
   },
   created () {
@@ -46,6 +45,11 @@ export default {
     ...mapGetters([
       'detailConstructor'
     ])
+  },
+  watch: {
+    for_age() {
+      this.selectedAge = this.for_age
+    }
   }
 }
 </script>

@@ -2,8 +2,8 @@
   <div class="text-center">
     <v-pagination
         class="pt-5"
-        v-model="page"
-        :length="totalPages"
+        v-model="selectPage"
+        :length="selectTotalPages"
         :total-visible="6"
         @update:modelValue="onPage"
         rounded="circle"
@@ -16,8 +16,6 @@
 
 export default {
   name: 'pagination',
-  data: () => ({
-  }),
   props: {
     page:{
       type: Number
@@ -27,11 +25,17 @@ export default {
       default: 0
     }
   },
+  data() {
+    return {
+      selectPage: this.page,
+      selectTotalPages: this.totalPages
+    }
+  },
   created () {
   },
   methods: {
     onPage() {
-      this.$emit('update:page', this.page)
+      this.$emit('update:page', this.selectPage)
     }
   }
 }

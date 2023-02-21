@@ -3,7 +3,7 @@
       true-icon=""
       false-icon=""
       density="compact"
-      v-model="language"
+      v-model="selectedLanguage"
       row
       inline
       active-class="active"
@@ -27,14 +27,11 @@ import { languages } from '../config'
 
 export default {
   name: 'select-language',
-  data: () => {
+  props: ['language'],
+  data() {
     return {
-      languages: languages
-    }
-  },
-  props: {
-    language: {
-      type: String
+      languages: languages,
+      selectedLanguage: this.language
     }
   },
   created () {
