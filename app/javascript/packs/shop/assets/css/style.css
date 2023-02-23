@@ -9803,3 +9803,11 @@ body:not(.touch-device) .menu__item:hover .menu__body {
 }
 
 /*END Categories menu*/
+
+.input-error input {
+  border: 1px solid red !important;
+}
+.error-msg {
+  color: #e36060;
+  font-size: 14px;
+}
