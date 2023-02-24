@@ -13,6 +13,13 @@ class User < ApplicationRecord
 
   default_scope -> { where(deleted_at: nil).where.not(confirmed_at: nil) }
 
+  class << self
+    def email_is_valid?(email)
+      address = ValidEmail2::Address.new(email)
+      address.valid? && address.valid_mx? && !address.disposable?
+    end
+  end
+
   def confirm!
     update!(confirmed_at: Time.current)
   end

@@ -19,6 +19,7 @@ import'./assets/js/custom'
 
 document.addEventListener('DOMContentLoaded', () => {
   createApp(App)
-    .use(router, store)
-    .mount('#app')
+      .use(router)
+      .use(store)
+      .mount('#app')
 })

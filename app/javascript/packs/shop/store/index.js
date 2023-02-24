@@ -1,5 +1,6 @@
 import { createStore } from "vuex"
 import defaultStore from '../../store'
+import registrations from './modules/registrations'
 
 const state = {
 }
@@ -19,7 +20,8 @@ const store = createStore({
     mutations,
     actions,
     modules: {
-        defaultStore
+        defaultStore,
+        registrations
     },
 })
 
