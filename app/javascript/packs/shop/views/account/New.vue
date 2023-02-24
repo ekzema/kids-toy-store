@@ -14,7 +14,6 @@
                   <input type="text" v-model.tim="v$.form.email.$model" placeholder="E-mail address">
                   <div v-for="(error, index) of v$.form.email.$errors" :key="index">
                     <div class="error-msg">{{ error.$message }}</div>
-                    <div v-if="uniqueError" class="error-msg">{{ uniqueError }}</div>
                   </div>
                 </div>
                 <div class="login-register-input" :class="{'input-error': v$.form.password.$error}">
@@ -69,7 +68,6 @@ export default {
       password: '',
       password_confirmation: ''
     },
-    uniqueError: '',
     timer: null
   }),
   validations () {
@@ -83,18 +81,31 @@ export default {
         password: { required, minLength: minLength(6) },
         password_confirmation: {
           required,
-          sameAsPassword: helpers.withMessage('Custom message for password_confirmation rule.', sameAs(this.form.password) )
+          sameAsPassword: helpers.withMessage('Custom message for password_confirmation rule.', sameAs(this.form.password))
         }
       }
     }
   },
   methods: {
     async isUnique (value) {
-      this.uniqueError = ''
+      if (this.timer) {
+        clearTimeout(this.timer)
+        this.timer = null
+      }
       if (!emailRegex.test(value)) return true
-      const errorMessages = { bad_domain: 'Email has a domain that cannot be verified.', unique: 'This email already exists' }
-      const response = await this.$store.dispatch('checkEmail', { email: value })
-      if (!response.valid) this.uniqueError = errorMessages[response.type]
+      const response = await new Promise((resolve) => {
+        this.timer = setTimeout(() => {
+          resolve(this.$store.dispatch('checkEmail', {email: value}))
+        }, 800)
+      })
+      this.v$.$pending = false
+      this.v$.form.email.isUnique.$pending = false
+      const errorMessages = {
+        bad_domain: 'Email has a domain that cannot be verified.',
+        unique: 'This email already exists'
+      }
+      if (response.valid) this.v$.form.email.$reset()
+      if (!response.valid) this.v$.form.email.isUnique.$message = errorMessages[response.type]
 
       return response.valid
     },
