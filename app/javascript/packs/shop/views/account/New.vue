@@ -11,9 +11,10 @@
             <div class="login-register-style">
               <form @submit.prevent="onSubmit">
                 <div class="login-register-input" :class="{'input-error': v$.form.email.$error}">
-                  <input type="text" v-model="v$.form.email.$model" placeholder="E-mail address">
+                  <input type="text" v-model.tim="v$.form.email.$model" placeholder="E-mail address">
                   <div v-for="(error, index) of v$.form.email.$errors" :key="index">
-                    <span class="error-msg">{{ error.$message }}</span>
+                    <div class="error-msg">{{ error.$message }}</div>
+                    <div v-if="uniqueError" class="error-msg">{{ uniqueError }}</div>
                   </div>
                 </div>
                 <div class="login-register-input" :class="{'input-error': v$.form.password.$error}">
@@ -55,6 +56,8 @@
 <script>
 import { helpers, email, required, minLength, sameAs } from '@vuelidate/validators'
 import { useVuelidate } from '@vuelidate/core'
+import { emailRegex, emailRegexTemplate } from "../../config"
+
 export default {
   name: 'new',
   components: {
@@ -65,14 +68,17 @@ export default {
       email: '',
       password: '',
       password_confirmation: ''
-    }
+    },
+    uniqueError: '',
+    timer: null
   }),
   validations () {
     return {
       form: {
         email: {
-          email: helpers.withMessage('Custom message for email rule.', email),
-          required
+          email: helpers.withMessage('Custom message for email rule.', helpers.regex(emailRegexTemplate)),
+          required,
+          isUnique: helpers.withAsync(this.isUnique),
         },
         password: { required, minLength: minLength(6) },
         password_confirmation: {
@@ -83,12 +89,20 @@ export default {
     }
   },
   methods: {
+    async isUnique (value) {
+      this.uniqueError = ''
+      if (!emailRegex.test(value)) return true
+      const errorMessages = { bad_domain: 'Email has a domain that cannot be verified.', unique: 'This email already exists' }
+      const response = await this.$store.dispatch('checkEmail', { email: value })
+      if (!response.valid) this.uniqueError = errorMessages[response.type]
+
+      return response.valid
+    },
     onSubmit() {
       if (this.v$.$invalid) {
         this.v$.$touch()
         return
       }
-
     }
   }
 }

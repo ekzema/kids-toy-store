@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :passwords, :only => [:create, :update]
-      resources :registrations, :only => [:create]
+      resources :registrations, :only => [:create] do
+        collection do
+          get 'check_email'
+        end
+      end
       resources :sessions, :only => [:create] do
         collection do
           match "/", to: "sessions#destroy", via: "delete"
