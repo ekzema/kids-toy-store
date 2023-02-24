@@ -25,7 +25,7 @@ class Api::V1::RegistrationsController < ApiController
 
   def confirmation_and_render(user)
     user.send_confirmation_email!
-    render_response(expand: { message: 'Please check your email for confirmation instructions.' }, status: :created)
+    render_response(status: :created)
   end
 
   def registration_params
