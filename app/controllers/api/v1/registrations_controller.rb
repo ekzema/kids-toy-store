@@ -2,14 +2,13 @@
 
 class Api::V1::RegistrationsController < ApiController
   def create
-    user = User.new(registration_params)
+    user = User.unscoped.find_by(email: registration_params[:email], confirmed_at: nil)
+    return confirmation_and_render(user) if user
 
-    if user.save
-      user.send_confirmation_email!
-      render_response(expand: { message: 'Please check your email for confirmation instructions.' }, status: :created)
-    else
-      render json: user.errors, status: :unprocessable_entity
-    end
+    user = User.new(registration_params)
+    return confirmation_and_render(user) if user.save
+
+    render json: user.errors, status: :unprocessable_entity
   end
 
   def check_email
@@ -23,6 +22,11 @@ class Api::V1::RegistrationsController < ApiController
   end
 
   private
+
+  def confirmation_and_render(user)
+    user.send_confirmation_email!
+    render_response(expand: { message: 'Please check your email for confirmation instructions.' }, status: :created)
+  end
 
   def registration_params
     params.require(:registration).permit(:email, :password, :password_confirmation)
