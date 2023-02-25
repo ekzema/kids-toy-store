@@ -12,7 +12,9 @@ class Api::V1::PasswordsController < ApiController
   end
 
   def update
-    user = User.find_signed(params[:id], purpose: :reset_password)
+    return error_required_field('token') unless params[:token]
+
+    user = User.unscoped.find_signed(params[:token], purpose: :reset_password)
     return render_error_response('Invalid or expired token.', :not_found) unless user
 
     if user.update(update_password_params)

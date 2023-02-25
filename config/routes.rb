@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :registrations, :only => [:create] do
         collection do
           get 'check_email'
+          put 'confirmation'
         end
       end
       resources :sessions, :only => [:create] do

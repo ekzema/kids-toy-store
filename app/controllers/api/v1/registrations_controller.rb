@@ -11,6 +11,16 @@ class Api::V1::RegistrationsController < ApiController
     render json: user.errors, status: :unprocessable_entity
   end
 
+  def confirmation
+    return error_required_field('token') unless params[:token]
+
+    user = User.unscoped.find_signed(params[:token], purpose: :confirm_email)
+    return render_error_response('Invalid or expired token.', :not_found) unless user
+    return render_response if user.update(confirmed_at: Time.zone.now)
+
+    render json: user.errors, status: :unprocessable_entity
+  end
+
   def check_email
     return error_required_field('email') unless params[:email]
 
