@@ -8,7 +8,20 @@ const actions = {
         } catch (error) {
             commit('setErrorMessage')
         }
+    },
+    async createRegistration({ commit }, data) {
+        try {
+            return await Registrations.create(data)
+        } catch (error) {
+            commit('setErrorMessage')
+        }
+    },
+    async confirmationRegistration({ commit }, data) {
+        try {
+            return await Registrations.confirmation(data)
+        } catch (error) {
+            return error.response.data
+        }
     }
 }
-
 export default actions

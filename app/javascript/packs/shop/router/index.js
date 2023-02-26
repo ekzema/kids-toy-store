@@ -3,6 +3,7 @@ import HomeIndex from '../views/home/Index'
 import AccountNew from '../views/account/New.vue'
 import AccountLogin from '../views/account/Login.vue'
 import AccountForgot from '../views/account/Forgot.vue'
+import AccountConfirmation from '../views/account/Confirmation.vue'
 import PageNotFound from "../../errors/PageNotFound.vue"
 
 const router = createRouter({
@@ -27,6 +28,11 @@ const router = createRouter({
       name: 'AccountForgot',
       path: '/account/forgot',
       component: AccountForgot
+    },
+    {
+      name: 'AccountConfirmation',
+      path: '/account/confirmation',
+      component: AccountConfirmation
     },
     {
       name: 'PageNotFound',

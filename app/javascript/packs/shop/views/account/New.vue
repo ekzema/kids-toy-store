@@ -5,27 +5,36 @@
         <div class="col-md-7">
           <div class="login-register-content login-register-pl">
             <div class="login-register-title mb-30">
+              <transition name="fade">
+                <div v-show="alert" class="alert alert-dismissible" role="alert">
+                  <strong>Congratulations!</strong> A link to confirm your registration has been sent to your email: <strong>{{confirm_email}}</strong>
+                  <button type="button" class="btn-close" aria-label="Close" @click="alert = false"></button>
+                </div>
+              </transition>
               <h2 class="text-center">Register</h2>
               <p>Create new account today to reap the benefits of a personalized shopping experience. </p>
             </div>
             <div class="login-register-style">
-              <form @submit.prevent="onSubmit">
-                <div class="login-register-input" :class="{'input-error': v$.form.email.$error}">
-                  <input type="text" v-model.tim="v$.form.email.$model" placeholder="E-mail address">
-                  <div v-for="(error, index) of v$.form.email.$errors" :key="index">
+              <form ref="form" @submit.prevent="onSubmit">
+                <div class="login-register-input" :class="{'input-error': v$.formData.email.$error}">
+                  <input type="text" v-model="v$.formData.email.$model" placeholder="E-mail address">
+                  <div v-if="spinner" class="input-spinner spinner-border-sm spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                  <div v-for="(error, index) of v$.formData.email.$errors" :key="index">
                     <div class="error-msg">{{ error.$message }}</div>
                   </div>
                 </div>
-                <div class="login-register-input" :class="{'input-error': v$.form.password.$error}">
-                  <input type="password" v-model="v$.form.password.$model" placeholder="Password">
+                <div class="login-register-input" :class="{'input-error': v$.formData.password.$error}">
+                  <input type="password" v-model="v$.formData.password.$model" placeholder="Password">
                 </div>
-                <div class="input-errors" v-for="(error, index) of v$.form.password.$errors" :key="index">
+                <div class="input-errors" v-for="(error, index) of v$.formData.password.$errors" :key="index">
                   <div class="error-msg">{{ error.$message }}</div>
                 </div>
-                <div class="login-register-input" :class="{'input-error': v$.form.password_confirmation.$error}">
-                  <input type="password" v-model="v$.form.password_confirmation.$model" placeholder="Password confirmation">
+                <div class="login-register-input" :class="{'input-error': v$.formData.password_confirmation.$error}">
+                  <input type="password" v-model="v$.formData.password_confirmation.$model" placeholder="Password confirmation">
                 </div>
-                <div class="input-errors" v-for="(error, index) of v$.form.password_confirmation.$errors" :key="index">
+                <div class="input-errors" v-for="(error, index) of v$.formData.password_confirmation.$errors" :key="index">
                   <div class="error-msg">{{ error.$message }}</div>
                 </div>
                 <div class="login-register-paragraph">
@@ -63,16 +72,19 @@ export default {
   },
   setup: () => ({ v$: useVuelidate() }),
   data: () => ({
-    form: {
+    formData: {
       email: '',
       password: '',
       password_confirmation: ''
     },
-    timer: null
+    timer: null,
+    spinner: false,
+    alert: false,
+    confirm_email: ''
   }),
   validations () {
     return {
-      form: {
+      formData: {
         email: {
           email: helpers.withMessage('Custom message for email rule.', helpers.regex(emailRegexTemplate)),
           required,
@@ -81,41 +93,68 @@ export default {
         password: { required, minLength: minLength(6) },
         password_confirmation: {
           required,
-          sameAsPassword: helpers.withMessage('Custom message for password_confirmation rule.', sameAs(this.form.password))
+          sameAsPassword: helpers.withMessage('Custom message for password_confirmation rule.', sameAs(this.formData.password))
         }
       }
     }
   },
   methods: {
     async isUnique (value) {
+      if (!emailRegex.test(value)) return true
       if (this.timer) {
         clearTimeout(this.timer)
         this.timer = null
       }
-      if (!emailRegex.test(value)) return true
+      this.spinner = true
       const response = await new Promise((resolve) => {
         this.timer = setTimeout(() => {
           resolve(this.$store.dispatch('checkEmail', {email: value}))
         }, 800)
       })
-      this.v$.$pending = false
-      this.v$.form.email.isUnique.$pending = false
+      this.spinner = false
       const errorMessages = {
         bad_domain: 'Email has a domain that cannot be verified.',
         unique: 'This email already exists'
       }
-      if (response.valid) this.v$.form.email.$reset()
-      if (!response.valid) this.v$.form.email.isUnique.$message = errorMessages[response.type]
+      if (response.valid) this.v$.formData.email.$reset()
+      if (!response.valid) this.v$.formData.email.isUnique.$message = errorMessages[response.type]
 
       return response.valid
     },
-    onSubmit() {
+    async onSubmit() {
       if (this.v$.$invalid) {
         this.v$.$touch()
         return
       }
-
+      const response = await this.$store.dispatch('createRegistration', this.formData)
+      if (response.success) this.alert = true
+      this.confirm_email = this.formData.email
+      this.$refs.form.reset()
     }
   }
 }
 </script>
+
+<style scoped>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
+.input-spinner {
+  position: absolute;
+  top: 17px;
+  right: 15px;
+  color: #f379a7;
+}
+
+.btn-close:focus{
+  box-shadow: none;
+}
+
+.alert {
+  background-color: #f3f3f3;
+}
+</style>

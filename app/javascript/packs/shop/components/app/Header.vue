@@ -3,16 +3,19 @@
     <div class="header-top">
       <div class="container">
         <div class="row">
-          <div class="col-xs-12 col-sm-5 col-md-4 col-lg-6">
+          <div class="col-xs-12 col-sm-5 col-md-4 col-lg-5">
             <div class="header-info-left">
               <p>Free Returns and Free Shipping</p>
             </div>
           </div>
-          <div class="col-xs-12 col-sm-7 col-md-8 col-lg-6 sm-pl-0 xs-pl-15 header-top-right">
+          <div class="col-xs-12 col-sm-7 col-md-8 col-lg-7 sm-pl-0 xs-pl-15 header-top-right">
             <div class="header-info">
               <a href="tel://+00123456789"><i class="fa fa-phone"></i> +00 123 456 789</a>
               <a href="mailto://demo@example.com"><i class="fa fa-envelope"></i> demo@example.com</a>
               <a href="login-register.html"><i class="fa fa-user"></i> Account</a>
+              <router-link :to="{ name: 'AccountNew'}">
+                <i class="fa fa-user-plus"></i> Sign up
+              </router-link>
             </div>
           </div>
         </div>
