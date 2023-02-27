@@ -1,6 +1,7 @@
 import { createStore } from "vuex"
 import defaultStore from '../../store'
 import registrations from './modules/registrations'
+import sessions from './modules/sessions'
 
 const state = {
 }
@@ -21,7 +22,8 @@ const store = createStore({
     actions,
     modules: {
         defaultStore,
-        registrations
+        registrations,
+        sessions
     },
 })
 
