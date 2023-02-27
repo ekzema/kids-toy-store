@@ -72,7 +72,11 @@ export default {
         return
       }
       const response = await this.$store.dispatch('createSession', this.formData)
-      if (response.success) this.alert = true
+      if (response.success) {
+        this.alert = true
+        localStorage.access_token = response.data.access
+        localStorage.auth = true
+      }
       this.resetForm()
     },
     resetForm() {
