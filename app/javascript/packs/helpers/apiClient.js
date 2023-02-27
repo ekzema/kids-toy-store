@@ -28,7 +28,7 @@ class ApiClient {
         } catch (error) {
             if (error.response.status === 401) {
                 delete localStorage.access_token
-                delete localStorage.auth
+                delete localStorage.user
             }
 
             return error

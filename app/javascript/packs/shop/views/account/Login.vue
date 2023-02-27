@@ -75,7 +75,7 @@ export default {
       if (response.success) {
         this.alert = true
         localStorage.access_token = response.data.access
-        localStorage.auth = true
+        localStorage.user = JSON.stringify({ admin: response.data.admin })
       }
       this.resetForm()
     },
