@@ -11,7 +11,7 @@ class ApiClient {
         })
     }
 
-    async query(method, url, payload = null) {
+    async query(method, url, payload = null, options = {}) {
         if (localStorage.access_token) this.axios.defaults.headers.common['Authorization'] = localStorage.access_token
 
         const res = await this.store
@@ -21,10 +21,10 @@ class ApiClient {
             if (this.loader) store.dispatch('showLoader')
         }, 100)
         try {
-            const {data} = await this.axios[method](url, payload)
+            const response = await this.axios[method](url, payload)
             this.loader = this.defaultLoader
 
-            return data
+            return options['fullResponse'] ? response : response.data
         } catch (error) {
             if (error.response.status === 401) {
                 delete localStorage.access_token

@@ -13,12 +13,15 @@
               <a href="tel://+00123456789"><i class="fa fa-phone"></i> +00 123 456 789</a>
               <a href="mailto://demo@example.com"><i class="fa fa-envelope"></i> demo@example.com</a>
               <a href="login-register.html"><i class="fa fa-user"></i> Account</a>
-              <router-link :to="{ name: 'AccountNew'}">
-                <i class="fa fa-user-plus"></i> Sign up
-              </router-link>
-              <router-link :to="{ name: 'AccountLogin'}">
-                <i class="fa fa-sign-in"></i> Login
-              </router-link>
+              <div class="wrap-account" v-if="!user">
+                <router-link :to="{ name: 'AccountNew'}">
+                  <i class="fa fa-user-plus"></i> Sign up
+                </router-link>
+                <router-link :to="{ name: 'AccountLogin'}">
+                  <i class="fa fa-sign-in"></i> Login
+                </router-link>
+              </div>
+              <router-link to="" @click="logout" v-else><i class="fa fa-sign-out"></i> Logout</router-link>
             </div>
           </div>
         </div>
@@ -191,13 +194,36 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import { user } from '../../config'
+
 export default {
   name: 'header',
-  data () {
-    {
-    }
+  data: () => ({
+  }),
+  computed: {
+    ...mapGetters([
+      'user',
+    ]),
+  },
+  created() {
+    this.$store.commit('setUser', user)
   },
   methods: {
+   async logout () {
+     const response = await this.$store.dispatch('deleteSession', { id: '', options: { fullResponse: true }})
+     if (response.status === 204) {
+       delete localStorage.user
+       this.$store.commit('setUser', null)
+     }
+    }
   }
 }
 </script>
+
+<style scoped>
+.wrap-account {
+  padding-left: 20px;
+  margin-left: 19px;
+}
+</style>

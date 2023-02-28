@@ -4,24 +4,24 @@ class Api {
         this.api = null
     }
 
-    get(params) {
-        return this.api.query('get', this.url, {params: {...params}})
+    get(params, options = {}) {
+        return this.api.query('get', this.url, {params: {...params}}, options)
     }
 
-    show(id) {
-        return this.api.query('get', `${this.url}/${id}`)
+    show(id, options = {}) {
+        return this.api.query('get', `${this.url}/${id}`, null, options)
     }
 
-    create(data) {
-        return this.api.query('post', this.url, data)
+    create(data, options = {}) {
+        return this.api.query('post', this.url, data, options)
     }
 
-    update(id, data) {
-        return this.api.query('put', `${this.url}/${id}`, data)
+    update(id, data, options = {}) {
+        return this.api.query('put', `${this.url}/${id}`, data, options)
     }
 
-    delete(id) {
-        return this.api.query('delete', `${this.url}/${id}`)
+    delete(id, options = {}) {
+        return this.api.query('delete', `${this.url}/${id}`, null, options)
     }
 }
 
