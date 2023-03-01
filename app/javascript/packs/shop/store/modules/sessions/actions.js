@@ -7,14 +7,9 @@ const actions = {
             commit('setUser', { admin: response.admin })
             commit('setSuccessMessage', 'Welcome')
 
-            return response
+            return response.data
         } catch (error) {
-            if (error.response.status === 404) {
-                commit('setErrorMessage', 'Invalid email or password.')
-            } else {
-                commit('setErrorMessage')
-            }
-            return error
+            throw error
         }
     },
     async deleteSession({ commit }, { id, options }) {

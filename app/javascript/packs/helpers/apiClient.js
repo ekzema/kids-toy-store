@@ -29,7 +29,7 @@ class ApiClient {
             if (error.response.status === 401) {
                 delete localStorage.access_token
                 delete localStorage.user
-                this.$store.commit('setUser', null)
+                store.commit('setUser', null)
 
                 return error
             }

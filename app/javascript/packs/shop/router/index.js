@@ -30,7 +30,8 @@ const router = createRouter({
     {
       name: 'AccountForgot',
       path: '/account/forgot',
-      component: AccountForgot
+      component: AccountForgot,
+      beforeEnter: guards.login
     },
     {
       name: 'AccountConfirmation',

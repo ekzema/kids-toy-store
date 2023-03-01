@@ -11,6 +11,7 @@
 <script>
 import AppHeader from './components/app/Header'
 import AppFooter from './components/app/Footer'
+import { user } from './config'
 
 export default {
   components: {
@@ -22,6 +23,7 @@ export default {
     }
   },
   created () {
+    this.$store.commit('setUser', user)
   }
 }
 </script>

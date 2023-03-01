@@ -12,18 +12,18 @@
               <form ref="form" @submit.prevent="onSubmit">
                 <div class="login-register-input" :class="{'input-error': v$.formData.email.$error}">
                   <input type="text" v-model="v$.formData.email.$model" placeholder="Email address">
-                  <div v-for="(error, index) of v$.formData.email.$errors" :key="index">
-                    <div class="error-msg">{{ error.$message }}</div>
-                  </div>
+                </div>
+                <div v-for="(error, index) of v$.formData.email.$errors" :key="index">
+                  <div class="error-msg">{{ error.$message }}</div>
                 </div>
                 <div class="login-register-input" :class="{'input-error': v$.formData.password.$error}">
                   <input type="password" v-model="v$.formData.password.$model" placeholder="Password">
                   <div class="forgot">
-                    <a href="#">Forgot?</a>
+                    <router-link :to="{ name: 'AccountForgot'}">Forgot?</router-link>
                   </div>
-                  <div class="input-errors" v-for="(error, index) of v$.formData.password.$errors" :key="index">
-                    <div class="error-msg">{{ error.$message }}</div>
-                  </div>
+                </div>
+                <div class="input-errors" v-for="(error, index) of v$.formData.password.$errors" :key="index">
+                  <div class="error-msg">{{ error.$message }}</div>
                 </div>
                 <div class="btn-style-3">
                   <button class="btn" type="submit">Login</button>
@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import { helpers, email, required, minLength, sameAs } from '@vuelidate/validators'
+import { helpers, required } from '@vuelidate/validators'
 import { useVuelidate } from '@vuelidate/core'
 import { emailRegexTemplate } from "../../config"
 
@@ -51,8 +51,7 @@ export default {
     formData: {
       email: '',
       password: '',
-    },
-    alert: false
+    }
   }),
   validations () {
     return {
@@ -67,20 +66,23 @@ export default {
   },
   methods: {
     async onSubmit() {
-      if (this.v$.$invalid) {
-        this.v$.$touch()
-        return
-      }
-      const response = await this.$store.dispatch('createSession', this.formData)
-      if (response.success) {
-        this.alert = true
-        localStorage.access_token = response.data.access
-        localStorage.user = JSON.stringify({ admin: response.data.admin })
-        this.resetForm()
+      if (this.v$.$invalid) return this.v$.$touch()
 
+      try {
+        const response = await this.$store.dispatch('createSession', this.formData)
+        localStorage.access_token = response.access
+        localStorage.user = JSON.stringify({ admin: response.admin })
+
+        this.resetForm()
         this.$router.push('/')
+      } catch (error) {
+        if (error.response.status === 404) {
+          this.$store.commit('setErrorMessage', 'Invalid email or password.')
+        } else {
+          this.$store.commit('setErrorMessage')
+        }
       }
-s    },
+    },
     resetForm() {
       Object.keys(this.formData).forEach((key) => {
         this.formData[key] = ''

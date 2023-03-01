@@ -12,7 +12,7 @@
             <div class="header-info">
               <a href="tel://+00123456789"><i class="fa fa-phone"></i> +00 123 456 789</a>
               <a href="mailto://demo@example.com"><i class="fa fa-envelope"></i> demo@example.com</a>
-              <a href="login-register.html"><i class="fa fa-user"></i> Account</a>
+              <a v-if="user" href="login-register.html"><i class="fa fa-user"></i> Account</a>
               <div class="wrap-account" v-if="!user">
                 <router-link :to="{ name: 'AccountNew'}">
                   <i class="fa fa-user-plus"></i> Sign up
@@ -195,7 +195,6 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { user } from '../../config'
 
 export default {
   name: 'header',
@@ -207,7 +206,6 @@ export default {
     ]),
   },
   created() {
-    this.$store.commit('setUser', user)
   },
   methods: {
    async logout () {

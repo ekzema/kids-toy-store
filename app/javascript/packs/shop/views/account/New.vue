@@ -15,21 +15,21 @@
                   <div v-if="spinner" class="input-spinner spinner-border-sm spinner-border" role="status">
                     <span class="visually-hidden">Loading...</span>
                   </div>
-                  <div v-for="(error, index) of v$.formData.email.$errors" :key="index">
-                    <div class="error-msg">{{ error.$message }}</div>
-                  </div>
+                </div>
+                <div v-for="(error, index) of v$.formData.email.$errors" :key="index">
+                  <div class="error-msg">{{ error.$message }}</div>
                 </div>
                 <div class="login-register-input" :class="{'input-error': v$.formData.password.$error}">
                   <input type="password" v-model="v$.formData.password.$model" placeholder="Password">
-                  <div class="input-errors" v-for="(error, index) of v$.formData.password.$errors" :key="index">
-                    <div class="error-msg">{{ error.$message }}</div>
-                  </div>
+                </div>
+                <div class="input-errors" v-for="(error, index) of v$.formData.password.$errors" :key="index">
+                  <div class="error-msg">{{ error.$message }}</div>
                 </div>
                 <div class="login-register-input" :class="{'input-error': v$.formData.password_confirmation.$error}">
                   <input type="password" v-model="v$.formData.password_confirmation.$model" placeholder="Password confirmation">
-                  <div class="input-errors" v-for="(error, index) of v$.formData.password_confirmation.$errors" :key="index">
-                    <div class="error-msg">{{ error.$message }}</div>
-                  </div>
+                </div>
+                <div class="input-errors" v-for="(error, index) of v$.formData.password_confirmation.$errors" :key="index">
+                  <div class="error-msg">{{ error.$message }}</div>
                 </div>
                 <div class="login-register-paragraph">
                   <p>Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our <a href="#">privacy policy.</a></p>
@@ -61,8 +61,6 @@ import ConfirmationToast from "./components/ConfirmationToast.vue"
 import { emailRegex, emailRegexTemplate } from "../../config"
 import { useVuelidate } from '@vuelidate/core'
 import { useToast } from "vue-toastification"
-
-
 
 export default {
   name: 'new',

@@ -9,12 +9,15 @@
               <p class="text-center">If you forgot your password, leave your email from the account and wait for instructions to reset the password for it.. </p>
             </div>
             <div class="login-register-style">
-              <form action="#" method="post">
-                <div class="login-register-input">
-                  <input type="text" name="user-name" placeholder="email address">
+              <form ref="form" @submit.prevent="onSubmit">
+                <div class="login-register-input" :class="{'input-error': v$.formData.email.$error}">
+                  <input type="text" v-model="v$.formData.email.$model" placeholder="Email address">
+                </div>
+                <div v-for="(error, index) of v$.formData.email.$errors" :key="index">
+                  <div class="error-msg">{{ error.$message }}</div>
                 </div>
                 <div class="btn-style-3">
-                  <button class="btn" onclick="window.location.href='my-account.html'" type="button">Login</button>
+                  <button class="btn" type="submit">Send</button>
                 </div>
               </form>
             </div>
@@ -26,14 +29,35 @@
 </template>
 
 <script>
+import { helpers, required } from '@vuelidate/validators'
+import { useVuelidate } from '@vuelidate/core'
+import { emailRegexTemplate } from "../../config"
+
 export default {
   name: 'forgot',
+  setup: () => ({ v$: useVuelidate() }),
   components: {
   },
   data: () => ({
+    formData: {
+      email: ''
+    }
   }),
+  validations () {
+    return {
+      formData: {
+        email: {
+          email: helpers.withMessage('Custom message for email rule.', helpers.regex(emailRegexTemplate)),
+          required
+        }
+      }
+    }
+  },
   methods: {
-
+    onSubmit() {
+      if (this.v$.$invalid) return this.v$.$touch()
+      // this.$store.dispatch('createPassword', this.formData)
+    }
   }
 }
 </script>
