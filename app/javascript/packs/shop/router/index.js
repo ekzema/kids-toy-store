@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import * as guards from'./guards'
 import HomeIndex from '../views/home/Index'
 import AccountNew from '../views/account/New.vue'
 import AccountLogin from '../views/account/Login.vue'
@@ -17,12 +18,14 @@ const router = createRouter({
     {
       name: 'AccountNew',
       path: '/account/new',
-      component: AccountNew
+      component: AccountNew,
+      beforeEnter: guards.login
     },
     {
       name: 'AccountLogin',
       path: '/account/login',
-      component: AccountLogin
+      component: AccountLogin,
+      beforeEnter: guards.login
     },
     {
       name: 'AccountForgot',

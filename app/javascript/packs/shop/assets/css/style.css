@@ -9811,3 +9811,10 @@ body:not(.touch-device) .menu__item:hover .menu__body {
   color: #e36060;
   font-size: 14px;
 }
+.Vue-Toastification__toast--success {
+  background-color: #f379a7;
+}
+
+.Vue-Toastification__toast-body.font-size-class {
+  font-size: 18px;
+}

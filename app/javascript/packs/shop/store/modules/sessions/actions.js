@@ -5,6 +5,7 @@ const actions = {
         try {
             const response = await Sessions.create(data)
             commit('setUser', { admin: response.admin })
+            commit('setSuccessMessage', 'Welcome')
 
             return response
         } catch (error) {

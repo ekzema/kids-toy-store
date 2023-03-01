@@ -2,11 +2,13 @@
 
 class Api::V1::RegistrationsController < ApiController
   def create
-    user = User.unscoped.find_by(email: registration_params[:email], confirmed_at: nil)
-    return confirmation_and_render(user) if user
+    user = User.unscoped.find_by(email: registration_params[:email], confirmed_at: nil, deleted_at: nil)
+    return confirmation_and_render(user) if user&.update(registration_params)
 
-    user = User.new(registration_params)
-    return confirmation_and_render(user) if user.save
+    unless user
+      user = User.new(registration_params)
+      return confirmation_and_render(user) if user.save
+    end
 
     render json: user.errors, status: :unprocessable_entity
   end

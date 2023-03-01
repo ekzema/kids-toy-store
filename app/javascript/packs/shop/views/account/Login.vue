@@ -77,6 +77,8 @@ export default {
         localStorage.access_token = response.data.access
         localStorage.user = JSON.stringify({ admin: response.data.admin })
         this.resetForm()
+
+        this.$router.push('/')
       }
 s    },
     resetForm() {

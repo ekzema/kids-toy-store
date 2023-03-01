@@ -28,10 +28,11 @@ export default {
 <style scoped>
 h3 {
   color: white;
+  font-size: 18px;
 }
 
 span {
-  font-size: 20px;
+  font-size: 18px;
 }
 
 

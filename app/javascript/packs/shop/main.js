@@ -19,10 +19,16 @@ import 'animate.css/animate.min.css'
 import './assets/css/style.css'
 import'./assets/js/custom'
 
+const toastConfig = {
+  maxToasts: 6,
+  bodyClassName: ["font-size-class"],
+  position: "top-right"
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   createApp(App)
       .use(router)
       .use(store)
-      .use(Toast, { maxToasts: 6 })
+      .use(Toast, toastConfig)
       .mount('#app')
 })

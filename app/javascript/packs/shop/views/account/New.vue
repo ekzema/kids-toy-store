@@ -5,12 +5,6 @@
         <div class="col-md-7">
           <div class="login-register-content login-register-pl">
             <div class="login-register-title mb-30">
-              <transition name="fade">
-                <div v-show="alert" class="alert alert-dismissible" role="alert">
-                  <strong>Congratulations!</strong> A link to confirm your registration has been sent to your email: <strong>{{confirm_email}}</strong>
-                  <button type="button" class="btn-close" aria-label="Close" @click="alert = false"></button>
-                </div>
-              </transition>
               <h2 class="text-center">Register</h2>
               <p>Create new account today to reap the benefits of a personalized shopping experience. </p>
             </div>
@@ -62,15 +56,22 @@
 </template>
 
 <script>
-import { helpers, email, required, minLength, sameAs } from '@vuelidate/validators'
-import { useVuelidate } from '@vuelidate/core'
+import { helpers, required, minLength, sameAs } from '@vuelidate/validators'
+import ConfirmationToast from "./components/ConfirmationToast.vue"
 import { emailRegex, emailRegexTemplate } from "../../config"
+import { useVuelidate } from '@vuelidate/core'
+import { useToast } from "vue-toastification"
+
+
 
 export default {
   name: 'new',
   components: {
   },
-  setup: () => ({ v$: useVuelidate() }),
+  setup: () => ({
+    v$: useVuelidate(),
+    toast: useToast()
+  }),
   data: () => ({
     formData: {
       email: '',
@@ -78,9 +79,7 @@ export default {
       password_confirmation: ''
     },
     timer: null,
-    spinner: false,
-    alert: false,
-    confirm_email: ''
+    spinner: false
   }),
   validations () {
     return {
@@ -127,9 +126,18 @@ export default {
         return
       }
       const response = await this.$store.dispatch('createRegistration', this.formData)
-      if (response.success) this.alert = true
-      this.confirm_email = this.formData.email
-      this.resetForm()
+
+      if (response.success) {
+        this.toast.success({
+          component: ConfirmationToast,
+          props: { email: this.formData.email }
+        }, {
+          position: "bottom-center",
+          timeout: 10000,
+          icon: "fa fa-check fa-2x"
+        })
+        this.resetForm()
+      }
     },
     resetForm() {
       Object.keys(this.formData).forEach((key) => {
@@ -142,25 +150,10 @@ export default {
 </script>
 
 <style scoped>
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
-}
-.fade-enter, .fade-leave-to {
-  opacity: 0;
-}
-
 .input-spinner {
   position: absolute;
   top: 17px;
   right: 15px;
   color: #f379a7;
-}
-
-.btn-close:focus{
-  box-shadow: none;
-}
-
-.alert {
-  background-color: #f3f3f3;
 }
 </style>
