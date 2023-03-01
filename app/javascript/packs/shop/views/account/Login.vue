@@ -76,9 +76,9 @@ export default {
         this.alert = true
         localStorage.access_token = response.data.access
         localStorage.user = JSON.stringify({ admin: response.data.admin })
+        this.resetForm()
       }
-      this.resetForm()
-    },
+s    },
     resetForm() {
       Object.keys(this.formData).forEach((key) => {
         this.formData[key] = ''

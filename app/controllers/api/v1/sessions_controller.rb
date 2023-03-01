@@ -5,7 +5,7 @@ class Api::V1::SessionsController < ApiController
 
   def create
     user = User.find_by(email: session_params[:email])
-    return render_error_response('Cannot find user') unless user&.authenticate(session_params[:password])
+    return render_error_response('Cannot find user', :not_found) unless user&.authenticate(session_params[:password])
 
     payload = { user_id: user.id }
     session = JWTSessions::Session.new(payload: payload, refresh_by_access_allowed: true)

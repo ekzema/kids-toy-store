@@ -8,7 +8,12 @@ const actions = {
 
             return response
         } catch (error) {
-            return error.response.data
+            if (error.response.status === 404) {
+                commit('setErrorMessage', 'Invalid email or password.')
+            } else {
+                commit('setErrorMessage')
+            }
+            return error
         }
     },
     async deleteSession({ commit }, { id, options }) {

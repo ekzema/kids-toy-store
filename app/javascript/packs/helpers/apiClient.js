@@ -31,7 +31,7 @@ class ApiClient {
                 delete localStorage.user
             }
 
-            return error
+            throw error
         } finally {
             clearTimeout(timeoutID)
             store.dispatch('hideLoader')

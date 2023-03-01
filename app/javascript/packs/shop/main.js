@@ -2,6 +2,8 @@ import { createApp } from 'vue'
 import App from './App'
 import router from './router/index.js'
 import store from './store'
+import Toast from "vue-toastification"
+import "vue-toastification/dist/index.css"
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap'
 import 'pe7-icon/dist/scss/pe-icon-7-stroke'
@@ -21,5 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
   createApp(App)
       .use(router)
       .use(store)
+      .use(Toast, { maxToasts: 6 })
       .mount('#app')
 })
