@@ -34,6 +34,4 @@ h3 {
 span {
   font-size: 18px;
 }
-
-
 </style>
