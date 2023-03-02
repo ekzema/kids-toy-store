@@ -57,18 +57,15 @@
 
 <script>
 import { helpers, required, minLength, sameAs } from '@vuelidate/validators'
-import ConfirmationToast from "./components/ConfirmationToast.vue"
 import { emailRegex, emailRegexTemplate } from "../../config"
 import { useVuelidate } from '@vuelidate/core'
-import { useToast } from "vue-toastification"
 
 export default {
   name: 'new',
   components: {
   },
   setup: () => ({
-    v$: useVuelidate(),
-    toast: useToast()
+    v$: useVuelidate()
   }),
   data: () => ({
     formData: {
@@ -118,26 +115,15 @@ export default {
 
       return response.valid
     },
-    async onSubmit() {
+    async onSubmit () {
       if (this.v$.$invalid) {
         this.v$.$touch()
         return
       }
-      const response = await this.$store.dispatch('createRegistration', this.formData)
-
-      if (response.success) {
-        this.toast.success({
-          component: ConfirmationToast,
-          props: { email: this.formData.email }
-        }, {
-          position: "bottom-center",
-          timeout: 10000,
-          icon: "fa fa-check fa-2x"
-        })
-        this.resetForm()
-      }
+      await this.$store.dispatch('createRegistration', this.formData)
+      this.resetForm()
     },
-    resetForm() {
+    resetForm () {
       Object.keys(this.formData).forEach((key) => {
         this.formData[key] = ''
       })

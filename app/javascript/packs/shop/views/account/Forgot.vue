@@ -30,12 +30,16 @@
 
 <script>
 import { helpers, required } from '@vuelidate/validators'
-import { useVuelidate } from '@vuelidate/core'
 import { emailRegexTemplate } from "../../config"
+import { useVuelidate } from '@vuelidate/core'
+import { useToast } from "vue-toastification"
 
 export default {
   name: 'forgot',
-  setup: () => ({ v$: useVuelidate() }),
+  setup: () => ({
+    v$: useVuelidate(),
+    toast: useToast()
+  }),
   components: {
   },
   data: () => ({
@@ -54,9 +58,12 @@ export default {
     }
   },
   methods: {
-    onSubmit() {
+    async onSubmit() {
       if (this.v$.$invalid) return this.v$.$touch()
-      // this.$store.dispatch('createPassword', this.formData)
+
+      await this.$store.dispatch('createPassword', this.formData)
+      this.formData.email = ''
+      this.v$.$reset()
     }
   }
 }

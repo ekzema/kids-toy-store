@@ -4,6 +4,7 @@ import HomeIndex from '../views/home/Index'
 import AccountNew from '../views/account/New.vue'
 import AccountLogin from '../views/account/Login.vue'
 import AccountForgot from '../views/account/Forgot.vue'
+import AccountPassword from '../views/account/Password.vue'
 import AccountConfirmation from '../views/account/Confirmation.vue'
 import PageNotFound from "../../errors/PageNotFound.vue"
 
@@ -37,6 +38,12 @@ const router = createRouter({
       name: 'AccountConfirmation',
       path: '/account/confirmation',
       component: AccountConfirmation
+    },
+    {
+      name: 'AccountPassword',
+      path: '/account/password',
+      component: AccountPassword,
+      beforeEnter: guards.login
     },
     {
       name: 'PageNotFound',

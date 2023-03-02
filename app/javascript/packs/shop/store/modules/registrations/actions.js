@@ -1,4 +1,5 @@
 import Registrations from '../../../api/registrations'
+import ConfirmationToast from '../../../views/account/components/ConfirmationToast.vue'
 
 const actions = {
     async checkEmail({ commit }, params) {
@@ -11,7 +12,11 @@ const actions = {
     },
     async createRegistration({ commit }, data) {
         try {
-            return await Registrations.create(data)
+            await Registrations.create(data)
+
+            const message = { component: ConfirmationToast, props: { email: data.email } }
+            const options = { position: "bottom-center", timeout: 10000, icon: "fa fa-check fa-2x" }
+            commit('setSuccessMessage', { message, options })
         } catch (error) {
             commit('setErrorMessage')
         }
