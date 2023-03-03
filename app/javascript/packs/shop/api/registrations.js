@@ -11,7 +11,6 @@ class Registrations extends MainApi {
     }
 
     confirmation(params) {
-        this.api.loader = false
         return this.api.query('put', `${this.url}/confirmation`, {...params})
     }
 }

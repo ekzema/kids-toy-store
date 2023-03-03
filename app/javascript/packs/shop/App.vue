@@ -1,4 +1,16 @@
 <template>
+  <!--== Start Preloader Content ==-->
+  <div class="preloader-wrap">
+    <div class="preloader">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!--== End Preloader Content ==-->
   <div class="wrapper home-default-wrapper">
     <app-header/>
     <main class="main-content">
@@ -9,6 +21,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import AppHeader from './components/app/Header'
 import AppFooter from './components/app/Footer'
 import { user } from './config'
@@ -22,8 +35,24 @@ export default {
     {
     }
   },
+  computed: {
+    ...mapGetters([
+      'loader'
+    ]),
+  },
   created () {
     this.$store.commit('setUser', user)
+  },
+  watch: {
+    loader() {
+      if (this.loader) {
+        document.body.classList.remove('preloader-deactive')
+        document.body.classList.add('overflow_hidden')
+      } else {
+        document.body.classList.add('preloader-deactive')
+        document.body.classList.remove('poverflow_hidden')
+      }
+    }
   }
 }
 </script>

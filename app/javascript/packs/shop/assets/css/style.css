@@ -949,6 +949,10 @@ table p {
   display: none;
 }
 
+.overflow_hidden {
+  overflow: hidden;
+}
+
 .preloader-wrap {
   background-color: #fff;
   position: fixed;
@@ -957,7 +961,7 @@ table p {
   height: 100vh;
   width: 100vw;
   z-index: 99999;
-  overflow: hidden;
+  opacity: 0.5;
 }
 .preloader-wrap .preloader {
   background-color: #fff;
