@@ -35,8 +35,7 @@
 
 <script>
 import { helpers, required, minLength, sameAs } from '@vuelidate/validators'
-import ConfirmationToast from "./components/ConfirmationToast.vue"
-import { emailRegex, emailRegexTemplate } from "../../config"
+import UpdatePasswordToast from './components/UpdatePasswordToast'
 import { useVuelidate } from '@vuelidate/core'
 import { useToast } from "vue-toastification"
 
@@ -51,7 +50,7 @@ export default {
   data: () => ({
     formData: {
       password: '',
-      password_confirmation: ''
+      password_confirmation: '',
     }
   }),
   validations () {
@@ -71,17 +70,26 @@ export default {
         this.v$.$touch()
         return
       }
-      // const response = await this.$store.dispatch('createRegistration', this.formData)
 
-      if (response.success) {
+      try {
+        await this.$store.dispatch('updatePassword', { token: this.$route.query.token, ...this.formData })
+
         this.toast.success({
-          component: ConfirmationToast,
+          component: UpdatePasswordToast,
           props: { email: this.formData.email }
         }, {
           position: "bottom-center",
-          timeout: 10000,
           icon: "fa fa-check fa-2x"
         })
+
+        this.$router.push({ name: 'AccountLogin' })
+      } catch (error) {
+        if (error.response.status === 404) {
+          this.$store.commit('setErrorMessage', 'Invalid or expired token.')
+        } else {
+          this.$store.commit('setErrorMessage')
+        }
+
         this.resetForm()
       }
     },

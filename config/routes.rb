@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :passwords, :only => [:create, :update]
+      resources :passwords, only: [:create, :update], param: :token
       resources :registrations, :only => [:create] do
         collection do
           get 'check_email'

@@ -1,13 +1,13 @@
 import Passwords from '../../../api/passwords'
-import Categories from "../../../../dashboard/api/categories";
+import CreatePasswordToast from '../../../views/account/components/CreatePasswordToast'
 
 const actions = {
     async createPassword({ commit }, data) {
         try {
             await Passwords.create(data)
 
-            const message = 'Instructions for resetting your password have been sent to your email.'
-            const options = { position: "bottom-center", timeout: 7000, icon: "fa fa-info fa-2x" }
+            const message = { component: CreatePasswordToast, props: { email: data.email } }
+            const options = { position: "bottom-center", timeout: 7000, icon: "fa fa-check fa-2x" }
             commit('setSuccessMessage', { message: message, options: options })
         } catch (error) {
             if (error.response.status === 404) {
@@ -18,10 +18,11 @@ const actions = {
         }
     },
     async updatePassword({ commit }, data) {
+        const { token, password, password_confirmation } = data
         try {
-            await Passwords.update(data.id, data.form)
+            await Passwords.update(token, { password: { password, password_confirmation }})
         } catch (error) {
-            commit('setErrorMessage')
+            throw error
         }
     }
 }
