@@ -42,6 +42,7 @@
 <script>
 import Alert from './components/Alert'
 import { mapGetters } from 'vuex'
+import { user } from './config'
 
 export default {
   name: 'App',
@@ -52,6 +53,9 @@ export default {
     ...mapGetters([
       'loader'
     ]),
+  },
+  created () {
+    this.$store.commit('setUser', user)
   },
   data: () => ({
     rail: false,
