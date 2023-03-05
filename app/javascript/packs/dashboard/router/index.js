@@ -8,6 +8,7 @@ import ProductsIndex from "../views/products/Index"
 import ProductsNew from "../views/products/New"
 import ProductsEdit from "../views/products/Edit"
 import Settings from "../views/settings/Index"
+import store from '../store'
 
 const router = createRouter({
     history: createWebHistory(),
@@ -58,6 +59,15 @@ const router = createRouter({
             component: Settings
         }
     ]
+})
+
+router.beforeEach((to, from, next) => {
+    const user = store.getters.user
+    if (!user || !user.admin) {
+        !user ? window.location.href = window.location.href = '/account/login' : window.location.href = '/'
+    } else {
+        next()
+    }
 })
 
 export default router
