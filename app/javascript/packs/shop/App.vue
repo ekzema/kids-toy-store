@@ -50,7 +50,7 @@ export default {
         document.body.classList.add('overflow_hidden')
       } else {
         document.body.classList.add('preloader-deactive')
-        document.body.classList.remove('poverflow_hidden')
+        document.body.classList.remove('overflow_hidden')
       }
     }
   }
