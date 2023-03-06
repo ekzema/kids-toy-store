@@ -8,6 +8,7 @@
 import NewProducts from "./components/NewProducts"
 
 export default {
+  name: 'index',
   components: {
     // MainSlider,
     NewProducts

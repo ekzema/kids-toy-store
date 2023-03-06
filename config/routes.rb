@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'products/index'
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :passwords, only: [:create, :update], param: :token

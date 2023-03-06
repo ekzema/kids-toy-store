@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import * as guards from'./guards'
-import HomeIndex from '../views/home/Index'
+import ProductsIndex from '../views/products/Index'
 import AccountNew from '../views/account/New.vue'
 import AccountLogin from '../views/account/Login.vue'
 import AccountForgot from '../views/account/Forgot.vue'
@@ -12,9 +12,9 @@ const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
-      name: 'HomeIndex',
+      name: 'ProductsIndex',
       path: '/',
-      component: HomeIndex
+      component: ProductsIndex
     },
     {
       name: 'AccountNew',
