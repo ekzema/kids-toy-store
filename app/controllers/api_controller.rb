@@ -52,6 +52,7 @@ class ApiController < ActionController::API
   def current_user
     return unless request.headers['Authorization']
 
+    authorize_by_access_header!
     @current_user ||= User.find(payload['user_id'])
   rescue StandardError
     nil
