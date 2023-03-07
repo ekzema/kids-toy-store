@@ -1,19 +1,19 @@
 Rails.application.routes.draw do
-  get 'products/index'
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :passwords, only: [:create, :update], param: :token
-      resources :registrations, :only => [:create] do
+      resources :registrations, only: [:create] do
         collection do
           get 'check_email'
           put 'confirmation'
         end
       end
-      resources :sessions, :only => [:create] do
+      resources :sessions, only: [:create] do
         collection do
           match "/", to: "sessions#destroy", via: "delete"
         end
       end
+      resources :products, only: [:index, :show]
 
       namespace :admin do
         resources :products do
