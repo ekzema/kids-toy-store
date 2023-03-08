@@ -24,7 +24,7 @@
 import { mapGetters } from 'vuex'
 import AppHeader from './components/app/Header'
 import AppFooter from './components/app/Footer'
-import { user } from './config'
+import { user } from '../helpers/utils'
 
 export default {
   components: {

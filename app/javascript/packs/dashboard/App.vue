@@ -42,7 +42,7 @@
 <script>
 import Alert from './components/Alert'
 import { mapGetters } from 'vuex'
-import { user } from './config'
+import { user } from '../helpers/utils'
 
 export default {
   name: 'App',

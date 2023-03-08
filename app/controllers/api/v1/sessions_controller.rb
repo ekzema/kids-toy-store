@@ -11,7 +11,7 @@ class Api::V1::SessionsController < ApiController
     session = JWTSessions::Session.new(payload: payload, refresh_by_access_allowed: true)
     tokens = session.login
 
-    render_response({ access: tokens[:access], access_expires_at: tokens[:access_expires_at], admin: user.admin })
+    render_response({ access_token: tokens[:access], access_expires_at: tokens[:access_expires_at], admin: user.admin })
   end
 
   def destroy
