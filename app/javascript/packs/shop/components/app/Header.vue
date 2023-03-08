@@ -209,11 +209,8 @@ export default {
   },
   methods: {
    async logout () {
-     const response = await this.$store.dispatch('deleteSession', { id: '', options: { fullResponse: true }})
-     if (response.status === 204) {
-       delete localStorage.user
-       this.$store.commit('setUser', null)
-     }
+     await this.$store.dispatch('deleteSession', { id: '', options: { fullResponse: true }})
+     this.$store.dispatch('clearUser')
     }
   }
 }

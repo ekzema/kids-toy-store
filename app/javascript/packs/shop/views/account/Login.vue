@@ -70,8 +70,8 @@ export default {
 
       try {
         const response = await this.$store.dispatch('createSession', this.formData)
-        localStorage.access_token = response.access
-        localStorage.user = JSON.stringify({ admin: response.admin })
+        localStorage.user = JSON.stringify(response)
+        this.$store.commit('setUser', response)
 
         this.resetForm()
         this.$router.push('/')

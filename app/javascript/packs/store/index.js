@@ -23,6 +23,10 @@ const actions = {
     },
     hideLoader({ commit }) {
         commit('setLoader', false)
+    },
+    clearUser({ commit }) {
+        commit('setUser', null)
+        delete localStorage.user
     }
 }
 

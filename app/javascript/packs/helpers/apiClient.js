@@ -12,10 +12,17 @@ class ApiClient {
     }
 
     async query(method, url, payload = null, options = {}) {
-        if (localStorage.access_token) this.axios.defaults.headers.common['Authorization'] = localStorage.access_token
-
         const res = await this.store
         const store = res.default
+        const user = store.getters.user
+        if (user && user.access_token) {
+            const expires_at = new Date(user.access_expires_at)
+            if (new Date().getTime() > expires_at.getTime()) {
+                store.dispatch('clearUser')
+            } else {
+                this.axios.defaults.headers.common['Authorization'] = user.access_token
+            }
+        }
 
         let timeoutID = setTimeout(() => {
             if (this.loader) store.dispatch('showLoader')
@@ -26,14 +33,7 @@ class ApiClient {
 
             return options['fullResponse'] ? response : response.data
         } catch (error) {
-            if (error.response.status === 401) {
-                delete localStorage.access_token
-                delete localStorage.user
-                store.commit('setUser', null)
-
-                return error
-            }
-
+            if (error.response.status === 401) store.dispatch('clearUser')
             throw error
         } finally {
             clearTimeout(timeoutID)

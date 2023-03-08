@@ -14,7 +14,7 @@ const actions = {
     },
     async deleteSession({ commit }, { id, options }) {
         try {
-            return await Sessions.delete(id, options)
+            await Sessions.delete(id, options)
         } catch (error) {
             commit('setErrorMessage')
         }
