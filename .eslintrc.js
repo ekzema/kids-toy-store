@@ -1,18 +1,20 @@
 module.exports = {
-    "env": {
-        "browser": true,
-        "es2021": true
+    env: {
+        node: true,
     },
-    "extends": [
-        "plugin:vue/essential",
-        "standard"
+    extends: [
+        'eslint:recommended',
+        "plugin:vue/vue3-recommended",
+        "prettier"
     ],
-    "parserOptions": {
+    parserOptions: {
         "ecmaVersion": 2020
     },
-    "plugins": [
+    plugins: [
         "vue"
     ],
-    "rules": {
+    rules: {
+        "vue/require-default-prop": "off",
+        'generator-star-spacing': 'off',
     }
-};
+}
