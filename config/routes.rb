@@ -35,6 +35,6 @@ Rails.application.routes.draw do
   get 'dashboard', to: 'dashboard#index'
   match "/dashboard/*path", to: "dashboard#index", format: false, via: :get
 
-  root "store#index"
-  match "*path", to: "store#index", format: false, via: :get
+  root "shop#index"
+  match "*path", to: "shop#index", format: false, via: :get
 end
