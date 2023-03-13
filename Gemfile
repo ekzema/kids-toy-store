@@ -42,7 +42,7 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
-gem 'webpacker', '~> 5.4', '>= 5.4.3'
+gem 'webpacker', '6.0.0.rc.6'
 
 #API
 gem 'active_model_serializers', '~> 0.10.13'

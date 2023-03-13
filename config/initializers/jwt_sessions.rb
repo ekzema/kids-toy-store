@@ -8,7 +8,7 @@ unless Rails.env.test?
     token_prefix: "jwt_",
     pool_size: Integer(ENV.fetch("RAILS_MAX_THREADS", 5))
   }
-  # options.merge!({ redis_host: "redis" }) if Rails.env.development?
+  options.merge!({ redis_host: "redis" }) if Rails.env.development?
 
   JWTSessions.token_store = :redis, options
 end
