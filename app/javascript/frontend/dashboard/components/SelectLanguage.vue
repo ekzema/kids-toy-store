@@ -1,21 +1,21 @@
 <template>
   <v-radio-group
+      v-model="selectedLanguage"
       true-icon=""
       false-icon=""
       density="compact"
-      v-model="selectedLanguage"
       row
       inline
       active-class="active"
       @update:modelValue="onSelectLang"
   >
     <v-radio
-      class="mx-2"
       v-for="lang in languages"
       :key="lang.code"
+      :ref="lang.code"
+      class="mx-2"
       :class="`edit_lang-${lang.code}`"
       :value="lang.code"
-      :ref="lang.code"
     ></v-radio>
   </v-radio-group>
 </template>
@@ -26,8 +26,9 @@ import '../assets/css/radio_lang.css'
 import { languages } from '../config'
 
 export default {
-  name: 'select-language',
+  name: 'SelectLanguage',
   props: ['language'],
+  emits: ['update:language'],
   data() {
     return {
       languages: languages,

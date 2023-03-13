@@ -3,7 +3,7 @@ module.exports = {
         node: true,
     },
     extends: [
-        'eslint:recommended',
+        "eslint:recommended",
         "plugin:vue/vue3-recommended",
         "prettier"
     ],
@@ -15,6 +15,8 @@ module.exports = {
     ],
     rules: {
         "vue/require-default-prop": "off",
-        'generator-star-spacing': 'off',
+        "generator-star-spacing": "off",
+        "vue/v-on-event-hyphenation": "off",
+        "vue/require-prop-types": "off"
     }
 }
