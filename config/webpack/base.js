@@ -19,7 +19,7 @@ module.exports = merge({
             },
             // {
             //     enforce: 'pre',
-            //     test: /\.(js|jsx)$/i,
+            //     test: /\.(vue)$/i,
             //     loader: 'eslint-loader'
             // }
         ]

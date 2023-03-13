@@ -13,9 +13,9 @@
               v-model="selectedText"
               label="Search by name"
               prepend-icon="search"
-              @keyup.enter="search"
               variant="underlined"
               color="primary"
+              @keyup.enter="search"
           >
           </v-text-field>
         </v-card-text>
@@ -29,14 +29,14 @@
       >
         <v-card-actions>
           <v-tooltip location="bottom">
-            <template v-slot:activator="{ props }">
+            <template #activator="{ props }">
               <v-btn
-                  @click="search"
                   color="secondary-dark-blue"
                   v-bind="props"
                   size="x-large"
                   variant="elevated"
                   icon
+                  @click="search"
               >
                 <v-icon>mdi-magnify</v-icon>
               </v-btn>
@@ -54,6 +54,7 @@
 <script>
 export default {
   name: 'SearchPanel',
+  emits: ['search'],
   data: () => ({
     selectedText: ''
   }),

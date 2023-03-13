@@ -52,7 +52,7 @@ export default {
     SelectLanguage,
   },
   data: () => ({
-    language: 'uk',
+    language: 'ua',
     valid: false,
     nameRules: [
       v => !!v || 'Name is required'
@@ -98,7 +98,7 @@ export default {
     clearForm() {
       this.$refs.form.reset()
       this.formData.name = {}
-      this.language = 'uk'
+      this.language = 'ua'
     },
     setFormData() {
       this.formData = {

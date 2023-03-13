@@ -82,7 +82,7 @@ export default {
     Pagination
   },
   data: () => ({
-    language: 'uk',
+    language: 'ua',
     selectCategory: {},
     dialog: false,
     searchText: '',

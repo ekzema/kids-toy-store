@@ -87,7 +87,7 @@ export default {
     Pagination
   },
   data: () => ({
-    language: 'uk',
+    language: 'ua',
     selectProduct: {},
     dialog: false,
     searchText: '',

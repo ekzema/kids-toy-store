@@ -285,7 +285,7 @@ export default {
       v => !!v  || 'This field is required',
       v => v.toString().length > 3 || 'Number length must be >= 4'
     ],
-    language: 'uk',
+    language: 'ua',
     form: {
       data: {
         new: false,
@@ -372,7 +372,7 @@ export default {
 
       this.form.previews.logo = ''
       this.form.previews.gallery = []
-      this.language = 'uk'
+      this.language = 'ua'
     },
     setFormData() {
       this.form.data.new = this.product.new
