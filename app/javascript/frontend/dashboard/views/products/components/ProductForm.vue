@@ -7,14 +7,14 @@
       v-model:galleryPreviews="form.previews.gallery"
   />
   <select-language
-      class="d-flex flex-row-reverse"
       v-model:language="language"
+      class="d-flex flex-row-reverse"
   />
   <v-form
-      @submit.prevent="submitForm"
       ref="form"
       v-model="valid"
       lazy-validation
+      @submit.prevent="submitForm"
   >
     <select-categories
         v-model:language="language"
@@ -29,7 +29,7 @@
         color="primary"
         required
     >
-      <template v-slot:append-inner>
+      <template #append-inner>
           <img
               height="20"
               width="20"
@@ -46,7 +46,7 @@
         variant="underlined"
         required
     >
-      <template v-slot:append-inner>
+      <template #append-inner>
         <img
              class="mt-8"
              height="20"
@@ -150,7 +150,6 @@
           lg="6"
       >
         <v-combobox
-            ref="name"
             v-model="form.data.brand"
             :items="brands"
             required
@@ -158,7 +157,6 @@
             item-title="name"
             variant="underlined"
             label="Brand"
-            filter-keys="name"
             @update:modelValue="setBrands"
         ></v-combobox>
       </v-col>
@@ -439,9 +437,7 @@ export default {
       })
     },
     setBrands(text) {
-      if (!text) return
-
-      text.length
+      text || text.length
           ? this.$store.dispatch('fetchBrands', {q: text})
           : this.$store.dispatch('clearBrands')
     }
