@@ -437,9 +437,9 @@ export default {
       })
     },
     setBrands(text) {
-      text || text.length
-          ? this.$store.dispatch('fetchBrands', {q: text})
-          : this.$store.dispatch('clearBrands')
+      !text || !text.length
+          ? this.$store.dispatch('clearBrands')
+          : this.$store.dispatch('fetchBrands', { q: text })
     }
   }
 }
