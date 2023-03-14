@@ -153,13 +153,13 @@
             ref="name"
             v-model="form.data.brand"
             :items="brands"
-            @update:modelValue="setBrands"
-            filter-keys="name"
-            label="Brand"
-            variant="underlined"
-            item-title="name"
-            color="primary"
             required
+            color="primary"
+            item-title="name"
+            variant="underlined"
+            label="Brand"
+            filter-keys="name"
+            @update:modelValue="setBrands"
         ></v-combobox>
       </v-col>
     </v-row>
@@ -203,8 +203,8 @@
           lg="4"
       >
         <v-switch
-            class="d-flex justify-left"
             v-model="form.data.visible"
+            class="d-flex justify-left"
             hide-details
             color="primary"
             label="Visible"
@@ -263,7 +263,7 @@ import Specifications from "./Specifications.vue"
 import { languages } from '../../../config'
 
 export default {
-  name: 'product-form',
+  name: 'ProductForm',
   components: {
     GalleryUploader,
     SelectLanguage,
@@ -272,6 +272,17 @@ export default {
     SelectAge,
     Specifications
   },
+  props: {
+    btnName: {
+      type: String,
+      default: 'Save'
+    },
+    product: {
+      type: Object,
+      default: null
+    }
+  },
+  emits: ['submitForm'],
   data: () => ({
     valid: false,
     requiredRules: [
@@ -315,21 +326,16 @@ export default {
       }
     }
   }),
-  props: {
-    btnName: {
-      type: String,
-      default: 'Save'
-    },
-    product: {
-      type: Object,
-      default: null
-    }
-  },
   computed: {
     ...mapGetters([
       'detailConstructor',
       'brands'
     ])
+  },
+  watch: {
+    product() {
+      this.setFormData()
+    }
   },
   created() {
     this.$store.dispatch('fetchDetailConstructor')
@@ -438,11 +444,6 @@ export default {
       text.length
           ? this.$store.dispatch('fetchBrands', {q: text})
           : this.$store.dispatch('clearBrands')
-    }
-  },
-  watch: {
-    product() {
-      this.setFormData()
     }
   }
 }
