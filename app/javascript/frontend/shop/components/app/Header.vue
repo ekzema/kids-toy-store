@@ -197,7 +197,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'header',
+  name: 'AppHeader',
   data: () => ({
   }),
   computed: {
