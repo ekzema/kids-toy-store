@@ -4,6 +4,7 @@ import sessions from './modules/sessions'
 import passwords from "./modules/passwords"
 import defaultStore from '../../store'
 import registrations from './modules/registrations'
+import categories from './modules/categories'
 
 const toast = useToast()
 
@@ -38,6 +39,7 @@ const store = createStore({
     modules: {
         sessions,
         passwords,
+        categories,
         defaultStore,
         registrations,
     },

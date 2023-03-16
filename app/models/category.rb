@@ -3,6 +3,7 @@
 class Category < ApplicationRecord
   belongs_to :parent, class_name: 'Category', optional: true
   has_many :product_categories, dependent: :restrict_with_exception
+  has_many :sub_categories, class_name: 'Category', foreign_key: :parent_id, inverse_of: :parent # rubocop:disable Rails/HasManyOrHasOneDependent
 
   validates :name, presence: true
   validates :name, uniqueness: true

@@ -203,9 +203,11 @@ export default {
   computed: {
     ...mapGetters([
       'user',
+      'categories'
     ]),
   },
   created() {
+    this.$store.dispatch('fetchCategories')
   },
   methods: {
    async logout () {
