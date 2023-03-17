@@ -17,6 +17,11 @@ const router = createRouter({
       component: ProductsIndex
     },
     {
+      name: 'Category',
+      path: '/:category/:subcategory?',
+      component: ProductsIndex
+    },
+    {
       name: 'AccountNew',
       path: '/account/new',
       component: AccountNew,
