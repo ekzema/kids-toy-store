@@ -57,6 +57,7 @@ export default {
   created () {
     this.$store.commit('setUser', user)
   },
+  // eslint-disable-next-line vue/order-in-components
   data: () => ({
     rail: false,
     drawer: true,

@@ -31,17 +31,11 @@ export default {
     AppHeader,
     AppFooter
   },
-  data () {
-    {
-    }
-  },
+  data () {},
   computed: {
     ...mapGetters([
       'loader'
     ]),
-  },
-  created () {
-    this.$store.commit('setUser', user)
   },
   watch: {
     loader() {
@@ -53,6 +47,9 @@ export default {
         document.body.classList.remove('overflow_hidden')
       }
     }
+  },
+  created () {
+    this.$store.commit('setUser', user)
   }
 }
 </script>
