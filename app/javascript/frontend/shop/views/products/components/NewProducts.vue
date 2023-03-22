@@ -26,20 +26,15 @@
                                 <a class="action-quick-view" href="shop-cart.html"><i class="ion-ios-cart"></i></a>
                                 <a class="action-quick-view" href="javascript:void(0)"><i class="ion-arrow-expand"></i></a>
                                 <a class="action-quick-view" href="shop-wishlist.html"><i class="ion-heart"></i></a>
-                                <a class="action-quick-view" href="shop-compare.html"><i class="ion-shuffle"></i></a>
                               </div>
                             </div>
                             <div class="product-info">
-                              <div class="rating">
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
+                              <div class="code">
+                                <span class="code">Код товара: {{product.code}}</span>
                               </div>
-                              <h4 class="title"><a href="shop-single-product.html">{{product.name.ru}}</a></h4>
+                              <h4 class="title text-center"><a href="shop-single-product.html">{{product.name.ru}}</a></h4>
                               <div class="prices">
-                                <span class="price">${{product.price}}</span>
+                                <span class="price">{{product.price}} грн</span>
                               </div>
                             </div>
                           </div>

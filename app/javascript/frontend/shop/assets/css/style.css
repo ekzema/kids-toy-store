@@ -5701,6 +5701,10 @@ table p {
 
 .product-item {
   margin-bottom: 30px;
+  transition: box-shadow .3s;
+}
+.product-item:hover {
+  box-shadow: 0 5px 12px rgba(0,0,0,.2);
 }
 .product-item .product-thumb {
   border-radius: 5px 5px 0 0;
@@ -5709,9 +5713,14 @@ table p {
   display: flex;
   overflow: hidden;
   position: relative;
-  min-height: 307px;
+  height: 230px;
   justify-content: center;
   width: 100%;
+}
+.product-item .code {
+  font-size: 14px;
+  color: #979797;
+  margin-bottom: 10px;
 }
 .product-item .product-thumb .product-action {
   bottom: calc(50% - 60px);
