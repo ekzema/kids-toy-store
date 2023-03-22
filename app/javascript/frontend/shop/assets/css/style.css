@@ -5702,6 +5702,8 @@ table p {
 .product-item {
   margin-bottom: 30px;
   transition: box-shadow .3s;
+  background-color: #e4f6fe;
+  width: 100%;
 }
 .product-item:hover {
   box-shadow: 0 5px 12px rgba(0,0,0,.2);
@@ -5713,7 +5715,7 @@ table p {
   display: flex;
   overflow: hidden;
   position: relative;
-  height: 230px;
+  min-height: 230px;
   justify-content: center;
   width: 100%;
 }
@@ -5868,6 +5870,12 @@ table p {
     width: 100%;
   }
 }
+@media only screen and (min-width: 575px) {
+  .wrap-item {
+    display: flex;
+  }
+}
+
 .product-items-list .product-item .product-info {
   background-color: transparent;
   float: left;

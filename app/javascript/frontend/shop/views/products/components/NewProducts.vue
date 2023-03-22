@@ -17,7 +17,7 @@
                   <div class="col-lg-12">
                     <div class="product">
                       <div class="row">
-                        <div v-for="product in products" :key="product.id"  class="col-lg-3 col-md-4 col-sm-6">
+                        <div v-for="product in products" :key="product.id"  class="col-lg-3 col-md-4 col-sm-6 wrap-item">
                           <!-- Start Product Item -->
                           <div class="product-item">
                             <div class="product-thumb">
