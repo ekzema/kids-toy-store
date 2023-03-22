@@ -42,7 +42,7 @@ class Api::V1::Admin::ProductsController < AdminController
   private
 
   def products
-    products = Product.where(deleted_at: nil)
+    products = Product.all
     products = products.search(params[:q]) if params[:q]
 
     products

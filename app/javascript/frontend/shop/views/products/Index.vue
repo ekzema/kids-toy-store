@@ -8,14 +8,12 @@
 import NewProducts from "./components/NewProducts"
 
 export default {
-  name: 'index',
+  name: 'ProductsIndex',
   components: {
     // MainSlider,
     NewProducts
   },
   data () {
-    {
-    }
   },
   methods: {
   },
