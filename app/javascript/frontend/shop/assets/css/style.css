@@ -9694,35 +9694,35 @@ table p {
   font-size: 10px;
   fill: #f27022;
 }
-body:not(.touch-device) .menu:hover .menu__burger span,
-body:not(.touch-device) .menu:hover .menu__burger:after,
-body:not(.touch-device) .menu:hover .menu__burger:before {
+.menu:hover .menu__burger span,
+.menu:hover .menu__burger:after,
+.menu:hover .menu__burger:before {
   background: #fff;
 }
-body:not(.touch-device) .menu:hover .menu__burger:before {
+.menu:hover .menu__burger:before {
   -ms-transform: translateY(7px) rotate(45deg);
   transform: translateY(7px) rotate(45deg);
 }
-body:not(.touch-device) .menu:hover .menu__burger span {
+.menu:hover .menu__burger span {
   -ms-transform: rotate(-45deg);
   transform: rotate(-45deg);
 }
-body:not(.touch-device) .menu:hover .menu__burger:after {
+.menu:hover .menu__burger:after {
   -ms-transform: translateY(-7px) rotate(45deg);
   transform: translateY(-7px) rotate(45deg);
 }
-body:not(.touch-device) .menu:hover .menu__wrapper {
+.menu:hover .menu__wrapper {
   display: block;
 }
-body:not(.touch-device) .menu__item:hover .menu__head {
+.menu__item:hover .menu__head {
   background-color: #f5f5f5;
   border-color: #f379a7;
   color: #f379a7;
 }
-body:not(.touch-device) .menu__item:hover .menu__head:after {
+.menu__item:hover .menu__head:after {
   opacity: 1;
 }
-body:not(.touch-device) .menu__item:hover .menu__body {
+.menu__item:hover .menu__body {
   display: block;
 }
 
