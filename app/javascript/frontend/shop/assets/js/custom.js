@@ -504,18 +504,18 @@ $(document).ready(function(){
         $('.menu__item').removeClass('open');
     })
 
-    $('.menu__btn, .header__bg').on('touchstart', function() {
-        let menu = $('.menu__wrapper').css('display');
-        if (menu === 'block') {
-            $('.menu__wrapper').css({'display': 'none'});
-            $('.header__bg').css({'visibility': 'hidden'});
-            $('.menu__btn').removeClass('active').addClass('inactive');
-        } else {
-            $('.menu__wrapper').css({'display': 'block'});
-            $('.header__bg').css({'visibility': 'visible'});
-            $('.menu__btn').removeClass('inactive').addClass('active');
-        }
-    });
+    // $('.menu__btn, .header__bg').on('touchstart', function() {
+    //     let menu = $('.menu__wrapper').css('display');
+    //     if (menu === 'block') {
+    //         $('.menu__wrapper').css({'display': 'none'});
+    //         $('.header__bg').css({'visibility': 'hidden'});
+    //         $('.menu__btn').removeClass('active').addClass('inactive');
+    //     } else {
+    //         $('.menu__wrapper').css({'display': 'block'});
+    //         $('.header__bg').css({'visibility': 'visible'});
+    //         $('.menu__btn').removeClass('inactive').addClass('active');
+    //     }
+    // });
 
     /* ==========================================================================
        When document is loading, do
