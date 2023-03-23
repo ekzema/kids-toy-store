@@ -494,29 +494,6 @@ $(document).ready(function(){
         });
     }
 
-// Categories menu
-    $('.sub_button').on('click', function(event) {
-        event.preventDefault();
-        $(this).parents('.menu__item').addClass('open');
-    })
-
-    $('.menu__back').on('click', function() {
-        $('.menu__item').removeClass('open');
-    })
-
-    // $('.menu__btn, .header__bg').on('touchstart', function() {
-    //     let menu = $('.menu__wrapper').css('display');
-    //     if (menu === 'block') {
-    //         $('.menu__wrapper').css({'display': 'none'});
-    //         $('.header__bg').css({'visibility': 'hidden'});
-    //         $('.menu__btn').removeClass('active').addClass('inactive');
-    //     } else {
-    //         $('.menu__wrapper').css({'display': 'block'});
-    //         $('.header__bg').css({'visibility': 'visible'});
-    //         $('.menu__btn').removeClass('inactive').addClass('active');
-    //     }
-    // });
-
     /* ==========================================================================
        When document is loading, do
        ========================================================================== */
