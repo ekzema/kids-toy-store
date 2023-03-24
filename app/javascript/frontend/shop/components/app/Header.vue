@@ -81,17 +81,22 @@
         <div class="row row-gutter-0 align-items-center">
           <div class="col-4 col-sm-6 col-lg-4">
             <div ref="menu" class="menu">
-              <button class="menu__btn" @mouseover="menu('add')">
+              <button @click="closeMenu" class="menu__btn" @mouseover="menu('add')">
                 <span class="menu__burger"><span></span></span><span class="menu__text">Каталог товаров</span>
               </button>
               <div class="menu__wrapper">
                 <div v-for="category in categories" :key="category.id" class="menu__item">
-                  <router-link @click="menu('remove')" class="menu__head" :to="{ name: 'Category', params: { category: category.id }}">
-                    {{category.name.ru}}
-                    <div v-if="category.sub_categories.length" class="sub_button"></div>
-                  </router-link>
+                  <div class="wrap_menu_head">
+                    <router-link @click="menu('remove')" class="menu__head" :to="{ name: 'Category', params: { category: category.id }}">
+                      {{category.name.ru}}
+                      <div v-if="category.sub_categories.length" class="sub_button"></div>
+                    </router-link>
+                    <span v-if="category.sub_categories.length" @click="openSubMenu" class="next_button">
+                      ещё &#10132;
+                    </span>
+                  </div>
                   <div v-if="category.sub_categories.length" class="menu__body">
-                    <div class="menu__back">
+                    <div class="menu__back" @click="closeSubMenu">
                       &larr; назад
                     </div>
                     <ul class="menu__list menu__list_1">
@@ -207,6 +212,16 @@ export default {
     menu (type) {
       const menu = this.$refs.menu
       type === 'remove' ? menu.classList.remove("menu") : menu.classList.add('menu')
+    },
+    closeMenu () {
+      const bg = document.querySelector('.header__bg')
+      if (window.getComputedStyle(bg).visibility === 'visible') this.menu('remove')
+    },
+    openSubMenu (event) {
+      event.target.parentElement.parentElement.classList.add('open')
+    },
+    closeSubMenu (event) {
+      event.target.parentElement.parentElement.classList.remove('open')
     }
   }
 }
