@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class Category < ApplicationRecord
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+
   belongs_to :parent, class_name: 'Category', optional: true
   has_many :product_categories, dependent: :restrict_with_exception
   has_many :sub_categories, class_name: 'Category', foreign_key: :parent_id, inverse_of: :parent # rubocop:disable Rails/HasManyOrHasOneDependent
@@ -14,6 +17,11 @@ class Category < ApplicationRecord
   after_destroy :clean_dependence_child
 
   serialize :name, JSON
+
+  def normalize_friendly_id(value)
+    value = JSON.parse(value.gsub('=>', ':'))['ua']
+    super
+  end
 
   private
 
