@@ -57,6 +57,12 @@ gem 'jwt_sessions', '~> 3.0', '>= 3.0.1'
 # Email
 gem 'valid_email2', '~> 4.0', '>= 4.0.4'
 
+# Url
+gem 'friendly_id', '~> 5.5'
+
+# For transcription
+gem 'russian', '~> 0.6.0'
+
 # Env
 gem 'dotenv-rails', '~> 2.8', '>= 2.8.1'
 # Use Sass to process CSS
