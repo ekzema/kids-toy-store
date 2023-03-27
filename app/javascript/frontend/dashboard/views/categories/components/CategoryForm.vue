@@ -1,7 +1,7 @@
 <template>
   <select-language
-      class="d-flex flex-row-reverse"
       v-model:language="language"
+      class="d-flex flex-row-reverse"
   />
   <v-form
       @submit.prevent="submitForm"
@@ -47,9 +47,19 @@ import SelectLanguage from '../../../components/SelectLanguage'
 import { languages } from '../../../config'
 
 export default {
-  name: 'category-form',
+  name: 'CategoryForm',
   components: {
     SelectLanguage,
+  },
+  props: {
+    btnName: {
+      type: String,
+      default: 'Save'
+    },
+    category: {
+      type: Object,
+      default: null
+    }
   },
   data: () => ({
     language: 'ua',
@@ -63,20 +73,15 @@ export default {
       is_parent: false
     }
   }),
-  props: {
-    btnName: {
-      type: String,
-      default: 'Save'
-    },
-    category: {
-      type: Object,
-      default: null
-    }
-  },
   computed: {
     ...mapGetters([
       'parentCategories'
     ]),
+  },
+  watch: {
+    category() {
+      this.setFormData()
+    }
   },
   created() {
     this.fetchParentCategories()
@@ -114,11 +119,6 @@ export default {
           return true
         }
       })
-    }
-  },
-  watch: {
-    category() {
-      this.setFormData()
     }
   }
 }

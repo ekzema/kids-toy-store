@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class Product < ApplicationRecord
+  extend FriendlyId
+
+  friendly_id :slug_candidates, use: :slugged
   mount_uploader :logo, ProductUploader
 
   has_many :product_images, dependent: :destroy
@@ -26,6 +29,18 @@ class Product < ApplicationRecord
   serialize :specifications, JSON
   serialize :description, JSON
   serialize :name, JSON
+
+  def slug_candidates
+    translated_name = name['ua']
+    [
+      translated_name,
+      [Product.auto_increment_value, translated_name]
+    ]
+  end
+
+  def should_generate_new_friendly_id?
+    name_changed?
+  end
 
   def soft_delete!
     update(deleted_at: Time.zone.now)
