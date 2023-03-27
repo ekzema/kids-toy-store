@@ -1,6 +1,6 @@
 <template>
   <v-radio-group
-      v-model="selectedLanguage"
+      :model-value="language"
       true-icon=""
       false-icon=""
       density="compact"
@@ -31,8 +31,7 @@ export default {
   emits: ['update:language'],
   data() {
     return {
-      languages: languages,
-      selectedLanguage: this.language
+      languages: languages
     }
   },
   created () {
