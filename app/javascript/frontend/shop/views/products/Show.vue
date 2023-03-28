@@ -271,12 +271,13 @@
           </div>
         </div>
       </section>
-
     </main>
   </div>
 </template>
 
 <script>
+
+import Swiper from "swiper"
 
 export default {
   name: 'ProductsShow',
@@ -284,10 +285,33 @@ export default {
   },
   data () {
   },
+  mounted () {
+    this.$nextTick(() => {
+      const ProductNav = new Swiper('.single-product-nav-slider', {
+        spaceBetween: 11,
+        slidesPerView: 3,
+        freeMode: true,
+        navigation: {
+          nextEl: '.single-product-nav-slider .swiper-button-next',
+          prevEl: '.single-product-nav-slider .swiper-button-prev',
+        },
+      })
+
+      new Swiper('.single-product-thumb-slider', {
+        freeMode: true,
+        effect: 'fade',
+        fadeEffect: {
+          crossFade: true,
+        },
+        thumbs: {
+          swiper: ProductNav
+        }
+      })
+    })
+  },
   methods: {
   },
   created() {
-
   }
 }
 </script>

@@ -32,7 +32,11 @@
                               <div class="code">
                                 <span class="code">Код товара: {{product.code}}</span>
                               </div>
-                              <h4 class="title text-center"><a href="shop-single-product.html">{{product.name.ru}}</a></h4>
+                              <h4 class="title text-center">
+                                <router-link :to="{ name: 'ProductsShow', params: { id: product.slug } }">
+                                  {{product.name.ru}}
+                                </router-link>
+                              </h4>
                               <div class="prices">
                                 <span class="price">{{product.price}} грн</span>
                               </div>

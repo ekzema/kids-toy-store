@@ -8,9 +8,8 @@ jQueryBridget('isotope', Isotope, $)
 import 'slick-carousel/slick/slick.min'
 import 'jquery-zoom/jquery.zoom.min'
 import 'fancybox/dist/js/jquery.fancybox'
-import $ from 'jquery'
 
-(function($) {
+$(document).ready(function(){
 // Background Image
     $('[data-bg-img]').each(function() {
         $(this).css('background-image', 'url(' + $(this).data("bg-img") + ')');
@@ -188,27 +187,6 @@ import $ from 'jquery'
             0:{
                 slidesPerView : 1
             }
-        }
-    });
-
-    var ProductNav = new Swiper('.single-product-nav-slider', {
-        spaceBetween: 11,
-        slidesPerView: 3,
-        freeMode: true,
-        navigation: {
-            nextEl: '.single-product-nav-slider .swiper-button-next',
-            prevEl: '.single-product-nav-slider .swiper-button-prev',
-        },
-    });
-
-    var ProductThumb = new Swiper('.single-product-thumb-slider', {
-        freeMode: true,
-        effect: 'fade',
-        fadeEffect: {
-            crossFade: true,
-        },
-        thumbs: {
-            swiper: ProductNav
         }
     });
 
@@ -505,5 +483,5 @@ import $ from 'jquery'
             once: true,
         });
     });
-})(window.jQuery);
+});
 
