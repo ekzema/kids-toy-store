@@ -8,8 +8,9 @@ jQueryBridget('isotope', Isotope, $)
 import 'slick-carousel/slick/slick.min'
 import 'jquery-zoom/jquery.zoom.min'
 import 'fancybox/dist/js/jquery.fancybox'
+import $ from 'jquery'
 
-$(document).ready(function(){
+(function($) {
 // Background Image
     $('[data-bg-img]').each(function() {
         $(this).css('background-image', 'url(' + $(this).data("bg-img") + ')');
@@ -504,5 +505,5 @@ $(document).ready(function(){
             once: true,
         });
     });
-});
+})(window.jQuery);
 
