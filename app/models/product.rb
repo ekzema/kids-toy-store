@@ -31,10 +31,11 @@ class Product < ApplicationRecord
   serialize :name, JSON
 
   def slug_candidates
+    increment_value = id || Product.auto_increment_value
     translated_name = name['ua']
     [
       translated_name,
-      [Product.auto_increment_value, translated_name]
+      [increment_value, translated_name]
     ]
   end
 

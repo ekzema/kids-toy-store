@@ -87,7 +87,7 @@
               <div class="menu__wrapper">
                 <div v-for="category in categories" :key="category.id" class="menu__item">
                   <div class="wrap_menu_head">
-                    <router-link @click="menu('remove')" class="menu__head" :to="{ name: 'Category', params: { category: category.id }}">
+                    <router-link @click="menu('remove')" class="menu__head" :to="{ name: 'Category', params: { category: category.slug }}">
                       {{category.name.ru}}
                       <div v-if="category.sub_categories.length" class="sub_button"></div>
                     </router-link>
@@ -105,7 +105,7 @@
                             @click="menu('remove')"
                             :title="sub_category.name.ru"
                             class="menu__link"
-                            :to="{ name: 'Category', params: { category: category.id, subcategory: sub_category.id }}">
+                            :to="{ name: 'Category', params: { category: category.slug, subcategory: sub_category.slug }}">
                           {{sub_category.name.ru}}
                         </router-link>
                       </li>
