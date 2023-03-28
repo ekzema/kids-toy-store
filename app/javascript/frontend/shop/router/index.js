@@ -1,12 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import * as guards from'./guards'
 import ProductsIndex from '../views/products/Index'
-import AccountNew from '../views/account/New.vue'
-import AccountLogin from '../views/account/Login.vue'
-import AccountForgot from '../views/account/Forgot.vue'
-import AccountPassword from '../views/account/Password.vue'
-import AccountConfirmation from '../views/account/Confirmation.vue'
-import PageNotFound from "../../errors/PageNotFound.vue"
+import ProductsShow from "../views/products/Show"
+import AccountNew from '../views/account/New'
+import AccountLogin from '../views/account/Login'
+import AccountForgot from '../views/account/Forgot'
+import AccountPassword from '../views/account/Password'
+import AccountConfirmation from '../views/account/Confirmation'
+import PageNotFound from "../../errors/PageNotFound"
 
 const router = createRouter({
   history: createWebHistory(),
@@ -15,6 +16,11 @@ const router = createRouter({
       name: 'ProductsIndex',
       path: '/',
       component: ProductsIndex
+    },
+    {
+      name: 'ProductsShow',
+      path: '/products/:id',
+      component: ProductsShow
     },
     {
       name: 'Category',
