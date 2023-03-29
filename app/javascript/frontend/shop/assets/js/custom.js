@@ -333,46 +333,46 @@ $(document).ready(function(){
     });
 
 // Product Qty
-    var proQty = $(".pro-qty");
-    proQty.append('<a href="#" class="inc qty-btn"><i class="fa fa-plus"></i></a>');
-    proQty.append('<a href="#" class= "dec qty-btn"><i class="fa fa-minus"></i></a>');
-    $('.qty-btn').on('click', function(e) {
-        e.preventDefault();
-        var $button = $(this);
-        var oldValue = $button.parent().find('input').val();
-        if ($button.hasClass('inc')) {
-            var newVal = parseFloat(oldValue) + 1;
-        } else {
-            // Don't allow decrementing below zero
-            if (oldValue > 1) {
-                var newVal = parseFloat(oldValue) - 1;
-            } else {
-                newVal = 1;
-            }
-        }
-        $button.parent().find('input').val(newVal);
-    });
+//     var proQty = $(".pro-qty");
+//     proQty.append('<a href="#" class="inc qty-btn"><i class="fa fa-plus"></i></a>');
+//     proQty.append('<a href="#" class= "dec qty-btn"><i class="fa fa-minus"></i></a>');
+//     $('.qty-btn').on('click', function(e) {
+//         e.preventDefault();
+//         var $button = $(this);
+//         var oldValue = $button.parent().find('input').val();
+//         if ($button.hasClass('inc')) {
+//             var newVal = parseFloat(oldValue) + 1;
+//         } else {
+//             // Don't allow decrementing below zero
+//             if (oldValue > 1) {
+//                 var newVal = parseFloat(oldValue) - 1;
+//             } else {
+//                 newVal = 1;
+//             }
+//         }
+//         $button.parent().find('input').val(newVal);
+//     });
 
 // Product Qty
-    var proQty2 = $(".pro-qty-style2");
-    proQty2.append('<a href="#" class="inc qty-btn"><i class="fa fa-plus"></i></a>');
-    proQty2.append('<a href="#" class= "dec qty-btn"><i class="fa fa-window-minimize"></i></a>');
-    $('.qty-btn').on('click', function(e) {
-        e.preventDefault();
-        var $button2 = $(this);
-        var oldValue2 = $button2.parent().find('input').val();
-        if ($button2.hasClass('inc')) {
-            var newVal2 = parseFloat(oldValue2) + 1;
-        } else {
-            // Don't allow decrementing below zero
-            if (oldValue2 > 1) {
-                var newVal2 = parseFloat(oldValue2) - 1;
-            } else {
-                newVal2 = 1;
-            }
-        }
-        $button2.parent().find('input').val(newVal2);
-    });
+//     var proQty2 = $(".pro-qty-style2");
+//     proQty2.append('<a href="#" class="inc qty-btn"><i class="fa fa-plus"></i></a>');
+//     proQty2.append('<a href="#" class= "dec qty-btn"><i class="fa fa-window-minimize"></i></a>');
+//     $('.qty-btn').on('click', function(e) {
+//         e.preventDefault();
+//         var $button2 = $(this);
+//         var oldValue2 = $button2.parent().find('input').val();
+//         if ($button2.hasClass('inc')) {
+//             var newVal2 = parseFloat(oldValue2) + 1;
+//         } else {
+//             // Don't allow decrementing below zero
+//             if (oldValue2 > 1) {
+//                 var newVal2 = parseFloat(oldValue2) - 1;
+//             } else {
+//                 newVal2 = 1;
+//             }
+//         }
+//         $button2.parent().find('input').val(newVal2);
+//     });
 
 //Checkout Page Checkbox Accordion
     $("#create_pwd").on("change", function() {

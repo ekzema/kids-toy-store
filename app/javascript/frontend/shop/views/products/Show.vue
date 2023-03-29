@@ -278,6 +278,7 @@
 <script>
 
 import Swiper from "swiper"
+import './../../assets/js/fancybox.min'
 
 export default {
   name: 'ProductsShow',
@@ -287,6 +288,12 @@ export default {
   },
   mounted () {
     this.$nextTick(() => {
+      this.setSwiper()
+      this.setQty()
+    })
+  },
+  methods: {
+    setSwiper () {
       const ProductNav = new Swiper('.single-product-nav-slider', {
         spaceBetween: 11,
         slidesPerView: 3,
@@ -307,9 +314,28 @@ export default {
           swiper: ProductNav
         }
       })
-    })
-  },
-  methods: {
+    },
+    setQty () {
+      const proQty = document.getElementsByClassName('pro-qty')[0]
+      proQty.insertAdjacentHTML('beforeend', '<a href="#" class="inc qty-btn"><i class="fa fa-plus"></i></a>')
+      proQty.insertAdjacentHTML('beforeend', '<a href="#" class= "dec qty-btn"><i class="fa fa-minus"></i></a>')
+
+      const qtyBtns = document.querySelectorAll( '.qty-btn' )
+      qtyBtns.forEach(qtyBtn => {
+        qtyBtn.onclick = function(e) {
+          e.preventDefault()
+          const button = this
+          const oldValue = button.parentElement.querySelector('input').value
+          let newVal = 1
+          if (button.classList.contains('inc')) {
+            newVal = parseFloat(oldValue) + 1
+          } else if (oldValue > 1) {
+            newVal = parseFloat(oldValue) - 1
+          }
+          button.parentElement.querySelector('input').value = newVal
+        }
+      })
+    }
   },
   created() {
   }
