@@ -278,7 +278,6 @@
 <script>
 
 import Swiper from "swiper"
-import './../../assets/js/fancybox.min'
 
 export default {
   name: 'ProductsShow',
