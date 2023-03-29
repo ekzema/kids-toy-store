@@ -7,7 +7,7 @@ import Isotope from 'isotope-layout'
 jQueryBridget('isotope', Isotope, $)
 import 'slick-carousel/slick/slick.min'
 import 'jquery-zoom/jquery.zoom.min'
-import 'fancybox/dist/js/jquery.fancybox'
+import '@fancyapps/fancybox'
 
 $(document).ready(function(){
 // Background Image
