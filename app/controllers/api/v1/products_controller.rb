@@ -5,4 +5,9 @@ class Api::V1::ProductsController < ApiController
     products = Product.all
     render_paginate(products, ProductListSerializer)
   end
+
+  def show
+    product = Product.friendly.find(params[:id])
+    render_response(product)
+  end
 end

@@ -6,5 +6,7 @@ class Admin::ProductSerializer < ActiveModel::Serializer
 
   has_many :product_images
   has_many :product_categories
-  belongs_to :brand, serializer: Admin::BrandSerializer
+  belongs_to :brand do
+    object.brand.attributes.slice('id', 'name')
+  end
 end
