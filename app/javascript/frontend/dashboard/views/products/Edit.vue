@@ -26,7 +26,7 @@ import { mapGetters } from 'vuex'
 import ProductForm from "./components/ProductForm"
 
 export default {
-  name: 'edit',
+  name: 'ProductsEdit',
   components: {
     ProductForm,
   },

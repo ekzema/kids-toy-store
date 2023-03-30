@@ -2,7 +2,7 @@
 
 class ProductSerializer < ActiveModel::Serializer
   attributes :id, :name, :status, :description, :price, :code, :discount, :discount_price, :logo, :specifications,
-             :slug
+             :production_country, :slug
 
   has_many :product_images
   has_many :product_categories

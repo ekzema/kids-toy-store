@@ -5691,7 +5691,7 @@ table p {
 }
 
 .product-single-area {
-  padding: 110px 0 0;
+  padding: 20px 0 0;
 }
 @media only screen and (max-width: 991px) {
   .product-single-area {
@@ -7015,6 +7015,10 @@ table p {
   font-weight: 500;
   font-size: 16px;
   display: inline-block;
+}
+.widget-tags::first-letter {
+  text-transform: capitalize;
+  margin-left: 5px;
 }
 .single-product-info .widget .widget-tags {
   display: inline-block;

@@ -9,5 +9,13 @@ const actions = {
             commit('setErrorMessage')
         }
     },
+    async fetchProduct({ commit }, id) {
+        try {
+            const { data } = await Products.show(id)
+            commit('setProduct', data)
+        } catch (error) {
+            commit('setErrorMessage')
+        }
+    }
 }
 export default actions

@@ -59,21 +59,9 @@
             </div>
             <div class="col-lg-6">
               <div class="single-product-info">
-                <h4 class="title">Jigsaw Puzzles For Kids</h4>
+                <h4 class="title">{{product.name.ru}}</h4>
                 <div class="prices">
-                  <span class="price">$120.59</span>
-                </div>
-                <div class="product-rating">
-                  <div class="rating">
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-                  </div>
-                  <div class="review">
-                    <a href="#/">( 5 Customer Review )</a>
-                  </div>
+                  <span class="price">{{product.price}} грн</span>
                 </div>
                 <div class="single-product-featured">
                   <ul>
@@ -82,7 +70,7 @@
                     <li><i class="fa fa-check"></i> Money Return</li>
                   </ul>
                 </div>
-                <p class="product-desc">Lorem ipsum dolor sit amet, consect adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quisll exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duisol aute irure dolor in reprehenderit.</p>
+                <p class="product-desc">{{product.description.ru}}</p>
                 <div class="quick-product-action">
                   <div class="action-top">
                     <div class="pro-qty">
@@ -93,9 +81,9 @@
                   </div>
                 </div>
                 <div class="widget">
-                  <h3 class="title">SKU:</h3>
+                  <h3 class="title">Код товара:</h3>
                   <div class="widget-tags">
-                    <span>Ch-256xl</span>
+                    <span>{{product.code}}</span>
                   </div>
                 </div>
                 <div class="widget">
@@ -106,21 +94,16 @@
                   </div>
                 </div>
                 <div class="widget">
-                  <h3 class="title">Tag:</h3>
+                  <h3 class="title">Производитель:</h3>
                   <div class="widget-tags">
-                    <a href="blog.html">Toys,</a>
-                    <a href="blog.html">Dress</a>
+                    <a href="blog.html">{{product.production_country}}</a>
                   </div>
                 </div>
                 <div class="widget">
-                  <h3 class="title">Share:</h3>
-                  <div class="widget-tags widget-share">
-                    <span class="fa fa-facebook"></span>
-                    <span class="fa fa-dribbble"></span>
-                    <span class="fa fa-pinterest-p"></span>
-                    <span class="fa fa-twitter"></span>
-                    <span class="fa fa-linkedin"></span>
-                  </div>
+                    <h3 class="title">Брэнд:</h3>
+                    <div class="widget-tags">
+                        <a href="blog.html">{{product.brand.name}}</a>
+                    </div>
                 </div>
               </div>
             </div>
@@ -134,9 +117,6 @@
                     <li class="nav-item" role="presentation">
                       <button class="nav-link active" id="product-desc-tab" data-bs-toggle="tab" data-bs-target="#productDesc" type="button" role="tab" aria-controls="productDesc" aria-selected="true">Description</button>
                     </li>
-                    <li class="nav-item" role="presentation">
-                      <button class="nav-link" id="product-review-tab" data-bs-toggle="tab" data-bs-target="#productReview" type="button" role="tab" aria-controls="productReview" aria-selected="false">Reviews (03)</button>
-                    </li>
                   </ul>
                   <div class="tab-content product-description-tab-content" id="myTabContent">
                     <div class="tab-pane fade" id="commentProduct" role="tabpanel" aria-labelledby="product-aditional-tab">
@@ -146,122 +126,7 @@
                     </div>
                     <div class="tab-pane fade show active" id="productDesc" role="tabpanel" aria-labelledby="product-desc-tab">
                       <div class="product-desc">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisici elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed utlo perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
-                      </div>
-                    </div>
-                    <div class="tab-pane fade" id="productReview" role="tabpanel" aria-labelledby="product-review-tab">
-                      <div class="product-review">
-                        <div class="review-header">
-                          <h4 class="title">Customer Reviews</h4>
-                          <div class="review-info">
-                            <ul class="review-rating">
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star-o"></i></li>
-                            </ul>
-                            <span class="review-caption">Based on 1 review</span>
-                            <span class="review-write-btn">Write a review</span>
-                          </div>
-                        </div>
-                        <div class="product-review-form">
-                          <h4 class="title">Write a review</h4>
-                          <form action="#" method="post">
-                            <div class="review-form-content">
-                              <div class="row">
-                                <div class="col-md-12">
-                                  <div class="form-group">
-                                    <label for="reviewFormName">Name</label>
-                                    <input class="form-control" id="reviewFormName" type="text" placeholder="Enter your name" required="">
-                                  </div>
-                                </div>
-                                <div class="col-md-12">
-                                  <div class="form-group">
-                                    <label for="reviewFormEmail">Email</label>
-                                    <input class="form-control" id="reviewFormEmail" type="email" placeholder="john.smith@example.com" required="">
-                                  </div>
-                                </div>
-                                <div class="col-md-12">
-                                  <div class="rating">
-                                    <span class="rating-title">Rating</span>
-                                    <span>
-                                    <a class="fa fa-star-o" href="#/"></a>
-                                    <a class="fa fa-star-o" href="#/"></a>
-                                    <a class="fa fa-star-o" href="#/"></a>
-                                    <a class="fa fa-star-o" href="#/"></a>
-                                    <a class="fa fa-star-o" href="#/"></a>
-                                  </span>
-                                  </div>
-                                </div>
-                                <div class="col-md-12">
-                                  <div class="form-group">
-                                    <label for="reviewReviewTitle">Review Title</label>
-                                    <input class="form-control" id="reviewReviewTitle" type="text" placeholder="Give your review a title" required="">
-                                  </div>
-                                </div>
-                                <div class="col-md-12">
-                                  <div class="form-group">
-                                    <label for="reviewFormTextarea">Body of Review <span>(1500)</span></label>
-                                    <textarea class="form-control textarea" id="reviewFormTextarea" name="comment" rows="7" placeholder="Write your comments here" required=""></textarea>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="row">
-                                <div class="col-md-12">
-                                  <div class="form-group pull-right">
-                                    <button class="btn btn-theme" type="submit">Submit Review</button>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </form>
-                        </div>
-                        <div class="review-content">
-                          <div class="review-item">
-                            <ul class="review-rating">
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star-o"></i></li>
-                            </ul>
-                            <h4 class="title">Cobus Bester</h4>
-                            <h5 class="review-date"><span>Cobus Bester</span> on <span>Mar 03, 2021</span></h5>
-                            <p>Can’t wait to start mixin’ with this one! Irba-irr-Up-up-up-up-date your theme!</p>
-                            <a class="review-report" href="#/">Report as Inappropriate</a>
-                          </div>
-                        </div>
-                        <div class="review-content">
-                          <div class="review-item">
-                            <ul class="review-rating">
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star-o"></i></li>
-                            </ul>
-                            <h4 class="title">Cobus Bester</h4>
-                            <h5 class="review-date"><span>Cobus Bester</span> on <span>Mar 05, 2021</span></h5>
-                            <p>Can’t wait to start mixin’ with this one! Irba-irr-Up-up-up-up-date your theme!</p>
-                            <a class="review-report" href="#/">Report as Inappropriate</a>
-                          </div>
-                        </div>
-                        <div class="review-content">
-                          <div class="review-item">
-                            <ul class="review-rating">
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star-o"></i></li>
-                            </ul>
-                            <h4 class="title">Cobus Bester</h4>
-                            <h5 class="review-date"><span>Cobus Bester</span> on <span>Mar 07, 2021</span></h5>
-                            <p>Can’t wait to start mixin’ with this one! Irba-irr-Up-up-up-up-date your theme!</p>
-                            <a class="review-report" href="#/">Report as Inappropriate</a>
-                          </div>
-                        </div>
+                        <p>{{product.description.ru}}</p>
                       </div>
                     </div>
                   </div>
@@ -276,14 +141,20 @@
 </template>
 
 <script>
-
+import { mapGetters } from 'vuex'
 import Swiper from "swiper"
 
 export default {
   name: 'ProductsShow',
   components: {
   },
-  data () {
+  data: () => ({
+      images: []
+  }),
+  computed: {
+      ...mapGetters([
+          'product',
+      ]),
   },
   mounted () {
     this.$nextTick(() => {
@@ -291,52 +162,54 @@ export default {
       this.setQty()
     })
   },
-  methods: {
-    setSwiper () {
-      const ProductNav = new Swiper('.single-product-nav-slider', {
-        spaceBetween: 11,
-        slidesPerView: 3,
-        freeMode: true,
-        navigation: {
-          nextEl: '.single-product-nav-slider .swiper-button-next',
-          prevEl: '.single-product-nav-slider .swiper-button-prev',
-        },
-      })
-
-      new Swiper('.single-product-thumb-slider', {
-        freeMode: true,
-        effect: 'fade',
-        fadeEffect: {
-          crossFade: true,
-        },
-        thumbs: {
-          swiper: ProductNav
-        }
-      })
-    },
-    setQty () {
-      const proQty = document.getElementsByClassName('pro-qty')[0]
-      proQty.insertAdjacentHTML('beforeend', '<a href="#" class="inc qty-btn"><i class="fa fa-plus"></i></a>')
-      proQty.insertAdjacentHTML('beforeend', '<a href="#" class= "dec qty-btn"><i class="fa fa-minus"></i></a>')
-
-      const qtyBtns = document.querySelectorAll( '.qty-btn' )
-      qtyBtns.forEach(qtyBtn => {
-        qtyBtn.onclick = function(e) {
-          e.preventDefault()
-          const button = this
-          const oldValue = button.parentElement.querySelector('input').value
-          let newVal = 1
-          if (button.classList.contains('inc')) {
-            newVal = parseFloat(oldValue) + 1
-          } else if (oldValue > 1) {
-            newVal = parseFloat(oldValue) - 1
-          }
-          button.parentElement.querySelector('input').value = newVal
-        }
-      })
-    }
+  async created() {
+      await this.$store.dispatch('fetchProduct', this.$route.params.id)
+      this.images = [this.product.logo, ...this.product.product_images]
   },
-  created() {
+  methods: {
+      setSwiper () {
+          const ProductNav = new Swiper('.single-product-nav-slider', {
+              spaceBetween: 11,
+              slidesPerView: 3,
+              freeMode: true,
+              navigation: {
+                  nextEl: '.single-product-nav-slider .swiper-button-next',
+                  prevEl: '.single-product-nav-slider .swiper-button-prev',
+              },
+          })
+
+          new Swiper('.single-product-thumb-slider', {
+              freeMode: true,
+              effect: 'fade',
+              fadeEffect: {
+                  crossFade: true,
+              },
+              thumbs: {
+                  swiper: ProductNav
+              }
+          })
+      },
+      setQty () {
+          const proQty = document.getElementsByClassName('pro-qty')[0]
+          proQty.insertAdjacentHTML('beforeend', '<a href="#" class="inc qty-btn"><i class="fa fa-plus"></i></a>')
+          proQty.insertAdjacentHTML('beforeend', '<a href="#" class= "dec qty-btn"><i class="fa fa-minus"></i></a>')
+
+          const qtyBtns = document.querySelectorAll( '.qty-btn' )
+          qtyBtns.forEach(qtyBtn => {
+              qtyBtn.onclick = function(e) {
+                  e.preventDefault()
+                  const button = this
+                  const oldValue = button.parentElement.querySelector('input').value
+                  let newVal = 1
+                  if (button.classList.contains('inc')) {
+                      newVal = parseFloat(oldValue) + 1
+                  } else if (oldValue > 1) {
+                      newVal = parseFloat(oldValue) - 1
+                  }
+                  button.parentElement.querySelector('input').value = newVal
+              }
+          })
+      }
   }
 }
 </script>
