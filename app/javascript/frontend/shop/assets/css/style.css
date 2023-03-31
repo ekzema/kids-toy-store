@@ -6212,6 +6212,7 @@ table p {
 .single-product-slider .single-product-thumb .thumb-item img {
   cursor: crosshair;
   width: 100%;
+  border: 2px solid white;
 }
 .single-product-slider .single-product-thumb .zoomImg {
   pointer-events: none;
@@ -6284,6 +6285,7 @@ table p {
 }
 .single-product-slider .single-product-nav .swiper-container .swiper-wrapper .swiper-slide .nav-item img {
   width: 100%;
+  border: 2px solid white;
 }
 .single-product-slider .single-product-nav .nav-item {
   cursor: pointer;
