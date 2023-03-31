@@ -13,7 +13,7 @@
                       <div v-for="(image, index) in images" :key="index" class="swiper-slide zoom zoom-hover">
                         <div class="thumb-item">
                           <a class="lightbox-image" data-fancybox="gallery" :href="image.url">
-                            <img :src="image.medium.url" alt="Image-HasTech">
+                            <img :src="image.medium.url">
                           </a>
                         </div>
                       </div>
@@ -22,13 +22,15 @@
                 </div>
                 <div class="single-product-nav">
                   <div class="swiper-container single-product-nav-slider">
+                    <div class="button-next"></div>
                     <div class="swiper-wrapper">
                       <div v-for="(image, index) in images" :key="index" class="swiper-slide">
                         <div class="nav-item">
-                          <img :src="image.thumb.url" alt="Image-HasTech">
+                          <img :src="image.thumb.url">
                         </div>
                       </div>
                     </div>
+                    <div class="button-prev"></div>
                   </div>
                 </div>
               </div>
@@ -153,8 +155,9 @@ export default {
               slidesPerView: 3,
               freeMode: true,
               navigation: {
-                  nextEl: '.single-product-nav-slider .swiper-button-next',
-                  prevEl: '.single-product-nav-slider .swiper-button-prev',
+                  nextEl: '.button-next',
+                  prevEl: '.button-prev',
+                  disabledClass: 'button-lock'
               },
           })
 
