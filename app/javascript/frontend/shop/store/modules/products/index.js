@@ -4,7 +4,7 @@ import getters from './getters'
 
 const state = {
     products: [],
-    product: { name: {}, description: {}, brand: {} }
+    product: null
 }
 
 export default {

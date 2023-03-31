@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper page-shop-details-wrapper">
+  <div v-if="product" class="wrapper page-shop-details-wrapper">
     <main class="main-content">
       <!--== Start Shop Area ==-->
       <section class="product-single-area">
@@ -9,25 +9,11 @@
               <div class="single-product-slider">
                 <div class="single-product-thumb">
                   <div class="swiper-container single-product-thumb-slider">
-                    <div class="swiper-wrapper">
-                      <div class="swiper-slide zoom zoom-hover">
+                    <div  class="swiper-wrapper">
+                      <div v-for="(image, index) in images" :key="index" class="swiper-slide zoom zoom-hover">
                         <div class="thumb-item">
-                          <a class="lightbox-image" data-fancybox="gallery" href="/img/shop/details/1.jpg">
-                            <img src="/img/shop/details/1.jpg" alt="Image-HasTech">
-                          </a>
-                        </div>
-                      </div>
-                      <div class="swiper-slide zoom zoom-hover">
-                        <div class="thumb-item">
-                          <a class="lightbox-image" data-fancybox="gallery" href="/img/shop/details/2.jpg">
-                            <img src="/img/shop/details/2.jpg" alt="Image-HasTech">
-                          </a>
-                        </div>
-                      </div>
-                      <div class="swiper-slide zoom zoom-hover">
-                        <div class="thumb-item">
-                          <a class="lightbox-image" data-fancybox="gallery" href="/img/shop/details/3.jpg">
-                            <img src="/img/shop/details/3.jpg" alt="Image-HasTech">
+                          <a class="lightbox-image" data-fancybox="gallery" :href="image.url">
+                            <img :src="image.medium.url" alt="Image-HasTech">
                           </a>
                         </div>
                       </div>
@@ -37,19 +23,9 @@
                 <div class="single-product-nav">
                   <div class="swiper-container single-product-nav-slider">
                     <div class="swiper-wrapper">
-                      <div class="swiper-slide">
+                      <div v-for="(image, index) in images" :key="index" class="swiper-slide">
                         <div class="nav-item">
-                          <img src="/img/shop/details/nav1.jpg" alt="Image-HasTech">
-                        </div>
-                      </div>
-                      <div class="swiper-slide">
-                        <div class="nav-item">
-                          <img src="/img/shop/details/nav2.jpg" alt="Image-HasTech">
-                        </div>
-                      </div>
-                      <div class="swiper-slide">
-                        <div class="nav-item">
-                          <img src="/img/shop/details/nav3.jpg" alt="Image-HasTech">
+                          <img :src="image.thumb.url" alt="Image-HasTech">
                         </div>
                       </div>
                     </div>
@@ -156,15 +132,19 @@ export default {
           'product',
       ]),
   },
-  mounted () {
-    this.$nextTick(() => {
-      this.setSwiper()
-      this.setQty()
-    })
+  watch: {
+      product (product) {
+          if (product) {
+            this.images = [this.product.logo, ...this.product.product_images.map(product_image => product_image.image )]
+            this.$nextTick(() => {
+                this.setSwiper()
+                this.setQty()
+            })
+          }
+      }
   },
   async created() {
       await this.$store.dispatch('fetchProduct', this.$route.params.id)
-      this.images = [this.product.logo, ...this.product.product_images]
   },
   methods: {
       setSwiper () {

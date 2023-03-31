@@ -18,7 +18,7 @@ class ProductUploader < ApplicationUploader
   process resize_to_fit: [1300, 1300]
 
   version :medium do
-    process resize_to_fit: [500, 500]
+    process resize_to_fill: [570, 650]
   end
 
   version :pre_medium do
@@ -26,7 +26,7 @@ class ProductUploader < ApplicationUploader
   end
 
   version :thumb do
-    process resize_to_fill: [160, 80]
+    process resize_to_fill: [127, 100]
   end
 
   version :small do
