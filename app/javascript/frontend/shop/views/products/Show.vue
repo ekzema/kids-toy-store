@@ -20,9 +20,12 @@
                     </div>
                   </div>
                 </div>
-                <div class="single-product-nav">
+                <div v-if="images.length > 1" class="single-product-nav">
                   <div class="swiper-container single-product-nav-slider">
-                    <div class="button-next"></div>
+                  <div v-if="images.length > 3">
+                      <div class="button-next"></div>
+                      <div class="button-prev"></div>
+                  </div>
                     <div class="swiper-wrapper">
                       <div v-for="(image, index) in images" :key="index" class="swiper-slide">
                         <div class="nav-item">
@@ -30,7 +33,6 @@
                         </div>
                       </div>
                     </div>
-                    <div class="button-prev"></div>
                   </div>
                 </div>
               </div>

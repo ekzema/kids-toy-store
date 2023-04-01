@@ -6286,7 +6286,14 @@ table p {
 .single-product-slider .single-product-nav .swiper-container .swiper-wrapper .swiper-slide .nav-item img {
   width: 100%;
   border: 2px solid white;
+  filter: grayscale(70%);
 }
+.single-product-slider .single-product-nav .swiper-container .swiper-wrapper .swiper-slide-thumb-active .nav-item img {
+  opacity: 1;
+  border-color: #f379a7;
+  filter: contrast(200%);
+}
+
 .single-product-slider .single-product-nav .nav-item {
   cursor: pointer;
 }
@@ -9863,4 +9870,58 @@ table p {
 
 .Vue-Toastification__toast-body.font-size-class {
   font-size: 18px;
+}
+
+.swiper-button-prev {
+  color: #f379a7;
+  /*background-color: red;*/
+}
+.button-next{
+  position: absolute;
+  right: 10px;
+  top: calc(50% - 18px);
+  width: 35px;
+  height: 35px;
+  z-index: 999;
+  background-image: url("../img/icons/3.png");
+  background-size: contain;
+}
+
+.button-next:before {
+  position: absolute;
+  color: #fff;
+  content: "";
+  font-family: "FontAwesome";
+  right: calc(50% - 6px);
+  top: calc(50% - 28px);
+  font-size: 30px;
+  opacity: 1;
+  transition: all 0.3s ease-in-out;
+}
+
+.button-prev {
+  position: absolute;
+  left: 10px;
+  top: calc(50% - 18px);
+  width: 35px;
+  height: 35px;
+  z-index: 999;
+  background-image: url("../img/icons/3.png");
+  background-size: contain;
+}
+
+.button-prev:before {
+  position: absolute;
+  color: #fff;
+  content: "";
+  font-family: "FontAwesome";
+  right: calc(50% - 6px);
+  top: calc(50% - 28px);
+  font-size: 30px;
+  opacity: 1;
+  transition: all 0.3s ease-in-out;
+}
+
+.button-lock {
+  background-image: url("../img/icons/2.png");
 }
