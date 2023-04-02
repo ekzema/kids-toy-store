@@ -12,9 +12,9 @@
       >
         <h1 class="text-center mb-3">Edit category</h1>
         <category-form
-            @submit-form="submitForm"
-            btn-name="Update"
             :category="category"
+            btn-name="Update"
+            @submit-form="submitForm"
         />
       </v-sheet>
     </v-col>
@@ -26,7 +26,7 @@ import { mapGetters } from 'vuex'
 import CategoryForm from "./components/CategoryForm"
 
 export default {
-  name: 'edit',
+  name: 'CategoriesEdit',
   components: {
     CategoryForm,
   },
