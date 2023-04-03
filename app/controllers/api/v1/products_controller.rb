@@ -2,8 +2,8 @@
 
 class Api::V1::ProductsController < ApiController
   def index
-    products = Product.all
-    render_paginate(products, ProductListSerializer)
+    result = ::V1::Products::IndexService.perform(params)
+    render_paginate(result, ProductListSerializer)
   end
 
   def show
