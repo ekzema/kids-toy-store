@@ -63,15 +63,32 @@ import {mapGetters} from "vuex";
 export default {
   data () {
   },
-  created() {
-    this.$store.dispatch('fetchProducts')
+  computed: {
+      ...mapGetters([
+          'products'
+      ]),
+  },
+  watch: {
+      '$route.params' () {
+          this.fetchProductsByCategory()
+      }
+  },
+  created () {
+      this.$route.params.category ? this.fetchProductsByCategory() : this.fetchProducts()
   },
   methods: {
-  },
-  computed: {
-    ...mapGetters([
-      'products'
-    ]),
-  },
+      fetchProducts (params = {}) {
+          this.$store.dispatch('fetchProducts', params)
+      },
+      buildFilteredByCategory (category) {
+          this.fetchProducts({ categories: category })
+      },
+      fetchProductsByCategory () {
+          const params = this.$route.params
+          params.subcategory
+              ? this.buildFilteredByCategory(params.subcategory)
+              : this.buildFilteredByCategory(params.category)
+      }
+  }
 }
 </script>
