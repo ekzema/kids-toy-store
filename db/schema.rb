@@ -10,15 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_24_154325) do
-  create_table "brands", charset: "utf8mb3", force: :cascade do |t|
+ActiveRecord::Schema[7.0].define(version: 2023_04_04_113946) do
+  create_table "brands", charset: "utf8", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_brands_on_name", unique: true
   end
 
-  create_table "categories", charset: "utf8mb3", force: :cascade do |t|
+  create_table "categories", charset: "utf8", force: :cascade do |t|
     t.string "name"
     t.integer "parent_id"
     t.datetime "created_at", null: false
@@ -29,7 +29,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_24_154325) do
     t.index ["slug"], name: "index_categories_on_slug", unique: true
   end
 
-  create_table "product_categories", charset: "utf8mb3", force: :cascade do |t|
+  create_table "product_categories", charset: "utf8", force: :cascade do |t|
     t.bigint "product_id"
     t.bigint "category_id"
     t.datetime "created_at", null: false
@@ -38,7 +38,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_24_154325) do
     t.index ["product_id"], name: "index_product_categories_on_product_id"
   end
 
-  create_table "product_images", charset: "utf8mb3", force: :cascade do |t|
+  create_table "product_images", charset: "utf8", force: :cascade do |t|
     t.bigint "product_id"
     t.string "image"
     t.datetime "created_at", null: false
@@ -46,7 +46,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_24_154325) do
     t.index ["product_id"], name: "index_product_images_on_product_id"
   end
 
-  create_table "products", charset: "utf8mb3", force: :cascade do |t|
+  create_table "products", charset: "utf8", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.integer "status", default: 1
@@ -69,7 +69,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_24_154325) do
     t.index ["slug"], name: "index_products_on_slug", unique: true
   end
 
-  create_table "users", charset: "utf8mb3", force: :cascade do |t|
+  create_table "users", charset: "utf8", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.string "patronymic"
@@ -84,4 +84,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_24_154325) do
     t.index ["email"], name: "index_users_on_email"
   end
 
+  create_table "wishlists", charset: "utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_wishlists_on_product_id"
+    t.index ["user_id"], name: "index_wishlists_on_user_id"
+  end
+
+  add_foreign_key "wishlists", "products"
+  add_foreign_key "wishlists", "users"
 end

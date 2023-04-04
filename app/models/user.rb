@@ -6,6 +6,9 @@ class User < ApplicationRecord
 
   has_secure_password
 
+  has_many :wishlists, dependent: :restrict_with_exception
+  has_many :products, through: :wishlists, dependent: :destroy
+
   before_save :downcase_email
 
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, presence: true, uniqueness: true # rubocop:disable Rails/UniqueValidationWithoutIndex
