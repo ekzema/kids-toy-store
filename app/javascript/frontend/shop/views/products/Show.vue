@@ -22,7 +22,7 @@
                 </div>
                 <div v-if="images.length > 1" class="single-product-nav">
                   <div class="swiper-container single-product-nav-slider">
-                  <div v-if="images.length > 3">
+                  <div v-if="picturesIsMany">
                       <div class="button-next"></div>
                       <div class="button-prev"></div>
                   </div>
@@ -135,13 +135,16 @@ export default {
       ...mapGetters([
           'product',
       ]),
+      picturesIsMany () {
+         return this.images.length > 3
+      }
   },
   watch: {
       product (product) {
           if (product) {
             this.images = [this.product.logo, ...this.product.product_images.map(product_image => product_image.image )]
             this.$nextTick(() => {
-                this.setSwiper()
+                if (this.picturesIsMany) this.setSwiper()
                 this.setQty()
             })
           }

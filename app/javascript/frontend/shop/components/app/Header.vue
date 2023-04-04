@@ -34,10 +34,10 @@
             <div class="header-align">
               <div class="header-align-left">
                 <div class="header-logo-area">
-                  <a href="index.html">
-                    <img class="logo-main" src="./../../assets/img/logo.png" alt="Logo" />
-                    <img class="logo-light" src="./../../assets/img/logo.png" alt="Logo" />
-                  </a>
+                  <router-link :to="{ name: 'ProductsIndex'}">
+                      <img class="logo-main" src="./../../assets/img/logo.png" alt="Logo" />
+                      <img class="logo-light" src="./../../assets/img/logo.png" alt="Logo" />
+                  </router-link>
                 </div>
               </div>
               <div class="header-align-center">
