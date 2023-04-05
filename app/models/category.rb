@@ -19,6 +19,7 @@ class Category < ApplicationRecord
   serialize :name, JSON
 
   def normalize_friendly_id(value)
+    I18n.locale = :ru
     value = JSON.parse(value.gsub('=>', ':'))['ua']
     super
   end

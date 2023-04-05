@@ -7,10 +7,9 @@ class Product < ApplicationRecord
   mount_uploader :logo, ProductUploader
 
   has_many :product_images, dependent: :destroy
-  has_many :product_categories, dependent: :restrict_with_exception
-  has_many :categories, through: :product_categories, dependent: :destroy
-  has_many :wishlists, dependent: :restrict_with_exception
-  has_many :user, through: :wishlists, dependent: :destroy
+  has_many :product_categories, dependent: :destroy
+  has_many :categories, through: :product_categories
+  has_many :wishlists, dependent: :destroy
   belongs_to :brand, optional: true
 
   accepts_nested_attributes_for :product_images, allow_destroy: true, reject_if: :all_blank
@@ -33,6 +32,7 @@ class Product < ApplicationRecord
   serialize :name, JSON
 
   def slug_candidates
+    I18n.locale = :ru
     increment_value = id || Product.auto_increment_value
     translated_name = name['ua']
     [

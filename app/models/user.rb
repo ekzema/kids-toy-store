@@ -6,8 +6,8 @@ class User < ApplicationRecord
 
   has_secure_password
 
-  has_many :wishlists, dependent: :restrict_with_exception
-  has_many :products, through: :wishlists, dependent: :destroy
+  has_many :wishlists, dependent: :destroy
+  has_many :wish_products, source: :product, through: :wishlists
 
   before_save :downcase_email
 

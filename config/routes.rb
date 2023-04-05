@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       end
       resources :products, only: [:index, :show]
       resources :categories, only: [:index, :show]
+      resources :wishlists, only: [:index, :create]
 
       namespace :admin do
         resources :products do
