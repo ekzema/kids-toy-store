@@ -11,6 +11,9 @@ class Api::V1::WishlistsController < ApiController
   def create
     wishlist = current_user.wishlists.find_by(wishlist_params)
     wishlist&.destroy! || current_user.wishlists.create!(wishlist_params)
+    response = wishlist_params.to_hash.merge(wishlist: wishlist.nil?)
+
+    render_response(response)
   end
 
   private
