@@ -2,7 +2,7 @@
 
 class V1::Products::IndexService < ApplicationService
   def call
-    products = Product.all
+    products = Product.includes(:wishlists)
     products = filter_by_categories if params[:categories]
     products
   end

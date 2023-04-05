@@ -4,7 +4,15 @@
     <div class="product-item">
       <div class="product-thumb">
         <img :src="product.logo.pre_medium.url" alt="Image">
-        <span @click="handleWashlist(product.id)" class="items-wishlist"><i class="fa fa-heart-o"></i></span>
+        <span v-if="user" @click="handleWashlist(product.id)" class="items-wishlist">
+          <i v-if="product.wishlist" class="fa fa-heart"></i>
+          <i v-else class="fa fa-heart-o"></i>
+        </span>
+        <span v-else class="items-wishlist">
+          <router-link :to="{ name: 'AccountLogin'}">
+            <i class="fa fa-heart-o"></i>
+          </router-link>
+        </span>
         <div class="product-action">
           <a class="action-quick-view" href="shop-cart.html"><i class="ion-ios-cart"></i></a>
           <a class="action-quick-view" href="javascript:void(0)"><i class="ion-arrow-expand"></i></a>
@@ -37,6 +45,7 @@ export default {
   },
   computed: {
     ...mapGetters([
+      'user',
       'products'
     ]),
   },

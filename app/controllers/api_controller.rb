@@ -16,11 +16,11 @@ class ApiController < ActionController::API
   private
 
   def prepare_serializer(data, class_serializer = nil, options = {})
-    object_class = "#{fetch_object_class(data)}_serializer".camelize
-    object_class = "#{yield}::" + object_class if block_given?
-
+    options[:scope]  = current_user unless options[:scope]
+    object_class     = "#{fetch_object_class(data)}_serializer".camelize
+    object_class     = "#{yield}::" + object_class if block_given?
+    type_serialize   = data.respond_to?(:each) ? :each_serializer : :serializer
     class_serializer ||= object_class.constantize
-    type_serialize = data.respond_to?(:each) ? :each_serializer : :serializer
 
     ActiveModelSerializers::SerializableResource.new(data, type_serialize => class_serializer, **options)
   end

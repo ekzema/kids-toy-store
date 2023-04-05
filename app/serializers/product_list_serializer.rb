@@ -4,10 +4,10 @@ class ProductListSerializer < ActiveModel::Serializer
   attributes :id, :name, :price, :code, :discount, :discount_price, :logo, :slug, :wishlist
 
   def wishlist
-    puts '------------'
-    pp current_user
-    puts '------------'
-    true
+    return false unless current_user
+
+    wishlist = object.wishlists.pluck(:user_id).include?(current_user.id)
+    wishlist.present?
   end
 
   private

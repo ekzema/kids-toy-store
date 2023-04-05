@@ -5,11 +5,12 @@ const actions = {
         try {
             const { data } = await Wishlists.create(payload)
             const msg = data.wishlist ? 'Товар добавлен в список желаний.' : 'Товар удалён из списка желаний.'
+            commit('setWishlist', data)
             commit('setSuccessMessage', msg)
 
             return data
         } catch (error) {
-            throw error
+            commit('setErrorMessage')
         }
     }
 }
