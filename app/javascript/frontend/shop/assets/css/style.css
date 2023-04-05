@@ -9925,3 +9925,13 @@ table p {
 .button-lock {
   background-image: url("../img/icons/2.png");
 }
+
+.items-wishlist {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  line-height: 0;
+  color: #f379a7;
+  font-size: 25px;
+  cursor: pointer;
+}

@@ -20,9 +20,10 @@ import './assets/css/style.css'
 import'./assets/js/custom'
 
 const toastConfig = {
+  position: "top-right",
   maxToasts: 6,
   bodyClassName: ["font-size-class"],
-  position: "top-right"
+  hideProgressBar: true
 }
 
 document.addEventListener('DOMContentLoaded', () => {
