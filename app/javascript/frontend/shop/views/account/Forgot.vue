@@ -35,7 +35,7 @@ import { useVuelidate } from '@vuelidate/core'
 import { useToast } from "vue-toastification"
 
 export default {
-  name: 'forgot',
+  name: 'AccountForgot',
   setup: () => ({
     v$: useVuelidate(),
     toast: useToast()

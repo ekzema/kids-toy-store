@@ -61,7 +61,7 @@ import { emailRegex, emailRegexTemplate } from "../../config"
 import { useVuelidate } from '@vuelidate/core'
 
 export default {
-  name: 'new',
+  name: 'AccountNew',
   components: {
   },
   setup: () => ({

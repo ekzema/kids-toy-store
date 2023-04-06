@@ -8,14 +8,14 @@
 <script>
 
 export default {
-  name: 'confirmation-toast',
+  name: 'ConfirmationToast',
   props: ['email'],
 }
 </script>
 
 <style scoped>
 h3 {
-  color: white;
+  color: white !important;
   font-size: 18px;
 }
 
