@@ -2652,7 +2652,8 @@ table p {
 .header-area.header-default .header-action-area .btn-wishlist:hover {
   color: #f379a7;
 }
-.header-area.header-default .header-action-area .btn-cart {
+.header-area.header-default .header-action-area .btn-cart,
+.header-action-area .btn-wishlist {
   background-color: transparent;
   border: none;
   color: #000;
@@ -2667,7 +2668,9 @@ table p {
   -ms-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
 }
-.header-area.header-default .header-action-area .btn-cart .cart-count {
+.header-area.header-default .header-action-area .btn-cart .cart-count,
+.header-action-area .btn-wishlist .cart-wishlist-count
+{
   border-radius: 50%;
   background-color: #f379a7;
   color: #fff;
@@ -2681,7 +2684,8 @@ table p {
   text-align: center;
   width: 16px;
 }
-.header-area.header-default .header-action-area .btn-cart:hover {
+.header-area.header-default .header-action-area .btn-cart:hover,
+.header-action-area .btn-wishlist:hover {
   color: #f379a7;
 }
 .header-area.header-default .header-action-area .btn-sign-up {
@@ -2825,7 +2829,9 @@ table p {
   margin-right: 0;
   top: 0;
 }
-.header-area.header-default.header-style .header-action-area .btn-cart .cart-count {
+.header-area.header-default.header-style .header-action-area .btn-cart .cart-count,
+.header-action-area .btn-wishlist .cart-wishlist-count
+{
   background-color: #f379a7;
   color: #fff;
   font-size: 12px;
@@ -3342,7 +3348,9 @@ table p {
 .header-middle .header-align .header-align-right .header-action-area button:hover {
   color: #f379a7;
 }
-.header-middle .header-align .header-align-right .header-action-area button .cart-count {
+.header-middle .header-align .header-align-right .header-action-area button .cart-count,
+.header-middle .header-align .header-align-right .header-action-area .btn-wishlist .cart-wishlist-count
+{
   border-radius: 50%;
   background-color: #f379a7;
   color: #fff;

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_04_125849) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_06_134022) do
   create_table "brands", charset: "utf8", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -81,6 +81,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_04_125849) do
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "wishlists_count", default: 0
     t.index ["email"], name: "index_users_on_email"
   end
 

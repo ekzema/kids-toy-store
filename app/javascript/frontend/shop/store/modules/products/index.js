@@ -4,7 +4,8 @@ import getters from './getters'
 
 const state = {
     products: [],
-    product: null
+    product: null,
+    wishListCounter: 0
 }
 
 export default {

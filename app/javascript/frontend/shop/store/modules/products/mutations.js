@@ -6,6 +6,7 @@ const mutations = {
         state.product = payload
     },
     setWishlist (state, payload) {
+        state.wishListCounter = payload.wishlist_counter
         state.products = state.products.map((obj) => {
             if (obj.id === payload.product_id) return {...obj, wishlist: payload.wishlist}
             return obj

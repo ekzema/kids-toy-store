@@ -57,6 +57,7 @@
                 <div class="header-action-area">
                   <div class="header-action-wishlist">
                     <button class="btn-wishlist" onclick="window.location.href='shop-wishlist.html'">
+                      <span class="cart-wishlist-count">{{wishListCounter}}</span>
                       <i class="pe-7s-like"></i>
                     </button>
                   </div>
@@ -198,7 +199,8 @@ export default {
   computed: {
     ...mapGetters([
       'user',
-      'categories'
+      'categories',
+      'wishListCounter'
     ]),
   },
   created() {
