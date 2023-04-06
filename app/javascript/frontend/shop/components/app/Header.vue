@@ -57,7 +57,7 @@
                 <div class="header-action-area">
                   <div class="header-action-wishlist">
                     <button class="btn-wishlist" onclick="window.location.href='shop-wishlist.html'">
-                      <span class="cart-wishlist-count">{{wishListCounter}}</span>
+                      <span v-if="showWishlist" class="cart-wishlist-count">{{wishListCounter}}</span>
                       <i class="pe-7s-like"></i>
                     </button>
                   </div>
@@ -142,6 +142,7 @@
               </div>
               <div class="header-action-wishlist">
                 <button class="btn-wishlist" onclick="window.location.href='shop-wishlist.html'">
+                  <span v-if="showWishlist" class="cart-wishlist-count">{{wishListCounter}}</span>
                   <i class="pe-7s-like"></i>
                 </button>
               </div>
@@ -202,6 +203,9 @@ export default {
       'categories',
       'wishListCounter'
     ]),
+    showWishlist () {
+      return this.user && this.wishListCounter
+    }
   },
   created() {
     this.$store.dispatch('fetchCategories')

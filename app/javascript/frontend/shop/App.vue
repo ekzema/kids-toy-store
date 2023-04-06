@@ -50,6 +50,7 @@ export default {
   },
   created () {
     this.$store.commit('setUser', user)
+    if (user) this.$store.dispatch('fetchUserInfo')
   }
 }
 </script>

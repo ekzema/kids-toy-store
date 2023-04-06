@@ -6,6 +6,7 @@ const actions = {
             const { data } = await Wishlists.create(payload)
             const msg = data.wishlist ? 'Товар добавлен в список желаний.' : 'Товар удалён из списка желаний.'
             commit('setWishlist', data)
+            commit('setWishListCounter', data.wishlist_counter)
             commit('setSuccessMessage', msg)
 
             return data

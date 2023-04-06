@@ -7,6 +7,7 @@ import registrations from './modules/registrations'
 import categories from './modules/categories'
 import products from './modules/products'
 import wishlists from './modules/wishlists'
+import users from './modules/users'
 
 const toast = useToast()
 
@@ -39,6 +40,7 @@ const store = createStore({
     actions,
     mutations,
     modules: {
+        users,
         sessions,
         products,
         wishlists,

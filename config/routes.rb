@@ -13,6 +13,11 @@ Rails.application.routes.draw do
           match "/", to: "sessions#destroy", via: "delete"
         end
       end
+      resources :users, only: [:destroy] do
+        collection do
+          get 'info'
+        end
+      end
       resources :products, only: [:index, :show]
       resources :categories, only: [:index, :show]
       resources :wishlists, only: [:index, :create]

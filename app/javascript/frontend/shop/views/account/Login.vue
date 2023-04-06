@@ -72,6 +72,7 @@ export default {
         const response = await this.$store.dispatch('createSession', this.formData)
         localStorage.user = JSON.stringify(response)
         this.$store.commit('setUser', response)
+        this.$store.dispatch('fetchUserInfo')
 
         this.resetForm()
         this.$router.push('/')
