@@ -8,15 +8,12 @@
           <i v-if="product.wishlist" class="fa fa-heart"></i>
           <i v-else class="fa fa-heart-o"></i>
         </span>
-        <span v-else class="items-wishlist">
-          <router-link :to="{ name: 'AccountLogin'}">
-            <i class="fa fa-heart-o"></i>
-          </router-link>
+        <span v-else @click="needLogin" class="items-wishlist">
+          <i class="fa fa-heart-o"></i>
         </span>
         <div class="product-action">
           <a class="action-quick-view" href="shop-cart.html"><i class="ion-ios-cart"></i></a>
           <a class="action-quick-view" href="javascript:void(0)"><i class="ion-arrow-expand"></i></a>
-          <a class="action-quick-view" href="shop-wishlist.html"><i class="ion-heart"></i></a>
         </div>
       </div>
       <div class="product-info">
@@ -38,9 +35,14 @@
 </template>
 
 <script>
-import {mapGetters} from "vuex"
+import { mapGetters } from "vuex"
+import NeedLoginToast from './NeedLoginToast.vue'
+import { useToast } from "vue-toastification"
 
 export default {
+  setup: () => ({
+    toast: useToast()
+  }),
   data() {
   },
   computed: {
@@ -72,6 +74,14 @@ export default {
     },
     handleWashlist (id) {
       this.$store.dispatch('createWishlists', { product_id: id })
+    },
+    needLogin () {
+      this.toast.success({
+        component: NeedLoginToast,
+      }, {
+        position: "bottom-center",
+        icon: "fa fa-info-circle fa-2x"
+      })
     }
   }
 }

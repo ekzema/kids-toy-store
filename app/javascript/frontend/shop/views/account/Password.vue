@@ -40,7 +40,7 @@ import { useVuelidate } from '@vuelidate/core'
 import { useToast } from "vue-toastification"
 
 export default {
-  name: 'password',
+  name: 'AccountPassword',
   components: {
   },
   setup: () => ({
