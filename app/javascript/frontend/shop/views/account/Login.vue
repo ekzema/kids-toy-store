@@ -11,18 +11,18 @@
             <div class="login-register-style">
               <form ref="form" @submit.prevent="onSubmit">
                 <div class="login-register-input" :class="{'input-error': v$.formData.email.$error}">
-                  <input type="text" v-model="v$.formData.email.$model" placeholder="Email address">
+                  <input id="input-email" v-model="v$.formData.email.$model" type="text" placeholder="Email address">
                 </div>
                 <div v-for="(error, index) of v$.formData.email.$errors" :key="index">
                   <div class="error-msg">{{ error.$message }}</div>
                 </div>
                 <div class="login-register-input" :class="{'input-error': v$.formData.password.$error}">
-                  <input type="password" v-model="v$.formData.password.$model" placeholder="Password">
+                  <input v-model="v$.formData.password.$model" type="password" placeholder="Password">
                   <div class="forgot">
                     <router-link :to="{ name: 'AccountForgot'}">Forgot?</router-link>
                   </div>
                 </div>
-                <div class="input-errors" v-for="(error, index) of v$.formData.password.$errors" :key="index">
+                <div v-for="(error, index) of v$.formData.password.$errors" :key="index" class="input-errors">
                   <div class="error-msg">{{ error.$message }}</div>
                 </div>
                 <div class="btn-style-3">
@@ -40,10 +40,10 @@
 <script>
 import { helpers, required } from '@vuelidate/validators'
 import { useVuelidate } from '@vuelidate/core'
-import { emailRegexTemplate } from "../../config"
+import { emailRegexTemplate, serialize } from "../../helpers/utils"
 
 export default {
-  name: 'login',
+  name: 'AccountLogin',
   components: {
   },
   setup: () => ({ v$: useVuelidate() }),
@@ -70,7 +70,7 @@ export default {
 
       try {
         const response = await this.$store.dispatch('createSession', this.formData)
-        localStorage.user = JSON.stringify(response)
+        localStorage.setItem('user', serialize(response))
         this.$store.commit('setUser', response)
         this.$store.dispatch('fetchUserInfo')
 

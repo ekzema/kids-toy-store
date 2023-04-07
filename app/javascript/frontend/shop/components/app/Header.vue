@@ -45,7 +45,7 @@
                   <form action="#" method="post">
                     <div class="form-input-item">
                       <label for="search" class="sr-only">Search Everything</label>
-                      <input type="text" id="search" placeholder="Search Everything">
+                      <input id="search" type="text" placeholder="Search Everything">
                       <button type="submit" class="btn-src">
                         <i class="pe-7s-search"></i>
                       </button>

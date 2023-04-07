@@ -72,11 +72,11 @@
 <script>
 import SearchPanel from '../../components/SearchPanel'
 import Pagination from "../../components/Pagination.vue"
-import { perPage } from "../../helpers/utils";
+import { perPage } from "../../config";
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'index',
+  name: 'CategoriesIndex',
   components: {
     SearchPanel,
     Pagination

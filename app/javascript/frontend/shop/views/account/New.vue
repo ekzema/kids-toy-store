@@ -11,7 +11,7 @@
             <div class="login-register-style">
               <form ref="form" @submit.prevent="onSubmit">
                 <div class="login-register-input" :class="{'input-error': v$.formData.email.$error}">
-                  <input type="text" v-model="v$.formData.email.$model" placeholder="E-mail address">
+                  <input id="input-email" v-model="v$.formData.email.$model" type="text" placeholder="E-mail address">
                   <div v-if="spinner" class="input-spinner spinner-border-sm spinner-border" role="status">
                     <span class="visually-hidden">Loading...</span>
                   </div>
@@ -20,15 +20,15 @@
                   <div class="error-msg">{{ error.$message }}</div>
                 </div>
                 <div class="login-register-input" :class="{'input-error': v$.formData.password.$error}">
-                  <input type="password" v-model="v$.formData.password.$model" placeholder="Password">
+                  <input v-model="v$.formData.password.$model" type="password" placeholder="Password">
                 </div>
-                <div class="input-errors" v-for="(error, index) of v$.formData.password.$errors" :key="index">
+                <div v-for="(error, index) of v$.formData.password.$errors" :key="index" class="input-errors">
                   <div class="error-msg">{{ error.$message }}</div>
                 </div>
                 <div class="login-register-input" :class="{'input-error': v$.formData.password_confirmation.$error}">
-                  <input type="password" v-model="v$.formData.password_confirmation.$model" placeholder="Password confirmation">
+                  <input v-model="v$.formData.password_confirmation.$model" type="password" placeholder="Password confirmation">
                 </div>
-                <div class="input-errors" v-for="(error, index) of v$.formData.password_confirmation.$errors" :key="index">
+                <div v-for="(error, index) of v$.formData.password_confirmation.$errors" :key="index" class="input-errors">
                   <div class="error-msg">{{ error.$message }}</div>
                 </div>
                 <div class="login-register-paragraph">
@@ -57,7 +57,7 @@
 
 <script>
 import { helpers, required, minLength, sameAs } from '@vuelidate/validators'
-import { emailRegex, emailRegexTemplate } from "../../config"
+import { emailRegex, emailRegexTemplate } from "../../helpers/utils"
 import { useVuelidate } from '@vuelidate/core'
 
 export default {

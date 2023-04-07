@@ -30,7 +30,7 @@
 
 <script>
 import { helpers, required } from '@vuelidate/validators'
-import { emailRegexTemplate } from "../../config"
+import { emailRegexTemplate } from "../../helpers/utils"
 import { useVuelidate } from '@vuelidate/core'
 import { useToast } from "vue-toastification"
 
