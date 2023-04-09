@@ -63,7 +63,7 @@
                   </div>
                   <div class="header-action-cart">
                     <button class="btn-cart cart-icon">
-                      <span class="cart-count">01</span>
+                      <span class="cart-count">{{ cartItemsCount }}</span>
                       <i class="pe-7s-shopbag"></i>
                     </button>
                   </div>
@@ -201,6 +201,7 @@ export default {
     ...mapGetters([
       'user',
       'categories',
+      'cartItemsCount',
       'wishListCounter'
     ]),
     showWishlist () {

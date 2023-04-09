@@ -8,6 +8,7 @@ import categories from './modules/categories'
 import products from './modules/products'
 import wishlists from './modules/wishlists'
 import users from './modules/users'
+import carts from './modules/carts'
 
 const toast = useToast()
 
@@ -40,6 +41,7 @@ const store = createStore({
     actions,
     mutations,
     modules: {
+        carts,
         users,
         sessions,
         products,

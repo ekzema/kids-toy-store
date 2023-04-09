@@ -28,6 +28,7 @@
         <div class="prices">
           <span class="price">{{ product.price }} грн</span>
         </div>
+        <button @click="addToCart(product.id)">Add to cart</button>
       </div>
     </div>
     <!-- End Product Item -->
@@ -38,13 +39,12 @@
 import { mapGetters } from "vuex"
 import NeedLoginToast from './NeedLoginToast.vue'
 import { useToast } from "vue-toastification"
+import { cart } from "../../../helpers/utils"
 
 export default {
   setup: () => ({
     toast: useToast()
   }),
-  data() {
-  },
   computed: {
     ...mapGetters([
       'user',
@@ -72,16 +72,20 @@ export default {
         ? this.buildFilteredByCategory(params.subcategory)
         : this.buildFilteredByCategory(params.category)
     },
-    handleWashlist (id) {
+    handleWashlist(id) {
       this.$store.dispatch('createWishlists', { product_id: id })
     },
-    needLogin () {
+    needLogin() {
       this.toast.success({
         component: NeedLoginToast,
       }, {
         position: "bottom-center",
         icon: "fa fa-info-circle fa-2x"
       })
+    },
+    addToCart(id) {
+      cart.add({ id, quantity: 1 })
+      this.$store.commit('setCart', cart.get())
     }
   }
 }

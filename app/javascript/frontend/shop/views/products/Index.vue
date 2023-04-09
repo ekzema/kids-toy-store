@@ -40,12 +40,6 @@ export default {
   components: {
     // MainSlider,
     NewProducts
-  },
-  data() {
-  },
-  methods: {},
-  created() {
-
   }
 }
 </script>
