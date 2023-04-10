@@ -40,7 +40,7 @@
 <script>
 import { helpers, required } from '@vuelidate/validators'
 import { useVuelidate } from '@vuelidate/core'
-import { emailRegexTemplate, serialize } from "../../helpers/utils"
+import { emailRegexTemplate, serialize } from '../../helpers/utils'
 
 export default {
   name: 'AccountLogin',
@@ -53,7 +53,7 @@ export default {
       password: '',
     }
   }),
-  validations () {
+  validations() {
     return {
       formData: {
         email: {
@@ -73,6 +73,7 @@ export default {
         localStorage.setItem('user', serialize(response))
         this.$store.commit('setUser', response)
         this.$store.dispatch('fetchUserInfo')
+        this.$store.commit('setCart', []) //TODO add this.$store.dispatch('fetchCart')
 
         this.resetForm()
         this.$router.push('/')

@@ -25,6 +25,7 @@ import { mapGetters } from 'vuex'
 import AppHeader from './components/app/Header'
 import AppFooter from './components/app/Footer'
 import { user } from '../helpers/utils'
+import { cart } from './helpers/utils'
 
 export default {
   components: {
@@ -51,6 +52,7 @@ export default {
   created() {
     this.$store.commit('setUser', user)
     if (user) this.$store.dispatch('fetchUserInfo')
+    if (!user) this.$store.commit('setCart', cart.get())
   }
 }
 </script>

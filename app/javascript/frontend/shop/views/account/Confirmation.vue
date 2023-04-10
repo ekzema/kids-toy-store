@@ -33,7 +33,7 @@
 
 <script>
 export default {
-  name: 'confirmation',
+  name: 'AccountConfirmation',
   components: {
   },
   data: () => ({

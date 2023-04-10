@@ -63,7 +63,7 @@
                   </div>
                   <div class="header-action-cart">
                     <button class="btn-cart cart-icon">
-                      <span class="cart-count">{{ cartItemsCount }}</span>
+                      <span v-if="cartItemsCount" class="cart-count">{{ cartItemsCount }}</span>
                       <i class="pe-7s-shopbag"></i>
                     </button>
                   </div>
@@ -148,7 +148,7 @@
               </div>
               <div class="header-action-cart">
                 <button class="btn-cart cart-icon">
-                  <span class="cart-count">01</span>
+                  <span v-if="cartItemsCount" class="cart-count">{{ cartItemsCount }}</span>
                   <i class="pe-7s-shopbag"></i>
                 </button>
               </div>
@@ -192,6 +192,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { cart } from '../../helpers/utils'
 
 export default {
   name: 'AppHeader',
@@ -204,7 +205,7 @@ export default {
       'cartItemsCount',
       'wishListCounter'
     ]),
-    showWishlist () {
+    showWishlist() {
       return this.user && this.wishListCounter
     }
   },
@@ -212,22 +213,23 @@ export default {
     this.$store.dispatch('fetchCategories')
   },
   methods: {
-   async logout () {
+   async logout() {
      await this.$store.dispatch('deleteSession', { id: '', options: { fullResponse: true }})
      this.$store.dispatch('clearUser')
+     this.$store.commit('setCart', cart.get())
     },
-    menu (type) {
+    menu(type) {
       const menu = this.$refs.menu
       type === 'remove' ? menu.classList.remove("menu") : menu.classList.add('menu')
     },
-    closeMenu () {
+    closeMenu() {
       const bg = document.querySelector('.header__bg')
       if (window.getComputedStyle(bg).visibility === 'visible') this.menu('remove')
     },
-    openSubMenu (event) {
+    openSubMenu(event) {
       event.target.parentElement.parentElement.classList.add('open')
     },
-    closeSubMenu (event) {
+    closeSubMenu(event) {
       event.target.parentElement.parentElement.classList.remove('open')
     }
   }
