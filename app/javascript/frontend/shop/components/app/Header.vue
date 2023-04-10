@@ -57,7 +57,7 @@
                 <div class="header-action-area">
                   <div class="header-action-wishlist">
                     <button class="btn-wishlist" onclick="window.location.href='shop-wishlist.html'">
-                      <span v-if="showWishlist" class="cart-wishlist-count">{{wishListCounter}}</span>
+                      <span v-if="showWishlist" class="cart-wishlist-count">{{ wishListCounter }}</span>
                       <i class="pe-7s-like"></i>
                     </button>
                   </div>
@@ -89,7 +89,7 @@
                 <div v-for="category in categories" :key="category.id" class="menu__item">
                   <div class="wrap_menu_head">
                     <router-link @click="menu('remove')" class="menu__head" :to="{ name: 'Category', params: { category: category.slug }}">
-                      {{category.name.ru}}
+                      {{ category.name.ru }}
                       <div v-if="category.sub_categories.length" class="sub_button"></div>
                     </router-link>
                     <span v-if="category.sub_categories.length" @click="openSubMenu" class="next_button">
@@ -107,7 +107,7 @@
                             :title="sub_category.name.ru"
                             class="menu__link"
                             :to="{ name: 'Category', params: { category: category.slug, subcategory: sub_category.slug }}">
-                          {{sub_category.name.ru}}
+                          {{ sub_category.name.ru }}
                         </router-link>
                       </li>
                     </ul>
@@ -142,7 +142,7 @@
               </div>
               <div class="header-action-wishlist">
                 <button class="btn-wishlist" onclick="window.location.href='shop-wishlist.html'">
-                  <span v-if="showWishlist" class="cart-wishlist-count">{{wishListCounter}}</span>
+                  <span v-if="showWishlist" class="cart-wishlist-count">{{ wishListCounter }}</span>
                   <i class="pe-7s-like"></i>
                 </button>
               </div>
