@@ -10,6 +10,7 @@ class Product < ApplicationRecord
   has_many :product_categories, dependent: :destroy
   has_many :categories, through: :product_categories
   has_many :wishlists, dependent: :destroy
+  has_many :line_items, dependent: :destroy
   belongs_to :brand, optional: true
 
   accepts_nested_attributes_for :product_images, allow_destroy: true, reject_if: :all_blank
@@ -43,9 +44,5 @@ class Product < ApplicationRecord
 
   def should_generate_new_friendly_id?
     name_changed?
-  end
-
-  def soft_delete!
-    update(deleted_at: Time.zone.now)
   end
 end

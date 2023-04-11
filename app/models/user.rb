@@ -9,6 +9,8 @@ class User < ApplicationRecord
   has_many :wishlists, dependent: :destroy
   has_many :wish_products, source: :product, through: :wishlists
 
+  has_one :cart, dependent: :destroy
+
   before_save :downcase_email
 
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, presence: true, uniqueness: true # rubocop:disable Rails/UniqueValidationWithoutIndex
