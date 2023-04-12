@@ -27,7 +27,7 @@ class ApiController < ActionController::API
 
   def fetch_object_class(object)
     object_class = object.respond_to?(:klass) ? object.klass : object.class
-    object_class.to_s.downcase
+    object_class.to_s.underscore
   end
 
   # rubocop:disable Layout/LineLength
