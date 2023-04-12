@@ -5708,6 +5708,7 @@ table p {
 }
 
 .product-item {
+  position: relative;
   margin-bottom: 30px;
   transition: box-shadow .3s;
   background-color: #e4f6fe;
@@ -5815,10 +5816,34 @@ table p {
 .product-item .product-info .title a:hover {
   color: #f379a7;
 }
+.product-item .product-info .prices {
+  position: absolute;
+  bottom: 10px;
+  left: 30px;
+}
+.product-item .product-info .cart {
+  position: absolute;
+  bottom: 13px;
+  right: 30px;
+}
+.product-item .product-info .cart .btn-theme {
+  padding: 4px 10px;
+  border-radius: 20px;
+  border-color: white;
+}
+.product-item .product-info .cart .btn-theme i {
+  font-weight: bold;
+}
+.product-item .product-info .title {
+  margin-bottom: 30px;
+}
 .product-item .product-info .prices .price {
-  color: #3b3a3a;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 20px;
+  margin-right: 5px;
+}
+.product-item .product-info .prices .currency {
+  font-size: 14px;
 }
 .product-item:hover .product-thumb .product-action {
   margin-top: 0;

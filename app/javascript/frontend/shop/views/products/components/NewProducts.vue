@@ -11,10 +11,6 @@
         <span v-else @click="needLogin" class="items-wishlist">
           <i class="fa fa-heart-o"></i>
         </span>
-        <div class="product-action">
-          <a class="action-quick-view" href="shop-cart.html"><i class="ion-ios-cart"></i></a>
-          <a class="action-quick-view" href="javascript:void(0)"><i class="ion-arrow-expand"></i></a>
-        </div>
       </div>
       <div class="product-info">
         <div class="code">
@@ -26,9 +22,14 @@
           </router-link>
         </h4>
         <div class="prices">
-          <span class="price">{{ product.price }} грн</span>
+          <span class="price">{{ product.price }}</span><span class="currency">грн</span>
         </div>
-        <button @click="addToCart(product.id)">Add to cart</button>
+        <div class="cart">
+          <button class="btn btn-theme" @click="addToCart(product.id)">
+            <i class="pe-7s-cart"></i>
+            Купить
+          </button>
+        </div>
       </div>
     </div>
     <!-- End Product Item -->

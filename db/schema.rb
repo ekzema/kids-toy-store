@@ -19,7 +19,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_10_134723) do
   end
 
   create_table "carts", charset: "utf8", force: :cascade do |t|
-    t.bigint "user_id"
+    t.integer "user_id"
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -112,7 +112,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_10_134723) do
     t.index ["user_id"], name: "index_wishlists_on_user_id"
   end
 
-  add_foreign_key "carts", "users"
   add_foreign_key "line_items", "carts"
   add_foreign_key "line_items", "products"
   add_foreign_key "product_categories", "categories"
