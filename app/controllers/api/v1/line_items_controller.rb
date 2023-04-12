@@ -6,7 +6,7 @@ class Api::V1::LineItemsController < ApiController
   def create
     cart = current_user.cart || current_user.build_cart
     line_item = cart.new_record? ? cart.line_items.new(line_item_params) : create_or_update_line_item(cart)
-    return render_response(cart) if line_item.save
+    return render_response(cart.line_items) if line_item.save
 
     render json: line_item.errors, status: :unprocessable_entity
   end

@@ -5,6 +5,7 @@ const actions = {
         try {
             const { data } = await Users.info()
             commit('setWishListCounter', data.wishlists_count)
+            commit('setCart', data.line_items)
         } catch (error) {
             commit('setErrorMessage')
         }

@@ -32,16 +32,12 @@
 import { helpers, required } from '@vuelidate/validators'
 import { emailRegexTemplate } from "../../helpers/utils"
 import { useVuelidate } from '@vuelidate/core'
-import { useToast } from "vue-toastification"
 
 export default {
   name: 'AccountForgot',
   setup: () => ({
-    v$: useVuelidate(),
-    toast: useToast()
+    v$: useVuelidate()
   }),
-  components: {
-  },
   data: () => ({
     formData: {
       email: ''

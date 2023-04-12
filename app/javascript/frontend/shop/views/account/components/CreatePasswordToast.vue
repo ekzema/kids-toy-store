@@ -13,11 +13,6 @@ export default {
 </script>
 
 <style scoped>
-.toast h3 {
-  color: white !important;
-  font-size: 18px;
-}
-
 span {
   font-size: 18px;
 }

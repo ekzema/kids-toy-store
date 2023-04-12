@@ -85,8 +85,13 @@ export default {
       })
     },
     addToCart(id) {
-      cart.add({ id, quantity: 1 })
-      this.$store.commit('setCart', cart.get())
+      const payload = { product_id: id, quantity: 1 }
+      if (this.user) {
+        this.$store.dispatch('createLineItems', payload)
+      } else {
+        cart.add(payload)
+        this.$store.commit('setCart', cart.get())
+      }
     }
   }
 }

@@ -14,10 +14,10 @@ class Cart {
 
   add(item) {
     let cart = this.get()
-    const itemInCart = cart.some(cartItem => cartItem.id === item.id)
+    const itemInCart = cart.some(cartItem => cartItem.product_id === item.product_id)
 
     if (cart.length && itemInCart)
-      return this.updateById(item.id, item.quantity)
+      return this.updateById(item.product_id, item.quantity)
 
     cart.push(item)
     const serializedCart = JSON.stringify(cart)
@@ -43,9 +43,9 @@ class Cart {
     this.set(cart)
   }
 
-  updateById(id, newQuantity) {
+  updateById(product_id, newQuantity) {
     let cart = this.get()
-    const itemToUpdate = cart.find(item => item.id === id)
+    const itemToUpdate = cart.find(item => item.product_id === product_id)
 
     if (itemToUpdate) {
       itemToUpdate.quantity += newQuantity
