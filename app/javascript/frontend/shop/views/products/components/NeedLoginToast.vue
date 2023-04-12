@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container toast">
     <h3>Need to login!</h3>
     <span>You must be <span @click="loginPage">logged</span> in to add a product to your wish list.</span><br>
   </div>
@@ -19,7 +19,7 @@ export default {
 </script>
 
 <style scoped>
-h3 {
+.toast h3 {
   color: white !important;
   font-size: 18px;
 }

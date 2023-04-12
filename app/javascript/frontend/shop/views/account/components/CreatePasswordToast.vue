@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container toast">
     <span> Instructions for resetting your password have been sent to your email: <strong>{{email}}</strong></span>
   </div>
 </template>
@@ -13,7 +13,7 @@ export default {
 </script>
 
 <style scoped>
-h3 {
+.toast h3 {
   color: white !important;
   font-size: 18px;
 }

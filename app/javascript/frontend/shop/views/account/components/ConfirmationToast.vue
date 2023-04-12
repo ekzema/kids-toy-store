@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container toast">
     <h3>Congratulations!</h3>
     <span> A link to confirm your registration has been sent to your email: <strong>{{email}}</strong></span>
   </div>
@@ -14,7 +14,7 @@ export default {
 </script>
 
 <style scoped>
-h3 {
+.toast h3 {
   color: white !important;
   font-size: 18px;
 }

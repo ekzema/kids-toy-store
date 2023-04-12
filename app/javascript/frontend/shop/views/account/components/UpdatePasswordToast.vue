@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container toast">
     <h3>Success!</h3>
     <span>Your password has been successfully reset.</span><br>
     <span>Now you can try logging into your account again.</span>
@@ -14,7 +14,7 @@ export default {
 </script>
 
 <style scoped>
-h3 {
+.toast h3 {
   color: white !important;
   font-size: 18px;
 }
