@@ -21,8 +21,7 @@ Rails.application.routes.draw do
       resources :products, only: [:index, :show]
       resources :categories, only: [:index, :show]
       resources :wishlists, only: [:index, :create]
-      resources :carts, only: [:create, :update]
-      resources :line_items, only: [:destroy]
+      resources :line_items, only: [:create, :destroy]
 
       namespace :admin do
         resources :products do
