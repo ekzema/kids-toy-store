@@ -1,13 +1,13 @@
 <template>
-  <div class="container toast">
-    <span> Instructions for resetting your password have been sent to your email: <strong>{{email}}</strong></span>
+  <div class="container">
+    <span> Instructions for resetting your password have been sent to your email: <strong>{{ email }}</strong></span>
   </div>
 </template>
 
 <script>
 
 export default {
-  name: 'create-password-toast',
+  name: 'CreatePasswordToast',
   props: ['email'],
 }
 </script>

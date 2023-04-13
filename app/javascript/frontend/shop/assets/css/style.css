@@ -6993,6 +6993,7 @@ table p {
   text-align: center;
 }
 .single-product-info .quick-product-action .action-top .pro-qty .qty-btn {
+  cursor: pointer;
   color: #494949;
   position: absolute;
   font-weight: 500;
@@ -9967,4 +9968,13 @@ table p {
   color: #f379a7;
   font-size: 25px;
   cursor: pointer;
+}
+
+.in-cart {
+  background-color: #95b3e0;
+  border-color: white;
+}
+
+.in-cart.bold-text-cart {
+  font-weight: 600 !important;
 }

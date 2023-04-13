@@ -53,10 +53,13 @@
                 <p class="product-desc">{{product.description.ru}}</p>
                 <div class="quick-product-action">
                   <div class="action-top">
-                    <div class="pro-qty">
-                      <input type="text" id="quantity" title="Quantity" value="01" />
+                    <div v-if="!product.inCart" class="pro-qty">
+                      <span @click="quantity++" class="inc qty-btn"><i class="fa fa-plus"></i></span>
+                      <span @click="quantity--" class= "dec qty-btn"><i class="fa fa-minus"></i></span>
+                      <input v-model="quantity" readonly type="text" id="quantity" title="Quantity" />
                     </div>
-                    <button class="btn btn-theme">Add to Cart</button>
+                    <button v-if="!product.inCart" @click="addToCart(product, quantity)" class="btn btn-theme">Add to Cart</button>
+                    <span v-else class="btn btn-theme in-cart bold-text-cart">В корзине</span>
                     <a class="btn-wishlist" href="shop-wishlist.html">Add to Wishlist</a>
                   </div>
                 </div>
@@ -106,7 +109,7 @@
                     </div>
                     <div class="tab-pane fade show active" id="productDesc" role="tabpanel" aria-labelledby="product-desc-tab">
                       <div class="product-desc">
-                        <p>{{product.description.ru}}</p>
+                        <p>{{ product.description.ru }}</p>
                       </div>
                     </div>
                   </div>
@@ -123,21 +126,26 @@
 <script>
 import { mapGetters } from 'vuex'
 import Swiper from "swiper"
+import AddToCartMixin from './mixins/AddToCartMixin'
 
 export default {
   name: 'ProductsShow',
-  components: {
-  },
+  mixins: [AddToCartMixin],
   data: () => ({
-      images: []
+    images: [],
+    quantity: 1
   }),
   computed: {
-      ...mapGetters([
-          'product',
-      ]),
-      picturesIsMany () {
-         return this.images.length > 3
-      }
+    ...mapGetters([
+      'user',
+    ]),
+    picturesIsMany () {
+      return this.images.length > 3
+    },
+    product() {
+      const { product, cart } = this.$store.getters
+      return product ? { ...product, inCart: cart.some(cartItem => cartItem.product_id === product.id) } : null
+    }
   },
   watch: {
       product (product) {
@@ -145,10 +153,12 @@ export default {
             this.images = [this.product.logo, ...this.product.product_images.map(product_image => product_image.image )]
             this.$nextTick(() => {
                 if (this.picturesIsMany) this.setSwiper()
-                this.setQty()
             })
           }
-      }
+      },
+    quantity(value) {
+      if (value < 1 || typeof value !== 'number') this.quantity = 1
+    }
   },
   async created() {
       await this.$store.dispatch('fetchProduct', this.$route.params.id)
@@ -177,27 +187,9 @@ export default {
               }
           })
       },
-      setQty () {
-          const proQty = document.getElementsByClassName('pro-qty')[0]
-          proQty.insertAdjacentHTML('beforeend', '<a href="#" class="inc qty-btn"><i class="fa fa-plus"></i></a>')
-          proQty.insertAdjacentHTML('beforeend', '<a href="#" class= "dec qty-btn"><i class="fa fa-minus"></i></a>')
-
-          const qtyBtns = document.querySelectorAll( '.qty-btn' )
-          qtyBtns.forEach(qtyBtn => {
-              qtyBtn.onclick = function(e) {
-                  e.preventDefault()
-                  const button = this
-                  const oldValue = button.parentElement.querySelector('input').value
-                  let newVal = 1
-                  if (button.classList.contains('inc')) {
-                      newVal = parseFloat(oldValue) + 1
-                  } else if (oldValue > 1) {
-                      newVal = parseFloat(oldValue) - 1
-                  }
-                  button.parentElement.querySelector('input').value = newVal
-              }
-          })
-      }
+    inCart() {
+      return cart.some(cartItem => cartItem.product_id === obj.id)
+    }
   }
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
-  <div class="container toast">
+  <div class="container wrap-toast">
     <h3>Congratulations!</h3>
-    <span> A link to confirm your registration has been sent to your email: <strong>{{email}}</strong></span>
+    <span> A link to confirm your registration has been sent to your email: <strong>{{ email }}</strong></span>
   </div>
 </template>
 
@@ -14,7 +14,7 @@ export default {
 </script>
 
 <style scoped>
-.toast h3 {
+.wrap-toast h3 {
   color: white !important;
   font-size: 18px;
 }

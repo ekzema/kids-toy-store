@@ -25,10 +25,11 @@
           <span class="price">{{ product.price }}</span><span class="currency">грн</span>
         </div>
         <div class="cart">
-          <button class="btn btn-theme" @click="addToCart(product.id)">
+          <button v-if="!product.inCart" class="btn btn-theme" @click="addToCart(product)">
             <i class="pe-7s-cart"></i>
             Купить
           </button>
+          <span v-else class="btn btn-theme in-cart">В корзине</span>
         </div>
       </div>
     </div>
@@ -38,19 +39,23 @@
 
 <script>
 import { mapGetters } from "vuex"
+import AddToCartMixin from "../mixins/AddToCartMixin"
 import NeedLoginToast from './NeedLoginToast.vue'
-import { useToast } from "vue-toastification"
-import { cart } from "../../../helpers/utils"
+
 
 export default {
-  setup: () => ({
-    toast: useToast()
-  }),
+  name: 'NewProducts',
+  mixins: [AddToCartMixin],
   computed: {
     ...mapGetters([
-      'user',
-      'products'
+      'user'
     ]),
+    products() {
+      const { products, cart } = this.$store.getters
+      return products.map(obj => {
+        return { ...obj, inCart: cart.some(cartItem => cartItem.product_id === obj.id) }
+      })
+    }
   },
   watch: {
     '$route.params'() {
@@ -83,15 +88,6 @@ export default {
         position: "bottom-center",
         icon: "fa fa-info-circle fa-2x"
       })
-    },
-    addToCart(id) {
-      const payload = { product_id: id, quantity: 1 }
-      if (this.user) {
-        this.$store.dispatch('createLineItems', payload)
-      } else {
-        cart.add(payload)
-        this.$store.commit('setCart', cart.get())
-      }
     }
   }
 }
