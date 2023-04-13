@@ -164,30 +164,31 @@ export default {
       await this.$store.dispatch('fetchProduct', this.$route.params.id)
   },
   methods: {
-      setSwiper () {
-          const ProductNav = new Swiper('.single-product-nav-slider', {
-              spaceBetween: 11,
-              slidesPerView: 3,
-              freeMode: true,
-              navigation: {
-                  nextEl: '.button-next',
-                  prevEl: '.button-prev',
-                  disabledClass: 'button-lock'
-              },
-          })
+    setSwiper () {
+      const ProductNav = new Swiper('.single-product-nav-slider', {
+        spaceBetween: 11,
+        slidesPerView: 3,
+        freeMode: true,
+        navigation: {
+          nextEl: '.button-next',
+          prevEl: '.button-prev',
+          disabledClass: 'button-lock'
+        },
+      })
 
-          new Swiper('.single-product-thumb-slider', {
-              freeMode: true,
-              effect: 'fade',
-              fadeEffect: {
-                  crossFade: true,
-              },
-              thumbs: {
-                  swiper: ProductNav
-              }
-          })
-      },
+      new Swiper('.single-product-thumb-slider', {
+        freeMode: true,
+        effect: 'fade',
+        fadeEffect: {
+          crossFade: true,
+        },
+        thumbs: {
+          swiper: ProductNav
+        }
+      })
+    },
     inCart() {
+      // eslint-disable-next-line no-undef
       return cart.some(cartItem => cartItem.product_id === obj.id)
     }
   }
