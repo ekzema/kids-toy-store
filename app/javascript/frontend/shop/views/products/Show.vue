@@ -52,7 +52,7 @@
                 </div>
                 <p class="product-desc">{{product.description.ru}}</p>
                 <div class="quick-product-action">
-                  <div class="action-top">
+                  <div class="action-top clean-flex">
                     <div v-if="!product.inCart" class="pro-qty">
                       <span @click="quantity++" class="inc qty-btn"><i class="fa fa-plus"></i></span>
                       <span @click="quantity--" class= "dec qty-btn"><i class="fa fa-minus"></i></span>
@@ -60,7 +60,13 @@
                     </div>
                     <button v-if="!product.inCart" @click="addToCart(product, quantity)" class="btn btn-theme">Add to Cart</button>
                     <span v-else class="btn btn-theme in-cart bold-text-cart">В корзине</span>
-                    <a class="btn-wishlist" href="shop-wishlist.html">Add to Wishlist</a>
+                    <span v-if="user" @click="handleWashlist(product.id)" class="item-wishlist">
+                      <i v-if="product.wishlist" class="fa fa-heart"></i>
+                      <i v-else class="fa fa-heart-o"></i>
+                    </span>
+                    <span v-else @click="needLogin" class="item-wishlist">
+                      <i class="fa fa-heart-o"></i>
+                    </span>
                   </div>
                 </div>
                 <div class="widget">
@@ -127,10 +133,11 @@
 import { mapGetters } from 'vuex'
 import Swiper from "swiper"
 import AddToCartMixin from './mixins/AddToCartMixin'
+import WishlistMixin from "./mixins/WishlistMixin"
 
 export default {
   name: 'ProductsShow',
-  mixins: [AddToCartMixin],
+  mixins: [AddToCartMixin, WishlistMixin],
   data: () => ({
     images: [],
     quantity: 1

@@ -40,12 +40,11 @@
 <script>
 import { mapGetters } from "vuex"
 import AddToCartMixin from "../mixins/AddToCartMixin"
-import NeedLoginToast from './NeedLoginToast.vue'
-
+import WishlistMixin from "../mixins/WishlistMixin"
 
 export default {
   name: 'NewProducts',
-  mixins: [AddToCartMixin],
+  mixins: [AddToCartMixin, WishlistMixin],
   computed: {
     ...mapGetters([
       'user'
@@ -77,17 +76,6 @@ export default {
       params.subcategory
         ? this.buildFilteredByCategory(params.subcategory)
         : this.buildFilteredByCategory(params.category)
-    },
-    handleWashlist(id) {
-      this.$store.dispatch('createWishlists', { product_id: id })
-    },
-    needLogin() {
-      this.toast.success({
-        component: NeedLoginToast,
-      }, {
-        position: "bottom-center",
-        icon: "fa fa-info-circle fa-2x"
-      })
     }
   }
 }

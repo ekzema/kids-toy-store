@@ -9970,6 +9970,16 @@ table p {
   cursor: pointer;
 }
 
+.item-wishlist {
+  cursor: pointer;
+  color: #f379a7;
+  font-size: 30px;
+}
+
+.clean-flex {
+    display: block !important;
+}
+
 .in-cart {
   background-color: #95b3e0;
   border-color: white;
