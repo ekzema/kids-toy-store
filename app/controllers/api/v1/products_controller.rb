@@ -10,4 +10,11 @@ class Api::V1::ProductsController < ApiController
     product = Product.friendly.find(params[:id])
     render_response(product)
   end
+
+  def autocomplete
+    products = Product.all
+    products = products.search(params[:q]) if params[:q]
+
+    render_response(products.limit(5), ProductsAutocompleteSerializer)
+  end
 end
