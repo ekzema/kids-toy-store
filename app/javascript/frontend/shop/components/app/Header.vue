@@ -44,8 +44,9 @@
                 <div class="header-search-box">
                   <form action="#" method="post">
                     <div class="form-input-item">
+                      <h3>dsds: {{ results }}</h3>
                       <label for="search" class="sr-only">Search Everything</label>
-                      <input id="search" type="text" placeholder="Search Everything">
+                      <input v-model="searchText" id="search" type="text" placeholder="Search Everything">
                       <button type="submit" class="btn-src">
                         <i class="pe-7s-search"></i>
                       </button>
@@ -82,13 +83,13 @@
         <div class="row row-gutter-0 align-items-center">
           <div class="col-4 col-sm-6 col-lg-4">
             <div ref="menu" class="menu">
-              <button @click="closeMenu" class="menu__btn" @mouseover="menu('add')">
+              <button class="menu__btn" @click="closeMenu" @mouseover="menu('add')">
                 <span class="menu__burger"><span></span></span><span class="menu__text">Каталог товаров</span>
               </button>
               <div class="menu__wrapper">
                 <div v-for="category in categories" :key="category.id" class="menu__item">
                   <div class="wrap_menu_head">
-                    <router-link @click="menu('remove')" class="menu__head" :to="{ name: 'Category', params: { category: category.slug }}">
+                    <router-link class="menu__head" :to="{ name: 'Category', params: { category: category.slug }}" @click="menu('remove')">
                       {{ category.name.ru }}
                       <div v-if="category.sub_categories.length" class="sub_button"></div>
                     </router-link>
@@ -103,10 +104,10 @@
                     <ul class="menu__list menu__list_1">
                       <li v-for="sub_category in category.sub_categories" :key="sub_category.id">
                         <router-link
-                            @click="menu('remove')"
+                            :to="{ name: 'Category', params: { category: category.slug, subcategory: sub_category.slug }}"
                             :title="sub_category.name.ru"
                             class="menu__link"
-                            :to="{ name: 'Category', params: { category: category.slug, subcategory: sub_category.slug }}">
+                            @click="menu('remove')">
                           {{ sub_category.name.ru }}
                         </router-link>
                       </li>
@@ -197,16 +198,23 @@ import { cart } from '../../helpers/utils'
 export default {
   name: 'AppHeader',
   data: () => ({
+    searchText: ''
   }),
   computed: {
     ...mapGetters([
       'user',
       'categories',
       'cartItemsCount',
-      'wishListCounter'
+      'wishListCounter',
+      'productsAutocomplete'
     ]),
     showWishlist() {
       return this.user && this.wishListCounter
+    }
+  },
+  watch: {
+    searchText(value) {
+      this.$store.dispatch('productsAutocomplete', { q: value })
     }
   },
   created() {
@@ -237,8 +245,8 @@ export default {
 </script>
 
 <style scoped>
-.wrap-account {
-  padding-left: 20px;
-  margin-left: 19px;
-}
+  .wrap-account {
+    padding-left: 20px;
+    margin-left: 19px;
+  }
 </style>

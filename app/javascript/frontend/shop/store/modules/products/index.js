@@ -5,7 +5,8 @@ import getters from './getters'
 const state = {
     products: [],
     product: null,
-    wishListCounter: 0
+    wishListCounter: 0,
+    productsAutocomplete: []
 }
 
 export default {

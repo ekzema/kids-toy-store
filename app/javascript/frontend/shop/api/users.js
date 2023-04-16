@@ -5,7 +5,7 @@ class Users extends MainApi {
     super('users')
   }
 
-  info () {
+  info() {
     this.api.loader = false
     return this.api.query('get', `${this.url}/info`)
   }

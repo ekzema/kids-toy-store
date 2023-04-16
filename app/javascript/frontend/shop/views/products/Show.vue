@@ -52,7 +52,7 @@
                 </div>
                 <p class="product-desc">{{product.description.ru}}</p>
                 <div class="quick-product-action">
-                  <div class="action-top clean-flex">
+                  <div class="action-top">
                     <div v-if="!product.inCart" class="pro-qty">
                       <span @click="quantity++" class="inc qty-btn"><i class="fa fa-plus"></i></span>
                       <span @click="quantity--" class= "dec qty-btn"><i class="fa fa-minus"></i></span>

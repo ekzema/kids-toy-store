@@ -16,6 +16,14 @@ const actions = {
         } catch (error) {
             commit('setErrorMessage')
         }
+    },
+    async productsAutocomplete({ commit }, params) {
+        try {
+            const { data } = await Products.autocomplete(params)
+            commit('setProductsAutocomplete', data)
+        } catch (error) {
+            console.log('Unknown error')
+        }
     }
 }
 export default actions

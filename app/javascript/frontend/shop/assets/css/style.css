@@ -9971,13 +9971,11 @@ table p {
 }
 
 .item-wishlist {
+  height: 100%;
   cursor: pointer;
   color: #f379a7;
   font-size: 30px;
-}
 
-.clean-flex {
-    display: block !important;
 }
 
 .in-cart {
