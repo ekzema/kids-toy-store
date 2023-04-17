@@ -44,14 +44,21 @@
                 <div class="header-search-box">
                   <form action="#" method="post">
                     <div class="form-input-item">
-                      <h3>dsds: {{ results }}</h3>
                       <label for="search" class="sr-only">Search Everything</label>
-                      <input v-model="searchText" id="search" type="text" placeholder="Search Everything">
+                      <input @blur="resetSearch" v-model="searchText" type="text" placeholder="Search Everything">
                       <button type="submit" class="btn-src">
                         <i class="pe-7s-search"></i>
                       </button>
                     </div>
                   </form>
+                  <ul v-if="productsAutocomplete.length" class="autocomplete">
+                    <li v-for="(product, index) in productsAutocomplete" :key="index">
+                      <router-link @click="resetSearch" :to="{ name: 'ProductsShow', params: { id: product.slug } }">
+                        <img :src="product.logo.url" alt="Image">
+                        {{ product.name.ru }}
+                      </router-link>
+                    </li>
+                  </ul>
                 </div>
               </div>
               <div class="header-align-right">
@@ -214,6 +221,7 @@ export default {
   },
   watch: {
     searchText(value) {
+      if (!value) return this.clearAutocomplete()
       this.$store.dispatch('productsAutocomplete', { q: value })
     }
   },
@@ -239,6 +247,14 @@ export default {
     },
     closeSubMenu(event) {
       event.target.parentElement.parentElement.classList.remove('open')
+    },
+    resetSearch() {
+     this.clearAutocomplete()
+      this.searchText = ''
+
+    },
+    clearAutocomplete() {
+      this.$store.commit('setProductsAutocomplete', [])
     }
   }
 }

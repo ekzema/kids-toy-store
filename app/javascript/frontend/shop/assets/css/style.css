@@ -3250,6 +3250,7 @@ table p {
   }
 }
 .header-middle .header-align .header-align-center .header-search-box {
+  position: relative;
   margin-left: -80px;
 }
 @media only screen and (max-width: 991px) {
@@ -9985,4 +9986,20 @@ table p {
 
 .in-cart.bold-text-cart {
   font-weight: 600 !important;
+}
+
+.header-search-box .autocomplete {
+  width: 100%;
+  position: absolute;
+  background-color: white;
+  z-index: 1000;
+  margin-top: 5px;
+}
+
+.header-search-box .autocomplete li {
+  margin-bottom: 5px;
+}
+
+.header-search-box .autocomplete li img {
+  width: 40px;
 }

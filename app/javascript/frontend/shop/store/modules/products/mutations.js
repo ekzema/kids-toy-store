@@ -1,11 +1,11 @@
 const mutations = {
-    setProducts (state, payload) {
+    setProducts(state, payload) {
         state.products = payload
     },
     setProduct(state, payload) {
         state.product = payload
     },
-    setWishListCounter (state, payload) {
+    setWishListCounter(state, payload) {
         state.wishListCounter = payload
     },
     setWishlist(state, payload) {

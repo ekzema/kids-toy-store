@@ -155,16 +155,19 @@ export default {
     }
   },
   watch: {
-      product (product) {
-          if (product) {
-            this.images = [this.product.logo, ...this.product.product_images.map(product_image => product_image.image )]
-            this.$nextTick(() => {
-                if (this.picturesIsMany) this.setSwiper()
-            })
-          }
-      },
+    product (product) {
+        if (product) {
+          this.images = [this.product.logo, ...this.product.product_images.map(product_image => product_image.image )]
+          this.$nextTick(() => {
+              if (this.picturesIsMany) this.setSwiper()
+          })
+        }
+    },
     quantity(value) {
       if (value < 1 || typeof value !== 'number') this.quantity = 1
+    },
+    '$route.params'() {
+      this.$store.dispatch('fetchProduct', this.$route.params.id)
     }
   },
   async created() {
