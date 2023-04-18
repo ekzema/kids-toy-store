@@ -249,9 +249,8 @@ export default {
       event.target.parentElement.parentElement.classList.remove('open')
     },
     resetSearch() {
-     this.clearAutocomplete()
+      this.clearAutocomplete()
       this.searchText = ''
-
     },
     handleClick(e) {
       this.resetSearch()
