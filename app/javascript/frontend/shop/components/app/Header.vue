@@ -45,7 +45,7 @@
                   <form action="#" method="post">
                     <div class="form-input-item">
                       <label for="search" class="sr-only">Search Everything</label>
-                      <input @blur="resetSearch" v-model="searchText" type="text" placeholder="Search Everything">
+                      <input @blur="handleBlur" v-model="searchText" type="text" class="search-input" placeholder="Search Everything">
                       <button type="submit" class="btn-src">
                         <i class="pe-7s-search"></i>
                       </button>
@@ -53,7 +53,7 @@
                   </form>
                   <ul v-if="productsAutocomplete.length" class="autocomplete">
                     <li v-for="(product, index) in productsAutocomplete" :key="index">
-                      <router-link @click="resetSearch" :to="{ name: 'ProductsShow', params: { id: product.slug } }">
+                      <router-link @click="handleClick" :to="{ name: 'ProductsShow', params: { id: product.slug } }" class="search-link">
                         <img :src="product.logo.url" alt="Image">
                         {{ product.name.ru }}
                       </router-link>
@@ -252,6 +252,13 @@ export default {
      this.clearAutocomplete()
       this.searchText = ''
 
+    },
+    handleClick(e) {
+      this.resetSearch()
+    },
+    handleBlur(e) {
+      if (e.relatedTarget && e.relatedTarget.className === 'search-link') return
+      this.resetSearch()
     },
     clearAutocomplete() {
       this.$store.commit('setProductsAutocomplete', [])
