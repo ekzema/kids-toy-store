@@ -9989,17 +9989,49 @@ table p {
 }
 
 .header-search-box .autocomplete {
+  border: 1px solid #fdb4d2;
+  border-radius: 5px;
   width: 100%;
   position: absolute;
   background-color: white;
   z-index: 1000;
+  padding: 8px;
   margin-top: 5px;
+  opacity: 0.9;
 }
 
-.header-search-box .autocomplete li {
+.header-search-box .autocomplete li:not(:last-child) {
   margin-bottom: 5px;
+  border-bottom: 1px solid #dbdddf;
 }
 
 .header-search-box .autocomplete li img {
   width: 40px;
+  margin-right: 5px;
+}
+
+.header-search-box .autocomplete li .search-link .search-item-title {
+  color: black;
+  transition: .3s;
+  font-size: 14px;
+}
+
+.header-search-box .autocomplete li .search-link .search-item-title:hover {
+  color: #f379a7;
+}
+
+.search-item-currency {
+  font-size: 14px;
+}
+
+.header-search-box .autocomplete li .wrap-price {
+  margin-top: -12px;
+}
+
+.header-search-box .autocomplete li .wrap-price .search-item-price,
+.header-search-box .autocomplete li .wrap-price .search-item-currency
+{
+  text-decoration: underline;
+  color: black;
+  font-size: 14px;
 }

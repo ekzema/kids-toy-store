@@ -76,7 +76,7 @@ export default {
     timer: null,
     spinner: false
   }),
-  validations () {
+  validations() {
     return {
       formData: {
         email: {
@@ -93,7 +93,7 @@ export default {
     }
   },
   methods: {
-    async isUnique (value) {
+    async isUnique(value) {
       if (!emailRegex.test(value)) return true
       if (this.timer) {
         clearTimeout(this.timer)
@@ -115,7 +115,7 @@ export default {
 
       return response.valid
     },
-    async onSubmit () {
+    async onSubmit() {
       if (this.v$.$invalid) {
         this.v$.$touch()
         return
@@ -123,7 +123,7 @@ export default {
       await this.$store.dispatch('createRegistration', this.formData)
       this.resetForm()
     },
-    resetForm () {
+    resetForm() {
       Object.keys(this.formData).forEach((key) => {
         this.formData[key] = ''
       })
@@ -134,7 +134,7 @@ export default {
 </script>
 
 <style scoped>
-.input-spinner {
+.login-register-style form .input-spinner {
   position: absolute;
   top: 17px;
   right: 15px;

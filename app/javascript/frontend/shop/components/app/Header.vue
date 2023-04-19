@@ -47,16 +47,23 @@
                       <label for="search" class="sr-only">Search Everything</label>
                       <input @blur="handleBlur" v-model="searchText" type="text" class="search-input" placeholder="Search Everything">
                       <button type="submit" class="btn-src">
-                        <i class="pe-7s-search"></i>
+                        <div v-if="spinner" class="input-spinner spinner-border-sm spinner-border" role="status">
+                          <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <i v-else class="pe-7s-search"></i>
                       </button>
                     </div>
                   </form>
                   <ul v-if="productsAutocomplete.length" class="autocomplete">
                     <li v-for="(product, index) in productsAutocomplete" :key="index">
-                      <router-link @click="handleClick" :to="{ name: 'ProductsShow', params: { id: product.slug } }" class="search-link">
-                        <img :src="product.logo.url" alt="Image">
-                        {{ product.name.ru }}
+                      <router-link class="search-link" :to="{ name: 'ProductsShow', params: { id: product.slug } }" @click="resetSearch">
+                        <img :src="product.logo.url">
+                        <span class="search-item-title">{{ product.name.ru }} </span>
                       </router-link>
+                      <div class="wrap-price text-center">
+                        <span class="search-item-price">{{ product.price }}</span>
+                        <span class="search-item-currency">грн</span>
+                      </div>
                     </li>
                   </ul>
                 </div>
@@ -205,7 +212,9 @@ import { cart } from '../../helpers/utils'
 export default {
   name: 'AppHeader',
   data: () => ({
-    searchText: ''
+    searchText: '',
+    timer: null,
+    spinner: false
   }),
   computed: {
     ...mapGetters([
@@ -221,8 +230,18 @@ export default {
   },
   watch: {
     searchText(value) {
-      if (!value) return this.clearAutocomplete()
-      this.$store.dispatch('productsAutocomplete', { q: value })
+      if (this.timer) this.clearTimer()
+      if (!value) {
+        this.clearTimer()
+        this.clearAutocomplete()
+        this.spinner = false
+
+        return
+      }
+      this.timer = setTimeout(() => {
+        this.spinner = true
+        this.$store.dispatch('productsAutocomplete', { q: value }).then(() => this.spinner = false)
+      }, 800)
     }
   },
   created() {
@@ -252,21 +271,30 @@ export default {
       this.clearAutocomplete()
       this.searchText = ''
     },
-    handleClick(e) {
-      this.resetSearch()
-    },
     handleBlur(e) {
       if (e.relatedTarget && e.relatedTarget.className === 'search-link') return
       this.resetSearch()
     },
     clearAutocomplete() {
       this.$store.commit('setProductsAutocomplete', [])
+    },
+    clearTimer() {
+      clearTimeout(this.timer)
+      this.timer = null
     }
   }
 }
 </script>
 
 <style scoped>
+  .input-spinner {
+    position: absolute;
+    font-size: 10px;
+    top: 14px;
+    right: 14px;
+    color: white;
+  }
+
   .wrap-account {
     padding-left: 20px;
     margin-left: 19px;
