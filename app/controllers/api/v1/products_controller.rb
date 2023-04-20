@@ -12,9 +12,11 @@ class Api::V1::ProductsController < ApiController
   end
 
   def autocomplete
+    limit    = 5
     products = Product.all
     products = products.search(params[:q]) if params[:q]
+    prepare_extension = { show: limit, found: products.count }
 
-    render_response(products.limit(5), ProductsAutocompleteSerializer)
+    render_response(products.limit(limit), ProductsAutocompleteSerializer, expand: prepare_extension)
   end
 end

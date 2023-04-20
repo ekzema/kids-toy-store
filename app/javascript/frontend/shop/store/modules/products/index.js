@@ -6,7 +6,7 @@ const state = {
     products: [],
     product: null,
     wishListCounter: 0,
-    productsAutocomplete: []
+    productsAutocomplete: null
 }
 
 export default {

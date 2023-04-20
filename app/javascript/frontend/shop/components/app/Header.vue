@@ -54,8 +54,11 @@
                       </button>
                     </div>
                   </form>
-                  <ul v-if="productsAutocomplete.length" class="autocomplete">
-                    <li v-for="(product, index) in productsAutocomplete" :key="index">
+                  <ul v-if="productsAutocomplete && productsAutocomplete.items.length" class="autocomplete">
+                    <li class="text-center">
+                      <b>Показано:</b>  {{ showingAutocomplete }} из {{ productsAutocomplete.found }}
+                    </li>
+                    <li v-for="(product, index) in productsAutocomplete.items" :key="index">
                       <router-link class="search-link" :to="{ name: 'ProductsShow', params: { id: product.slug } }" @click="resetSearch">
                         <img :src="product.logo.url">
                         <span class="search-item-title">{{ product.name.ru }} </span>
@@ -64,6 +67,9 @@
                         <span class="search-item-price">{{ product.price }}</span>
                         <span class="search-item-currency">грн</span>
                       </div>
+                    </li>
+                    <li v-if="productsAutocomplete.found > productsAutocomplete.show" class="text-center">
+                      <a href="#">Покаазать все результаты</a>
                     </li>
                   </ul>
                 </div>
@@ -226,6 +232,13 @@ export default {
     ]),
     showWishlist() {
       return this.user && this.wishListCounter
+    },
+    showingAutocomplete() {
+      if (!this.productsAutocomplete) return
+
+      const { show, found } = this.productsAutocomplete
+
+      return show > found ? found : show
     }
   },
   watch: {
@@ -239,8 +252,12 @@ export default {
         return
       }
       this.timer = setTimeout(() => {
-        this.spinner = true
-        this.$store.dispatch('productsAutocomplete', { q: value }).then(() => this.spinner = false)
+        const setSpinner = setTimeout(() => this.spinner = true, 100)
+
+        this.$store.dispatch('productsAutocomplete', { q: value }).then(() => {
+          clearTimeout(setSpinner)
+          this.spinner = false
+        })
       }, 800)
     }
   },
@@ -276,7 +293,7 @@ export default {
       this.resetSearch()
     },
     clearAutocomplete() {
-      this.$store.commit('setProductsAutocomplete', [])
+      this.$store.commit('setProductsAutocomplete', null)
     },
     clearTimer() {
       clearTimeout(this.timer)

@@ -19,8 +19,8 @@ const actions = {
     },
     async productsAutocomplete({ commit }, params) {
         try {
-            const { data } = await Products.autocomplete(params)
-            commit('setProductsAutocomplete', data)
+            const { data, show, found } = await Products.autocomplete(params)
+            commit('setProductsAutocomplete', { items: data, show, found })
         } catch (error) {
             console.log('Unknown error')
         }

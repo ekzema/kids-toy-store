@@ -15,7 +15,7 @@ const mutations = {
             return obj
         })
     },
-    setProductsAutocomplete(state, payload) {
+    setProductsAutocomplete(state, payload = null) {
         state.productsAutocomplete = payload
     }
 }
