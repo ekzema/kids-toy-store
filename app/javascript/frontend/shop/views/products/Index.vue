@@ -17,7 +17,7 @@
                   <div class="col-lg-12">
                     <div class="product">
                       <div class="row">
-                        <new-products/>
+                        <list-products/>
                       </div>
                     </div>
                   </div>
@@ -33,13 +33,35 @@
 
 <script>
 // import MainSlider from './components/Slider'
-import NewProducts from "./components/NewProducts"
+import ListProducts from "./components/ListProducts"
 
 export default {
   name: 'ProductsIndex',
   components: {
     // MainSlider,
-    NewProducts
+    ListProducts
+  },
+  watch: {
+    '$route.params'() {
+      this.fetchProductsByCategory()
+    }
+  },
+  created() {
+    this.$route.params.category ? this.fetchProductsByCategory() : this.fetchProducts()
+  },
+  methods: {
+    fetchProducts(params = {}) {
+      this.$store.dispatch('fetchProducts', params)
+    },
+    buildFilteredByCategory(category) {
+      this.fetchProducts({categories: category})
+    },
+    fetchProductsByCategory() {
+      const params = this.$route.params
+      params.subcategory
+        ? this.buildFilteredByCategory(params.subcategory)
+        : this.buildFilteredByCategory(params.category)
+    }
   }
 }
 </script>

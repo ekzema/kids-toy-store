@@ -42,11 +42,11 @@
               </div>
               <div class="header-align-center">
                 <div class="header-search-box">
-                  <form action="#" method="post">
+                  <form @submit.prevent="submitSearchForm">
                     <div class="form-input-item">
                       <label for="search" class="sr-only">Search Everything</label>
-                      <input @blur="handleBlur" v-model="searchText" type="text" class="search-input" placeholder="Search Everything">
-                      <button type="submit" class="btn-src">
+                      <input v-model="searchText" class="search-input" type="text" placeholder="Search Everything" @blur="handleBlur">
+                      <button type="submit" class="search-button btn-src">
                         <div v-if="spinner" class="input-spinner spinner-border-sm spinner-border" role="status">
                           <span class="visually-hidden">Loading...</span>
                         </div>
@@ -298,6 +298,9 @@ export default {
     clearTimer() {
       clearTimeout(this.timer)
       this.timer = null
+    },
+    submitSearchForm() {
+      this.$router.push({ name: 'ProductsSearch', query: { q: this.searchText } })
     }
   }
 }

@@ -43,7 +43,7 @@ import AddToCartMixin from "../mixins/AddToCartMixin"
 import WishlistMixin from "../mixins/WishlistMixin"
 
 export default {
-  name: 'NewProducts',
+  name: 'ListProducts',
   mixins: [AddToCartMixin, WishlistMixin],
   computed: {
     ...mapGetters([
@@ -54,28 +54,6 @@ export default {
       return products.map(obj => {
         return { ...obj, inCart: cart.some(cartItem => cartItem.product_id === obj.id) }
       })
-    }
-  },
-  watch: {
-    '$route.params'() {
-      this.fetchProductsByCategory()
-    }
-  },
-  created() {
-    this.$route.params.category ? this.fetchProductsByCategory() : this.fetchProducts()
-  },
-  methods: {
-    fetchProducts(params = {}) {
-      this.$store.dispatch('fetchProducts', params)
-    },
-    buildFilteredByCategory(category) {
-      this.fetchProducts({categories: category})
-    },
-    fetchProductsByCategory() {
-      const params = this.$route.params
-      params.subcategory
-        ? this.buildFilteredByCategory(params.subcategory)
-        : this.buildFilteredByCategory(params.category)
     }
   }
 }

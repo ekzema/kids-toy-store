@@ -17,6 +17,9 @@ const mutations = {
     },
     setProductsAutocomplete(state, payload = null) {
         state.productsAutocomplete = payload
+    },
+    clearProducts(state) {
+        state.products = []
     }
 }
 

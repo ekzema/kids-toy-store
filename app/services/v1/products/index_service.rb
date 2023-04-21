@@ -4,6 +4,7 @@ class V1::Products::IndexService < ApplicationService
   def call
     products = Product.includes(:wishlists)
     products = filter_by_categories if params[:categories]
+    products = products.search(params[:q]) if params[:q]
     products
   end
 

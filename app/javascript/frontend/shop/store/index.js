@@ -21,7 +21,6 @@ const getters = {
 const actions = {
 }
 
-
 const mutations = {
     setErrorMessage(state, payload = 'Unknown error') {
         toast.error(payload)
