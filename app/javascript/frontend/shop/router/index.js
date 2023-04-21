@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import * as guards from'./guards'
 import ProductsIndex from '../views/products/Index'
+import ProductsSearch from '../views/products/Search'
 import ProductsShow from "../views/products/Show"
 import AccountNew from '../views/account/New'
 import AccountLogin from '../views/account/Login'
@@ -16,6 +17,11 @@ const router = createRouter({
       name: 'ProductsIndex',
       path: '/',
       component: ProductsIndex
+    },
+    {
+      name: 'ProductsSearch',
+      path: '/search',
+      component: ProductsSearch
     },
     {
       name: 'ProductsShow',
