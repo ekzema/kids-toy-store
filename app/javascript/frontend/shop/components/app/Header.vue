@@ -263,6 +263,10 @@ export default {
   },
   created() {
     this.$store.dispatch('fetchCategories')
+
+    const params = new URLSearchParams(window.location.search)
+    const q = params.get('q')
+    if (q) this.searchText = q
   },
   methods: {
    async logout() {
