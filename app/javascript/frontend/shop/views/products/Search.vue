@@ -11,8 +11,8 @@
       <div class="row">
         <div class="col-md-12">
           <div class="product-tab-content">
-            <div class="tab-content" id="myTabContent" data-aos="fade-up" data-aos-duration="1300">
-              <div class="tab-pane fade show active" id="our-features" role="tabpanel" aria-labelledby="our-features-tab">
+            <div id="myTabContent" class="tab-content" data-aos="fade-up" data-aos-duration="1300">
+              <div id="our-features" class="tab-pane fade show active" role="tabpanel" aria-labelledby="our-features-tab">
                 <div class="row">
                   <div class="col-lg-12">
                     <div class="product">

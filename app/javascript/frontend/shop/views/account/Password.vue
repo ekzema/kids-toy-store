@@ -10,15 +10,15 @@
             <div class="login-register-style">
               <form ref="form" @submit.prevent="onSubmit">
                 <div class="login-register-input" :class="{'input-error': v$.formData.password.$error}">
-                  <input type="password" v-model="v$.formData.password.$model" placeholder="Password">
+                  <input v-model="v$.formData.password.$model" type="password" placeholder="Password">
                 </div>
-                <div class="input-errors" v-for="(error, index) of v$.formData.password.$errors" :key="index">
+                <div v-for="(error, index) of v$.formData.password.$errors" :key="index" class="input-errors">
                   <div class="error-msg">{{ error.$message }}</div>
                 </div>
                 <div class="login-register-input" :class="{'input-error': v$.formData.password_confirmation.$error}">
-                  <input type="password" v-model="v$.formData.password_confirmation.$model" placeholder="Password confirmation">
+                  <input v-model="v$.formData.password_confirmation.$model" type="password" placeholder="Password confirmation">
                 </div>
-                <div class="input-errors" v-for="(error, index) of v$.formData.password_confirmation.$errors" :key="index">
+                <div v-for="(error, index) of v$.formData.password_confirmation.$errors" :key="index" class="input-errors">
                   <div class="error-msg">{{ error.$message }}</div>
                 </div>
                 <div class="btn-style-3">
@@ -53,7 +53,7 @@ export default {
       password_confirmation: '',
     }
   }),
-  validations () {
+  validations() {
     return {
       formData: {
         password: { required, minLength: minLength(6) },

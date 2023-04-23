@@ -54,17 +54,17 @@
                 <div class="quick-product-action">
                   <div class="action-top">
                     <div v-if="!product.inCart" class="pro-qty">
-                      <span @click="quantity++" class="inc qty-btn"><i class="fa fa-plus"></i></span>
-                      <span @click="quantity--" class= "dec qty-btn"><i class="fa fa-minus"></i></span>
-                      <input v-model="quantity" readonly type="text" id="quantity" title="Quantity" />
+                      <span class="inc qty-btn" @click="quantity++"><i class="fa fa-plus"></i></span>
+                      <span class= "dec qty-btn" @click="quantity--"><i class="fa fa-minus"></i></span>
+                      <input v-model="quantity" id="quantity" readonly type="text" title="Quantity" />
                     </div>
-                    <button v-if="!product.inCart" @click="addToCart(product, quantity)" class="btn btn-theme">Add to Cart</button>
+                    <button v-if="!product.inCart" class="btn btn-theme" @click="addToCart(product, quantity)">Add to Cart</button>
                     <span v-else class="btn btn-theme in-cart bold-text-cart">В корзине</span>
-                    <span v-if="user" @click="handleWashlist(product.id)" class="item-wishlist">
+                    <span v-if="user" class="item-wishlist" @click="handleWashlist(product.id)">
                       <i v-if="product.wishlist" class="fa fa-heart"></i>
                       <i v-else class="fa fa-heart-o"></i>
                     </span>
-                    <span v-else @click="needLogin" class="item-wishlist">
+                    <span v-else class="item-wishlist" @click="needLogin">
                       <i class="fa fa-heart-o"></i>
                     </span>
                   </div>
@@ -99,16 +99,16 @@
             <div class="row">
               <div class="col-lg-12">
                 <div class="product-description-review">
-                  <ul class="nav nav-tabs product-description-tab-menu" id="myTab" role="tablist">
+                  <ul id="myTab" class="nav nav-tabs product-description-tab-menu" role="tablist">
                     <li class="nav-item" role="presentation">
-                      <button class="nav-link" id="product-aditional-tab" data-bs-toggle="tab" data-bs-target="#commentProduct" type="button" role="tab" aria-selected="false">Information</button>
+                      <button id="product-aditional-tab" class="nav-link" data-bs-toggle="tab" data-bs-target="#commentProduct" type="button" role="tab" aria-selected="false">Information</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                      <button class="nav-link active" id="product-desc-tab" data-bs-toggle="tab" data-bs-target="#productDesc" type="button" role="tab" aria-controls="productDesc" aria-selected="true">Description</button>
+                      <button id="product-desc-tab" class="nav-link active" data-bs-toggle="tab" data-bs-target="#productDesc" type="button" role="tab" aria-controls="productDesc" aria-selected="true">Description</button>
                     </li>
                   </ul>
-                  <div class="tab-content product-description-tab-content" id="myTabContent">
-                    <div class="tab-pane fade" id="commentProduct" role="tabpanel" aria-labelledby="product-aditional-tab">
+                  <div id="myTabContent" class="tab-content product-description-tab-content">
+                    <div id="commentProduct" class="tab-pane fade" role="tabpanel" aria-labelledby="product-aditional-tab">
                       <div class="product-desc">
                         <p>Lorem ipsum dolor sit amet, consectetur adipisici elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed utlo perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
                       </div>
@@ -146,7 +146,7 @@ export default {
     ...mapGetters([
       'user',
     ]),
-    picturesIsMany () {
+    picturesIsMany() {
       return this.images.length > 3
     },
     product() {
@@ -155,7 +155,7 @@ export default {
     }
   },
   watch: {
-    product (product) {
+    product(product) {
         if (product) {
           this.images = [this.product.logo, ...this.product.product_images.map(product_image => product_image.image )]
           this.$nextTick(() => {
@@ -174,7 +174,7 @@ export default {
       await this.$store.dispatch('fetchProduct', this.$route.params.id)
   },
   methods: {
-    setSwiper () {
+    setSwiper() {
       const ProductNav = new Swiper('.single-product-nav-slider', {
         spaceBetween: 11,
         slidesPerView: 3,
