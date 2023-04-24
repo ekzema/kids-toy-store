@@ -39,11 +39,11 @@ export default {
   data: () => ({
     status: ''
   }),
-  created () {
+  created() {
     this.confirmationRegistration()
   },
   methods: {
-    async confirmationRegistration () {
+    async confirmationRegistration() {
       const response = await this.$store.dispatch('confirmationRegistration', { token: this.$route.query.token })
       response.success ? this.status = 'success' : this.status = 'error'
     }
