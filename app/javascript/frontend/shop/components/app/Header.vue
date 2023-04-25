@@ -46,7 +46,7 @@
                     <div class="form-input-item">
                       <label for="search" class="sr-only">Search Everything</label>
                       <input v-model="searchText" class="search-input" type="text" placeholder="Search Everything" @blur="handleBlur">
-                      <button type="submit" class="search-button btn-src">
+                      <button type="submit" class="disable-cleaner search-button btn-src">
                         <div v-if="spinner" class="input-spinner spinner-border-sm spinner-border" role="status">
                           <span class="visually-hidden">Loading...</span>
                         </div>
@@ -59,7 +59,7 @@
                       <b>Показано:</b>  {{ showingAutocomplete }} из {{ productsAutocomplete.found }}
                     </li>
                     <li v-for="(product, index) in productsAutocomplete.items" :key="index">
-                      <router-link class="search-link" :to="{ name: 'ProductsShow', params: { id: product.slug } }" @click="resetSearch">
+                      <router-link class="disable-cleaner search-link" :to="{ name: 'ProductsShow', params: { id: product.slug } }" @click="resetSearch">
                         <img :src="product.logo.url">
                         <span class="search-item-title">{{ product.name.ru }} </span>
                       </router-link>
@@ -293,7 +293,7 @@ export default {
       this.searchText = ''
     },
     handleBlur(e) {
-      if (e.relatedTarget && e.relatedTarget.className === 'search-link') return
+      if (e.relatedTarget && ~e.relatedTarget.className.indexOf('disable-cleaner')) return
       this.resetSearch()
     },
     clearAutocomplete() {
@@ -304,6 +304,7 @@ export default {
       this.timer = null
     },
     submitSearchForm() {
+      this.clearAutocomplete()
       this.$router.push({ name: 'ProductsSearch', query: { q: this.searchText } })
     }
   }
