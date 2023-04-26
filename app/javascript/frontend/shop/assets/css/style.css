@@ -10035,3 +10035,7 @@ table p {
   color: black;
   font-size: 14px;
 }
+
+.main-content {
+  min-height: 576px;
+}
