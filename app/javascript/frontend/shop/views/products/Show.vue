@@ -166,7 +166,7 @@ export default {
     quantity(value) {
       if (value < 1 || typeof value !== 'number') this.quantity = 1
     },
-    '$route.params'() {
+    '$route.params.id'() {
       this.$store.dispatch('fetchProduct', this.$route.params.id)
     }
   },
