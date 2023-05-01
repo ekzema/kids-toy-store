@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6 m-auto">
-          <div class="section-title text-center" data-aos="fade-up" data-aos-duration="1000">
+          <div v-if="$route.name === 'ProductsIndex'" class="section-title text-center" data-aos="fade-up" data-aos-duration="1000">
             <h2 class="title">New Products</h2>
           </div>
         </div>
