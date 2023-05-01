@@ -1,5 +1,5 @@
 <template>
-  <div v-for="product in products" :key="product.id" class="col-lg-3 col-md-4 col-sm-6 wrap-item">
+  <div v-for="product in products" :key="product.id" :class="{'col-lg-3': !sideBar, 'col-lg-4': sideBar}" class="col-lg-3 col-md-4 col-sm-6 wrap-item">
     <!-- Start Product Item -->
     <div class="product-item">
       <div class="product-thumb">
@@ -45,6 +45,7 @@ import WishlistMixin from "../mixins/WishlistMixin"
 export default {
   name: 'ListProducts',
   mixins: [AddToCartMixin, WishlistMixin],
+  props: ['sideBar'],
   computed: {
     ...mapGetters([
       'user'
