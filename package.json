@@ -27,6 +27,7 @@
     "jquery-bridget": "^3.0.1",
     "jquery-zoom": "^1.7.21",
     "jquery.countdown": "^1.2.8",
+    "nouislider": "8.3.0",
     "pe7-icon": "^1.0.4",
     "slick-carousel": "^1.8.1",
     "slicknav": "^1.0.8",

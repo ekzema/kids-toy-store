@@ -28,14 +28,14 @@
             <div class="widget-price-filter">
               <div class="slider-labels">
                 <div class="caption">
-                  <span id="slider-range-value1"></span>
+                  <span id="slider-range-value1">{{ minValue }}</span>
                 </div>
                 <span class="range-separator"></span>
                 <div class="caption">
-                  <span id="slider-range-value2"></span>
+                  <span id="slider-range-value2">{{ maxValue }}</span>
                 </div>
               </div>
-              <div class="slider-range" id="slider-range"></div>
+              <div id="slider-range" class="slider-range"></div>
             </div>
           </div>
         </div>
@@ -95,8 +95,155 @@
 </template>
 
 <script>
+import noUiSlider from 'nouislider'
 
 export default {
   name: 'SideBar',
+  data: () => ({
+    minValue: 100,
+    maxValue: 5000
+  }),
+  mounted() {
+    const slider = document.getElementById("slider-range")
+
+    noUiSlider.create(slider, {
+      start: [this.minValue, this.maxValue],
+      step: 1,
+      range: {
+        'min': [100],
+        'max': [5000]
+      },
+      connect: true
+    })
+
+    slider.noUiSlider.on("update", (values, handle) => {
+      handle
+        ? this.maxValue = Math.round(values[handle])
+        : this.minValue = Math.round(values[handle])
+    })
+  }
 }
 </script>
+
+<style scoped>
+  .noUi-target,.noUi-target * {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -ms-touch-action: none;
+    touch-action: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  .noUi-target {
+    position: relative;
+    direction: ltr;
+  }
+
+  .noUi-base {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+    /* Fix 401 */
+  }
+
+  .noUi-origin {
+    position: absolute;
+    right: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+  }
+
+  .noUi-handle {
+    position: relative;
+    z-index: 1;
+  }
+
+  .noUi-stacking .noUi-handle {
+    z-index: 10;
+  }
+
+  .noUi-state-tap .noUi-origin {
+    -webkit-transition: left 0.3s,top .3s;
+    transition: left 0.3s,top .3s;
+  }
+
+  .noUi-state-drag * {
+    cursor: inherit !important;
+  }
+
+  .noUi-base,.noUi-handle {
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+  }
+
+  .noUi-horizontal {
+    height: 4px;
+  }
+
+  .noUi-horizontal .noUi-handle {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    left: -7px;
+    top: -7px;
+    background-color: #345DBB;
+  }
+
+  .noUi-background {
+    background: #D6D7D9;
+  }
+
+  .noUi-connect {
+    background: #345DBB;
+    -webkit-transition: background 450ms;
+    transition: background 450ms;
+  }
+
+  .noUi-origin {
+    border-radius: 2px;
+  }
+
+  .noUi-target {
+    border-radius: 2px;
+  }
+
+  .noUi-target.noUi-connect {
+  }
+
+  .noUi-draggable {
+    cursor: w-resize;
+  }
+
+  .noUi-vertical .noUi-draggable {
+    cursor: n-resize;
+  }
+
+  .noUi-handle {
+    cursor: default;
+    -webkit-box-sizing: content-box !important;
+    -moz-box-sizing: content-box !important;
+    box-sizing: content-box !important;
+  }
+
+  .noUi-handle:active {
+    border: 8px solid #345DBB;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    left: -14px;
+    top: -14px;
+  }
+
+  [disabled].noUi-connect,[disabled] .noUi-connect {
+    background: #B8B8B8;
+  }
+
+  [disabled].noUi-origin,[disabled] .noUi-handle {
+    cursor: not-allowed;
+  }
+</style>
