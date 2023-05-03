@@ -6586,30 +6586,8 @@ table p {
 .sidebar-area.shop-sidebar-area .widget-filter .widget-body .widget-price-filter .slider-range .noUi-connect {
   background-color: #f379a7;
 }
-.sidebar-area.shop-sidebar-area .widget-filter .widget-body .widget-price-filter .slider-labels {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 6px;
-  margin-top: 17px;
-  padding-right: 13px;
-}
-.sidebar-area.shop-sidebar-area .widget-filter .widget-body .widget-price-filter .slider-labels .price {
-  color: #656565;
-  font-weight: 400;
-  font-size: 16px;
-  margin-right: 5px;
-}
-.sidebar-area.shop-sidebar-area .widget-filter .widget-body .widget-price-filter .slider-labels .range-separator {
-  color: #f379a7;
-}
-.sidebar-area.shop-sidebar-area .widget-filter .widget-body .widget-price-filter .slider-labels .caption span {
-  color: #656565;
-  font-weight: 400;
-  font-size: 16px;
-}
-.sidebar-area.shop-sidebar-area .widget-filter .widget-body .widget-price-filter .slider-labels .range-separator {
-  padding: 0 5px;
-}
+
+
 .sidebar-area.shop-sidebar-area .widget-color .form-check .form-check-input {
   box-shadow: none;
   cursor: pointer;

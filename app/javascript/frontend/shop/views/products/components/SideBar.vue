@@ -26,13 +26,13 @@
           </div>
           <div class="widget-body">
             <div class="widget-price-filter">
-              <div class="slider-labels">
-                <div class="caption">
-                  <span id="slider-range-value1">{{ minValue }}</span>
+              <div class="price-inputs">
+                <div class="price_field">
+                  <input v-model="minValue" @blur="updateRangeSlider" type="text">
                 </div>
-                <span class="range-separator"></span>
-                <div class="caption">
-                  <span id="slider-range-value2">{{ maxValue }}</span>
+                <span>-</span>
+                <div class="price_field">
+                  <input v-model="maxValue" @blur="updateRangeSlider" type="text">
                 </div>
               </div>
               <div id="slider-range" class="slider-range"></div>
@@ -121,7 +121,13 @@ export default {
         ? this.maxValue = Math.round(values[handle])
         : this.minValue = Math.round(values[handle])
     })
-  }
+  },
+  methods: {
+    updateRangeSlider() {
+      const slider = document.getElementById("slider-range")
+      slider.noUiSlider.set([this.minValue, this.maxValue])
+    }
+  },
 }
 </script>
 
@@ -245,5 +251,27 @@ export default {
 
   [disabled].noUi-origin,[disabled] .noUi-handle {
     cursor: not-allowed;
+  }
+
+  .price-inputs {
+    display: flex;
+  }
+
+  .price-inputs span{
+    margin: 4px 10px;
+  }
+
+  .price_field input {
+    width: 100%;
+    height: 40px;
+    padding: 0 20px;
+    border: 1px solid #ededed;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 14px;
+    color: #202124;
+  }
+  .price_field {
+    margin-bottom: 20px;
   }
 </style>
