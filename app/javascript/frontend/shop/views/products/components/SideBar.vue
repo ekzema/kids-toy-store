@@ -28,11 +28,11 @@
             <div class="widget-price-filter">
               <div class="price-inputs">
                 <div class="price_field">
-                  <input v-model="minValue" @blur="updateRangeSlider" type="text">
+                  <input v-model.lazy="priceMin" @blur="updateRangeSlider" type="text">
                 </div>
                 <span>-</span>
                 <div class="price_field">
-                  <input v-model="maxValue" @blur="updateRangeSlider" type="text">
+                  <input v-model.lazy="priceMax" @blur="updateRangeSlider" type="text">
                 </div>
               </div>
               <div id="slider-range" class="slider-range"></div>
@@ -100,14 +100,23 @@ import noUiSlider from 'nouislider'
 export default {
   name: 'SideBar',
   data: () => ({
-    minValue: 100,
-    maxValue: 5000
+    timer: null,
+    priceMin: 100,
+    priceMax: 5000
   }),
+  watch: {
+    priceMin() {
+      this.setFilter()
+    },
+    priceMax() {
+      this.setFilter()
+    }
+  },
   mounted() {
     const slider = document.getElementById("slider-range")
 
     noUiSlider.create(slider, {
-      start: [this.minValue, this.maxValue],
+      start: [this.priceMin, this.priceMax],
       step: 1,
       range: {
         'min': [100],
@@ -118,14 +127,25 @@ export default {
 
     slider.noUiSlider.on("update", (values, handle) => {
       handle
-        ? this.maxValue = Math.round(values[handle])
-        : this.minValue = Math.round(values[handle])
+        ? this.priceMax = Math.round(values[handle])
+        : this.priceMin = Math.round(values[handle])
     })
   },
   methods: {
     updateRangeSlider() {
       const slider = document.getElementById("slider-range")
-      slider.noUiSlider.set([this.minValue, this.maxValue])
+      slider.noUiSlider.set([this.priceMin, this.priceMax])
+    },
+    setFilter() {
+      if (this.timer) this.clearTimer()
+      this.timer = setTimeout(() => {
+        this.$router.push({ name: 'Category', params: this.$route.params, query: { price: `${this.priceMin}-${this.priceMax}` } })
+        this.clearTimer()
+      }, 400)
+    },
+    clearTimer() {
+      clearTimeout(this.timer)
+      this.timer = null
     }
   },
 }

@@ -69,7 +69,7 @@ export default {
       this.$store.dispatch('fetchProducts', params)
     },
     buildFilteredByCategory(category) {
-      this.fetchProducts({categories: category})
+      this.fetchProducts({ categories: category, ...this.$route.query })
     },
     fetchProductsByCategory() {
       const params = this.$route.params
