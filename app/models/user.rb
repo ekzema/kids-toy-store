@@ -41,10 +41,6 @@ class User < ApplicationRecord
 
   private
 
-  # def generate_token
-  #   SecureRandom.hex(10)
-  # end
-
   def downcase_email
     self.email = email.downcase
   end
