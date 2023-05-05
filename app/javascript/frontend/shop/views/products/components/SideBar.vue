@@ -8,13 +8,14 @@
         <div class="widget-body">
           <div class="widget-categories">
             <ul>
-              <li><a href="shop.html">Accesasories <span>(6)</span></a></li>
-              <li><a href="shop.html">Computer <span>(4)</span></a></li>
-              <li><a href="shop.html">Covid-19 <span>(2)</span></a></li>
-              <li><a href="shop.html">Electronics <span>(6)</span></a></li>
-              <li><a href="shop.html">Frame Sunglasses <span>(12)</span></a></li>
-              <li><a href="shop.html">Furniture <span>(7)</span></a></li>
-              <li><a href="shop.html">Genuine Leather <span>(9)</span></a></li>
+              <li v-for="subcategory in subcategories" :key="subcategory.id">
+                <router-link
+                    :to="{ name: 'Category', params: { category: $route.params.category, subcategory: subcategory.slug }}"
+                    :title="subcategory.name.ru"
+                    class="active">
+                  {{ subcategory.name.ru }}
+                </router-link>
+              </li>
             </ul>
           </div>
         </div>
@@ -96,6 +97,7 @@
 
 <script>
 import noUiSlider from 'nouislider'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'SideBar',
@@ -104,7 +106,20 @@ export default {
     priceMin: 100,
     priceMax: 5000
   }),
+  computed: {
+    ...mapGetters([
+      'categories'
+    ]),
+    subcategories() {
+      const category = this.categories.find(category => category.slug === this.$route.params.category)
+      return category ? category.subcategories : []
+    }
+  },
   watch: {
+    '$route.path'() {
+      [this.priceMin, this.priceMax] = [100, 5000]
+      this.updateRangeSlider()
+    },
     priceMin() {
       this.setFilter()
     },

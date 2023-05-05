@@ -111,24 +111,24 @@
                   <div class="wrap_menu_head">
                     <router-link class="menu__head" :to="{ name: 'Category', params: { category: category.slug }}" @click="menu('remove')">
                       {{ category.name.ru }}
-                      <div v-if="category.sub_categories.length" class="sub_button"></div>
+                      <div v-if="category.subcategories.length" class="sub_button"></div>
                     </router-link>
-                    <span v-if="category.sub_categories.length" @click="openSubMenu" class="next_button">
+                    <span v-if="category.subcategories.length" @click="openSubMenu" class="next_button">
                       ещё &#10132;
                     </span>
                   </div>
-                  <div v-if="category.sub_categories.length" class="menu__body">
+                  <div v-if="category.subcategories.length" class="menu__body">
                     <div class="menu__back" @click="closeSubMenu">
                       &larr; назад
                     </div>
                     <ul class="menu__list menu__list_1">
-                      <li v-for="sub_category in category.sub_categories" :key="sub_category.id">
+                      <li v-for="subcategory in category.subcategories" :key="subcategory.id">
                         <router-link
-                            :to="{ name: 'Category', params: { category: category.slug, subcategory: sub_category.slug }}"
-                            :title="sub_category.name.ru"
+                            :to="{ name: 'Category', params: { category: category.slug, subcategory: subcategory.slug }}"
+                            :title="subcategory.name.ru"
                             class="menu__link"
                             @click="menu('remove')">
-                          {{ sub_category.name.ru }}
+                          {{ subcategory.name.ru }}
                         </router-link>
                       </li>
                     </ul>
