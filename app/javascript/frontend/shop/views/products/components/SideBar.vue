@@ -12,7 +12,7 @@
                 <router-link
                     :to="{ name: 'Category', params: { category: $route.params.category, subcategory: subcategory.slug }}"
                     :title="subcategory.name.ru"
-                    class="active">
+                >
                   {{ subcategory.name.ru }}
                 </router-link>
               </li>
@@ -62,31 +62,6 @@
             <div class="form-check">
               <input class="form-check-input gray" type="radio" name="colorRadio" id="colorRadio4">
               <label class="form-check-label" for="colorRadio4">Gray (11)</label>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="widget-item mb-md-0">
-        <div class="widget-title">
-          <h3 class="title">Size</h3>
-        </div>
-        <div class="widget-body">
-          <div class="widget-size">
-            <div class="form-check">
-              <input class="form-check-input black" type="radio" name="colorRadio2" id="colorRadio5" checked>
-              <label class="form-check-label" for="colorRadio5">M (12)</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input black" type="radio" name="colorRadio2" id="colorRadio6">
-              <label class="form-check-label" for="colorRadio6">L (09)</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input black" type="radio" name="colorRadio2" id="colorRadio7">
-              <label class="form-check-label" for="colorRadio7">XL (07)</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input black" type="radio" name="colorRadio2" id="colorRadio8">
-              <label class="form-check-label" for="colorRadio8">XXL (11)</label>
             </div>
           </div>
         </div>
@@ -306,7 +281,12 @@ export default {
     font-size: 14px;
     color: #202124;
   }
+
   .price_field {
     margin-bottom: 20px;
+  }
+
+  .widget-body .router-link-active {
+    color: #f379a7 !important;
   }
 </style>

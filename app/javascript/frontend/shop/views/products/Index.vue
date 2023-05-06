@@ -19,6 +19,9 @@
                       <div v-if="isCategoryName" class="row">
                         <div class="col-lg-9 order-0 order-lg-1">
                           <div class="row">
+                            <div v-if="currentCategory" class="section-title text-center" data-aos="fade-up" data-aos-duration="1000">
+                              <h2 class="title">{{ currentCategory.name.ru }}</h2>
+                            </div>
                             <list-products :side-bar="isCategoryName" />
                           </div>
                         </div>
@@ -43,6 +46,7 @@
 // import MainSlider from './components/Slider'
 import ListProducts from "./components/ListProducts"
 import SideBar from './components/SideBar'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'ProductsIndex',
@@ -52,8 +56,18 @@ export default {
     SideBar
   },
   computed: {
+    ...mapGetters([
+      'categories'
+    ]),
     isCategoryName() {
       return this.$route.name === 'Category'
+    },
+    currentCategory() {
+      const { category, subcategory } = this.$route.params
+
+      return subcategory
+        ? this.categories.flatMap(obj => obj.subcategories).find(sub => sub.slug === subcategory)
+        : this.categories.find(obj => obj.slug === category)
     }
   },
   watch: {
