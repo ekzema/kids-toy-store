@@ -40,7 +40,7 @@ import { useVuelidate } from '@vuelidate/core'
 import { useToast } from "vue-toastification"
 
 export default {
-  name: 'AccountPassword',
+  name: 'AccountsPassword',
   components: {
   },
   setup: () => ({
@@ -82,7 +82,7 @@ export default {
           icon: "fa fa-check fa-2x"
         })
 
-        this.$router.push({ name: 'AccountLogin' })
+        this.$router.push({ name: 'AccountsLogin' })
       } catch (error) {
         if (error.response.status === 404) {
           this.$store.commit('setErrorMessage', 'Invalid or expired token.')

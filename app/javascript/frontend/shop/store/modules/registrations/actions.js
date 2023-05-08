@@ -1,5 +1,5 @@
 import Registrations from '../../../api/registrations'
-import ConfirmationToast from '../../../views/account/components/ConfirmationToast.vue'
+import ConfirmationToast from '../../../views/accounts/components/ConfirmationToast.vue'
 
 const actions = {
     async checkEmail({ commit }, params) {
