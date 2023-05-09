@@ -3,11 +3,12 @@ import * as guards from'./guards'
 import ProductsIndex from '../views/products/Index'
 import ProductsSearch from '../views/products/Search'
 import ProductsShow from "../views/products/Show"
-import AccountsNew from '../views/accounts/New'
-import AccountsLogin from '../views/accounts/Login'
-import AccountsForgot from '../views/accounts/Forgot'
-import AccountsPassword from '../views/accounts/Password'
-import AccountsConfirmation from '../views/accounts/Confirmation'
+import AccountNew from '../views/account/New'
+import AccountLogin from '../views/account/Login'
+import AccountForgot from '../views/account/Forgot'
+import AccountPassword from '../views/account/Password'
+import AccountConfirmation from '../views/account/Confirmation'
+import WishlistShow from '../views/wishlist/Show'
 import PageNotFound from "../../errors/PageNotFound"
 
 const router = createRouter({
@@ -29,37 +30,43 @@ const router = createRouter({
       component: ProductsShow
     },
     {
+      name: 'WishlistsShow',
+      path: '/wishlist',
+      component: WishlistShow,
+      beforeEnter: guards.login
+    },
+    {
       name: 'Category',
       path: '/:category/:subcategory?',
       component: ProductsIndex
     },
     {
-      name: 'AccountsNew',
-      path: '/accounts/new',
-      component: AccountsNew,
+      name: 'AccountNew',
+      path: '/account/new',
+      component: AccountNew,
       beforeEnter: guards.login
     },
     {
-      name: 'AccountsLogin',
-      path: '/accounts/login',
-      component: AccountsLogin,
+      name: 'AccountLogin',
+      path: '/account/login',
+      component: AccountLogin,
       beforeEnter: guards.login
     },
     {
-      name: 'AccountsForgot',
-      path: '/accounts/forgot',
-      component: AccountsForgot,
+      name: 'AccountForgot',
+      path: '/account/forgot',
+      component: AccountForgot,
       beforeEnter: guards.login
     },
     {
-      name: 'AccountsConfirmation',
-      path: '/accounts/confirmation',
-      component: AccountsConfirmation
+      name: 'AccountConfirmation',
+      path: '/account/confirmation',
+      component: AccountConfirmation
     },
     {
-      name: 'AccountsPassword',
-      path: '/accounts/password',
-      component: AccountsPassword,
+      name: 'AccountPassword',
+      path: '/account/password',
+      component: AccountPassword,
       beforeEnter: guards.login
     },
     {

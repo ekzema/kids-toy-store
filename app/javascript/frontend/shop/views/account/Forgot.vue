@@ -34,7 +34,7 @@ import { emailRegexTemplate } from "../../helpers/utils"
 import { useVuelidate } from '@vuelidate/core'
 
 export default {
-  name: 'AccountsForgot',
+  name: 'AccountForgot',
   setup: () => ({
     v$: useVuelidate()
   }),

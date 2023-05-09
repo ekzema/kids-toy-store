@@ -1,5 +1,5 @@
 import Passwords from '../../../api/passwords'
-import CreatePasswordToast from '../../../views/accounts/components/CreatePasswordToast'
+import CreatePasswordToast from '../../../views/account/components/CreatePasswordToast'
 
 const actions = {
     async createPassword({ commit }, data) {

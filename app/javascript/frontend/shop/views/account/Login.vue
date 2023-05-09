@@ -19,7 +19,7 @@
                 <div class="login-register-input" :class="{'input-error': v$.formData.password.$error}">
                   <input v-model="v$.formData.password.$model" type="password" placeholder="Password">
                   <div class="forgot">
-                    <router-link :to="{ name: 'AccountsForgot'}">Forgot?</router-link>
+                    <router-link :to="{ name: 'AccountForgot'}">Forgot?</router-link>
                   </div>
                 </div>
                 <div v-for="(error, index) of v$.formData.password.$errors" :key="index" class="input-errors">
@@ -43,7 +43,7 @@ import { useVuelidate } from '@vuelidate/core'
 import { emailRegexTemplate, serialize } from '../../helpers/utils'
 
 export default {
-  name: 'AccountsLogin',
+  name: 'AccountLogin',
   components: {
   },
   setup: () => ({ v$: useVuelidate() }),

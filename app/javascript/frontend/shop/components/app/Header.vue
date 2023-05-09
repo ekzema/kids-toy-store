@@ -14,10 +14,10 @@
               <a href="mailto://demo@example.com"><i class="fa fa-envelope"></i> demo@example.com</a>
               <a v-if="user" href="login-register.html"><i class="fa fa-user"></i> Account</a>
               <div class="wrap-account" v-if="!user">
-                <router-link :to="{ name: 'AccountsNew'}">
+                <router-link :to="{ name: 'AccountNew'}">
                   <i class="fa fa-user-plus"></i> Sign up
                 </router-link>
-                <router-link :to="{ name: 'AccountsLogin'}">
+                <router-link :to="{ name: 'AccountLogin'}">
                   <i class="fa fa-sign-in"></i> Login
                 </router-link>
               </div>

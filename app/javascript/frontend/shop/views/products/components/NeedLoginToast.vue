@@ -12,7 +12,7 @@ export default {
   name: 'NeedLoginToast',
   methods: {
     loginPage () {
-      router.push({ name: 'AccountsLogin'})
+      router.push({ name: 'AccountLogin'})
     }
   }
 }
