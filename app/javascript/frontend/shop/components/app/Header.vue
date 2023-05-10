@@ -77,7 +77,7 @@
               <div class="header-align-right">
                 <div class="header-action-area">
                   <div class="header-action-wishlist">
-                    <button class="btn-wishlist" onclick="window.location.href='shop-wishlist.html'">
+                    <button class="btn-wishlist" @click="onWishlist">
                       <span v-if="showWishlist" class="cart-wishlist-count">{{ wishListCounter }}</span>
                       <i class="pe-7s-like"></i>
                     </button>
@@ -162,7 +162,7 @@
                 </button>
               </div>
               <div class="header-action-wishlist">
-                <button class="btn-wishlist" onclick="window.location.href='shop-wishlist.html'">
+                <button class="btn-wishlist" @click="onWishlist">
                   <span v-if="showWishlist" class="cart-wishlist-count">{{ wishListCounter }}</span>
                   <i class="pe-7s-like"></i>
                 </button>
@@ -306,6 +306,9 @@ export default {
     submitSearchForm() {
       this.clearAutocomplete()
       this.$router.push({ name: 'ProductsSearch', query: { q: this.searchText } })
+    },
+    onWishlist() {
+      this.$router.push({ name: 'WishlistShow' })
     }
   }
 }

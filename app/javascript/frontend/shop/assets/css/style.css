@@ -5677,7 +5677,7 @@ table p {
   font-size: 40px;
 }
 .product-area.wishlist-page-area {
-  padding: 110px 0 110px;
+  padding: 9px 0 81px;
 }
 @media only screen and (max-width: 991px) {
   .product-area.wishlist-page-area {
@@ -7661,9 +7661,8 @@ table p {
 }
 .wishlist-table-content .table-content table thead > tr th {
   color: #000;
-  font-family: "Fredoka One", cursive;
   font-size: 14px;
-  font-weight: 400;
+  font-weight: bold;
   text-transform: uppercase;
   padding: 14px 12px 14px;
 }

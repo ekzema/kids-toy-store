@@ -30,10 +30,9 @@ const router = createRouter({
       component: ProductsShow
     },
     {
-      name: 'WishlistsShow',
+      name: 'WishlistShow',
       path: '/wishlist',
-      component: WishlistShow,
-      beforeEnter: guards.login
+      component: WishlistShow
     },
     {
       name: 'Category',

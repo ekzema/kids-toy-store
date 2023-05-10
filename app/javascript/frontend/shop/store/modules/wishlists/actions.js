@@ -1,6 +1,14 @@
 import Wishlists from '../../../api/wishlists'
 
 const actions = {
+    async fetchWishlists({ commit }, params) {
+        try {
+            const { data } = await Wishlists.get(params)
+            commit('setProducts', data)
+        } catch (error) {
+            commit('setErrorMessage')
+        }
+    },
     async createWishlists({ commit }, payload) {
         try {
             const { data } = await Wishlists.create(payload)

@@ -19,52 +19,30 @@
                   <tr>
                     <th class="width-remove"></th>
                     <th class="width-thumbnail"></th>
-                    <th class="width-name">Product</th>
-                    <th class="width-price"> Unit price </th>
-                    <th class="width-stock-status"> Stock status </th>
+                    <th class="width-name">Товар</th>
+                    <th class="width-price"> Цена </th>
+                    <th class="width-stock-status"> Status </th>
                     <th class="width-wishlist-cart"></th>
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
+                  <tr v-for="product in products" :key="product.id">
                     <td class="product-remove"><a href="#">×</a></td>
                     <td class="product-thumbnail">
-                      <a href="shop-single-product.html"><img src="assets/img/shop/details/nav1.jpg" alt="Image"></a>
+                      <router-link :to="{ name: 'ProductsShow', params: { id: product.id }}">
+                        <img :src="product.logo.small.url" alt="Image">
+                      </router-link>
                     </td>
                     <td class="product-name">
-                      <h5><a href="shop-single-product.html">Jigsaw Puzzles For Kids</a></h5>
+                      <h5>
+                        <router-link :to="{ name: 'ProductsShow', params: { id: product.id }}">
+                          {{ product.name.ru }}
+                        </router-link>
+                      </h5>
                     </td>
-                    <td class="product-price"><span class="amount">$120.00</span></td>
+                    <td class="product-price"><span class="amount">{{ product.price }} грн</span></td>
                     <td class="stock-status">
-                      <span><i class="fa fa-check"></i> In Stock</span>
-                    </td>
-                    <td class="wishlist-cart"><a href="shop-cart.html">Add to Cart</a></td>
-                  </tr>
-                  <tr>
-                    <td class="product-remove"><a href="#">×</a></td>
-                    <td class="product-thumbnail">
-                      <a href="shop-single-product.html"><img src="assets/img/shop/details/nav2.jpg" alt="Image"></a>
-                    </td>
-                    <td class="product-name">
-                      <h5><a href="shop-single-product.html">Bruder Toys Mini Ships</a></h5>
-                    </td>
-                    <td class="product-price"><span class="amount">$120.00</span></td>
-                    <td class="stock-status">
-                      <span><i class="fa fa-check"></i> In Stock</span>
-                    </td>
-                    <td class="wishlist-cart"><a href="shop-cart.html">Add to Cart</a></td>
-                  </tr>
-                  <tr>
-                    <td class="product-remove"><a href="#">×</a></td>
-                    <td class="product-thumbnail">
-                      <a href="shop-single-product.html"><img src="assets/img/shop/details/nav3.jpg" alt="Image"></a>
-                    </td>
-                    <td class="product-name">
-                      <h5><a href="shop-single-product.html">Sassy Crib and Floor Mirror</a></h5>
-                    </td>
-                    <td class="product-price"><span class="amount">$120.00</span></td>
-                    <td class="stock-status">
-                      <span><i class="fa fa-check"></i> In Stock</span>
+                      <span>{{ product.status }}</span>
                     </td>
                     <td class="wishlist-cart"><a href="shop-cart.html">Add to Cart</a></td>
                   </tr>
@@ -82,13 +60,20 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'WishlistShow',
-  components: {
+  computed: {
+    ...mapGetters([
+      'products'
+    ]),
   },
   data: () => ({
   }),
+  created() {
+    this.$store.dispatch('fetchWishlists')
+  },
   methods: {}
 }
 </script>
