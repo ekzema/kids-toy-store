@@ -21,16 +21,16 @@
                     <th class="width-thumbnail"></th>
                     <th class="width-name">Товар</th>
                     <th class="width-price"> Цена </th>
-                    <th class="width-stock-status"> Status </th>
+                    <th class="width-stock-status"> Статус </th>
                     <th class="width-wishlist-cart"></th>
                   </tr>
                   </thead>
                   <tbody>
                   <tr v-for="product in products" :key="product.id">
-                    <td class="product-remove"><a href="#">×</a></td>
+                    <td @click="handleWashlist(product.id)" class="product-remove"><span>×</span></td>
                     <td class="product-thumbnail">
                       <router-link :to="{ name: 'ProductsShow', params: { id: product.id }}">
-                        <img :src="product.logo.small.url" alt="Image">
+                        <img :src="product.logo.thumb.url" alt="Image">
                       </router-link>
                     </td>
                     <td class="product-name">
@@ -56,7 +56,6 @@
     </div>
   </section>
   <!--== End Wishlist Area Wrapper ==-->
-
 </template>
 
 <script>
@@ -74,6 +73,10 @@ export default {
   created() {
     this.$store.dispatch('fetchWishlists')
   },
-  methods: {}
+  methods: {
+    handleWashlist(id) {
+      this.$store.dispatch('deleteWishlists', { product_id: id })
+    }
+  }
 }
 </script>

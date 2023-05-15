@@ -7724,13 +7724,14 @@ table p {
 .wishlist-table-content .table-content table tbody > tr td.stock-status span i {
   font-size: 11px;
 }
-.wishlist-table-content .table-content table tbody > tr td.product-remove a {
+.wishlist-table-content .table-content table tbody > tr td.product-remove span {
+  cursor: pointer;
   font-family: "Rubik", sans-serif;
   font-size: 28px;
   color: #c3c3c3;
   display: inline-block;
 }
-.wishlist-table-content .table-content table tbody > tr td.product-remove a:hover {
+.wishlist-table-content .table-content table tbody > tr td.product-remove span:hover {
   color: #f379a7;
 }
 .wishlist-table-content .table-content table tbody > tr td.wishlist-cart a {

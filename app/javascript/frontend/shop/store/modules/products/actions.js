@@ -2,6 +2,7 @@ import Products from '../../../api/products'
 
 const actions = {
     async fetchProducts({ commit }, params) {
+        commit('clearProducts')
         try {
             const { data } = await Products.get(params)
             commit('setProducts', data)

@@ -20,6 +20,10 @@ const mutations = {
     },
     clearProducts(state) {
         state.products = []
+    },
+    deleteProductById(state, id) {
+        const indexToDelete = state.products.findIndex(obj => obj.id === id)
+        if (indexToDelete !== -1) state.products.splice(indexToDelete, 1)
     }
 }
 
