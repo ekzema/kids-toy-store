@@ -1,4 +1,4 @@
-import NeedLoginToast from "../components/NeedLoginToast.vue";
+import NeedLoginToast from "../components/NeedLoginToast.vue"
 import { useToast } from "vue-toastification"
 
 export default {
