@@ -44,7 +44,13 @@
                     <td class="stock-status">
                       <span>{{ product.status }}</span>
                     </td>
-                    <td class="wishlist-cart"><a href="shop-cart.html">Add to Cart</a></td>
+                    <td class="wishlist-cart">
+                      <button v-if="!product.inCart" class="btn btn-theme" @click="addToCart(product)">
+                        <i class="pe-7s-cart"></i>
+                        Купить
+                      </button>
+                      <span v-else class="btn btn-theme in-cart">В корзине</span>
+                    </td>
                   </tr>
                   </tbody>
                 </table>
@@ -59,14 +65,17 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import AddToCartMixin from '../products/mixins/AddToCartMixin'
+import ProductsInCartMixin from '../products/mixins/ProductsInCartMixin'
+import { mapGetters } from "vuex";
 
 export default {
   name: 'WishlistShow',
+  mixins: [AddToCartMixin, ProductsInCartMixin],
   computed: {
     ...mapGetters([
-      'products'
-    ]),
+      'user'
+    ])
   },
   data: () => ({
   }),

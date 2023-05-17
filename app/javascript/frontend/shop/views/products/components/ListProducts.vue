@@ -41,21 +41,16 @@
 import { mapGetters } from "vuex"
 import AddToCartMixin from "../mixins/AddToCartMixin"
 import WishlistMixin from "../mixins/WishlistMixin"
+import ProductsInCartMixin from "../mixins/ProductsInCartMixin"
 
 export default {
   name: 'ListProducts',
-  mixins: [AddToCartMixin, WishlistMixin],
+  mixins: [AddToCartMixin, WishlistMixin, ProductsInCartMixin],
   props: ['sideBar'],
   computed: {
     ...mapGetters([
       'user'
-    ]),
-    products() {
-      const { products, cart } = this.$store.getters
-      return products.map(obj => {
-        return { ...obj, inCart: cart.some(cartItem => cartItem.product_id === obj.id) }
-      })
-    }
+    ])
   }
 }
 </script>
