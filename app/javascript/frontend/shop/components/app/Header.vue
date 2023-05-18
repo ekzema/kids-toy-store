@@ -83,7 +83,7 @@
                     </button>
                   </div>
                   <div class="header-action-cart">
-                    <button class="btn-cart cart-icon">
+                    <button class="btn-cart cart-icon" @click="onCart">
                       <span v-if="cartItemsCount" class="cart-count">{{ cartItemsCount }}</span>
                       <i class="pe-7s-shopbag"></i>
                     </button>
@@ -168,7 +168,7 @@
                 </button>
               </div>
               <div class="header-action-cart">
-                <button class="btn-cart cart-icon">
+                <button class="btn-cart cart-icon" @click="onCart">
                   <span v-if="cartItemsCount" class="cart-count">{{ cartItemsCount }}</span>
                   <i class="pe-7s-shopbag"></i>
                 </button>
@@ -309,6 +309,9 @@ export default {
     },
     onWishlist() {
       this.$router.push({ name: 'WishlistShow' })
+    },
+    onCart() {
+      this.$router.push({ name: 'CartShow' })
     }
   }
 }

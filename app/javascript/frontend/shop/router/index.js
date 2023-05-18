@@ -9,6 +9,7 @@ import AccountForgot from '../views/account/Forgot'
 import AccountPassword from '../views/account/Password'
 import AccountConfirmation from '../views/account/Confirmation'
 import WishlistShow from '../views/wishlist/Show'
+import CartShow from '../views/cart/Show'
 import PageNotFound from "../../errors/PageNotFound"
 
 const router = createRouter({
@@ -33,6 +34,11 @@ const router = createRouter({
       name: 'WishlistShow',
       path: '/wishlist',
       component: WishlistShow
+    },
+    {
+      name: 'CartShow',
+      path: '/cart',
+      component: CartShow
     },
     {
       name: 'Category',
