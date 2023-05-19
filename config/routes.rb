@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       resources :users, only: [:destroy] do
         collection do
           get 'info'
+          get 'cart'
         end
       end
       resources :products, only: [:index, :show] do

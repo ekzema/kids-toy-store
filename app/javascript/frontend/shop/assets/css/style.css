@@ -5655,7 +5655,7 @@ table p {
   padding: 0;
 }
 .product-area.cart-page-area {
-  padding: 110px 0;
+  padding: 9px 0 81px;
 }
 @media only screen and (max-width: 991px) {
   .product-area.cart-page-area {
@@ -7389,7 +7389,7 @@ table p {
 .cart-shiping-update-wrapper {
   display: flex;
   justify-content: space-between;
-  margin: 30px 0 100px;
+  margin: 0 0 100px;
 }
 @media only screen and (max-width: 1199px) {
   .cart-shiping-update-wrapper {
@@ -7542,8 +7542,7 @@ table p {
 }
 
 .grand-total-wrap .grand-total-content {
-  padding: 30px;
-  padding: 34px 30px 33px;
+  padding: 18px 20px 18px;
   background-color: #f5f5f5;
 }
 .grand-total-wrap .grand-total-content h3 {
