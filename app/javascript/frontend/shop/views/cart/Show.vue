@@ -100,13 +100,23 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'CartShow',
   computed: {
+    ...mapGetters([
+      'cart'
+    ])
   },
   data: () => ({
   }),
+  watch: {
+    cart() {
+      const ids = this.cart.map(obj => obj.product_id).join(',')
+      this.$store.dispatch('fetchCartProducts', { cart_products: ids })
+    }
+  },
   created() {
   },
   methods: {

@@ -6,8 +6,4 @@ class Api::V1::UsersController < ApiController
   def info
     render_response(current_user)
   end
-
-  def cart
-    render_response(current_user.cart)
-  end
 end

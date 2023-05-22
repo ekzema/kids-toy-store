@@ -5,6 +5,8 @@ class V1::Products::IndexService < ApplicationService
 
   def call
     products = Product.includes(:wishlists)
+    return cart_products(products) if params[:cart_products]
+
     products = products.search(params[:q]) if params[:q]
     FILTERS.each { |filter| products = send("filter_by_#{filter}", products) if params[filter] }
 
@@ -29,5 +31,10 @@ class V1::Products::IndexService < ApplicationService
 
   def sanitize_sql(input)
     ActiveRecord::Base.sanitize_sql(input)
+  end
+
+  def cart_products(products)
+    product_ids = params[:cart_products].split(',').map(&:to_i)
+    products.where(id: product_ids)
   end
 end
