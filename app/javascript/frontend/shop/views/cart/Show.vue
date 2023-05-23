@@ -24,52 +24,22 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
+                <tr v-for="product in cartProducts" :key="product.id" >
                   <td class="product-thumbnail">
-                    <a href="shop-single-product.html"><img src="assets/img/shop/details/nav1.jpg" alt="Image"></a>
+                    <router-link :to="{ name: 'ProductsShow', params: { id: product.id }}">
+                      <img :src="product.logo ? product.logo.thumb.url : ''" alt="Image">
+                    </router-link>
                   </td>
                   <td class="product-name">
                     <h5><a href="shop-single-product.html">Jigsaw Puzzles For Kids</a></h5>
                   </td>
-                  <td class="product-price"><span class="amount">$120.00</span></td>
+                  <td class="product-price"><span class="amount">{{ product.price }} грн</span></td>
                   <td class="cart-quality">
                     <div class="product-details-quality">
-                      <input type="number" class="input-text qty text" step="1" min="1" max="100" name="quantity" value="1" title="Qty" placeholder="">
+                      <input type="number" class="input-text qty text" step="1" min="1" max="100" name="quantity" :value="product.quantity" title="Qty" placeholder="">
                     </div>
                   </td>
-                  <td class="product-total"><span>$120.00</span></td>
-                  <td class="product-remove"><a href="#"><i class="ion-ios-trash-outline"></i></a></td>
-                </tr>
-                <tr>
-                  <td class="product-thumbnail">
-                    <a href="shop-single-product.html"><img src="assets/img/shop/details/nav2.jpg" alt="Image"></a>
-                  </td>
-                  <td class="product-name">
-                    <h5><a href="shop-single-product.html">Bruder Toys Mini Ships</a></h5>
-                  </td>
-                  <td class="product-price"><span class="amount">$120.00</span></td>
-                  <td class="cart-quality">
-                    <div class="product-details-quality">
-                      <input type="number" class="input-text qty text" step="1" min="1" max="100" name="quantity" value="1" title="Qty" placeholder="">
-                    </div>
-                  </td>
-                  <td class="product-total"><span>$120.00</span></td>
-                  <td class="product-remove"><a href="#"><i class="ion-ios-trash-outline"></i></a></td>
-                </tr>
-                <tr>
-                  <td class="product-thumbnail">
-                    <a href="shop-single-product.html"><img src="assets/img/shop/details/nav3.jpg" alt="Image"></a>
-                  </td>
-                  <td class="product-name">
-                    <h5><a href="shop-single-product.html">Sassy Crib and Floor Mirror</a></h5>
-                  </td>
-                  <td class="product-price"><span class="amount">$120.00</span></td>
-                  <td class="cart-quality">
-                    <div class="product-details-quality">
-                      <input type="number" class="input-text qty text" step="1" min="1" max="100" name="quantity" value="1" title="Qty" placeholder="">
-                    </div>
-                  </td>
-                  <td class="product-total"><span>$120.00</span></td>
+                  <td class="product-total"><span>{{ subTotalProduct(product) }} грн</span></td>
                   <td class="product-remove"><a href="#"><i class="ion-ios-trash-outline"></i></a></td>
                 </tr>
                 </tbody>
@@ -106,20 +76,29 @@ export default {
   name: 'CartShow',
   computed: {
     ...mapGetters([
-      'cart'
+      'cart',
+      'cartProducts'
     ])
   },
   data: () => ({
   }),
   watch: {
     cart() {
-      const ids = this.cart.map(obj => obj.product_id).join(',')
-      this.$store.dispatch('fetchCartProducts', { cart_products: ids })
+      this.fetchCartProducts()
     }
   },
   created() {
+    this.fetchCartProducts()
   },
   methods: {
+    fetchCartProducts() {
+      const ids = this.cart.map(obj => obj.product_id).join(',')
+      this.$store.dispatch('fetchCartProducts', { cart_products: ids })
+    },
+    subTotalProduct(product) {
+      const quantity = product.quantity || 1
+      return  product.price * quantity
+    }
   }
 }
 </script>

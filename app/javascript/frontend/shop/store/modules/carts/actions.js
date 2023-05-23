@@ -15,7 +15,7 @@ const actions = {
     async fetchCartProducts({ commit }, params) {
         try {
             const { data } = await Products.get(params)
-            console.log(data,'test')
+            commit('setCartProducts', data)
         } catch (error) {
             commit('setErrorMessage')
         }
