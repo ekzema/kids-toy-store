@@ -1,5 +1,5 @@
 <template>
-  <search-panel @search="search" class="custom-main-color">
+  <search-panel class="custom-main-color" @search="search">
     <v-tooltip location="bottom">
       <template v-slot:activator="{ props }">
         <v-btn
@@ -72,7 +72,7 @@
 <script>
 import SearchPanel from '../../components/SearchPanel'
 import Pagination from "../../components/Pagination.vue"
-import { perPage } from "../../config";
+import { perPage } from "../../config"
 import { mapGetters } from 'vuex'
 
 export default {

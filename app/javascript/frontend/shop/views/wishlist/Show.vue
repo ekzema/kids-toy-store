@@ -67,7 +67,7 @@
 <script>
 import AddToCartMixin from '../products/mixins/AddToCartMixin'
 import ProductsInCartMixin from '../products/mixins/ProductsInCartMixin'
-import { mapGetters } from "vuex";
+import { mapGetters } from "vuex"
 
 export default {
   name: 'WishlistShow',

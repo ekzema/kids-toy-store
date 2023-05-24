@@ -12,8 +12,8 @@
       >
       <h1 class="text-center mb-3">Create new category</h1>
       <category-form
-          @submit-form="submitForm"
           btn-name="Create"
+          @submit-form="submitForm"
       />
       </v-sheet>
     </v-col>
