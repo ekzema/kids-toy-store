@@ -33,7 +33,12 @@ class ApiClient {
 
             return options['fullResponse'] ? response : response.data
         } catch (error) {
-            if (error.response.status === 401) store.dispatch('clearUser')
+            if (error.response.status === 401) {
+                store.dispatch('clearUser')
+                window.location = '/'
+
+                return
+            }
             throw error
         } finally {
             clearTimeout(timeoutID)
