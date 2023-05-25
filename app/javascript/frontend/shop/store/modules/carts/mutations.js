@@ -5,7 +5,7 @@ const mutations = {
     setCartProducts(state, payload) {
         state.cartProducts = state.cart.map(product => {
             const updatedProduct = payload.find(p => p.id === product.product_id)
-            return updatedProduct ? { ...updatedProduct, ...product } : product
+            return updatedProduct ? { ...updatedProduct, ...product } : updatedProduct
         })
     }
 }
