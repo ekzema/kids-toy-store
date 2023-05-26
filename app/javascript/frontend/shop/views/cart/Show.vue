@@ -26,7 +26,7 @@
                 <tbody>
                 <tr v-for="product in cartProducts" :key="product.id" >
                   <td class="product-thumbnail">
-                    <router-link :to="{ name: 'ProductsShow', params: { id: product.id }}">
+                    <router-link :to="{ name: 'ProductsShow', params: { id: product.slug }}">
                       <img :src="product.logo ? product.logo.thumb.url : ''" alt="Image">
                     </router-link>
                   </td>
@@ -40,7 +40,7 @@
                     </div>
                   </td>
                   <td class="product-total"><span>{{ subTotalProduct(product) }} грн</span></td>
-                  <td class="product-remove"><a href="#"><i class="ion-ios-trash-outline"></i></a></td>
+                  <td class="product-remove"><span @click="removeFromCart(product.line_item_id, product.id)"><i class="ion-ios-trash-outline"></i></span></td>
                 </tr>
                 </tbody>
               </table>
@@ -77,6 +77,7 @@ export default {
   computed: {
     ...mapGetters([
       'cart',
+      'user',
       'cartProducts'
     ])
   },
@@ -98,6 +99,10 @@ export default {
     subTotalProduct(product) {
       const quantity = product.quantity || 1
       return  product.price * quantity
+    },
+    removeFromCart(id, productId) {
+      if(id) this.$store.dispatch('deleteLineItems', { id })
+      console.log(id,'test')
     }
   }
 }

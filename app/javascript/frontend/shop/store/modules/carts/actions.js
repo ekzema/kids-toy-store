@@ -12,6 +12,13 @@ const actions = {
             commit('setErrorMessage')
         }
     },
+    async deleteLineItems({ commit }, { id, options }) {
+        try {
+            await LineItems.delete(id, options)
+        } catch (error) {
+            commit('setErrorMessage')
+        }
+    },
     async fetchCartProducts({ commit }, params) {
         try {
             const { data } = await Products.get(params)
