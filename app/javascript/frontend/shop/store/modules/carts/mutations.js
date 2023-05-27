@@ -6,11 +6,16 @@ const mutations = {
             product_id
         }))
     },
+    removeFromCart(state, payload) {
+        state.cart = state.cart.filter(({ product_id }) => product_id !== payload)
+    },
     setCartProducts(state, payload) {
-        state.cartProducts = state.cart.map(lineItem => {
-            let updatedProduct = payload.find(p => p.id === lineItem.product_id)
-            return updatedProduct ? {...updatedProduct, ...lineItem} : updatedProduct
-        })
+        state.cartProducts = state.cart.reduce((acc, lineItem) => {
+            const updatedProduct = payload.find(p => p.id === lineItem.product_id)
+            if (updatedProduct) acc.push({...updatedProduct, ...lineItem})
+
+            return acc
+        }, [])
     }
 }
 
