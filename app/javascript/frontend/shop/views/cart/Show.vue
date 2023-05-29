@@ -36,7 +36,7 @@
                   <td class="product-price"><span class="amount">{{ product.price }} грн</span></td>
                   <td class="cart-quality">
                     <div class="product-details-quality">
-                      <input type="number" class="input-text qty text" step="1" min="1" max="100" name="quantity" :value="product.quantity" title="Qty" placeholder="">
+                      <input @input="handleQuantity" type="number" class="input-text qty text" step="1" min="1" max="100" name="quantity" :value="product.quantity" title="Qty" placeholder="">
                     </div>
                   </td>
                   <td class="product-total"><span>{{ subTotalProduct(product) }} грн</span></td>
@@ -84,7 +84,7 @@ export default {
   data: () => ({
   }),
   watch: {
-    cart() {
+    'cart.length'() {
       this.fetchCartProducts()
     }
   },
@@ -102,7 +102,10 @@ export default {
     },
     removeFromCart(id, productId) {
       if(id) this.$store.dispatch('deleteLineItems', { id })
-      console.log(id,'test')
+      this.$store.commit('removeFromCart', productId)
+    },
+    handleQuantity() {
+console.log('dsdsd','test')
     }
   }
 }
