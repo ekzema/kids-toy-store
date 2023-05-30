@@ -6,6 +6,14 @@ const mutations = {
             product_id
         }))
     },
+    updateQuantityItem(state, { productId, quantity }) {
+        const carts = [{ type: 'cart', field: 'product_id' }, { type: 'cartProducts', field: 'id' }]
+
+        carts.forEach((cart) => {
+            const index = state[cart.type].findIndex(product => product[cart.field] === productId)
+            if (index !== -1) state[cart.type][index].quantity = parseInt(quantity, 10)
+        })
+    },
     removeFromCart(state, payload) {
         state.cart = state.cart.filter(({ product_id }) => product_id !== payload)
     },
