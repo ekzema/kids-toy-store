@@ -2,6 +2,7 @@
 
 class Api::V1::LineItemsController < ApiController
   before_action :authorize_by_access_header!
+  before_action :set_line_item, only: %i[destroy update]
 
   def create
     cart = current_user.cart || current_user.build_cart
@@ -11,9 +12,16 @@ class Api::V1::LineItemsController < ApiController
     render json: line_item.errors, status: :unprocessable_entity
   end
 
+  def update
+    if @line_item.update(line_item_params)
+      render_response
+    else
+      render json: @line_item.errors, status: :unprocessable_entity
+    end
+  end
+
   def destroy
-    line_item = line_items.find(params[:id])
-    line_item.destroy
+    @line_item.destroy
   end
 
   private
@@ -31,6 +39,10 @@ class Api::V1::LineItemsController < ApiController
 
   def line_items
     current_user.cart.line_items
+  end
+
+  def set_line_item
+    @line_item = line_items.find(params[:id])
   end
 
   def line_item_params

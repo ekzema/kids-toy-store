@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :categories, only: [:index, :show]
       resources :wishlists,  only: [:index, :create]
-      resources :line_items, only: [:create, :destroy]
+      resources :line_items, only: [:create, :update, :destroy]
       resources :passwords,  only: [:create, :update], param: :token
       resources :registrations, only: [:create] do
         collection do
