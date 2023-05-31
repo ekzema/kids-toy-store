@@ -36,7 +36,7 @@
                   <td class="product-price"><span class="amount">{{ product.price }} грн</span></td>
                   <td class="cart-quality">
                     <div class="product-details-quality">
-                      <input @input="handleQuantity($event, product.id)" type="number" class="input-text qty text" step="1" min="1" max="100" name="quantity" :value="product.quantity" title="Qty" placeholder="">
+                      <input @input="handleQuantity($event, product)" type="number" class="input-text qty text" step="1" min="1" max="100" name="quantity" :value="product.quantity" title="Qty" placeholder="">
                     </div>
                   </td>
                   <td class="product-total"><span>{{ subTotalProduct(product) }} грн</span></td>
@@ -54,7 +54,7 @@
               <div class="grand-total-wrap">
                 <div class="grand-total-content">
                   <div class="grand-total">
-                    <h4>Всего: <span>185грн</span></h4>
+                    <h4>Всего: <span>{{ cartSum }} грн</span></h4>
                   </div>
                 </div>
                 <div class="grand-total-btn">
@@ -71,6 +71,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { cart } from '../../helpers/utils'
 
 export default {
   name: 'CartShow',
@@ -79,10 +80,13 @@ export default {
       'cart',
       'user',
       'cartProducts'
-    ])
+    ]),
+    cartSum() {
+      return this.cartProducts.reduce((accumulator, item) => {
+        return accumulator + (item.price * item.quantity)
+      }, 0)
+    }
   },
-  data: () => ({
-  }),
   watch: {
     'cart.length'() {
       this.fetchCartProducts()
@@ -93,7 +97,7 @@ export default {
   },
   methods: {
     fetchCartProducts() {
-      if(!this.cart.length) return
+      if (!this.cart.length) return this.$store.commit('setCartProducts', [])
 
       const ids = this.cart.map(obj => obj.product_id).join(',')
       this.$store.dispatch('fetchCartProducts', { cart_products: ids })
@@ -103,11 +107,19 @@ export default {
       return  product.price * quantity
     },
     removeFromCart(id, productId) {
-      if(id) this.$store.dispatch('deleteLineItems', { id })
+      if (id) this.$store.dispatch('deleteLineItems', { id })
       this.$store.commit('removeFromCart', productId)
     },
-    handleQuantity(e, productId) {
-      this.$store.commit('updateQuantityItem', { productId: productId, quantity: e.target.value })
+    handleQuantity(e, product) {
+      const { id, line_item_id } = product
+      const quantity = e.target.value
+
+      this.user ? this.$store.dispatch('updateLineItems', { id: line_item_id, quantity }) : this.updateLocalCart(id, quantity)
+      this.$store.commit('updateQuantityItem', { productId: id, quantity })
+    },
+    updateLocalCart(id, quantity) {
+      const index = cart.get().findIndex(item => item.product_id === id)
+      cart.update(index, parseInt(quantity, 10))
     }
   }
 }

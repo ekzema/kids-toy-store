@@ -12,6 +12,14 @@ const actions = {
             commit('setErrorMessage')
         }
     },
+    async updateLineItems({ commit }, data) {
+        try {
+            const { id, quantity } = data
+            await LineItems.update(id, { quantity })
+        } catch (error) {
+            commit('setErrorMessage')
+        }
+    },
     async deleteLineItems({ commit }, { id, options }) {
         try {
             await LineItems.delete(id, options)
