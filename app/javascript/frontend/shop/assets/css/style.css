@@ -5671,7 +5671,7 @@ table p {
 }
 
 .product-area.shop-checkout-area {
-  padding: 110px 0;
+  padding: 9px 0 81px;
 }
 @media only screen and (max-width: 991px) {
   .product-area.shop-checkout-area {
