@@ -7,11 +7,11 @@ class Registrations extends MainApi {
 
     check_email(params) {
         this.api.loader = false
-        return this.api.query('get', `${this.url}/check_email`, {params: {...params}})
+        return this.api.query('get', `${this.url}/check_email`, { params: { ...params } })
     }
 
     confirmation(params) {
-        return this.api.query('put', `${this.url}/confirmation`, {...params})
+        return this.api.query('put', `${this.url}/confirmation`, { ...params })
     }
 }
 

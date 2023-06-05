@@ -280,9 +280,13 @@ export default {
   name: 'CheckoutShow',
   computed: {
     ...mapGetters([
+        'user'
     ])
   },
   data: () => ({
+    formData: {
+      first_name: ''
+    }
   }),
   created() {
   },
