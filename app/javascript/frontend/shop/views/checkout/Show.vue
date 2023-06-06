@@ -5,6 +5,7 @@
         <div class="col-lg-6 m-auto">
           <div class="section-title text-center">
             <h2 class="title">Checkout</h2>
+            <p>form: {{ formData }}</p>
           </div>
         </div>
       </div>
@@ -30,19 +31,19 @@
               <div class="col-12">
                 <div class="billing-info mb-20">
                   <label>First name <abbr class="required" title="required">*</abbr></label>
-                  <input type="text">
+                  <input v-model="formData.first_name" type="text">
                 </div>
               </div>
               <div class="col-12">
                 <div class="billing-info mb-20">
                   <label>Last name <abbr class="required" title="required">*</abbr></label>
-                  <input type="text">
+                  <input v-model="formData.last_name" type="text">
                 </div>
               </div>
               <div class="col-12">
                 <div class="billing-info mb-20">
-                  <label>Company name (optional) <abbr class="required" title="required">*</abbr></label>
-                  <input type="text">
+                  <label>Patronymic <abbr class="required" title="required">*</abbr></label>
+                  <input v-model="formData.patronymic" type="text">
                 </div>
               </div>
               <div class="col-12">
@@ -284,13 +285,21 @@ export default {
     ])
   },
   data: () => ({
-    formData: {
-      first_name: ''
-    }
+    formData: {}
   }),
+  watch: {
+    user() {
+      const { email, phone, first_name, last_name, patronymic } = this.user
+      this.formData = { email, phone, first_name, last_name, patronymic }
+    }
+  },
   created() {
+
   },
   methods: {
+    onSubmit() {
+      this.$store.commit('updateUser', { first_name: 'dsdsds' })
+    }
   }
 }
 </script>
