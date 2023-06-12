@@ -5,21 +5,6 @@
         <div class="col-lg-6 m-auto">
           <div class="section-title text-center">
             <h2 class="title">Checkout</h2>
-            <p>form: {{ formData }}</p>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="checkout-coupon-wrap mb-65 mb-md-40">
-            <p class="cart-page-title"><i class="ion-ios-pricetag-outline"></i> Have a coupon? <a class="checkout-coupon-active" href="#/">Click here to enter your code</a></p>
-            <div class="checkout-coupon-content">
-              <form action="#">
-                <p>If you have a coupon code, please apply it below.</p>
-                <input type="text" placeholder="Coupon code">
-                <button type="submit">Apply coupon</button>
-              </form>
-            </div>
           </div>
         </div>
       </div>
@@ -44,6 +29,18 @@
                 <div class="billing-info mb-20">
                   <label>Patronymic <abbr class="required" title="required">*</abbr></label>
                   <input v-model="formData.patronymic" type="text">
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="billing-info mb-20">
+                  <label>Phone <abbr class="required" title="required">*</abbr></label>
+                  <input type="text">
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="billing-info mb-20">
+                  <label>Email Address <abbr class="required" title="required">*</abbr></label>
+                  <input type="text">
                 </div>
               </div>
               <div class="col-12">
@@ -90,18 +87,6 @@
               <div class="col-12">
                 <div class="billing-info mb-20">
                   <label>Postcode / ZIP (optional) <abbr class="required" title="required">*</abbr></label>
-                  <input type="text">
-                </div>
-              </div>
-              <div class="col-12">
-                <div class="billing-info mb-20">
-                  <label>Phone <abbr class="required" title="required">*</abbr></label>
-                  <input type="text">
-                </div>
-              </div>
-              <div class="col-12">
-                <div class="billing-info mb-20">
-                  <label>Email Address <abbr class="required" title="required">*</abbr></label>
                   <input type="text">
                 </div>
               </div>
@@ -294,11 +279,10 @@ export default {
     }
   },
   created() {
-
   },
   methods: {
     onSubmit() {
-      this.$store.commit('updateUser', { first_name: 'dsdsds' })
+      //TODO save form
     }
   }
 }
