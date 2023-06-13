@@ -3,6 +3,7 @@
 class Cart < ApplicationRecord
   belongs_to :user, optional: true
   has_many :line_items, dependent: :destroy
+  has_one :order, dependent: :destroy
 
   default_scope -> { where(deleted_at: nil) }
 end
