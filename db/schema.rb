@@ -59,7 +59,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_124638) do
     t.integer "pay_type"
     t.integer "delivery"
     t.string "department_number"
-    t.integer "moderation", default: 0
+    t.boolean "moderation", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["cart_id"], name: "index_orders_on_cart_id"

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :wishlists,  only: [:index, :create]
       resources :line_items, only: [:create, :update, :destroy]
       resources :passwords,  only: [:create, :update], param: :token
+      resources :orders,  only: [:create, :index, :show]
       resources :registrations, only: [:create] do
         collection do
           get 'check_email'

@@ -12,7 +12,7 @@ class CreateOrders < ActiveRecord::Migration[7.0]
       t.integer :pay_type
       t.integer :delivery
       t.string :department_number
-      t.integer :moderation, default: 0
+      t.boolean :moderation, default: false
 
       t.timestamps
     end
