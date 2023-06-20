@@ -8,10 +8,19 @@ class V1::Orders::CreateService < ApplicationService
   private
 
   def create_without_user
-    # TODO create_without_user
+    ActiveRecord::Base.transaction do
+      cart = Cart.create
+      cart.line_items.create!(line_items)
+
+      build_order(cart)
+    end
   end
 
   def build_order(cart)
-    cart.build_order(params.except(:current_user))
+    cart.build_order(params.except(:current_user, :line_items))
+  end
+
+  def line_items
+    params[:line_items]
   end
 end
