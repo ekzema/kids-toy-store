@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 class V1::Orders::CreateService < ApplicationService
+  class EmptyLineItemsError < StandardError
+    def initialize
+      super 'Line items cannot be empty'
+    end
+  end
+
   def call
     current_user ? build_order(current_user.cart) : create_without_user
   end
@@ -8,6 +14,8 @@ class V1::Orders::CreateService < ApplicationService
   private
 
   def create_without_user
+    raise EmptyLineItemsError if line_items.blank?
+
     ActiveRecord::Base.transaction do
       cart = Cart.create
       cart.line_items.create!(line_items)

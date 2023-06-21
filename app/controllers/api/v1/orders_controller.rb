@@ -4,6 +4,7 @@ class Api::V1::OrdersController < ApiController
   def create
     order = ::V1::Orders::CreateService.perform(order_params.merge(current_user: current_user))
     if order.save
+      order.cart.soft_delete!
       render_response(status: :created)
     else
       order.cart.destroy
