@@ -5,8 +5,8 @@
       label="Select age children"
       variant="underlined"
       :items="detailConstructor.age"
-      @update:modelValue="onSelect"
       color="primary"
+      @update:modelValue="onSelect"
   >
     <template v-slot:item="{ props, item }">
       <v-list-item
@@ -24,7 +24,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'select-agr',
+  name: 'SelectAga',
   props: ['for_age'],
   data() {
     return {
@@ -41,11 +41,13 @@ export default {
       this.$emit('update:for_age', this.for_age)
     }
   },
+  // eslint-disable-next-line vue/order-in-components
   computed: {
     ...mapGetters([
       'detailConstructor'
     ])
   },
+  // eslint-disable-next-line vue/order-in-components
   watch: {
     for_age() {
       this.selectedAge = this.for_age

@@ -70,12 +70,7 @@
 
 <script>
 export default {
-  name: 'specifications',
-  data: () => ({
-    requiredRules: [
-      v => (!!v || v === 0)  || 'This field is required'
-    ]
-  }),
+  name: 'Specifications',
   props: {
     specifications: {
       type: Object
@@ -84,6 +79,11 @@ export default {
       type: String
     }
   },
+  data: () => ({
+    requiredRules: [
+      v => (!!v || v === 0)  || 'This field is required'
+    ]
+  }),
   created () {
   },
   methods: {

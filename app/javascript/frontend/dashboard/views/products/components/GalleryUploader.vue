@@ -26,18 +26,18 @@
   </v-row>
   <v-file-input
       ref="gallery"
-      @change="galleryOnChange"
       accept="image/*"
       variant="underlined"
       style="display: none"
+      @change="galleryOnChange"
   ></v-file-input>
   <div class="text-center">
     Add image
     <v-btn
-        @click="triggerUpload('gallery')"
-        icon
-        size="x-small"
         color="primary"
+        size="x-small"
+        icon
+        @click="triggerUpload('gallery')"
     >
       <v-icon dark>
         mdi-panorama
@@ -50,16 +50,16 @@
 import UploadMixin from '../mixins/UploadMixin'
 
 export default {
-  name: 'gallery-uploader',
+  name: 'GalleryUploader',
   mixins: [UploadMixin],
-  data: () => ({
-    lazyGallery: require('./../../../assets/img/lazy_image_160x80.jpg')
-  }),
   props: {
     galleryPreviews: {
       type: Array
     }
   },
+  data: () => ({
+    lazyGallery: require('./../../../assets/img/lazy_image_160x80.jpg')
+  }),
   created () {
   },
   methods: {

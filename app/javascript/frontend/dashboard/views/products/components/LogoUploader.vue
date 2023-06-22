@@ -1,8 +1,8 @@
 <template>
   <v-img
       :src="preview ? preview : defaultLogo"
-      @click="triggerUpload('logo')"
       max-height="200"
+      @click="triggerUpload('logo')"
   >
     <template v-slot:placeholder>
       <v-row class="fill-height ma-0" align="center" justify="center">
@@ -15,11 +15,11 @@
   </v-img>
   <v-file-input
       ref="logo"
-      @change="logoOnChange"
       accept="image/*"
       label="Logo"
       variant="underlined"
       style="display: none"
+      @change="logoOnChange"
   ></v-file-input>
 </template>
 
@@ -27,11 +27,8 @@
 import UploadMixin from '../mixins/UploadMixin'
 
 export default {
-  name: 'logo-uploader',
+  name: 'LogoUploader',
   mixins: [UploadMixin],
-  data: () => ({
-    defaultLogo: require('./../../../assets/img/logo_default.png')
-  }),
   props: {
     logo: {
       type: [String, Object]
@@ -40,6 +37,9 @@ export default {
       type: [String, Object]
     }
   },
+  data: () => ({
+    defaultLogo: require('./../../../assets/img/logo_default.png')
+  }),
   created () {
   },
   methods: {

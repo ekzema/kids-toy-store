@@ -4,10 +4,10 @@
       class="d-flex flex-row-reverse"
   />
   <v-form
-      @submit.prevent="submitForm"
       ref="form"
       v-model="valid"
       lazy-validation
+      @submit.prevent="submitForm"
   >
     <v-text-field
         ref="name"
@@ -27,13 +27,13 @@
         color="primary"
         :disabled="formData.is_parent"
     >
-      <template v-slot:item="{ props, item }">
+      <template #item="{ props, item }">
         <v-list-item
             v-bind="props"
             :title="item.raw.name[language]"
         />
       </template>
-      <template v-slot:selection="{ item }">
+      <template #selection="{ item }">
         {{item.raw.name ? item.raw.name[language] : ''}}
       </template>
     </v-select>

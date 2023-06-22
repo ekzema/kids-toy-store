@@ -1,15 +1,15 @@
 <template>
   <v-autocomplete
-      label="Select categories"
       v-model="selectedCategories"
+      label="Select categories"
       :rules="requiredArrayRules"
       :items="detailConstructor.categories"
-      @update:modelValue="onSelect"
-      variant="underlined"
-      item-title="name"
-      item-value="id"
-      color="primary"
       multiple
+      color="primary"
+      item-value="id"
+      item-title="name"
+      variant="underlined"
+      @update:modelValue="onSelect"
   >
     <template v-slot:chip="{ props, item }">
       <v-chip
@@ -39,7 +39,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'select-categories',
+  name: 'SelectCategories',
   props: ['language', 'categories'],
   data() {
     return {
@@ -47,13 +47,6 @@ export default {
       requiredArrayRules: [
         v => (!!v && v.length > 0) || 'Please select a category.'
       ]
-    }
-  },
-  created () {
-  },
-  methods: {
-    onSelect() {
-      this.$emit('update:categories', this.selectedCategories)
     }
   },
   computed: {
@@ -64,6 +57,13 @@ export default {
   watch: {
     categories() {
       this.selectedCategories = this.categories
+    }
+  },
+  created () {
+  },
+  methods: {
+    onSelect() {
+      this.$emit('update:categories', this.selectedCategories)
     }
   }
 }
