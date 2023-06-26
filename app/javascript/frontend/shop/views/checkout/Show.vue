@@ -117,12 +117,16 @@
 
 <script>
 import { mapGetters } from "vuex"
+import FetchCartProductsMixin from '../cart/mixins/FetchCartProductsMixin'
 
 export default {
   name: 'CheckoutShow',
+  mixins: [FetchCartProductsMixin],
   computed: {
     ...mapGetters([
-        'user'
+        'cart',
+        'user',
+        'cartProducts'
     ])
   },
   data: () => ({
