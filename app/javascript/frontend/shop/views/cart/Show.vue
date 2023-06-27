@@ -58,7 +58,9 @@
                   </div>
                 </div>
                 <div class="grand-total-btn">
-                  <a class="btn btn-link" href="shop-checkout.html">Оформить заказ</a>
+                  <router-link class="btn btn-link" :to="{ name: 'CheckoutShow'}">
+                    Оформить заказ
+                  </router-link>
                 </div>
               </div>
             </div>

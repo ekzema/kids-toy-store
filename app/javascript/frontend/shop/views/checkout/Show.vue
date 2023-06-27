@@ -134,13 +134,19 @@ export default {
   }),
   watch: {
     user() {
-      const { email, phone, first_name, last_name, patronymic } = this.user
-      this.formData = { email, phone, first_name, last_name, patronymic }
+      this.setFormData()
     }
   },
   created() {
+    this.setFormData()
   },
   methods: {
+    setFormData() {
+      if (!this.user) return
+
+      const { email, phone, first_name, last_name, patronymic } = this.user
+      this.formData = { email, phone, first_name, last_name, patronymic }
+    },
     onSubmit() {
       //TODO save form
     }
