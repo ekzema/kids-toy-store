@@ -25,6 +25,8 @@ class V1::Orders::CreateService < ApplicationService
   end
 
   def build_order(cart)
+    raise EmptyLineItemsError if cart&.line_items.blank?
+
     cart.build_order(params.except(:current_user, :line_items))
   end
 

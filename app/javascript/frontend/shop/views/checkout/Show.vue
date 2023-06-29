@@ -96,17 +96,20 @@
                 </div>
                 <div class="your-order-product">
                   <ul>
-                    <li>Brother Hoodies in Grey × 4 <span>$140.00 </span></li>
-                    <li>Enjoy The Rest T-Shirt × 1 <span>$39.59 </span></li>
+                    <li v-for="product in cartProducts" :key="product.id">
+                      {{ product.name.ru }} × {{ product.quantity }} <span>{{ subTotalProduct(product) }} грн </span>
+                    </li>
                   </ul>
                 </div>
                 <div class="your-order-total">
-                  <h3>Total <span>$617.59 </span></h3>
+                  <h3>Total <span>{{ cartSum }} грн </span></h3>
                 </div>
               </div>
             </div>
             <div class="place-order">
-              <a href="#/">Place Order</a>
+              <router-link to="">
+                Place Order
+              </router-link>
             </div>
           </div>
         </div>
@@ -118,10 +121,16 @@
 <script>
 import { mapGetters } from "vuex"
 import FetchCartProductsMixin from '../cart/mixins/FetchCartProductsMixin'
+import SubtotalProductsMixin from '../cart/mixins/SubtotalProductsMixin'
+import CartSumMixin from '../cart/mixins//CartSumMixin'
 
 export default {
   name: 'CheckoutShow',
-  mixins: [FetchCartProductsMixin],
+  mixins: [
+    FetchCartProductsMixin,
+    SubtotalProductsMixin,
+    CartSumMixin
+  ],
   computed: {
     ...mapGetters([
         'cart',
@@ -148,7 +157,7 @@ export default {
       this.formData = { email, phone, first_name, last_name, patronymic }
     },
     onSubmit() {
-      //TODO save form
+      console.log('onSubmit','test')
     }
   }
 }

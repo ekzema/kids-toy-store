@@ -75,29 +75,26 @@
 import { mapGetters } from 'vuex'
 import { cart } from '../../helpers/utils'
 import FetchCartProductsMixin from './mixins/FetchCartProductsMixin'
+import SubtotalProductsMixin from './mixins/SubtotalProductsMixin'
+import CartSumMixin from './mixins/CartSumMixin'
 
 export default {
   name: 'CartShow',
-  mixins: [FetchCartProductsMixin],
+  mixins: [
+    FetchCartProductsMixin,
+    SubtotalProductsMixin,
+    CartSumMixin
+  ],
   computed: {
     ...mapGetters([
       'cart',
       'user',
       'cartProducts'
-    ]),
-    cartSum() {
-      return this.cartProducts.reduce((accumulator, item) => {
-        return accumulator + (item.price * item.quantity)
-      }, 0)
-    }
+    ])
   },
   created() {
   },
   methods: {
-    subTotalProduct(product) {
-      const quantity = product.quantity || 1
-      return  product.price * quantity
-    },
     removeFromCart(id, productId) {
       if (id) this.$store.dispatch('deleteLineItems', { id })
       this.$store.commit('removeFromCart', productId)
