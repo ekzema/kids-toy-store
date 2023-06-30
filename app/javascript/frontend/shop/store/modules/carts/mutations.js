@@ -20,7 +20,7 @@ const mutations = {
     setCartProducts(state, payload) {
         state.cartProducts = state.cart.reduce((acc, lineItem) => {
             const updatedProduct = payload.find(p => p.id === lineItem.product_id)
-            if (updatedProduct) acc.push({...updatedProduct, ...lineItem})
+            if (updatedProduct) acc.push({ ...updatedProduct, ...lineItem })
 
             return acc
         }, [])
