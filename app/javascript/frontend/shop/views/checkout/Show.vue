@@ -13,72 +13,94 @@
           <div class="billing-info-wrap">
             <h3>Billing Details</h3>
             <div class="row">
-              <div class="col-12">
-                <div class="billing-info mb-20">
-                  <label>First name <abbr class="required" title="required">*</abbr></label>
-                  <input v-model="formData.first_name" type="text">
-                </div>
-              </div>
-              <div class="col-12">
-                <div class="billing-info mb-20">
-                  <label>Last name <abbr class="required" title="required">*</abbr></label>
-                  <input v-model="formData.last_name" type="text">
-                </div>
-              </div>
-              <div class="col-12">
-                <div class="billing-info mb-20">
-                  <label>Patronymic <abbr class="required" title="required">*</abbr></label>
-                  <input v-model="formData.patronymic" type="text">
-                </div>
-              </div>
-              <div class="col-12">
-                <div class="billing-info mb-20">
-                  <label>Phone <abbr class="required" title="required">*</abbr></label>
-                  <input type="text">
-                </div>
-              </div>
-              <div class="col-12">
-                <div class="billing-info mb-20">
-                  <label>Email Address <abbr class="required" title="required">*</abbr></label>
-                  <input type="text">
-                </div>
-              </div>
-              <div class="col-12">
-                <div class="billing-select mb-20">
-                  <label>Payment method <abbr class="required" title="required">*</abbr></label>
-                  <div class="select-style">
-                    <select class="select-active">
-                      <option>Приват банк</option>
-                      <option>Наложеный платеж</option>
-                      <option>Другой способ оплаты</option>
-                    </select>
+              <form @keydown.enter="onSubmit">
+                <div class="col-12">
+                  <div class="billing-info mb-20">
+                    <label>First name <abbr class="required" title="required">*</abbr></label>
+                    <input v-model="v$.formData.first_name.$model" type="text">
+                    <div v-for="(error, index) of v$.formData.first_name.$errors" :key="index" class="input-errors">
+                      <div class="error-msg">{{ error.$message }}</div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-12">
-                <div class="billing-select mb-20">
-                  <label>Delivery <abbr class="required" title="required">*</abbr></label>
-                  <div class="select-style">
-                    <select class="select-active">
-                      <option>Новая почта</option>
-                      <option>Укрпочта</option>
-                      <option>Самовывоз</option>
-                    </select>
+                <div class="col-12">
+                  <div class="billing-info mb-20">
+                    <label>Last name <abbr class="required" title="required">*</abbr></label>
+                    <input v-model="v$.formData.last_name.$model" type="text">
+                    <div v-for="(error, index) of v$.formData.last_name.$errors" :key="index" class="input-errors">
+                      <div class="error-msg">{{ error.$message }}</div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-12">
-                <div class="billing-info mb-20">
-                  <label>Address <abbr class="required" title="required">*</abbr></label>
-                  <input class="billing-address" placeholder="House number and street name" type="text">
+                <div class="col-12">
+                  <div class="billing-info mb-20">
+                    <label>Patronymic <abbr class="required" title="required">*</abbr></label>
+                    <input v-model="v$.formData.patronymic.$model" type="text">
+                    <div v-for="(error, index) of v$.formData.patronymic.$errors" :key="index" class="input-errors">
+                      <div class="error-msg">{{ error.$message }}</div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div class="col-12">
-                <div class="billing-info mb-20">
-                  <label>Department number <abbr class="required" title="required">*</abbr></label>
-                  <input type="text">
+                <div class="col-12">
+                  <div class="billing-info mb-20">
+                    <label>Phone <abbr class="required" title="required">*</abbr></label>
+                    <input v-model="v$.formData.phone.$model" type="tel">
+                    <div v-for="(error, index) of v$.formData.phone.$errors" :key="index" class="input-errors">
+                      <div class="error-msg">{{ error.$message }}</div>
+                    </div>
+                  </div>
                 </div>
-              </div>
+                <div class="col-12">
+                  <div class="billing-info mb-20" :class="{'input-error': v$.formData.email.$error}">
+                    <label>Email Address <abbr class="required" title="required">*</abbr></label>
+                    <input v-model="v$.formData.email.$model" type="text">
+                    <div v-for="(error, index) of v$.formData.email.$errors" :key="index" class="input-errors">
+                      <div class="error-msg">{{ error.$message }}</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="billing-select mb-20">
+                    <label>Delivery <abbr class="required" title="required">*</abbr></label>
+                    <div class="select-style">
+                      <select class="select-active">
+                        <option selected>Выберите способ доставки:</option>
+                        <option value="self_delivery">Самовывоз</option>
+                        <option value="novaya_pochta">Новая почта</option>
+                        <option value="ukrpochta">Укрпочта</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="billing-select mb-20">
+                    <label>Payment method <abbr class="required" title="required">*</abbr></label>
+                    <div class="select-style">
+                      <select class="select-active">
+                        <option selected>Выберите способ оплаты:</option>
+                        <option>Приват банк</option>
+                        <option>Наложеный платеж</option>
+                        <option>Другой способ оплаты</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="billing-info mb-20" :class="{'input-error': v$.formData.city.$error}">
+                    <label>City <abbr class="required" title="required">*</abbr></label>
+                    <input v-model="v$.formData.city.$model" type="text">
+                    <div v-for="(error, index) of v$.formData.city.$errors" :key="index" class="input-errors">
+                      <div class="error-msg">{{ error.$message }}</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="billing-info mb-20">
+                    <label>Department number <abbr class="required" title="required">*</abbr></label>
+                    <input type="text">
+                  </div>
+                </div>
+              </form>
             </div>
             <div class="additional-info-wrap">
               <label>Order notes (optional)</label>
@@ -107,7 +129,7 @@
               </div>
             </div>
             <div class="place-order">
-              <router-link to="">
+              <router-link @click="onSubmit" to="">
                 Place Order
               </router-link>
             </div>
@@ -123,6 +145,9 @@ import { mapGetters } from "vuex"
 import FetchCartProductsMixin from '../cart/mixins/FetchCartProductsMixin'
 import SubtotalProductsMixin from '../cart/mixins/SubtotalProductsMixin'
 import CartSumMixin from '../cart/mixins//CartSumMixin'
+import { helpers, required, minLength, maxLength } from '@vuelidate/validators'
+import { emailRegexTemplate } from "../../helpers/utils"
+import {useVuelidate} from "@vuelidate/core";
 
 export default {
   name: 'CheckoutShow',
@@ -131,16 +156,44 @@ export default {
     SubtotalProductsMixin,
     CartSumMixin
   ],
+  setup: () => ({
+    v$: useVuelidate()
+  }),
   computed: {
     ...mapGetters([
-        'cart',
-        'user',
-        'cartProducts'
+      'cart',
+      'user',
+      'cartProducts'
     ])
   },
   data: () => ({
     formData: {}
   }),
+  validations() {
+    return {
+      formData: {
+        first_name: {
+          required, minLength: minLength(3)
+        },
+        last_name: {
+          required, minLength: minLength(3)
+        },
+        patronymic: {
+          required, minLength: minLength(3)
+        },
+        phone: {
+          required, maxLength: maxLength(15)
+        },
+        city: {
+          required, minLength: minLength(3)
+        },
+        email: {
+          email: helpers.withMessage('Custom message for email rule.', helpers.regex(emailRegexTemplate)),
+          required
+        }
+      }
+    }
+  },
   watch: {
     user() {
       this.setFormData()
@@ -157,7 +210,13 @@ export default {
       this.formData = { email, phone, first_name, last_name, patronymic }
     },
     onSubmit() {
+      if (this.v$.$invalid) {
+        this.v$.$touch()
+        return
+      }
       console.log('onSubmit','test')
+      // const data = { ...this.formData, line_items: this.cart.map(({ quantity, product_id }) => ({ quantity, product_id })) }
+      // this.$store.dispatch('createOrders', data)
     }
   }
 }
