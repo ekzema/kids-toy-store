@@ -43,8 +43,9 @@
                 </div>
                 <div class="col-12">
                   <div class="billing-info mb-20">
+                    {{ formData.phone }}
                     <label>Phone <abbr class="required" title="required">*</abbr></label>
-                    <input v-model="v$.formData.phone.$model" type="tel">
+                    <input v-model="v$.formData.phone.$model" type="tel" v-maska data-maska="+38(0##)###-##-##" placeholder="+38(0">
                     <div v-for="(error, index) of v$.formData.phone.$errors" :key="index" class="input-errors">
                       <div class="error-msg">{{ error.$message }}</div>
                     </div>
@@ -142,6 +143,7 @@
 
 <script>
 import { mapGetters } from "vuex"
+import { vMaska } from "maska"
 import FetchCartProductsMixin from '../cart/mixins/FetchCartProductsMixin'
 import SubtotalProductsMixin from '../cart/mixins/SubtotalProductsMixin'
 import CartSumMixin from '../cart/mixins//CartSumMixin'
@@ -151,6 +153,7 @@ import {useVuelidate} from "@vuelidate/core";
 
 export default {
   name: 'CheckoutShow',
+  directives: { maska: vMaska },
   mixins: [
     FetchCartProductsMixin,
     SubtotalProductsMixin,
@@ -182,7 +185,8 @@ export default {
           required, minLength: minLength(3)
         },
         phone: {
-          required, maxLength: maxLength(15)
+          required, maxLength: maxLength(17),
+          minLength: minLength(17)
         },
         city: {
           required, minLength: minLength(3)
