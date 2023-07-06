@@ -15,7 +15,7 @@
             <div class="row">
               <form @keydown.enter="onSubmit">
                 <div class="col-12">
-                  <div class="billing-info mb-20">
+                  <div class="billing-info mb-20" :class="{'input-error': v$.formData.first_name.$error}">
                     <label>First name <abbr class="required" title="required">*</abbr></label>
                     <input v-model="v$.formData.first_name.$model" type="text">
                     <div v-for="(error, index) of v$.formData.first_name.$errors" :key="index" class="input-errors">
@@ -24,7 +24,7 @@
                   </div>
                 </div>
                 <div class="col-12">
-                  <div class="billing-info mb-20">
+                  <div class="billing-info mb-20" :class="{'input-error': v$.formData.last_name.$error}">
                     <label>Last name <abbr class="required" title="required">*</abbr></label>
                     <input v-model="v$.formData.last_name.$model" type="text">
                     <div v-for="(error, index) of v$.formData.last_name.$errors" :key="index" class="input-errors">
@@ -33,7 +33,7 @@
                   </div>
                 </div>
                 <div class="col-12">
-                  <div class="billing-info mb-20">
+                  <div class="billing-info mb-20" :class="{'input-error': v$.formData.patronymic.$error}">
                     <label>Patronymic <abbr class="required" title="required">*</abbr></label>
                     <input v-model="v$.formData.patronymic.$model" type="text">
                     <div v-for="(error, index) of v$.formData.patronymic.$errors" :key="index" class="input-errors">
@@ -42,8 +42,7 @@
                   </div>
                 </div>
                 <div class="col-12">
-                  <div class="billing-info mb-20">
-                    {{ formData.phone }}
+                  <div class="billing-info mb-20" :class="{'input-error': v$.formData.phone.$error}">
                     <label>Phone <abbr class="required" title="required">*</abbr></label>
                     <input v-model="v$.formData.phone.$model" type="tel" v-maska data-maska="+38(0##)###-##-##" placeholder="+38(0">
                     <div v-for="(error, index) of v$.formData.phone.$errors" :key="index" class="input-errors">
@@ -61,32 +60,38 @@
                   </div>
                 </div>
                 <div class="col-12">
-                  <div class="billing-select mb-20">
+                  <div class="billing-select mb-20" :class="{'input-error': v$.formData.delivery.$error}">
                     <label>Delivery <abbr class="required" title="required">*</abbr></label>
                     <div class="select-style">
-                      <select class="select-active">
-                        <option selected>Выберите способ доставки:</option>
+                      <select v-model="v$.formData.delivery.$model" class="select-active">
+                        <option disabled value="">Выберите способ доставки:</option>
                         <option value="self_delivery">Самовывоз</option>
                         <option value="novaya_pochta">Новая почта</option>
                         <option value="ukrpochta">Укрпочта</option>
                       </select>
+                      <div v-for="(error, index) of v$.formData.delivery.$errors" :key="index" class="input-errors">
+                        <div class="error-msg">{{ error.$message }}</div>
+                      </div>
                     </div>
                   </div>
                 </div>
                 <div class="col-12">
-                  <div class="billing-select mb-20">
+                  <div class="billing-select mb-20" :class="{'input-error': v$.formData.pay_type.$error}">
                     <label>Payment method <abbr class="required" title="required">*</abbr></label>
                     <div class="select-style">
-                      <select class="select-active">
-                        <option selected>Выберите способ оплаты:</option>
-                        <option>Приват банк</option>
-                        <option>Наложеный платеж</option>
-                        <option>Другой способ оплаты</option>
+                      <select v-model="v$.formData.pay_type.$model" class="select-active">
+                        <option disabled value="">Выберите способ оплаты:</option>
+                        <option value="privat_bank">Приват банк</option>
+                        <option value="cash_on_delivery">Наложеный платеж</option>
+                        <option value="other_payment_method">Другой способ оплаты</option>
                       </select>
+                      <div v-for="(error, index) of v$.formData.pay_type.$errors" :key="index" class="input-errors">
+                        <div class="error-msg">{{ error.$message }}</div>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-12">
+                <div v-if="isDelivery" class="col-12">
                   <div class="billing-info mb-20" :class="{'input-error': v$.formData.city.$error}">
                     <label>City <abbr class="required" title="required">*</abbr></label>
                     <input v-model="v$.formData.city.$model" type="text">
@@ -95,10 +100,13 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-12">
-                  <div class="billing-info mb-20">
+                <div v-if="isDelivery" class="col-12">
+                  <div class="billing-info mb-20" :class="{'input-error': v$.formData.department_number.$error}">
                     <label>Department number <abbr class="required" title="required">*</abbr></label>
-                    <input type="text">
+                    <input v-model="v$.formData.department_number.$model" type="text">
+                    <div v-for="(error, index) of v$.formData.department_number.$errors" :key="index" class="input-errors">
+                      <div class="error-msg">{{ error.$message }}</div>
+                    </div>
                   </div>
                 </div>
               </form>
@@ -147,9 +155,9 @@ import { vMaska } from "maska"
 import FetchCartProductsMixin from '../cart/mixins/FetchCartProductsMixin'
 import SubtotalProductsMixin from '../cart/mixins/SubtotalProductsMixin'
 import CartSumMixin from '../cart/mixins//CartSumMixin'
-import { helpers, required, minLength, maxLength } from '@vuelidate/validators'
-import { emailRegexTemplate } from "../../helpers/utils"
-import {useVuelidate} from "@vuelidate/core";
+import {helpers, required, minLength, maxLength, requiredIf} from '@vuelidate/validators'
+import {emailRegexTemplate, toPhoneString} from "../../helpers/utils"
+import { useVuelidate } from "@vuelidate/core"
 
 export default {
   name: 'CheckoutShow',
@@ -162,16 +170,34 @@ export default {
   setup: () => ({
     v$: useVuelidate()
   }),
+  data: () => ({
+    formData: {
+      note: '',
+      city: '',
+      email: '',
+      phone: '',
+      pay_type: '',
+      delivery: '',
+      last_name: '',
+      first_name: '',
+      patronymic: '',
+      department_number: ''
+    }
+  }),
   computed: {
     ...mapGetters([
       'cart',
       'user',
       'cartProducts'
-    ])
+    ]),
+    isDelivery() {
+      const deliveryMethods = ['novaya_pochta', 'ukrpochta']
+      const result = deliveryMethods.includes(this.formData.delivery)
+      if (!result) this.cleanDependentDelivery()
+
+      return result
+    }
   },
-  data: () => ({
-    formData: {}
-  }),
   validations() {
     return {
       formData: {
@@ -189,10 +215,20 @@ export default {
           minLength: minLength(17)
         },
         city: {
-          required, minLength: minLength(3)
+          required: requiredIf(this.isDelivery),
+          minLength: minLength(3)
+        },
+        department_number: {
+          required: requiredIf(this.isDelivery)
         },
         email: {
           email: helpers.withMessage('Custom message for email rule.', helpers.regex(emailRegexTemplate)),
+          required
+        },
+        pay_type: {
+          required
+        },
+        delivery: {
           required
         }
       }
@@ -219,8 +255,13 @@ export default {
         return
       }
       console.log('onSubmit','test')
+      console.log(toPhoneString(this.formData.phone),'test')
       // const data = { ...this.formData, line_items: this.cart.map(({ quantity, product_id }) => ({ quantity, product_id })) }
       // this.$store.dispatch('createOrders', data)
+    },
+    cleanDependentDelivery() {
+      this.formData.city = ''
+      this.formData.department_number = ''
     }
   }
 }
