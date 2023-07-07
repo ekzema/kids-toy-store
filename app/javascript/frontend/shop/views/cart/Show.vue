@@ -96,7 +96,12 @@ export default {
   },
   methods: {
     removeFromCart(id, productId) {
-      if (id) this.$store.dispatch('deleteLineItems', { id })
+      if (id) {
+        this.$store.dispatch('deleteLineItems', { id })
+      } else {
+        const index = cart.get().findIndex(obj => obj.product_id === productId)
+        cart.remove(index)
+      }
       this.$store.commit('removeFromCart', productId)
     },
     handleQuantity(e, product) {
