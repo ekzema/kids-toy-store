@@ -254,10 +254,10 @@ export default {
         this.v$.$touch()
         return
       }
-      console.log('onSubmit','test')
-      console.log(toPhoneString(this.formData.phone),'test')
-      // const data = { ...this.formData, line_items: this.cart.map(({ quantity, product_id }) => ({ quantity, product_id })) }
-      // this.$store.dispatch('createOrders', data)
+      const formData = { ...this.formData, phone: toPhoneString(this.formData.phone) }
+      if (!this.user) formData.line_items = this.cart.map(({ quantity, product_id }) => ({ quantity, product_id }))
+
+      this.$store.dispatch('createOrders', formData)
     },
     cleanDependentDelivery() {
       this.formData.city = ''

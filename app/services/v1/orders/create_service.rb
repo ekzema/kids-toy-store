@@ -31,6 +31,9 @@ class V1::Orders::CreateService < ApplicationService
   end
 
   def line_items
-    params[:line_items]
+    ids = params[:line_items].pluck(:product_id)
+    existing_ids = Product.where(id: ids).pluck(:id)
+
+    params[:line_items].select { |hash| existing_ids.include?(hash[:product_id]) }
   end
 end
