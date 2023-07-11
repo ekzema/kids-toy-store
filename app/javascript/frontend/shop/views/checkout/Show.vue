@@ -155,8 +155,8 @@ import { vMaska } from "maska"
 import FetchCartProductsMixin from '../cart/mixins/FetchCartProductsMixin'
 import SubtotalProductsMixin from '../cart/mixins/SubtotalProductsMixin'
 import CartSumMixin from '../cart/mixins//CartSumMixin'
-import {helpers, required, minLength, maxLength, requiredIf} from '@vuelidate/validators'
-import {emailRegexTemplate, toPhoneString} from "../../helpers/utils"
+import { helpers, required, minLength, maxLength, requiredIf } from '@vuelidate/validators'
+import { emailRegexTemplate, toPhoneString, cart } from "../../helpers/utils"
 import { useVuelidate } from "@vuelidate/core"
 
 export default {
@@ -258,6 +258,9 @@ export default {
       if (!this.user) formData.line_items = this.cart.map(({ quantity, product_id }) => ({ quantity, product_id }))
 
       this.$store.dispatch('createOrders', formData)
+      if (!this.user) cart.reset()
+
+      this.$router.push('/')
     },
     cleanDependentDelivery() {
       this.formData.city = ''

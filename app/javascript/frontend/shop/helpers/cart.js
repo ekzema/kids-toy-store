@@ -36,6 +36,10 @@ class Cart {
     this.set(cart)
   }
 
+  reset() {
+    this.set([])
+  }
+
   update(index, newQuantity) {
     let cart = this.get()
     cart[index].quantity = newQuantity

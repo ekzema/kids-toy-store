@@ -9,6 +9,7 @@ const actions = {
       const message = { component: CheckoutToast }
       const options = { position: "bottom-center", timeout: 10000, icon: "fa fa-check fa-2x" }
 
+      commit('resetCart')
       commit('setSuccessMessage', { message, options })
     } catch (error) {
       commit('setErrorMessage')

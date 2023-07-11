@@ -39,12 +39,14 @@ const router = createRouter({
     {
       name: 'CartShow',
       path: '/cart',
-      component: CartShow
+      component: CartShow,
+      beforeEnter: guards.isCart
     },
     {
       name: 'CheckoutShow',
       path: '/checkout',
-      component: CheckoutShow
+      component: CheckoutShow,
+      beforeEnter: guards.isCart
     },
     {
       name: 'Category',

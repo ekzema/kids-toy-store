@@ -24,6 +24,10 @@ const mutations = {
 
             return acc
         }, [])
+    },
+    resetCart(state) {
+        state.cart = []
+        state.cartProducts = []
     }
 }
 
