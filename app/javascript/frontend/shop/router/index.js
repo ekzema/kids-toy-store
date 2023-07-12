@@ -11,6 +11,7 @@ import AccountConfirmation from '../views/account/Confirmation'
 import WishlistShow from '../views/wishlist/Show'
 import CartShow from '../views/cart/Show'
 import CheckoutShow from '../views/checkout/Show'
+import AccountMain from '../views/account/Main'
 import PageNotFound from "../../errors/PageNotFound"
 
 const router = createRouter({
@@ -57,19 +58,19 @@ const router = createRouter({
       name: 'AccountNew',
       path: '/account/new',
       component: AccountNew,
-      beforeEnter: guards.login
+      beforeEnter: guards.notLoggedIn
     },
     {
       name: 'AccountLogin',
       path: '/account/login',
       component: AccountLogin,
-      beforeEnter: guards.login
+      beforeEnter: guards.notLoggedIn
     },
     {
       name: 'AccountForgot',
       path: '/account/forgot',
       component: AccountForgot,
-      beforeEnter: guards.login
+      beforeEnter: guards.notLoggedIn
     },
     {
       name: 'AccountConfirmation',
@@ -80,6 +81,12 @@ const router = createRouter({
       name: 'AccountPassword',
       path: '/account/password',
       component: AccountPassword,
+      beforeEnter: guards.notLoggedIn
+    },
+    {
+      name: 'AccountMain',
+      path: '/account',
+      component: AccountMain,
       beforeEnter: guards.login
     },
     {
