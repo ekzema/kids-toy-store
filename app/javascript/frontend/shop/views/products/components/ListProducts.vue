@@ -4,11 +4,11 @@
     <div class="product-item">
       <div class="product-thumb">
         <img :src="product.logo.pre_medium.url" alt="Image">
-        <span v-if="user" @click="handleWashlist(product.id)" class="items-wishlist">
+        <span v-if="user" class="items-wishlist" @click="handleWashlist(product.id)">
           <i v-if="product.wishlist" class="fa fa-heart"></i>
           <i v-else class="fa fa-heart-o"></i>
         </span>
-        <span v-else @click="needLogin" class="items-wishlist">
+        <span v-else class="items-wishlist" @click="needLogin">
           <i class="fa fa-heart-o"></i>
         </span>
       </div>

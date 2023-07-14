@@ -1,5 +1,5 @@
 <template>
-  <div class="text-center ma-2" v-if="alert.show">
+  <div v-if="alert.show" class="text-center ma-2">
     <v-snackbar
         :timeout="5000"
         :model-value="true"

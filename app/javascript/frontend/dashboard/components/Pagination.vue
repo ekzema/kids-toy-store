@@ -1,13 +1,13 @@
 <template>
   <div class="text-center">
     <v-pagination
-        class="pt-5"
         v-model="selectPage"
+        class="pt-5"
         :length="selectTotalPages"
         :total-visible="6"
-        @update:modelValue="onPage"
-        rounded="circle"
         active-color="primary"
+        rounded="circle"
+        @update:modelValue="onPage"
     ></v-pagination>
   </div>
 </template>
@@ -15,7 +15,7 @@
 <script>
 
 export default {
-  name: 'pagination',
+  name: 'Pagination',
   props: {
     page:{
       type: Number
