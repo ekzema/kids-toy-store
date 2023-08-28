@@ -128,6 +128,8 @@ export default {
     },
     setFilter() {
       if (this.timer) this.clearTimer()
+      if (!this.$route.params.category) return
+
       this.timer = setTimeout(() => {
         this.$router.push({ name: 'Category', params: this.$route.params, query: { price: `${this.priceMin}-${this.priceMax}` } })
         this.clearTimer()
