@@ -12,7 +12,9 @@
             <div class="header-info">
               <a href="tel://+00123456789"><i class="fa fa-phone"></i> +00 123 456 789</a>
               <a href="mailto://demo@example.com"><i class="fa fa-envelope"></i> demo@example.com</a>
-              <a v-if="user" href="login-register.html"><i class="fa fa-user"></i> Account</a>
+              <router-link v-if="user" :to="{ name: 'AccountMain'}">
+                <i class="fa fa-user"></i> Account
+              </router-link>
               <div class="wrap-account" v-if="!user">
                 <router-link :to="{ name: 'AccountNew'}">
                   <i class="fa fa-user-plus"></i> Sign up
