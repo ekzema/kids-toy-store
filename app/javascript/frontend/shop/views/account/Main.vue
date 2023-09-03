@@ -15,16 +15,35 @@
             <div class="row">
               <div class="col-lg-3 co`l-md-4">
                 <nav>
-                  <div class="myaccount-tab-menu nav nav-tabs" id="nav-tab" role="tablist">
-                    <button v-for="(tab, index) in tabs" class="nav-link" :ref="tab.key" :class="{ active: index === 0 }" :id="tab.key" data-bs-toggle="tab" :data-bs-target="`#${tab.key}_${index}`" type="button" role="tab" :aria-controls="tab.key" :aria-selected="index === 0"> {{ tab.title }}</button>
+                  <div id="nav-tab" class="myaccount-tab-menu nav nav-tabs" role="tablist">
+                    <button
+                        v-for="(tab, index) in tabs"
+                        :id="tab.key"
+                        :key="tab.key"
+                        class="nav-link"
+                        :class="{ active: index === 0 }"
+                        data-bs-toggle="tab"
+                        :data-bs-target="`#${tab.key}_${index}`"
+                        type="button" role="tab"
+                        :aria-controls="tab.key"
+                        :aria-selected="index === 0"
+                        @click="setActiveTab(tab.key)"
+                    > {{ tab.title }}</button>
                   </div>
                 </nav>
               </div>
               <div class="col-lg-9 col-md-8">
-                <div class="tab-content" id="nav-tabContent">
-                  <div v-for="(tab, index) in tabs" class="tab-pane fade" :class="{ show: index === 0, active: index === 0 }" :id="`${tab.key}_${index}`" role="tabpanel" :aria-labelledby="tab.key">
+                <div id="nav-tabContent" class="tab-content">
+                  <div
+                      v-for="(tab, index) in tabs"
+                      :id="`${tab.key}_${index}`"
+                      :key="tab.key"
+                      class="tab-pane fade"
+                      :class="{ show: index === 0, active: index === 0 }"
+                      role="tabpanel"
+                      :aria-labelledby="tab.key">
                     <div class="myaccount-content">
-                      <component :key="tab.key" :is="tab.key"></component>
+                      <component :is="tab.key" v-if="isActiveTab(tab.key)" :key="tab.key"></component>
                     </div>
                   </div>
                 </div>
@@ -51,16 +70,18 @@ export default {
   },
   data: () => ({
     tabs: [
-      { key: 'DashboardTab', title: 'Dashboard'},
-      { key: 'OrdersTab', title: 'Orders'},
-      { key: 'AccountDetailsTab', title: 'Account details'}
-    ]
+      { key: 'DashboardTab', title: 'Dashboard' },
+      { key: 'OrdersTab', title: 'Orders' },
+      { key: 'AccountDetailsTab', title: 'Account details' }
+    ],
+    activeTab: 'DashboardTab'
   }),
   methods: {
-    isActiveTab(buttonId) {
-      console.log(buttonId,'test')
-      const button = this.$refs.DashboardTab;
-      console.log(button,'test')
+    isActiveTab(tabKey) {
+      return this.activeTab === tabKey;
+    },
+    setActiveTab(tabKey) {
+      this.activeTab = tabKey
     }
   }
 }
