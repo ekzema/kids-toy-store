@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_13_124638) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_04_204224) do
   create_table "brands", charset: "utf8", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -62,6 +62,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_124638) do
     t.boolean "moderation", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "products_info"
     t.index ["cart_id"], name: "index_orders_on_cart_id"
   end
 

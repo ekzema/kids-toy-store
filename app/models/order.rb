@@ -15,6 +15,8 @@ class Order < ApplicationRecord
   enum pay_type: { privat_bank: 1, cash_on_delivery: 2, other_payment_method: 3 }
   enum delivery: { novaya_pochta: 1, ukrpochta: 2, self_delivery: 3 }
 
+  serialize :products_info, JSON
+
   private
 
   def delivery_method?
