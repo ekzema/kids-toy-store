@@ -27,7 +27,9 @@ class V1::Orders::CreateService < ApplicationService
   def build_order(cart)
     raise EmptyLineItemsError if cart&.line_items.blank?
 
-    cart.build_order(params.except(:current_user, :line_items))
+    current_products = Product.select(:id, :price).includes(:line_items)
+                              .where('line_items.cart_id' => cart.id)
+    cart.build_order(params.merge({ products_info: current_products }).except(:current_user, :line_items))
   end
 
   def line_items
