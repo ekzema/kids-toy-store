@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class OrderSerializer < ActiveModel::Serializer
+class OrderSerializer < ApplicationSerializer
   attributes :id, :status
 
   def products

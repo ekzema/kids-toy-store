@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ProductSerializer < ActiveModel::Serializer
+class ProductSerializer < ApplicationSerializer
   attributes :id, :name, :status, :description, :price, :code, :discount, :discount_price, :logo, :specifications,
              :production_country, :slug, :wishlist
 
@@ -15,11 +15,5 @@ class ProductSerializer < ActiveModel::Serializer
 
     wishlist = object.wishlists.pluck(:user_id).include?(current_user.id)
     wishlist.present?
-  end
-
-  private
-
-  def current_user
-    scope
   end
 end
