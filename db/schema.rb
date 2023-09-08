@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_05_204248) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_07_124757) do
   create_table "brands", charset: "utf8", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -63,7 +63,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_05_204248) do
     t.datetime "updated_at", null: false
     t.text "products_info"
     t.integer "status", default: 1
+    t.string "code", null: false
     t.index ["cart_id"], name: "index_orders_on_cart_id"
+    t.index ["code"], name: "index_orders_on_code", unique: true
   end
 
   create_table "product_categories", charset: "utf8", force: :cascade do |t|
