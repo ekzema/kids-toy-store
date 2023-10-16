@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Api::V1::OrdersController < ApiController
+  before_action :authorize_by_access_header!
+
   def index
     render_paginate(orders, OrderListSerializer)
   end
