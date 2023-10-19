@@ -14,6 +14,14 @@ const actions = {
     } catch (error) {
       commit('setErrorMessage')
     }
-  }
+  },
+  async fetchOrders({ commit }, params) {
+    try {
+      const { data } = await Orders.get(params)
+      commit('setOrders', data)
+    } catch (error) {
+      commit('setErrorMessage')
+    }
+  },
 }
 export default actions
