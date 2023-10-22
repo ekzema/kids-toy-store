@@ -4,7 +4,7 @@
     <table class="table table-bordered">
       <thead class="thead-light">
       <tr>
-        <th>Order</th>
+        <th>№</th>
         <th>Date</th>
         <th>Status</th>
         <th>Total</th>
@@ -12,25 +12,11 @@
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <td>1</td>
-        <td>Aug 22, 2018</td>
-        <td>Pending</td>
-        <td>$3000</td>
-        <td><a href="shop-cart.html" class="check-btn sqr-btn ">View</a></td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>July 22, 2018</td>
-        <td>Approved</td>
-        <td>$200</td>
-        <td><a href="shop-cart.html" class="check-btn sqr-btn ">View</a></td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td>June 12, 2017</td>
-        <td>On Hold</td>
-        <td>$990</td>
+      <tr v-for="order in orders" :key="order.id">
+        <td>{{ order.id }}</td>
+        <td>{{ formattedDate(order.created_at) }}</td>
+        <td>{{ order.status }}</td>
+        <td>{{ order.amount }} грн</td>
         <td><a href="shop-cart.html" class="check-btn sqr-btn ">View</a></td>
       </tr>
       </tbody>
@@ -39,9 +25,31 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'OrdersTab',
+  computed: {
+    ...mapGetters([
+      'orders'
+    ]),
+  },
+  created() {
+    this.fetchOrders()
+  },
+  methods: {
+    formattedDate(date) {
+      let formatted = new Date(date).toLocaleDateString('uk-UA', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+      })
+      return formatted.replace(/'.'/g, '-');
+    },
+    fetchOrders() {
+      this.$store.dispatch('fetchOrders')
+    }
+  }
 }
 </script>
 
