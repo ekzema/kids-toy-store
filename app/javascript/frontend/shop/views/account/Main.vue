@@ -49,7 +49,7 @@ export default {
   data: () => ({
     tabs: [
       { key: 'AccountDashboard', title: 'Dashboard' },
-      { key: 'AccountOrders', title: 'Orders' },
+      { key: 'OrdersIndex', title: 'Orders' },
       { key: 'AccountDetails', title: 'Account details' }
     ],
   }),
