@@ -28,7 +28,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'OrdersTab',
+  name: 'OrdersList',
   computed: {
     ...mapGetters([
       'orders'

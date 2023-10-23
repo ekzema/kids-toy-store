@@ -55,7 +55,7 @@
 <script>
 
 export default {
-  name: 'AccountDetailsTab',
+  name: 'AccountDetails',
 }
 </script>
 
