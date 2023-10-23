@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-class LineItemSerializer < ActiveModel::Serializer
+class LineItemSerializer < ApplicationSerializer
   attributes :id, :quantity, :product_id
 end

@@ -12,6 +12,10 @@ import WishlistShow from '../views/wishlist/Show'
 import CartShow from '../views/cart/Show'
 import CheckoutShow from '../views/checkout/Show'
 import AccountMain from '../views/account/Main'
+import AccountDashboard from '../views/account/components/Dashboard'
+import AccountOrders from '../views/account/components/Orders'
+import AccountDetails from '../views/account/components/AccountDetails'
+
 import PageNotFound from "../../errors/PageNotFound"
 
 const router = createRouter({
@@ -87,7 +91,24 @@ const router = createRouter({
       name: 'AccountMain',
       path: '/account',
       component: AccountMain,
-      beforeEnter: guards.login
+      beforeEnter: guards.login,
+      children: [
+        {
+          name: 'AccountDashboard',
+          path: '/account',
+          component: AccountDashboard,
+        },
+        {
+          name: 'AccountOrders',
+          path: '/orders',
+          component: AccountOrders
+        },
+        {
+          name: 'AccountDetails',
+          path: '/details',
+          component: AccountDetails
+        }
+      ],
     },
     {
       name: 'PageNotFound',

@@ -113,7 +113,7 @@
             </div>
             <div class="additional-info-wrap">
               <label>Order notes (optional)</label>
-              <textarea placeholder="Notes about your order, e.g. special notes for delivery. " name="message"></textarea>
+              <textarea v-model="formData.note" placeholder="Notes about your order, e.g. special notes for delivery. " name="message"></textarea>
             </div>
           </div>
         </div>
