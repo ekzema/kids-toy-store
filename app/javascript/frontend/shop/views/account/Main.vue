@@ -23,6 +23,7 @@
                           :to="{ name: tab.key }"
                           exact-active-class="active"
                           class="nav-link"
+                          :class="{ active: tab.key === 'OrdersIndex' && $route.name === 'OrdersShow' }"
                       > {{ tab.title }}
                     </router-link>
                   </div>
@@ -54,12 +55,6 @@ export default {
     ],
   }),
   methods: {
-    isActiveTab(tabKey) {
-      return this.activeTab === tabKey;
-    },
-    setActiveTab(tabKey) {
-      this.activeTab = tabKey
-    }
   }
 }
 </script>
