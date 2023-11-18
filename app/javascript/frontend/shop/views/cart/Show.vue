@@ -44,7 +44,7 @@
                 </tr>
                 </tbody>
               </table>
-              <h3 class="text-center">Корзина пустая!</h3>
+              <h3 v-if="!cart.length" class="text-center">Корзина пустая!</h3>
             </div>
           </div>
           <div class="cart-shiping-update-wrapper">
