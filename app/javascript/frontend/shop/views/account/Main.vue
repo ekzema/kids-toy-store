@@ -18,7 +18,7 @@
                   <div id="nav-tab" class="myaccount-tab-menu nav nav-tabs" role="tablist">
                     <router-link  v-for="(tab, index) in tabs"
                           :id="tab.key"
-                          :key="tab.key"
+                          :key="index"
                           tag="button"
                           :to="{ name: tab.key }"
                           exact-active-class="active"
