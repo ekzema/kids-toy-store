@@ -2,9 +2,14 @@
 
 class Api::V1::OrdersController < ApiController
   before_action :authorize_by_access_header!
+  before_action :set_order, only: %i[show]
 
   def index
     render_paginate(orders, OrderListSerializer)
+  end
+
+  def show
+    render_response(@order)
   end
 
   def create
@@ -19,6 +24,10 @@ class Api::V1::OrdersController < ApiController
   end
 
   private
+
+  def set_order
+    @order = orders.find(params[:id])
+  end
 
   def orders
     # Order.includes(:cart).where('carts.user_id': current_user.id).where.not('carts.deleted_at': nil)

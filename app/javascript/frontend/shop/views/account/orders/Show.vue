@@ -1,5 +1,6 @@
 <template>
   <h3>Order show</h3>
+  <p>{{ order.id }}</p>
 </template>
 
 <script>
@@ -9,6 +10,7 @@ export default {
   name: 'OrderShow',
   computed: {
     ...mapGetters([
+        'order'
     ]),
   },
   created() {
