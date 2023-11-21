@@ -31,7 +31,7 @@
                     </router-link>
                   </td>
                   <td class="product-name">
-                    <h5><a href="shop-single-product.html">Jigsaw Puzzles For Kids</a></h5>
+                    <h5><a href="shop-single-product.html">{{ product.name.ru }}</a></h5>
                   </td>
                   <td class="product-price"><span class="amount">{{ product.price }} грн</span></td>
                   <td class="cart-quality">
