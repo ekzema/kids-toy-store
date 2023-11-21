@@ -25,7 +25,7 @@ const actions = {
   },
   async fetchOrder({ commit }, id) {
     try {
-      const { data } = await Orders.get(id)
+      const { data } = await Orders.show(id)
       commit('setOrder', data)
     } catch (error) {
       commit('setErrorMessage')
