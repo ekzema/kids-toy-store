@@ -9,7 +9,8 @@
 <script>
 
 export default {
-  name: 'DashboardTab',
+  // eslint-disable-next-line vue/multi-word-component-names
+  name: 'Dashboard',
 }
 </script>
 

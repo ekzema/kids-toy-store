@@ -12,10 +12,10 @@ import WishlistShow from '../views/wishlist/Show'
 import CartShow from '../views/cart/Show'
 import CheckoutShow from '../views/checkout/Show'
 import AccountMain from '../views/account/Main'
-import AccountDashboard from '../views/account/components/Dashboard'
-import AccountOrders from '../views/account/components/Orders'
-import AccountDetails from '../views/account/components/AccountDetails'
-
+import AccountDashboard from '../views/account/Dashboard'
+import OrdersIndex from '../views/account/orders/Index'
+import OrdersShow from "../views/account/orders/Show"
+import AccountDetails from '../views/account/AccountDetails'
 import PageNotFound from "../../errors/PageNotFound"
 
 const router = createRouter({
@@ -99,9 +99,14 @@ const router = createRouter({
           component: AccountDashboard,
         },
         {
-          name: 'AccountOrders',
+          name: 'OrdersIndex',
           path: '/orders',
-          component: AccountOrders
+          component: OrdersIndex
+        },
+        {
+          name: 'OrdersShow',
+          path: '/orders/:id',
+          component: OrdersShow
         },
         {
           name: 'AccountDetails',

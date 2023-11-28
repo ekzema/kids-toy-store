@@ -17,7 +17,11 @@
         <td>{{ formattedDate(order.created_at) }}</td>
         <td>{{ order.status }}</td>
         <td>{{ order.amount }} грн</td>
-        <td><a href="shop-cart.html" class="check-btn sqr-btn ">View</a></td>
+        <td>
+          <router-link class="check-btn sqr-btn" :to="{ name: 'OrdersShow', params: { id: order.id } }">
+            View
+          </router-link>
+        </td>
       </tr>
       </tbody>
     </table>
@@ -28,7 +32,8 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'OrdersTab',
+  // eslint-disable-next-line vue/multi-word-component-names
+  name: 'Orders',
   computed: {
     ...mapGetters([
       'orders'

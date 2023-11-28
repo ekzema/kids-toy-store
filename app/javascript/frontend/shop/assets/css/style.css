@@ -10021,3 +10021,11 @@ table p {
 .main-content {
   min-height: 576px;
 }
+
+.grand-total h4 {
+  align-items: baseline;
+}
+
+.grand-total h4 span {
+  margin-left: 10px;
+}

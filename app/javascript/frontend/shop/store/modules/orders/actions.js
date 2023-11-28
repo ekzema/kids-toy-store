@@ -23,5 +23,13 @@ const actions = {
       commit('setErrorMessage')
     }
   },
+  async fetchOrder({ commit }, id) {
+    try {
+      const { data } = await Orders.show(id)
+      commit('setOrder', data)
+    } catch (error) {
+      commit('setErrorMessage')
+    }
+  },
 }
 export default actions
