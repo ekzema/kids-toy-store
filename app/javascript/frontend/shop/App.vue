@@ -16,7 +16,7 @@
     <main class="main-content">
       <router-view></router-view>
     </main>
-    <app-footer/>
+    <app-footer />
   </div>
 </template>
 
@@ -32,10 +32,9 @@ export default {
     AppHeader,
     AppFooter
   },
-  data () {},
   computed: {
     ...mapGetters([
-      'loader'
+      'loader',
     ]),
   },
   watch: {

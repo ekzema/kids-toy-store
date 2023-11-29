@@ -73,21 +73,20 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import Orders from '../../../api/orders'
 
 export default {
   name: 'OrderShow',
-  computed: {
-    ...mapGetters([
-        'order'
-    ]),
-  },
+  data: () => ({
+    order: {},
+  }),
   created() {
     this.fetchOrder()
   },
   methods: {
-    fetchOrder() {
-      this.$store.dispatch('fetchOrder', this.$route.params.id)
+    async fetchOrder() {
+      const { data } = await Orders.show(this.$route.params.id)
+      this.order = data
     },
     hasHistory () {
       return window.history.length > 2
