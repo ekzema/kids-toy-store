@@ -110,11 +110,7 @@
 
 <script>
 export default {
-  name: 'footer',
-  data () {
-    {
-    }
-  },
+  name: 'AppFooter',
   methods: {
   }
 }
