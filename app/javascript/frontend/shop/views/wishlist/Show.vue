@@ -45,10 +45,10 @@
                       <span>{{ product.status }}</span>
                     </td>
                     <td class="wishlist-cart">
-                      <button v-if="!product.inCart" class="btn btn-theme" @click="addToCart(product)">
+                      <router-link v-if="!product.inCart" to="" @click="addToCart(product)">
                         <i class="pe-7s-cart"></i>
                         Купить
-                      </button>
+                      </router-link>
                       <span v-else class="btn btn-theme in-cart">В корзине</span>
                     </td>
                   </tr>
