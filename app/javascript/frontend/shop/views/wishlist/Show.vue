@@ -49,7 +49,9 @@
                         <i class="pe-7s-cart"></i>
                         Купить
                       </router-link>
-                      <span v-else class="btn btn-theme in-cart">В корзине</span>
+                      <router-link v-else to="" class="in-cart">
+                        В корзине
+                      </router-link>
                     </td>
                   </tr>
                   </tbody>
@@ -89,3 +91,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.in-cart {
+  background-color: #95b3e0 !important;
+}
+</style>
