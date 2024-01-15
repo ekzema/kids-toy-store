@@ -18,12 +18,12 @@ const mutations = {
         state.cart = state.cart.filter(({ product_id }) => product_id !== payload)
     },
     setCartProducts(state, payload) {
-        state.cartProducts = state.cart.reduce((acc, lineItem) => {
+        state.cartProducts = state.cart ? state.cart.reduce((acc, lineItem) => {
             const updatedProduct = payload.find(p => p.id === lineItem.product_id)
             if (updatedProduct) acc.push({ ...updatedProduct, ...lineItem })
 
             return acc
-        }, [])
+        }, []) : []
     },
     resetCart(state) {
         state.cart = []

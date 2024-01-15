@@ -23,7 +23,7 @@
                   <th class="width-remove"></th>
                 </tr>
                 </thead>
-                <tbody v-if="cart.length">
+                <tbody v-if="cart?.length">
                 <tr v-for="product in cartProducts" :key="product.id" >
                   <td class="product-thumbnail">
                     <router-link :to="{ name: 'ProductsShow', params: { id: product.slug }}">
@@ -48,14 +48,14 @@
                 </tr>
                 </tbody>
               </table>
-              <h3 v-if="!cart.length" class="text-center">Корзина пустая!</h3>
+              <h3 v-if="!cart?.length" class="text-center">Корзина пустая!</h3>
             </div>
           </div>
           <div class="cart-shiping-update-wrapper">
             <div class="cart-shiping-btn continure-btn">
               <a class="btn btn-link" href="shop.html"><i class="ion-ios-arrow-left"></i> Назад к покупкам</a>
             </div>
-            <div v-if="cart.length" class="cart-shiping-btn update-btn">
+            <div v-if="cart?.length" class="cart-shiping-btn update-btn">
               <div class="grand-total-wrap">
                 <div class="grand-total-content">
                   <div class="grand-total">

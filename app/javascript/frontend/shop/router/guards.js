@@ -19,7 +19,7 @@ export const login =  function (to, from, next) {
 }
 
 export const isCart = function (to, from, next) {
-    if (cart().length) {
+    if (cart() === null || cart().length) {
         next()
     } else {
         next({ name: 'ProductsIndex' })
