@@ -23,7 +23,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'alert',
+  name: 'DashboardAlert',
   data: () => ({
   }),
   computed: {
