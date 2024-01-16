@@ -7,7 +7,7 @@ class ProductSerializer < ApplicationSerializer
   has_many :product_images
   has_many :product_categories
   belongs_to :brand do
-    object.brand.attributes.slice('id', 'name')
+    object.brand ? object.brand.attributes.slice('id', 'name') : ''
   end
 
   def wishlist
