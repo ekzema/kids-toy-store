@@ -53,7 +53,9 @@
           </div>
           <div class="cart-shiping-update-wrapper">
             <div class="cart-shiping-btn continure-btn">
-              <a class="btn btn-link" href="shop.html"><i class="ion-ios-arrow-left"></i> Назад к покупкам</a>
+              <router-link :to="{ name: 'ProductsIndex'}" class="btn btn-link">
+                <i class="ion-ios-arrow-left"></i> Назад к покупкам
+              </router-link>
             </div>
             <div v-if="cart?.length" class="cart-shiping-btn update-btn">
               <div class="grand-total-wrap">
