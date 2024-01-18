@@ -7,7 +7,7 @@
       multiple
       color="primary"
       item-value="id"
-      item-title="name"
+      :item-title="`name.${language}`"
       variant="underlined"
       @update:modelValue="onSelect"
   >
