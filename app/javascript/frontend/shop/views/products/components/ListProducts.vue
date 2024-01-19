@@ -1,5 +1,5 @@
 <template>
-  <div v-for="product in products" :key="product.id" :class="{'col-lg-3': !sideBar, 'col-lg-4': sideBar}" class="col-lg-3 col-md-4 col-sm-6 wrap-item">
+  <div v-for="product in products.items" :key="product.id" :class="{'col-lg-3': !sideBar, 'col-lg-4': sideBar}" class="col-lg-3 col-md-4 col-sm-6 wrap-item">
     <!-- Start Product Item -->
     <div class="product-item">
       <div class="product-thumb">
@@ -35,6 +35,7 @@
     </div>
     <!-- End Product Item -->
   </div>
+  <pagination />
 </template>
 
 <script>
@@ -42,15 +43,21 @@ import { mapGetters } from "vuex"
 import AddToCartMixin from "../mixins/AddToCartMixin"
 import WishlistMixin from "../mixins/WishlistMixin"
 import ProductsInCartMixin from "../mixins/ProductsInCartMixin"
+import Pagination from "../../../components/Pagination"
+import { perPage } from "../../../config"
 
 export default {
   name: 'ListProducts',
+  components: { Pagination },
   mixins: [AddToCartMixin, WishlistMixin, ProductsInCartMixin],
   props: ['sideBar'],
   computed: {
     ...mapGetters([
       'user'
-    ])
+    ]),
+    totalPages() {
+      return Math.ceil(this.products.count / perPage)
+    }
   }
 }
 </script>

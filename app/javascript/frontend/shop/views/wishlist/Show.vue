@@ -26,7 +26,7 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr v-for="product in products" :key="product.id">
+                  <tr v-for="product in products.items" :key="product.id">
                     <td @click="handleWashlist(product.id)" class="product-remove"><span>×</span></td>
                     <td class="product-thumbnail">
                       <router-link :to="{ name: 'ProductsShow', params: { id: product.id }}">
