@@ -10,7 +10,7 @@ const mutations = {
     },
     setWishlist(state, payload) {
         if (state.product) state.product.wishlist = payload.wishlist
-        state.products = state.products.map((obj) => {
+        state.products.items = state.products.items.map((obj) => {
             if (obj.id === payload.product_id) return {...obj, wishlist: payload.wishlist}
             return obj
         })
@@ -25,8 +25,8 @@ const mutations = {
         }
     },
     deleteProductById(state, id) {
-        const indexToDelete = state.products.findIndex(obj => obj.id === id)
-        if (indexToDelete !== -1) state.products.splice(indexToDelete, 1)
+        const indexToDelete = state.products.items.findIndex(obj => obj.id === id)
+        if (indexToDelete !== -1) state.products.items.splice(indexToDelete, 1)
     }
 }
 
