@@ -6,6 +6,7 @@ class UserSerializer < ApplicationSerializer
   def line_items
     return [] unless object.cart
 
-    ActiveModelSerializers::SerializableResource.new(object.cart.line_items)
+    line_items = object.cart.line_items.includes(:product).where('products.visible': true)
+    ActiveModelSerializers::SerializableResource.new(line_items)
   end
 end

@@ -4,7 +4,7 @@ class Api::V1::WishlistsController < ApiController
   before_action :authorize_by_access_header!
 
   def index
-    products = current_user.wish_products
+    products = current_user.wish_products.visible
     render_paginate(products, ProductListSerializer)
   end
 

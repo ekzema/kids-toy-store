@@ -4,7 +4,7 @@ class V1::Products::IndexService < ApplicationService
   FILTERS = %i[price categories].freeze
 
   def call
-    products = Product.where(visible: true).includes(:wishlists)
+    products = Product.visible.includes(:wishlists)
     return cart_products(products) if params[:cart_products]
 
     products = products.search(params[:q]) if params[:q]

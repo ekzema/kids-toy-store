@@ -21,6 +21,7 @@ class Product < ApplicationRecord
   validates :code, numericality: { only_integer: true, greater_than_or_equal_to: 1000 }
 
   default_scope -> { where(deleted_at: nil).order(id: :desc) }
+  scope :visible, -> { where(visible: true) }
 
   enum status: { available: 1, not_available: 2, ends: 3, on_the_way: 4 }
   enum production_country: { china: 1, ukraine: 2, japan: 3, germany: 4, usa: 5, taiwan: 6, turkey: 7 }

@@ -39,6 +39,10 @@ class User < ApplicationRecord
     UserMailer.password_reset(self, password_reset_token).deliver_now
   end
 
+  def wishlists_count
+    wish_products.visible.count
+  end
+
   private
 
   def downcase_email

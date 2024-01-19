@@ -7,13 +7,13 @@ class Api::V1::ProductsController < ApiController
   end
 
   def show
-    product = Product.friendly.find(params[:id])
+    product = Product.visible.friendly.find(params[:id])
     render_response(product)
   end
 
   def autocomplete
     limit    = 5
-    products = Product.all
+    products = Product.visible
     products = products.search(params[:q]) if params[:q]
     prepare_extension = { show: limit, found: products.count }
 
