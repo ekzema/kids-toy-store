@@ -19,7 +19,10 @@ const mutations = {
         state.productsAutocomplete = payload
     },
     clearProducts(state) {
-        state.products = []
+        state.products = {
+            count: 0,
+            items: []
+        }
     },
     deleteProductById(state, id) {
         const indexToDelete = state.products.findIndex(obj => obj.id === id)

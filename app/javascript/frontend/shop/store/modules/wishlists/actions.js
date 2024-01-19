@@ -4,8 +4,8 @@ const actions = {
     async fetchWishlists({ commit }, params) {
         try {
             commit('clearProducts')
-            const { data } = await Wishlists.get(params)
-            commit('setProducts', data)
+            const { data, count } = await Wishlists.get(params)
+            commit('setProducts', { items: data, count })
         } catch (error) {
             commit('setErrorMessage')
         }

@@ -3,8 +3,8 @@ export default {
   computed: {
     products() {
       const { products, cart } = this.$store.getters
-      return products.map(obj => {
-        return { ...obj, inCart: cart.some(cartItem => cartItem.product_id === obj.id) }
+      return products.items.map(obj => {
+        return { ...obj, inCart: cart?.some(cartItem => cartItem.product_id === obj.id) }
       })
     }
   }
