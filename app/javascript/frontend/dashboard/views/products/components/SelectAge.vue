@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     onSelect() {
-      this.$emit('update:for_age', this.for_age)
+      this.$emit('update:for_age', this.selectedAge)
     }
   },
   // eslint-disable-next-line vue/order-in-components
