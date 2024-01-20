@@ -15,7 +15,7 @@
 <script>
 
 export default {
-  name: 'Pagination',
+  name: 'DashboardPagination',
   props: {
     page:{
       type: Number
