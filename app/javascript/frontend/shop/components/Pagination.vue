@@ -1,5 +1,5 @@
 <template>
-  <div class="example-four">
+  <div class="wrapper-paginate">
     <vue-awesome-paginate v-model="currentPage" :on-click="onClickHandler" :total-items="100">
       <template #prev-button>
         <span>
@@ -51,7 +51,7 @@ export default {
 </script>
 
 <style>
-.example-four .paginate-buttons {
+.wrapper-paginate .paginate-buttons {
   width: 40px;
   height: 40px;
   cursor: pointer;
@@ -59,60 +59,60 @@ export default {
   border: none;
 }
 
-.example-four .back-button,
-.example-four .next-button {
+.wrapper-paginate .back-button,
+.wrapper-paginate .next-button {
   margin-inline: 10px;
   border-radius: 25px;
 }
 
-.example-four .first-button {
+.wrapper-paginate .first-button {
   border-start-start-radius: 25px;
   border-end-start-radius: 25px;
 }
-.example-four .last-button {
+.wrapper-paginate .last-button {
   border-start-end-radius: 25px;
   border-end-end-radius: 25px;
 }
 
-.example-four .back-button svg {
+.wrapper-paginate .back-button svg {
   transform: rotate(180deg) translateY(-2px);
 }
-.example-four .next-button svg {
+.wrapper-paginate .next-button svg {
   transform: translateY(2px);
 }
 
 /* select second element of .paginate-buttons */
-.example-four li:nth-child(2) > .paginate-buttons.number-buttons {
+.wrapper-paginate li:nth-child(2) > .paginate-buttons.number-buttons {
   border-start-start-radius: 25px;
   border-end-start-radius: 25px;
   transition: none;
 }
 
 /* select one element before last of .paginate-buttons */
-.example-four li:nth-last-child(2) > .paginate-buttons.number-buttons {
+.wrapper-paginate li:nth-last-child(2) > .paginate-buttons.number-buttons {
   border-start-end-radius: 25px;
   border-end-end-radius: 25px;
 }
 
-.example-four .active-page {
+.wrapper-paginate .active-page {
   background-color: #f379a7;
   color: #fff;
 }
 
-.example-four .active-page {
+.wrapper-paginate .active-page {
   background-color: #f379a7;
   color: #fff;
 }
 
-.example-four .paginate-buttons:hover {
+.wrapper-paginate .paginate-buttons:hover {
   background-color: #f5f5f5;
 }
 
-.example-four .active-page:hover {
+.wrapper-paginate .active-page:hover {
   background-color: #f379a7;
 }
-.example-four .back-button:active,
-.example-four .next-button:active {
+.wrapper-paginate .back-button:active,
+.wrapper-paginate .next-button:active {
   background-color: #e6e6e6;
 }
 </style>
