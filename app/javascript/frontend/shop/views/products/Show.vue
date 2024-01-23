@@ -151,7 +151,7 @@ export default {
     },
     product() {
       const { product, cart } = this.$store.getters
-      return product ? { ...product, inCart: cart.some(cartItem => cartItem.product_id === product.id) } : null
+      return product ? { ...product, inCart: cart?.some(cartItem => cartItem.product_id === product.id) } : null
     }
   },
   watch: {
@@ -172,6 +172,10 @@ export default {
   },
   async created() {
       await this.$store.dispatch('fetchProduct', this.$route.params.id)
+  },
+  mounted() {
+    const headerMain = document.getElementById('header-main');
+    if (headerMain)  headerMain.scrollIntoView({ behavior: 'smooth' })
   },
   methods: {
     setSwiper() {
