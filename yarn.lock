@@ -5310,6 +5310,11 @@ vue-axios@^3.4.0:
   resolved "https://registry.yarnpkg.com/vue-axios/-/vue-axios-3.5.2.tgz#28637524cca550a9e97197e85a41930ec63604d5"
   integrity sha512-GP+dct7UlAWkl1qoP3ppw0z6jcSua5/IrMpjB5O8bh089iIiJ+hdxPYH2NPEpajlYgkW5EVMP95ttXWdas1O0g==
 
+vue-content-loader@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/vue-content-loader/-/vue-content-loader-2.0.1.tgz#c6a3ff0e653671e5e8cff9e0c3814e6d04d3411d"
+  integrity sha512-pkof4+q2xmzNEdhqelxtJejeP/vQUJtLle4/v2ueG+HURqM9Q/GIGC8GJ2bVVWeLfTDET51jqimwQdmxJTlu0g==
+
 vue-demi@^0.13.11:
   version "0.13.11"
   resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.13.11.tgz#7d90369bdae8974d87b1973564ad390182410d99"
