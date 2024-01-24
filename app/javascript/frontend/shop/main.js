@@ -17,7 +17,9 @@ import 'slick-carousel/slick/slick.css'
 import 'ionicons201/css/ionicons.min.css'
 import 'animate.css/animate.min.css'
 import './assets/css/style.css'
-import'./assets/js/custom'
+import './assets/js/custom'
+import 'vue-awesome-paginate/dist/style.css'
+import VueAwesomePaginate from 'vue-awesome-paginate'
 
 const toastConfig = {
   position: "top-right",
@@ -30,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
   createApp(App)
       .use(router)
       .use(store)
+      .use(VueAwesomePaginate)
       .use(Toast, toastConfig)
       .mount('#app')
 })

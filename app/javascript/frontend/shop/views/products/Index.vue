@@ -23,12 +23,24 @@
                               <h2 class="title">{{ currentCategory.name.ru }}</h2>
                             </div>
                             <list-products :side-bar="isCategoryName" />
+                            <pagination
+                                v-show="showPagination"
+                                :page="page"
+                                :total-items="products.count"
+                                @pagination-event="paginationEvent"
+                            />
                           </div>
                         </div>
                         <side-bar/>
                       </div>
                       <div v-else class="row">
                         <list-products :side-bar="isCategoryName" />
+                        <pagination
+                            v-show="showPagination"
+                            :page="page"
+                            :total-items="products.count"
+                            @pagination-event="paginationEvent"
+                        />
                       </div>
                     </div>
                   </div>
@@ -44,16 +56,26 @@
 
 <script>
 // import MainSlider from './components/Slider'
-import ListProducts from "./components/ListProducts"
+import ListProducts from './components/ListProducts'
 import SideBar from './components/SideBar'
 import { mapGetters } from 'vuex'
+import ProductsInCartMixin from './mixins/ProductsInCartMixin'
+import Pagination from '../../components/Pagination'
+import { perPage } from '../../config'
 
 export default {
   name: 'ProductsIndex',
   components: {
     // MainSlider,
     ListProducts,
-    SideBar
+    SideBar,
+    Pagination
+  },
+  mixins: [ProductsInCartMixin],
+  data() {
+    return {
+      page: null
+    }
   },
   computed: {
     ...mapGetters([
@@ -68,28 +90,45 @@ export default {
       return subcategory
         ? this.categories.flatMap(obj => obj.subcategories).find(sub => sub.slug === subcategory)
         : this.categories.find(obj => obj.slug === category)
+    },
+    showPagination() {
+      return this.products.count > perPage
     }
   },
   watch: {
     '$route.params'() {
+      if (!this.$route.query.page) this.page = null
       this.fetchProductsByCategory()
     }
   },
   created() {
+    if (this.$route.query.page ) this.page = this.$route.query.page
     this.$route.params.category ? this.fetchProductsByCategory() : this.fetchProducts()
   },
   methods: {
     fetchProducts(params = {}) {
+      if (this.page) params.page = this.page
       this.$store.dispatch('fetchProducts', params)
     },
     buildFilteredByCategory(category) {
-      this.fetchProducts({ categories: category, ...this.$route.query })
+      const params = { categories: category, ...this.$route.query }
+      if (this.page) params.page = this.page
+      this.fetchProducts(params)
     },
     fetchProductsByCategory() {
       const params = this.$route.params
+      if (this.page) params.page = this.page
+
       params.subcategory
         ? this.buildFilteredByCategory(params.subcategory)
         : this.buildFilteredByCategory(params.category)
+    },
+    paginationEvent(page) {
+      const currentPath = this.$route.path;
+      const newPath = `${currentPath}?page=${page}`
+
+      this.$router.push(newPath)
+      this.page = page
     }
   }
 }

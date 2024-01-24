@@ -35,29 +35,22 @@
     </div>
     <!-- End Product Item -->
   </div>
-  <pagination />
 </template>
 
 <script>
 import { mapGetters } from "vuex"
 import AddToCartMixin from "../mixins/AddToCartMixin"
 import WishlistMixin from "../mixins/WishlistMixin"
-import ProductsInCartMixin from "../mixins/ProductsInCartMixin"
-import Pagination from "../../../components/Pagination"
-import { perPage } from "../../../config"
+import ProductsInCartMixin from '../mixins/ProductsInCartMixin'
 
 export default {
   name: 'ListProducts',
-  components: { Pagination },
   mixins: [AddToCartMixin, WishlistMixin, ProductsInCartMixin],
   props: ['sideBar'],
   computed: {
     ...mapGetters([
       'user'
     ]),
-    totalPages() {
-      return Math.ceil(this.products.count / perPage)
-    }
   }
 }
 </script>
