@@ -101,16 +101,27 @@
                 <div class="product-description-review">
                   <ul id="myTab" class="nav nav-tabs product-description-tab-menu" role="tablist">
                     <li class="nav-item" role="presentation">
-                      <button id="product-aditional-tab" class="nav-link" data-bs-toggle="tab" data-bs-target="#commentProduct" type="button" role="tab" aria-selected="false">Information</button>
+                      <button id="product-aditional-tab" class="nav-link" data-bs-toggle="tab" data-bs-target="#infoProduct" type="button" role="tab" aria-selected="false">Full information</button>
                     </li>
                     <li class="nav-item" role="presentation">
                       <button id="product-desc-tab" class="nav-link active" data-bs-toggle="tab" data-bs-target="#productDesc" type="button" role="tab" aria-controls="productDesc" aria-selected="true">Description</button>
                     </li>
                   </ul>
                   <div id="myTabContent" class="tab-content product-description-tab-content">
-                    <div id="commentProduct" class="tab-pane fade" role="tabpanel" aria-labelledby="product-aditional-tab">
-                      <div class="product-desc">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisici elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed utlo perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+                    <div id="infoProduct" class="tab-pane fade" role="tabpanel" aria-labelledby="product-aditional-tab">
+                      <div class="product-info">
+                        <div>
+                          <span class="specTitle">Производитель: </span>
+                          <span class="specDesc">{{ product.production_country }}</span>
+                        </div>
+                        <div>
+                          <span class="specTitle">Брэнд: </span>
+                          <span class="specDesc">{{ product.brand.name }}</span>
+                        </div>
+                        <div v-for="(specification, index) in product.specifications['ru']" :key="index">
+                          <span class="specTitle">{{ specification.key }}: </span>
+                          <span class="specDesc">{{ specification.value }}</span>
+                        </div>
                       </div>
                     </div>
                     <div class="tab-pane fade show active" id="productDesc" role="tabpanel" aria-labelledby="product-desc-tab">
@@ -208,3 +219,18 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.product-info {
+  padding: 51px 25px 50px;
+}
+
+.product-info .specTitle {
+  color: #5f5f5f;
+  font-weight: 500;
+}
+
+.product-info .specDesc {
+  color: #9f9e9e;
+}
+</style>
