@@ -1,11 +1,11 @@
 <template>
-  <div v-if="product" class="wrapper page-shop-details-wrapper">
+  <div class="wrapper page-shop-details-wrapper">
     <main class="main-content">
       <!--== Start Shop Area ==-->
       <section class="product-single-area">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-12 col-md-8 offset-md-2 col-lg-6 offset-lg-0">
+        <div :class="{ emptyContent: previewLoader }" class="container">
+          <div v-if="product" class="row">
+            <div  class="col-sm-12 col-md-8 offset-md-2 col-lg-6 offset-lg-0">
               <div class="single-product-slider">
                 <div class="single-product-thumb">
                   <div class="swiper-container single-product-thumb-slider">
@@ -156,6 +156,7 @@ export default {
   computed: {
     ...mapGetters([
       'user',
+      'previewLoader'
     ]),
     picturesIsMany() {
       return this.images.length > 3
@@ -232,5 +233,9 @@ export default {
 
 .product-info .specDesc {
   color: #9f9e9e;
+}
+
+.emptyContent {
+  height: 1000px;
 }
 </style>

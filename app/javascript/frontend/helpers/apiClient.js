@@ -24,6 +24,7 @@ class ApiClient {
             }
         }
 
+        if (options.preview) store.dispatch('showPreviewLoader')
         let timeoutID = setTimeout(() => {
             if (this.loader) store.dispatch('showLoader')
         }, 100)
@@ -42,6 +43,7 @@ class ApiClient {
             throw error
         } finally {
             clearTimeout(timeoutID)
+            if (options.preview)  store.dispatch('hidePreviewLoader')
             store.dispatch('hideLoader')
         }
     }
