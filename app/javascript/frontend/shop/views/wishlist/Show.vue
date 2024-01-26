@@ -29,13 +29,13 @@
                   <tr v-for="product in products.items" :key="product.id">
                     <td @click="handleWashlist(product.id)" class="product-remove"><span>×</span></td>
                     <td class="product-thumbnail">
-                      <router-link :to="{ name: 'ProductsShow', params: { id: product.id }}">
+                      <router-link :to="{ name: 'ProductsShow', params: { id: product.slug }}">
                         <img :src="product.logo.thumb.url" alt="Image">
                       </router-link>
                     </td>
                     <td class="product-name">
                       <h5>
-                        <router-link :to="{ name: 'ProductsShow', params: { id: product.id }}">
+                        <router-link :to="{ name: 'ProductsShow', params: { id: product.slug }}">
                           {{ product.name.ru }}
                         </router-link>
                       </h5>

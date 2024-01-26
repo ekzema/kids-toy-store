@@ -143,7 +143,9 @@
           <div class="col-lg-6 sticky-md-none">
             <div class="header-navigation-area d-none d-md-block">
               <ul class="main-menu nav position-relative">
-                <li><a href="contact.html">Main page</a></li>
+                <li>
+                  <router-link :to="{ name: 'ProductsIndex'}">Main page</router-link>
+                </li>
                 <li><a href="contact.html">Contact</a></li>
                 <li><a href="contact.html">About</a></li>
                 <li><a href="contact.html">Blogs</a></li>

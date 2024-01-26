@@ -23,9 +23,9 @@ class Order < ApplicationRecord
 
   def amount
     cart&.line_items&.sum do |line_item|
-      order_product = products_info&.find { |item| item[:id] == line_item.product.id }
+      order_product = products_info&.find { |item| item['id'] == line_item.product.id }
       quantity = line_item.quantity
-      order_product ? order_product[:price] * quantity : line_item.product.price * quantity
+      order_product ? order_product['price'] * quantity : line_item.product.price * quantity
     end
   end
 

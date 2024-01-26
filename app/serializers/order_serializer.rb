@@ -11,10 +11,10 @@ class OrderSerializer < ApplicationSerializer
 
   def prepare_products
     line_items.map do |line_item|
-      order_product = object.products_info&.find { |item| item[:id] == line_item.product.id }
+      order_product = object.products_info&.find { |item| item['id'] == line_item.product.id }
       product = line_item.product
       quantity = line_item.quantity
-      price = order_product ? order_product[:price] : line_item.product.price
+      price = order_product ? order_product['price'] : line_item.product.price
       { price: price, quantity: quantity }.merge(product.slice('id', 'name', 'slug', 'logo'))
     end
   end

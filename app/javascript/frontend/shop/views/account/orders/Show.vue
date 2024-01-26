@@ -24,7 +24,7 @@
               </td>
               <td class="product-name">
                 <h5>
-                  <router-link :to="{ name: 'ProductsShow', params: { id: product.id }}">
+                  <router-link :to="{ name: 'ProductsShow', params: { id: product.slug }}">
                     {{ product.name.ru }}
                   </router-link>
                 </h5>
