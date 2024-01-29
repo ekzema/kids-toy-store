@@ -71,8 +71,8 @@ gem 'dotenv-rails', '~> 2.8', '>= 2.8.1'
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
-gem 'capistrano', '~> 3.18', require: false
-gem 'capistrano-rails', '~> 1.6', '>= 1.6.3', require: false
+gem 'capistrano', '~> 3.18'
+gem 'capistrano-rails', '~> 1.6'
 gem 'capistrano-bundler', '~> 2.1'
 gem 'capistrano-rbenv', '~> 2.2'
 gem 'capistrano-nvm', '~> 2.2', require: false
