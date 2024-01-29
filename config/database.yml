@@ -28,5 +28,7 @@ test:
 
 production:
   <<: *default
+  username: root
+  password: root
   port: 3306
   database: kids-toy-store_production
