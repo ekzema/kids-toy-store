@@ -30,5 +30,4 @@ production:
   <<: *default
   port: 3306
   database: kids-toy-store_production
-  username: root
-  password: root
+
