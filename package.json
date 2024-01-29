@@ -4,7 +4,8 @@
   "scripts": {
     "eslint": "eslint app/javascript/frontend/**/*.vue",
     "webpacker-start": "webpack-dev-server -d",
-    "dev": "foreman start -f ./Procfile.dev"
+    "dev": "foreman start -f ./Procfile.dev",
+    "build": "RAILS_ENV=production rails webpacker:compile"
   },
   "dependencies": {
     "@fancyapps/fancybox": "^3.5.7",
