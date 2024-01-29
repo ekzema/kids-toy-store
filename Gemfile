@@ -73,11 +73,11 @@ gem 'dotenv-rails', '~> 2.8', '>= 2.8.1'
 
 gem 'capistrano', '~> 3.18', require: false
 gem 'capistrano-rails', '~> 1.6', '>= 1.6.3', require: false
-gem 'capistrano-bundler', '~> 2.1'
-gem 'capistrano-rbenv', '~> 2.2'
+gem 'capistrano-bundler', '~> 2.1', require: false
+gem 'capistrano-rbenv', '~> 2.2', require: false
 gem 'capistrano-nvm', '~> 0.0.7', require: false
-gem 'capistrano3-puma', '~> 5.2'
-gem 'capistrano-yarn', '~> 2.0', '>= 2.0.2'
+gem 'capistrano3-puma', '~> 5.2', require: false
+gem 'capistrano-yarn', '~> 2.0', '>= 2.0.2', require: false
 
 group :development, :test do
   gem 'rspec-rails', '~> 6.0', '>= 6.0.1'
