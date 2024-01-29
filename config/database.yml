@@ -12,7 +12,7 @@ default: &default
 
 development:
   <<: *default
-  host: db
+#  host: db
   database: kids-toy-store_development
   username: root
   password: root
