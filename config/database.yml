@@ -30,4 +30,5 @@ production:
   <<: *default
   port: 3306
   database: kids-toy-store_production
+  host: localhost
 
