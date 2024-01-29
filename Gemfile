@@ -77,6 +77,7 @@ gem 'capistrano-bundler', '~> 2.1'
 gem 'capistrano-rbenv', '~> 2.2'
 gem 'capistrano-nvm', '~> 0.0.7', require: false
 gem 'capistrano3-puma', '~> 5.2'
+gem 'capistrano-yarn', '~> 2.0', '>= 2.0.2'
 
 group :development, :test do
   gem 'rspec-rails', '~> 6.0', '>= 6.0.1'
