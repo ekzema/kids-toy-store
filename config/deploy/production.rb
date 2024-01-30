@@ -49,10 +49,12 @@
 #
 # The server-based syntax can be used to override options:
 # ------------------------------------
+set :rails_env, 'production'
+
 server "172.17.0.1",
        user: "deploy",
        port: "2222",
-       roles: %w{web app web},
+       roles: %w{web app db},
        ssh_options: {
          user: "deploy", # overrides user setting above
          keys: %w(/home/user_name/.ssh/id_rsa),
