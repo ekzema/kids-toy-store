@@ -7,7 +7,7 @@
 max_threads_count = ENV.fetch("RAILS_MAX_THREADS") { 5 }
 min_threads_count = ENV.fetch("RAILS_MIN_THREADS") { max_threads_count }
 threads min_threads_count, max_threads_count
-application_path = Rails.root
+application_path = ENV.fetch('WorkingDirectory')
 # Specifies the `worker_timeout` threshold that Puma will use to wait before
 # terminating a worker in development environments.
 #
@@ -18,8 +18,8 @@ worker_timeout 3600 if ENV.fetch("RAILS_ENV", "development") == "development"
 port ENV.fetch("PORT") { 3000 }
 
 # Specifies the `environment` that Puma will run in.
-bind "unix://#{application_path}/tmp/sockets/puma.sock"
-# bind "unix://#{application_path}/tmp/sockets/puma.sock" if ENV.fetch("RAILS_ENV") == 'production'
+bind "unix://#{application_path}/tmp/sockets/puma.sock" if ENV.fetch("RAILS_ENV") == 'production'
+# bind "unix:///home/deploy/sites/kids-toy-store/shared/tmp/sockets/puma.sock" if ENV.fetch("RAILS_ENV") == 'production'
 environment ENV.fetch("RAILS_ENV") { "development" }
 
 # Specifies the `pidfile` that Puma will use.
