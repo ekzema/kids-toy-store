@@ -76,7 +76,6 @@ gem 'capistrano-rails', '~> 1.6', '>= 1.6.3', require: false
 gem 'capistrano-bundler', '~> 2.1', require: false
 gem 'capistrano-rbenv', '~> 2.2', require: false
 gem 'capistrano-nvm', '~> 0.0.7', require: false
-gem 'capistrano3-puma', '~> 5.2', require: false
 gem 'capistrano-yarn', '~> 2.0', '>= 2.0.2', require: false
 
 group :development, :test do
