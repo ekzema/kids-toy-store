@@ -4,6 +4,9 @@ const mutations = {
   },
   setOrder(state, payload) {
     state.order = payload
+  },
+  clearOrder(state) {
+    state.order = {}
   }
 }
 

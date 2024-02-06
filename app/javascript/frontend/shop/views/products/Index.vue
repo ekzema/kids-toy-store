@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6 m-auto">
-          <div v-if="!isCategoryName" class="section-title text-center" data-aos="fade-up" data-aos-duration="1000">
+          <div v-if="!isCategoryName" class="section-title text-center">
             <h2 class="title">New Products</h2>
           </div>
         </div>
@@ -11,7 +11,7 @@
       <div class="row">
         <div class="col-md-12">
           <div class="product-tab-content">
-            <div id="myTabContent" class="tab-content" data-aos="fade-up" data-aos-duration="1300">
+            <div id="myTabContent" class="tab-content">
               <div id="our-features" class="tab-pane fade show active" role="tabpanel" aria-labelledby="our-features-tab">
                 <div class="row">
                   <div class="col-lg-12">
@@ -19,7 +19,7 @@
                       <div v-if="isCategoryName" class="row">
                         <div class="col-lg-9 order-0 order-lg-1">
                           <div class="row">
-                            <div v-if="currentCategory" class="section-title text-center" data-aos="fade-up" data-aos-duration="1000">
+                            <div v-if="currentCategory" class="section-title text-center">
                               <h2 class="title">{{ currentCategory.name.ru }}</h2>
                             </div>
                             <list-products :side-bar="isCategoryName" />

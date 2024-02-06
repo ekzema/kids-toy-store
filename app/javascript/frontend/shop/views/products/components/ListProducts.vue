@@ -1,6 +1,6 @@
 <template>
   <list-loader
-      v-if="previewLoader"
+      v-if="loader"
       :side-bar="sideBar"
   />
   <div v-else v-for="product in products.items" :key="product.id" :class="{'col-lg-3': !sideBar, 'col-lg-4': sideBar}" class="col-lg-3 col-md-4 col-sm-6 wrap-item">
@@ -46,7 +46,7 @@ import { mapGetters } from "vuex"
 import AddToCartMixin from "../mixins/AddToCartMixin"
 import WishlistMixin from "../mixins/WishlistMixin"
 import ProductsInCartMixin from '../mixins/ProductsInCartMixin'
-import ListLoader from './ListLoader.vue'
+import ListLoader from './ListLoader'
 
 export default {
   name: 'ListProducts',
@@ -56,7 +56,7 @@ export default {
   computed: {
     ...mapGetters([
       'user',
-      'previewLoader'
+      'loader'
     ]),
   }
 }

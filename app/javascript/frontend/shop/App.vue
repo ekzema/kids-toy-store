@@ -16,7 +16,7 @@
     <main class="main-content">
       <router-view></router-view>
     </main>
-    <app-footer />
+    <app-footer v-if="footer" />
   </div>
 </template>
 
@@ -35,6 +35,7 @@ export default {
   computed: {
     ...mapGetters([
       'loader',
+      'footer'
     ]),
   },
   watch: {

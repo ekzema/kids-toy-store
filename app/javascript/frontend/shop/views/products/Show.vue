@@ -3,7 +3,7 @@
     <main class="main-content">
       <!--== Start Shop Area ==-->
       <section class="product-single-area">
-        <div :class="{ emptyContent: previewLoader }" class="container">
+        <div class="container">
           <div v-if="product" class="row">
             <div  class="col-sm-12 col-md-8 offset-md-2 col-lg-6 offset-lg-0">
               <div class="single-product-slider">
@@ -155,8 +155,7 @@ export default {
   }),
   computed: {
     ...mapGetters([
-      'user',
-      'previewLoader'
+      'user'
     ]),
     picturesIsMany() {
       return this.images.length > 3
@@ -184,10 +183,8 @@ export default {
   },
   async created() {
       await this.$store.dispatch('fetchProduct', this.$route.params.id)
-  },
-  mounted() {
-    const headerMain = document.getElementById('header-main');
-    if (headerMain)  headerMain.scrollIntoView({ behavior: 'smooth' })
+      const headerMain = document.getElementById('header-main');
+      if (headerMain)  headerMain.scrollIntoView({ behavior: 'smooth' });
   },
   methods: {
     setSwiper() {
@@ -233,9 +230,5 @@ export default {
 
 .product-info .specDesc {
   color: #9f9e9e;
-}
-
-.emptyContent {
-  height: 1000px;
 }
 </style>

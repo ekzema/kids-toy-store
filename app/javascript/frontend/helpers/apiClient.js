@@ -15,6 +15,7 @@ class ApiClient {
         const res = await this.store
         const store = res.default
         const user = store.getters.user
+        const footer = store.getters.footer
         if (user && user.access_token) {
             const expires_at = new Date(user.access_expires_at)
             if (new Date().getTime() > expires_at.getTime()) {
@@ -24,7 +25,6 @@ class ApiClient {
             }
         }
 
-        if (options.preview) store.dispatch('showPreviewLoader')
         let timeoutID = setTimeout(() => {
             if (this.loader) store.dispatch('showLoader')
         }, 100)
@@ -43,8 +43,8 @@ class ApiClient {
             throw error
         } finally {
             clearTimeout(timeoutID)
-            if (options.preview)  store.dispatch('hidePreviewLoader')
             store.dispatch('hideLoader')
+            if (!footer) store.dispatch('showFooter')
         }
     }
 }

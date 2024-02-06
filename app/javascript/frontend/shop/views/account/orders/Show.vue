@@ -44,7 +44,7 @@
           </div>
         </div>
       </div>
-      <div class="cart-shiping-update-wrapper">
+      <div class="cart-shiping-update-wrapper clearMarginBottom">
         <div class="cart-shiping-btn continure-btn">
           <a class="btn btn-link" @click="hasHistory() ? $router.go(-1) : $router.push({name: 'OrdersIndex'})">
             <i class="ion-ios-arrow-left"></i> Назад
@@ -73,20 +73,23 @@
 </template>
 
 <script>
-import Orders from '../../../api/orders'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'OrderShow',
   data: () => ({
-    order: {},
   }),
+  computed: {
+    ...mapGetters([
+      'order',
+    ]),
+  },
   created() {
     this.fetchOrder()
   },
   methods: {
-    async fetchOrder() {
-      const { data } = await Orders.show(this.$route.params.id)
-      this.order = data
+    fetchOrder() {
+      this.$store.dispatch('fetchOrder', this.$route.params.id)
     },
     hasHistory () {
       return window.history.length > 2
@@ -100,7 +103,7 @@ export default {
   width: 130px;
 }
 
-.width-quantity{
+.width-quantity {
   min-width: 50px !important;
 }
 
@@ -108,11 +111,11 @@ export default {
   width: 130px;
 }
 
-.grand-total p{
+.grand-total p {
   font-weight: bold;
 }
 
-.grand-total p span{
+.grand-total p span {
   font-weight: normal;
   font-size: 15px;
   margin-left: 10px;
@@ -122,11 +125,11 @@ export default {
   font-size: 15px;
 }
 
-.order-info p{
+.order-info p {
   font-weight: bold;
 }
 
-.order-info p span{
+.order-info p span {
   font-weight: normal;
 }
 
@@ -153,5 +156,9 @@ export default {
 
 .orderStatus {
   margin-top: -15px;
+}
+
+.clearMarginBottom {
+  margin-bottom: 0 !important;
 }
 </style>

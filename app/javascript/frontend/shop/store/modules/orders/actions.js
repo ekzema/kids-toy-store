@@ -15,16 +15,20 @@ const actions = {
       commit('setErrorMessage')
     }
   },
-  async fetchOrders({ commit }, params) {
+  async fetchOrders({ commit, dispatch }, params) {
     try {
+      dispatch('hideFooter')
       const { data } = await Orders.get(params)
       commit('setOrders', data)
     } catch (error) {
       commit('setErrorMessage')
     }
   },
-  async fetchOrder({ commit }, id) {
+  async fetchOrder({ commit, dispatch }, id) {
     try {
+      commit('clearOrder')
+      dispatch('hideFooter')
+
       const { data } = await Orders.show(id)
       commit('setOrder', data)
     } catch (error) {

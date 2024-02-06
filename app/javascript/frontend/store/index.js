@@ -1,21 +1,22 @@
 const state = {
     loader: false,
     previewLoader: false,
-    user: null
+    user: null,
+    footer: true
 }
 
 const getters = {
     loader: state => state.loader,
-    previewLoader: state => state.previewLoader,
-    user: state => state.user
+    user: state => state.user,
+    footer: state => state.footer
 }
 
 const mutations = {
     setLoader(state, payload) {
         state.loader = payload
     },
-    setPreviewLoader(state, payload) {
-        state.previewLoader = payload
+    setFooter(state, payload) {
+        state.footer = payload
     },
     setUser(state, payload) {
         state.user = payload
@@ -32,15 +33,15 @@ const actions = {
     hideLoader({ commit }) {
         commit('setLoader', false)
     },
-    showPreviewLoader({ commit }) {
-        commit('setPreviewLoader', true)
-    },
-    hidePreviewLoader({ commit }) {
-        commit('setPreviewLoader', false)
-    },
     clearUser({ commit }) {
         commit('setUser', null)
         delete localStorage.user
+    },
+    hideFooter({ commit }) {
+        commit('setFooter', false)
+    },
+    showFooter({ commit }) {
+        commit('setFooter', true)
     }
 }
 
