@@ -1,31 +1,33 @@
 <template>
   <h3>Account Details</h3>
   <div class="account-details-form">
-    <form action="#">
-      <div class="row">
-        <div class="col-lg-6">
+      <fieldset>
+        <legend>Account</legend>
+        <form action="#">
           <div class="single-input-item">
             <label for="first-name" class="required">First Name</label>
-            <input type="text" id="first-name" />
+            <input v-model="formData.first_name" type="text" id="first-name" />
           </div>
-        </div>
-        <div class="col-lg-6">
           <div class="single-input-item">
             <label for="last-name" class="required">Last Name</label>
             <input type="text" id="last-name" />
           </div>
-        </div>
-      </div>
-      <div class="single-input-item">
-        <label for="display-name" class="required">Display Name</label>
-        <input type="text" id="display-name" />
-      </div>
-      <div class="single-input-item">
-        <label for="email" class="required">Email Addres</label>
-        <input type="email" id="email" />
-      </div>
-      <fieldset>
-        <legend>Password change</legend>
+          <div class="single-input-item">
+            <label for="patronymic" class="required">Patronymic</label>
+            <input type="text" id="patronymic" />
+          </div>
+          <div class="single-input-item">
+            <label for="email" class="required">Email Addres</label>
+            <input type="email" id="email" />
+          </div>
+          <div class="single-input-item">
+            <button class="check-btn sqr-btn">Update account</button>
+          </div>
+        </form>
+      </fieldset>
+    <fieldset>
+      <legend>Password</legend>
+      <form action="#">
         <div class="single-input-item">
           <label for="current-pwd" class="required">Current Password</label>
           <input type="password" id="current-pwd" />
@@ -44,18 +46,48 @@
             </div>
           </div>
         </div>
-      </fieldset>
-      <div class="single-input-item">
-        <button class="check-btn sqr-btn">Save Changes</button>
-      </div>
-    </form>
+        <div class="single-input-item">
+          <button class="check-btn sqr-btn">Change password</button>
+        </div>
+      </form>
+    </fieldset>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'AccountDetails',
+  data: () => ({
+    formData: {
+      email: '',
+      phone: '',
+      last_name: '',
+      first_name: '',
+      patronymic: '',
+    }
+  }),
+  computed: {
+    ...mapGetters([
+      'user'
+    ])
+  },
+  watch: {
+    user() {
+      this.setFormData()
+    }
+  },
+  created() {
+    this.setFormData()
+  },
+  methods: {
+    async setFormData() {
+      if (!this.user) return
+      const { email, phone, first_name, last_name, patronymic } = await this.user
+      this.formData = { email, phone, first_name, last_name, patronymic }
+    }
+  }
 }
 </script>
 
