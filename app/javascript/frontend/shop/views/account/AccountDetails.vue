@@ -3,51 +3,51 @@
   <div class="account-details-form">
       <fieldset>
         <legend>Account</legend>
-        <form action="#">
+        <form @submit.prevent="updateAccount">
           <div class="single-input-item">
             <label for="first-name" class="required">First Name</label>
-            <input v-model="formData.first_name" type="text" id="first-name" />
+            <input v-model="formData.account.first_name" type="text" id="first-name" />
           </div>
           <div class="single-input-item">
             <label for="last-name" class="required">Last Name</label>
-            <input type="text" id="last-name" />
+            <input v-model="formData.account.last_name" type="text" id="last-name" />
           </div>
           <div class="single-input-item">
             <label for="patronymic" class="required">Patronymic</label>
-            <input type="text" id="patronymic" />
+            <input v-model="formData.account.patronymic" type="text" id="patronymic" />
           </div>
           <div class="single-input-item">
             <label for="email" class="required">Email Addres</label>
-            <input type="email" id="email" />
+            <input v-model="formData.account.email" type="email" id="email" />
           </div>
           <div class="single-input-item">
-            <button class="check-btn sqr-btn">Update account</button>
+            <button type="submit" class="check-btn sqr-btn">Update account</button>
           </div>
         </form>
       </fieldset>
     <fieldset>
       <legend>Password</legend>
-      <form action="#">
+      <form @submit.prevent="changePassword">
         <div class="single-input-item">
           <label for="current-pwd" class="required">Current Password</label>
-          <input type="password" id="current-pwd" />
+          <input v-model="formData.password.current_password" type="password" id="current-pwd" />
         </div>
         <div class="row">
           <div class="col-lg-6">
             <div class="single-input-item">
               <label for="new-pwd" class="required">New Password</label>
-              <input type="password" id="new-pwd" />
+              <input v-model="formData.password.password" type="password" id="new-pwd" />
             </div>
           </div>
           <div class="col-lg-6">
             <div class="single-input-item">
               <label for="confirm-pwd" class="required">Confirm Password</label>
-              <input type="password" id="confirm-pwd" />
+              <input v-model="formData.password.password_confirmation" type="password" id="confirm-pwd" />
             </div>
           </div>
         </div>
         <div class="single-input-item">
-          <button class="check-btn sqr-btn">Change password</button>
+          <button type="submit" class="check-btn sqr-btn">Change password</button>
         </div>
       </form>
     </fieldset>
@@ -61,11 +61,18 @@ export default {
   name: 'AccountDetails',
   data: () => ({
     formData: {
-      email: '',
-      phone: '',
-      last_name: '',
-      first_name: '',
-      patronymic: '',
+      account: {
+        email: '',
+        phone: '',
+        last_name: '',
+        first_name: '',
+        patronymic: '',
+      },
+      password: {
+        current_password: '',
+        password: '',
+        password_confirmation: ''
+      }
     }
   }),
   computed: {
@@ -85,7 +92,13 @@ export default {
     async setFormData() {
       if (!this.user) return
       const { email, phone, first_name, last_name, patronymic } = await this.user
-      this.formData = { email, phone, first_name, last_name, patronymic }
+      this.formData.account = { email, phone, first_name, last_name, patronymic }
+    },
+    updateAccount() {
+      this.$store.dispatch('updateAccount', this.formData.account)
+    },
+    changePassword() {
+      this.$store.dispatch('changePassword', this.formData.password)
     }
   }
 }
