@@ -20,6 +20,8 @@ Rails.application.routes.draw do
       resources :users, only: [:destroy] do
         collection do
           get 'info'
+          put 'update_account'
+          put 'change_password'
         end
       end
       resources :products, only: [:index, :show] do

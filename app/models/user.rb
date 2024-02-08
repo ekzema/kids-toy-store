@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   has_secure_password
 
+  attr_accessor :current_password
+
   has_many :wishlists, dependent: :destroy
   has_many :wish_products, source: :product, through: :wishlists
 
@@ -15,6 +17,7 @@ class User < ApplicationRecord
 
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, presence: true, uniqueness: true # rubocop:disable Rails/UniqueValidationWithoutIndex
   validates :email, 'valid_email_2/email': { mx: true, disposable: true, message: :bad_domain }, unless: :dev_or_test?
+  validates :password, length: { minimum: 8 }, if: :password_digest_changed?
 
   default_scope -> { where(deleted_at: nil).where.not(confirmed_at: nil) }
 
