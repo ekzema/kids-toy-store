@@ -9,27 +9,28 @@ class Api::V1::UsersController < ApiController
   end
 
   def update_account
-    current_user.update(account_params)
+    current_user.update(user_params)
     render_response(current_user, UserSerializer, { except: %i[line_items wishlists_count] })
   end
 
   def change_password
-    # return error_required_field('current_password') unless password_params[:current_password]
+    return error_required_field('current_password') if password_params[:current_password].blank?
 
-    puts '------START------'
-    pp password_params
-    # pp current_user.authenticate('qwerty')
-    # puts '------END------'
-    # render json: {dsd: 'dsd'}
+    unless current_user.authenticate(password_params[:current_password])
+      return render_error_response('Current password is incorrect', :forbidden)
+    end
+
+    current_user.update!(password_params)
+    render_response(status: :no_content)
   end
 
   private
 
-  def account_params
+  def user_params
     params.require(:user).permit(:email, :phone, :first_name, :last_name, :patronymic)
   end
 
   def password_params
-    params.require(:user).permit(:current_password, :password, :password_confirmation)
+    params.require(:password).permit(:current_password, :password, :password_confirmation)
   end
 end

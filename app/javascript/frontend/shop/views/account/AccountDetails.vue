@@ -91,14 +91,24 @@ export default {
   methods: {
     async setFormData() {
       if (!this.user) return
+
       const { email, phone, first_name, last_name, patronymic } = await this.user
       this.formData.account = { email, phone, first_name, last_name, patronymic }
     },
     updateAccount() {
       this.$store.dispatch('updateAccount', this.formData.account)
     },
-    changePassword() {
-      this.$store.dispatch('changePassword', this.formData.password)
+    async changePassword() {
+      const response = await this.$store.dispatch('changePassword', { password: this.formData.password })
+      if(response) this.resetFormPassword()
+    },
+    resetFormPassword() {
+      this.formData.password = {
+        current_password: '',
+        password: '',
+        password_confirmation: ''
+      };
+
     }
   }
 }

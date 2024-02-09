@@ -27,7 +27,11 @@ const actions = {
     async changePassword({ commit }, payload) {
         try {
             await Users.changePassword(payload)
+            commit('setSuccessMessage', 'Update successful')
+            return true
         } catch (error) {
+            const response = error.response
+            if(response.status === 403) return commit('setErrorMessage', response.data.error)
             commit('setErrorMessage')
         }
     },
