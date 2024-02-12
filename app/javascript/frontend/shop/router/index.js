@@ -100,17 +100,17 @@ const router = createRouter({
         },
         {
           name: 'OrdersIndex',
-          path: '/orders',
+          path: 'orders',
           component: OrdersIndex
         },
         {
           name: 'OrdersShow',
-          path: '/orders/:id',
+          path: 'orders/:id',
           component: OrdersShow
         },
         {
           name: 'AccountDetails',
-          path: '/details',
+          path: 'details',
           component: AccountDetails
         }
       ],

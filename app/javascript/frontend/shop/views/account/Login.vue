@@ -10,7 +10,7 @@
             </div>
             <div class="login-register-style">
               <form ref="form" @submit.prevent="onSubmit">
-                <div class="login-register-input" :class="{'input-error': v$.formData.email.$error}">
+                <div id="login" class="login-register-input" :class="{'input-error': v$.formData.email.$error}">
                   <input id="input-email" v-model="v$.formData.email.$model" type="text" placeholder="Email address">
                 </div>
                 <div v-for="(error, index) of v$.formData.email.$errors" :key="index">
