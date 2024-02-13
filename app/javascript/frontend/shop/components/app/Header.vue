@@ -263,6 +263,9 @@ export default {
           this.spinner = false
         })
       }, 800)
+    },
+    user() {
+      if(!this.user) this.$router.push({ name: 'ProductsIndex' })
     }
   },
   created() {
