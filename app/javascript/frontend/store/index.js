@@ -2,13 +2,15 @@ const state = {
     loader: false,
     previewLoader: false,
     user: null,
-    footer: true
+    footer: true,
+    language: 'ua'
 }
 
 const getters = {
     loader: state => state.loader,
     user: state => state.user,
-    footer: state => state.footer
+    footer: state => state.footer,
+    language: state => state.language
 }
 
 const mutations = {
@@ -23,6 +25,9 @@ const mutations = {
     },
     updateUser(state, payload) {
         state.user = { ...state.user, ...payload }
+    },
+    setLanguage(state, payload) {
+        state.language = payload
     }
 }
 

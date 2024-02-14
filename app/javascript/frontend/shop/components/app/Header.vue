@@ -5,7 +5,11 @@
         <div class="row">
           <div class="col-xs-12 col-sm-5 col-md-4 col-lg-4">
             <div class="header-info-left">
-              <p>Free Returns and Free Shipping</p>
+<!--              <p>Free Returns and Free Shipping</p>-->
+              <ul>
+                <li :class="{ active: language === 'ua' }" @click="onLanguage('ua')">укр</li>
+                <li :class="{ active: language === 'ru' }" @click="onLanguage('ru')">рус</li>
+              </ul>
             </div>
           </div>
           <div class="col-xs-12 col-sm-7 col-md-8 col-lg-8 sm-pl-0 xs-pl-15 header-top-right">
@@ -217,7 +221,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { cart } from '../../helpers/utils'
+import {cart, serialize} from '../../helpers/utils'
 
 export default {
   name: 'AppHeader',
@@ -229,6 +233,7 @@ export default {
   computed: {
     ...mapGetters([
       'user',
+      'language',
       'categories',
       'cartItemsCount',
       'wishListCounter',
@@ -319,6 +324,10 @@ export default {
     },
     onCart() {
       this.$router.push({ name: 'CartShow' })
+    },
+    onLanguage(lang) {
+      localStorage.setItem('language', lang)
+      this.$store.commit('setLanguage', lang)
     }
   }
 }

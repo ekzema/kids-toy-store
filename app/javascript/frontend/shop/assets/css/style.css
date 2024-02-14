@@ -2987,6 +2987,39 @@ table p {
   position: relative;
   top: 3px;
 }
+
+.header-top .header-info-left ul {
+  color: #404041;
+  font-size: 14px;
+  position: relative;
+  top: 3px;
+  margin: 0;
+}
+
+.header-top .header-info-left ul li {
+  cursor: pointer;
+  display: inline-block;
+  margin-left: 10px;
+  border-bottom: 2px solid transparent;
+}
+
+.header-top .header-info-left ul li.active {
+  border-bottom: 2px solid #b9b7b7;
+  color: #f379a7;
+}
+
+.header-top .header-info-left ul li:hover {
+  color: #f379a7;
+}
+
+.header-top .header-info-left ul li {
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+}
+
 @media only screen and (max-width: 767px) {
   .header-top .header-info-left p {
     font-size: 12px;
