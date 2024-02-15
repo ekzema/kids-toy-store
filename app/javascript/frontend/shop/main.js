@@ -2,7 +2,9 @@ import { createApp } from 'vue'
 import App from './App'
 import router from './router/index.js'
 import store from './store'
-import Toast from "vue-toastification"
+import Toast from 'vue-toastification'
+import { createI18n } from 'vue-i18n'
+import i18n from './i18n'
 import "vue-toastification/dist/index.css"
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap'
@@ -28,11 +30,17 @@ const toastConfig = {
   hideProgressBar: true
 }
 
+const i18nConfig = createI18n({
+  locale: 'ua',
+  messages: i18n,
+});
+
 document.addEventListener('DOMContentLoaded', () => {
   createApp(App)
       .use(router)
       .use(store)
       .use(VueAwesomePaginate)
       .use(Toast, toastConfig)
+      .use(i18nConfig)
       .mount('#app')
 })

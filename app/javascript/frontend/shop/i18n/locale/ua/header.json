@@ -1,0 +1,17 @@
+{
+  "HEADER": {
+    "SIGN_IN": "Увійти",
+    "SIGN_UP": "Реєстрація",
+    "LOG_OUT": "Вийти",
+    "ACCOUNT": "Особистий кабінет",
+    "MAIN_PAGE": "Головна",
+    "CONTACT": "Контакти",
+    "ABOUT": "О нас",
+    "CATALOG_MENU": {
+      "TITLE": "Каталог товарів"
+    },
+    "SEARCH": {
+      "PLACEHOLDER": "Пошук товарів"
+    }
+  }
+}

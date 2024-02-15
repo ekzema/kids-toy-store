@@ -39,7 +39,7 @@
             </div>
             <div class="col-lg-6">
               <div class="single-product-info">
-                <h4 class="title">{{product.name.ru}}</h4>
+                <h4 class="title">{{product.name[language]}}</h4>
                 <div class="prices">
                   <span class="price">{{product.price}} грн</span>
                 </div>
@@ -50,7 +50,7 @@
                     <li><i class="fa fa-check"></i> Money Return</li>
                   </ul>
                 </div>
-                <p class="product-desc">{{product.description.ru}}</p>
+                <p class="product-desc">{{product.description[language]}}</p>
                 <div class="quick-product-action">
                   <div class="action-top">
                     <div v-if="!product.inCart" class="pro-qty">
@@ -118,7 +118,7 @@
                           <span class="specTitle">Брэнд: </span>
                           <span class="specDesc">{{ product.brand.name }}</span>
                         </div>
-                        <div v-for="(specification, index) in product.specifications['ru']" :key="index">
+                        <div v-for="(specification, index) in product.specifications[language]" :key="index">
                           <span class="specTitle">{{ specification.key }}: </span>
                           <span class="specDesc">{{ specification.value }}</span>
                         </div>
@@ -126,7 +126,7 @@
                     </div>
                     <div class="tab-pane fade show active" id="productDesc" role="tabpanel" aria-labelledby="product-desc-tab">
                       <div class="product-desc">
-                        <p>{{ product.description.ru }}</p>
+                        <p>{{ product.description[language] }}</p>
                       </div>
                     </div>
                   </div>
@@ -155,7 +155,8 @@ export default {
   }),
   computed: {
     ...mapGetters([
-      'user'
+      'user',
+      'language'
     ]),
     picturesIsMany() {
       return this.images.length > 3

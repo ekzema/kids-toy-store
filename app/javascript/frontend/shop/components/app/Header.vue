@@ -5,7 +5,6 @@
         <div class="row">
           <div class="col-xs-12 col-sm-5 col-md-4 col-lg-4">
             <div class="header-info-left">
-<!--              <p>Free Returns and Free Shipping</p>-->
               <ul>
                 <li :class="{ active: language === 'ua' }" @click="onLanguage('ua')">укр</li>
                 <li :class="{ active: language === 'ru' }" @click="onLanguage('ru')">рус</li>
@@ -17,17 +16,17 @@
               <a href="tel://+00123456789"><i class="fa fa-phone"></i> +00 123 456 789</a>
               <a href="mailto://demo@example.com"><i class="fa fa-envelope"></i> demo@example.com</a>
               <router-link v-if="user" :to="{ name: 'AccountDashboard'}">
-                <i class="fa fa-user"></i> Account
+                <i class="fa fa-user"></i> {{ $t('HEADER.ACCOUNT') }}
               </router-link>
               <div class="wrap-account" v-if="!user">
                 <router-link :to="{ name: 'AccountNew'}">
-                  <i class="fa fa-user-plus"></i> Sign up
+                  <i class="fa fa-user-plus"></i> {{ $t('HEADER.SIGN_UP') }}
                 </router-link>
                 <router-link :to="{ name: 'AccountLogin'}">
-                  <i class="fa fa-sign-in"></i> Login
+                  <i class="fa fa-sign-in"></i> {{ $t('HEADER.SIGN_IN') }}
                 </router-link>
               </div>
-              <router-link to="" @click="logout" v-else><i class="fa fa-sign-out"></i> Logout</router-link>
+              <router-link to="" @click="logout" v-else><i class="fa fa-sign-out"></i> {{ $t('HEADER.LOG_OUT') }}</router-link>
             </div>
           </div>
         </div>
@@ -50,8 +49,8 @@
                 <div class="header-search-box">
                   <form @submit.prevent="submitSearchForm">
                     <div class="form-input-item">
-                      <label for="search" class="sr-only">Search Everything</label>
-                      <input v-model="searchText" class="search-input" type="text" placeholder="Search Everything" @blur="handleBlur">
+                      <label for="search" class="sr-only">{{ $t('HEADER.SEARCH.PLACEHOLDER') }}</label>
+                      <input v-model="searchText" class="search-input" type="text" :placeholder="$t('HEADER.SEARCH.PLACEHOLDER')" @blur="handleBlur">
                       <button type="submit" class="disable-cleaner search-button btn-src">
                         <div v-if="spinner" class="input-spinner spinner-border-sm spinner-border" role="status">
                           <span class="visually-hidden">Loading...</span>
@@ -67,7 +66,7 @@
                     <li v-for="(product, index) in productsAutocomplete.items" :key="index">
                       <router-link class="disable-cleaner search-link" :to="{ name: 'ProductsShow', params: { id: product.slug } }" @click="resetSearch">
                         <img :src="product.logo.url">
-                        <span class="search-item-title">{{ product.name.ru }} </span>
+                        <span class="search-item-title">{{ product.name[language] }} </span>
                       </router-link>
                       <div class="wrap-price text-center">
                         <span class="search-item-price">{{ product.price }}</span>
@@ -110,13 +109,13 @@
           <div class="col-4 col-sm-6 col-lg-4">
             <div ref="menu" class="menu">
               <button class="menu__btn" @click="closeMenu" @mouseover="menu('add')">
-                <span class="menu__burger"><span></span></span><span class="menu__text">Каталог товаров</span>
+                <span class="menu__burger"><span></span></span><span class="menu__text">{{ $t('HEADER.CATALOG_MENU.TITLE') }}</span>
               </button>
               <div class="menu__wrapper">
                 <div v-for="category in categories" :key="category.id" class="menu__item">
                   <div class="wrap_menu_head">
                     <router-link class="menu__head" :to="{ name: 'Category', params: { category: category.slug }}" @click="menu('remove')">
-                      {{ category.name.ru }}
+                      {{ category.name[language] }}
                       <div v-if="category.subcategories.length" class="sub_button"></div>
                     </router-link>
                     <span v-if="category.subcategories.length" @click="openSubMenu" class="next_button">
@@ -131,10 +130,10 @@
                       <li v-for="subcategory in category.subcategories" :key="subcategory.id">
                         <router-link
                             :to="{ name: 'Category', params: { category: category.slug, subcategory: subcategory.slug }}"
-                            :title="subcategory.name.ru"
+                            :title="subcategory.name[language]"
                             class="menu__link"
                             @click="menu('remove')">
-                          {{ subcategory.name.ru }}
+                          {{ subcategory.name[language] }}
                         </router-link>
                       </li>
                     </ul>
@@ -148,10 +147,10 @@
             <div class="header-navigation-area d-none d-md-block">
               <ul class="main-menu nav position-relative">
                 <li>
-                  <router-link :to="{ name: 'ProductsIndex'}">Main page</router-link>
+                  <router-link :to="{ name: 'ProductsIndex'}">{{ $t('HEADER.MAIN_PAGE') }}</router-link>
                 </li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="contact.html">About</a></li>
+                <li><a href="contact.html">{{ $t('HEADER.CONTACT') }}</a></li>
+                <li><a href="contact.html">{{ $t('HEADER.ABOUT') }}</a></li>
                 <li><a href="contact.html">Blogs</a></li>
                 <li><a href="contact.html">Stock</a></li>
               </ul>
@@ -221,7 +220,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import {cart, serialize} from '../../helpers/utils'
+import { cart } from '../../helpers/utils'
 
 export default {
   name: 'AppHeader',
@@ -328,6 +327,7 @@ export default {
     onLanguage(lang) {
       localStorage.setItem('language', lang)
       this.$store.commit('setLanguage', lang)
+      this.$i18n.locale = lang
     }
   }
 }

@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-md-6 m-auto">
           <div v-if="!isCategoryName" class="section-title text-center">
-            <h2 class="title">New Products</h2>
+            <h2 class="title">{{ $t('MAIN.TITLE.LATEST_PRODUCTS') }}</h2>
           </div>
         </div>
       </div>
@@ -20,7 +20,7 @@
                         <div class="col-lg-9 order-0 order-lg-1">
                           <div class="row">
                             <div v-if="currentCategory" class="section-title text-center">
-                              <h2 class="title">{{ currentCategory.name.ru }}</h2>
+                              <h2 class="title">{{ currentCategory.name[language] }}</h2>
                             </div>
                             <list-products :side-bar="isCategoryName" />
                             <pagination
@@ -79,6 +79,7 @@ export default {
   },
   computed: {
     ...mapGetters([
+      'language',
       'categories'
     ]),
     isCategoryName() {

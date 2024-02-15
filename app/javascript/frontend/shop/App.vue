@@ -55,7 +55,11 @@ export default {
     if (!user) this.$store.commit('setCart', cart.get())
 
     const lang = localStorage.getItem('language')
-    if(lang) this.$store.commit('setLanguage', lang)
+    if(lang) {
+      this.$store.commit('setLanguage', lang)
+      this.$i18n.locale = lang
+    }
+
   }
 }
 </script>

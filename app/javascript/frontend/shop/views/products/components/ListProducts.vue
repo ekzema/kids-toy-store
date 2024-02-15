@@ -18,11 +18,11 @@
       </div>
       <div class="product-info">
         <div class="code">
-          <span class="code">Код товара: {{ product.code }}</span>
+          <span class="code">{{ $t('PRODUCT.CODE') }}: {{ product.code }}</span>
         </div>
         <h4 class="title text-center">
           <router-link :to="{ name: 'ProductsShow', params: { id: product.slug } }">
-            {{ product.name.ru }}
+            {{ product.name[language] }}
           </router-link>
         </h4>
         <div class="prices">
@@ -31,9 +31,9 @@
         <div class="cart">
           <button v-if="!product.inCart" class="btn btn-theme" @click="addToCart(product)">
             <i class="pe-7s-cart"></i>
-            Купить
+            {{ $t('PRODUCT.BUTTONS.BUY') }}
           </button>
-          <span v-else class="btn btn-theme in-cart">В корзине</span>
+          <span v-else class="btn btn-theme in-cart">{{ $t('PRODUCT.BUTTONS.IN_CART') }}</span>
         </div>
       </div>
     </div>
@@ -56,7 +56,8 @@ export default {
   computed: {
     ...mapGetters([
       'user',
-      'loader'
+      'loader',
+      'language'
     ]),
   }
 }
