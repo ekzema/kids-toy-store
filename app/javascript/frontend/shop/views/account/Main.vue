@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-lg-6 m-auto">
           <div class="section-title text-center">
-            <h2 class="title">My account</h2>
+            <h2 class="title">{{ $t('ACCOUNT.TITLE') }}</h2>
           </div>
         </div>
       </div>
@@ -48,12 +48,16 @@
 export default {
   name: 'AccountMain',
   data: () => ({
-    tabs: [
-      { key: 'AccountDashboard', title: 'Dashboard' },
-      { key: 'OrdersIndex', title: 'Orders' },
-      { key: 'AccountDetails', title: 'Account details' }
-    ],
   }),
+  computed: {
+    tabs() {
+      return [
+        { key: 'AccountDashboard', title: this.$t('ACCOUNT.STATISTICS.TITLE') },
+        { key: 'OrdersIndex', title: this.$t('ACCOUNT.ORDERS.TITLE') },
+        { key: 'AccountDetails', title: this.$t('ACCOUNT.DETAILS.TITLE')}
+      ]
+    }
+  },
   methods: {
   }
 }

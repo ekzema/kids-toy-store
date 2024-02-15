@@ -58,8 +58,8 @@
                       <span class= "dec qty-btn" @click="quantity--"><i class="fa fa-minus"></i></span>
                       <input v-model="quantity" id="quantity" readonly type="text" title="Quantity" />
                     </div>
-                    <button v-if="!product.inCart" class="btn btn-theme" @click="addToCart(product, quantity)">Add to Cart</button>
-                    <span v-else class="btn btn-theme in-cart bold-text-cart">В корзине</span>
+                    <button v-if="!product.inCart" class="btn btn-theme" @click="addToCart(product, quantity)">{{ $t('PRODUCT.BUTTON.BUY') }}</button>
+                    <span v-else class="btn btn-theme in-cart bold-text-cart">{{ $t('PRODUCT.BUTTON.IN_CART') }}</span>
                     <span v-if="user" class="item-wishlist" @click="handleWashlist(product.id)">
                       <i v-if="product.wishlist" class="fa fa-heart"></i>
                       <i v-else class="fa fa-heart-o"></i>
@@ -70,26 +70,26 @@
                   </div>
                 </div>
                 <div class="widget">
-                  <h3 class="title">Код товара:</h3>
+                  <h3 class="title">{{ $t('PRODUCT.CODE') }}:</h3>
                   <div class="widget-tags">
                     <span>{{product.code}}</span>
                   </div>
                 </div>
                 <div class="widget">
-                  <h3 class="title">Categories:</h3>
+                  <h3 class="title">{{ $t('PRODUCT.CATEGORIES') }}:</h3>
                   <div class="widget-tags">
                     <a href="blog.html">Toys.</a>
                     <a href="blog.html">Dresss</a>
                   </div>
                 </div>
                 <div class="widget">
-                  <h3 class="title">Производитель:</h3>
+                  <h3 class="title">{{ $t('PRODUCT.MADE_IN') }}:</h3>
                   <div class="widget-tags">
-                    <a href="blog.html">{{product.production_country}}</a>
+                    <a href="blog.html">{{ product.production_country }}</a>
                   </div>
                 </div>
                 <div class="widget">
-                    <h3 class="title">Брэнд:</h3>
+                    <h3 class="title">{{ $t('PRODUCT.BRAND') }}:</h3>
                     <div class="widget-tags">
                         <a href="blog.html">{{product.brand.name}}</a>
                     </div>
@@ -101,21 +101,21 @@
                 <div class="product-description-review">
                   <ul id="myTab" class="nav nav-tabs product-description-tab-menu" role="tablist">
                     <li class="nav-item" role="presentation">
-                      <button id="product-aditional-tab" class="nav-link" data-bs-toggle="tab" data-bs-target="#infoProduct" type="button" role="tab" aria-selected="false">Full information</button>
+                      <button id="product-aditional-tab" class="nav-link" data-bs-toggle="tab" data-bs-target="#infoProduct" type="button" role="tab" aria-selected="false">{{ $t('PRODUCT.TAB.SPEC') }}</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                      <button id="product-desc-tab" class="nav-link active" data-bs-toggle="tab" data-bs-target="#productDesc" type="button" role="tab" aria-controls="productDesc" aria-selected="true">Description</button>
+                      <button id="product-desc-tab" class="nav-link active" data-bs-toggle="tab" data-bs-target="#productDesc" type="button" role="tab" aria-controls="productDesc" aria-selected="true">{{ $t('PRODUCT.TAB.DESC') }}</button>
                     </li>
                   </ul>
                   <div id="myTabContent" class="tab-content product-description-tab-content">
                     <div id="infoProduct" class="tab-pane fade" role="tabpanel" aria-labelledby="product-aditional-tab">
                       <div class="product-info">
                         <div>
-                          <span class="specTitle">Производитель: </span>
+                          <span class="specTitle">{{ $t('PRODUCT.MADE_IN') }}: </span>
                           <span class="specDesc">{{ product.production_country }}</span>
                         </div>
                         <div>
-                          <span class="specTitle">Брэнд: </span>
+                          <span class="specTitle">{{ $t('PRODUCT.BRAND') }}: </span>
                           <span class="specDesc">{{ product.brand.name }}</span>
                         </div>
                         <div v-for="(specification, index) in product.specifications[language]" :key="index">

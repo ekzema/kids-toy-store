@@ -1,5 +1,5 @@
 <template>
-  <h3>Dashboard</h3>
+  <h3>{{ $t('ACCOUNT.STATISTICS.TITLE') }}</h3>
   <div class="welcome">
     <p>Hello, <strong>Alex Tuntuni</strong> (If Not <strong>Tuntuni !</strong><a href="login-register.html" class="logout"> Logout</a>)</p>
   </div>

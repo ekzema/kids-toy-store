@@ -1,0 +1,24 @@
+{
+  "ACCOUNT": {
+    "TITLE": "Личный кабинет",
+    "STATISTICS": {
+      "TITLE": "Статистика"
+    },
+    "ORDERS": {
+      "TITLE": "Заказы",
+      "LIST": {
+        "HEADER": {
+          "DATE": "Дата",
+          "STATUS": "Статус",
+          "TOTAL": "Всего",
+          "ACTION": {
+            "MORE": "Подробнее"
+          }
+        }
+      }
+    },
+    "DETAILS": {
+      "TITLE": "Личные данные"
+    }
+  }
+}

@@ -1,14 +1,14 @@
 <template>
-  <h3>Orders</h3>
+  <h3>{{ $t('ACCOUNT.ORDERS.TITLE') }}</h3>
   <div class="myaccount-table table-responsive text-center">
     <table class="table table-bordered">
       <thead class="thead-light">
       <tr>
         <th>№</th>
-        <th>Date</th>
-        <th>Status</th>
-        <th>Total</th>
-        <th>Action</th>
+        <th>{{ $t('ACCOUNT.ORDERS.LIST.HEADER.DATE') }}</th>
+        <th>{{ $t('ACCOUNT.ORDERS.LIST.HEADER.STATUS') }}</th>
+        <th>{{ $t('ACCOUNT.ORDERS.LIST.HEADER.TOTAL') }}</th>
+        <th></th>
       </tr>
       </thead>
       <tbody>
@@ -18,8 +18,8 @@
         <td>{{ order.status }}</td>
         <td>{{ order.amount }} грн</td>
         <td>
-          <router-link class="check-btn sqr-btn" :to="{ name: 'OrdersShow', params: { id: order.id } }">
-            View
+          <router-link class="check-btn sqr-btn order-more" :to="{ name: 'OrdersShow', params: { id: order.id } }">
+            {{ $t('ACCOUNT.ORDERS.LIST.HEADER.ACTION.MORE') }}
           </router-link>
         </td>
       </tr>

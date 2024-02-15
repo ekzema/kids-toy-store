@@ -1,0 +1,24 @@
+{
+  "ACCOUNT": {
+    "TITLE": "Особистий кабінет",
+    "STATISTICS": {
+      "TITLE": "Статистика"
+    },
+    "ORDERS": {
+      "TITLE": "Замовлення",
+      "LIST": {
+        "HEADER": {
+          "DATE": "Дата",
+          "STATUS": "Статус",
+          "TOTAL": "Усього",
+          "ACTION": {
+            "MORE": "Детальніше"
+          }
+        }
+      }
+    },
+    "DETAILS": {
+      "TITLE": "Особисті дані"
+    }
+  }
+}

@@ -31,9 +31,9 @@
         <div class="cart">
           <button v-if="!product.inCart" class="btn btn-theme" @click="addToCart(product)">
             <i class="pe-7s-cart"></i>
-            {{ $t('PRODUCT.BUTTONS.BUY') }}
+            {{ $t('PRODUCT.BUTTON.BUY') }}
           </button>
-          <span v-else class="btn btn-theme in-cart">{{ $t('PRODUCT.BUTTONS.IN_CART') }}</span>
+          <span v-else class="btn btn-theme in-cart">{{ $t('PRODUCT.BUTTON.IN_CART') }}</span>
         </div>
       </div>
     </div>

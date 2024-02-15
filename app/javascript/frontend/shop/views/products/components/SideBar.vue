@@ -11,9 +11,9 @@
               <li v-for="subcategory in subcategories" :key="subcategory.id">
                 <router-link
                     :to="{ name: 'Category', params: { category: $route.params.category, subcategory: subcategory.slug }}"
-                    :title="subcategory.name.ru"
+                    :title="subcategory.name[language]"
                 >
-                  {{ subcategory.name.ru }}
+                  {{ subcategory.name[language] }}
                 </router-link>
               </li>
             </ul>
@@ -23,7 +23,7 @@
       <div class="widget-item">
         <div class="widget-filter">
           <div class="widget-title">
-            <h3 class="title">Price Filter</h3>
+            <h3 class="title">{{ $t('FILTER.PRICE') }}</h3>
           </div>
           <div class="widget-body">
             <div class="widget-price-filter">
@@ -83,7 +83,8 @@ export default {
   }),
   computed: {
     ...mapGetters([
-      'categories'
+      'categories',
+      'language'
     ]),
     subcategories() {
       const category = this.categories.find(category => category.slug === this.$route.params.category)

@@ -1,5 +1,5 @@
 <template>
-  <h3>Account Details</h3>
+  <h3>{{ $t('ACCOUNT.DETAILS.TITLE') }}</h3>
   <div class="account-details-form">
       <fieldset>
         <legend>Account</legend>
