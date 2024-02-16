@@ -1,6 +1,6 @@
 <template>
-  <h3>Order №{{ order.id }}</h3>
-  <p class="orderStatus"><strong>Статус: </strong><span :class="order.status">{{ order.status }}</span></p>
+  <h3>{{ $t('ACCOUNT.ORDERS.TITLE') }} №{{ order.id }}</h3>
+  <p class="orderStatus"><strong>{{ $t('ACCOUNT.ORDERS.SHOW.STATUS') }}: </strong><span :class="order.status">{{ order.status }}</span></p>
   <div class="row">
     <div class="col-lg-12">
       <div class="cart-table-wrap">
@@ -9,10 +9,10 @@
             <thead>
             <tr>
               <th class="width-thumbnail"></th>
-              <th>Product</th>
-              <th class="width-price"> Price</th>
-              <th class="width-quantity">Quantity</th>
-              <th class="order-width-total">Total</th>
+              <th>{{ $t('ACCOUNT.ORDERS.SHOW.HEADER.PRODUCT') }}</th>
+              <th class="width-price"> {{ $t('ACCOUNT.ORDERS.SHOW.HEADER.PRICE') }}</th>
+              <th class="width-quantity">{{ $t('ACCOUNT.ORDERS.SHOW.HEADER.QUANTITY') }}</th>
+              <th class="order-width-total">{{ $t('ACCOUNT.ORDERS.SHOW.HEADER.TOTAL') }}</th>
             </tr>
             </thead>
             <tbody>
@@ -47,7 +47,7 @@
       <div class="cart-shiping-update-wrapper clearMarginBottom">
         <div class="cart-shiping-btn continure-btn">
           <a class="btn btn-link" @click="hasHistory() ? $router.go(-1) : $router.push({name: 'OrdersIndex'})">
-            <i class="ion-ios-arrow-left"></i> Назад
+            <i class="ion-ios-arrow-left"></i> {{ $t('ACCOUNT.ORDERS.SHOW.BACK') }}
           </a>
         </div>
         <div class="cart-shiping-btn update-btn">
