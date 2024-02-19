@@ -81,6 +81,12 @@ export default {
         path: '/dashboard/categories'
       },
       {
+        title: 'Orders',
+        value: 'orders',
+        icon: 'mdi-cart-outline',
+        path: '/dashboard/orders'
+      },
+      {
         title: 'Settings',
         value: 'settings',
         icon: 'mdi-cog',

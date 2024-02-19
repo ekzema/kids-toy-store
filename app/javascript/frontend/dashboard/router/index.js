@@ -8,6 +8,7 @@ import ProductsIndex from "../views/products/Index"
 import ProductsNew from "../views/products/New"
 import ProductsEdit from "../views/products/Edit"
 import Settings from "../views/settings/Index"
+import Orders from "../views/orders/Index.vue"
 import store from '../store'
 
 const router = createRouter({
@@ -52,6 +53,11 @@ const router = createRouter({
             name: 'ProductsEdit',
             path: '/dashboard/products/edit/:id',
             component: ProductsEdit
+        },
+        {
+            name: 'Orders',
+            path: '/dashboard/orders',
+            component: Orders
         },
         {
             name: 'Settings',
