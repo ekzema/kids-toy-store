@@ -10,7 +10,25 @@
     </tr>
     </thead>
     <tbody>
-
+    <tr
+        v-for="(order, index) in orders.items"
+        :key="index"
+    >
+      <td>{{ order.id }}</td>
+      <td>{{ order.full_name }}</td>
+      <td>{{ order.status }}</td>
+      <td>{{ order.amount }} грн</td>
+      <td>{{ formattedDate(order.created_at) }}</td>
+      <td class="d-flex justify-center">
+        <v-btn
+            icon
+            variant="text"
+            to=""
+        >
+          <v-icon color="teal">mdi-pencil</v-icon>
+        </v-btn>
+      </td>
+    </tr>
     </tbody>
   </v-table>
 </template>
@@ -50,6 +68,18 @@ export default {
 
       this.$store.dispatch('fetchOrders', params)
     },
+    formattedDate(date) {
+      const objectDateTime = new Date(date)
+
+      let formattedDate = objectDateTime.toLocaleDateString('uk-UA', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+      }).replace(/'.'/g, '-')
+
+      const formattedTime = objectDateTime.toLocaleTimeString('it-IT', { hour: "2-digit", minute: "2-digit" })
+      return `${formattedDate} ${formattedTime}`
+    }
   }
 }
 </script>

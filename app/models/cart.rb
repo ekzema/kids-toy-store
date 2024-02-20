@@ -5,5 +5,5 @@ class Cart < ApplicationRecord
   has_many :line_items, dependent: :destroy
   has_one :order, dependent: :destroy
 
-  default_scope -> { where(deleted_at: nil) }
+  # default_scope -> { where(deleted_at: nil) }
 end

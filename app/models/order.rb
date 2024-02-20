@@ -4,8 +4,8 @@ class Order < ApplicationRecord
   attribute :line_items
 
   # rubocop:disable Rails/InverseOf
-  belongs_to :cart, -> { unscoped { where.not(deleted_at: nil) } }
-
+  # belongs_to :cart, -> { unscoped { where.not(deleted_at: nil) } }
+  belongs_to :cart
   validates :first_name, :last_name, :patronymic, :email, :phone, :pay_type, :delivery, presence: true
   validates :first_name, :last_name, :patronymic, length: { minimum: 3 }
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, presence: true
@@ -27,6 +27,10 @@ class Order < ApplicationRecord
       quantity = line_item.quantity
       order_product ? order_product['price'] * quantity : line_item.product.price * quantity
     end
+  end
+
+  def full_name
+    attributes.values_at('first_name', 'last_name', 'patronymic').compact.join(' ')&.strip
   end
 
   private

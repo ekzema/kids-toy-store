@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::OrdersController < ApiController
-  before_action :authorize_by_access_header!
+  before_action :authorize_by_access_header!, except: [:create]
   before_action :set_order, only: %i[show]
 
   def index
@@ -32,7 +32,7 @@ class Api::V1::OrdersController < ApiController
   def orders
     # Order.includes(:cart).where('carts.user_id': current_user.id).where.not('carts.deleted_at': nil)
     # Order.joins('INNER JOIN carts ON carts.id = orders.cart_id').where('carts.user_id': current_user.id)
-    Order.includes(:cart).where('carts.user_id': current_user.id).where.not('carts.deleted_at': nil)
+    Order.includes(:cart).where('carts.user_id': current_user.id)
   end
 
   def order_params

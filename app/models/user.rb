@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :wishlists, dependent: :destroy
   has_many :wish_products, source: :product, through: :wishlists
 
-  has_one :cart, dependent: :destroy
+  has_one :cart, -> { where(deleted_at: nil) }, dependent: :destroy, inverse_of: :user
 
   before_save :downcase_email
 
