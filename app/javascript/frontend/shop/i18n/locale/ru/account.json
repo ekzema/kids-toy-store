@@ -15,10 +15,35 @@
             "MORE": "Подробнее"
           }
         }
+      },
+      "SHOW": {
+        "STATUS": "Статус",
+        "HEADER": {
+          "PRODUCT": "Товар",
+          "PRICE": "Цена",
+          "QUANTITY": "Количество",
+          "TOTAL": "Всего"
+        },
+        "BACK": "Назад"
       }
     },
     "DETAILS": {
-      "TITLE": "Личные данные"
+      "TITLE": "Личные данные",
+      "USER_INFO": {
+        "FIELDSET": "Информация о пользователе",
+        "FORM": {
+          "FIRST_NAME": "Имя",
+          "LAST_NAME": "Фамилия",
+          "PATRONYMIC": "Отчество",
+          "EMAIL": "Почта"
+        }
+      },
+      "PASSWORD": {
+        "FIELDSET": "Пароль",
+        "CURRENT_PASSWORD": "Текущий пароль",
+        "NEW_PASSWORD": "Новый пароль",
+        "CONFIRM_PASSWORD": "Подтвердите пароль"
+      }
     }
   }
 }

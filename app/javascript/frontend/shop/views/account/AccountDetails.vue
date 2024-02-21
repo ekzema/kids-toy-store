@@ -2,22 +2,22 @@
   <h3>{{ $t('ACCOUNT.DETAILS.TITLE') }}</h3>
   <div class="account-details-form">
       <fieldset>
-        <legend>Account</legend>
+        <legend>{{ $t('ACCOUNT.DETAILS.USER_INFO.FIELDSET') }}</legend>
         <form @submit.prevent="updateAccount">
           <div class="single-input-item">
-            <label for="first-name" class="required">First Name</label>
+            <label for="first-name" class="required">{{ $t('ACCOUNT.DETAILS.USER_INFO.FORM.FIRST_NAME') }}</label>
             <input v-model="formData.account.first_name" type="text" id="first-name" />
           </div>
           <div class="single-input-item">
-            <label for="last-name" class="required">Last Name</label>
+            <label for="last-name" class="required">{{ $t('ACCOUNT.DETAILS.USER_INFO.FORM.LAST_NAME') }}</label>
             <input v-model="formData.account.last_name" type="text" id="last-name" />
           </div>
           <div class="single-input-item">
-            <label for="patronymic" class="required">Patronymic</label>
+            <label for="patronymic" class="required">{{ $t('ACCOUNT.DETAILS.USER_INFO.FORM.PATRONYMIC') }}</label>
             <input v-model="formData.account.patronymic" type="text" id="patronymic" />
           </div>
           <div class="single-input-item">
-            <label for="email" class="required">Email Addres</label>
+            <label for="email" class="required">{{ $t('ACCOUNT.DETAILS.USER_INFO.FORM.EMAIL') }}</label>
             <input v-model="formData.account.email" type="email" id="email" />
           </div>
           <div class="single-input-item">
@@ -26,22 +26,22 @@
         </form>
       </fieldset>
     <fieldset>
-      <legend>Password</legend>
+      <legend>{{ $t('ACCOUNT.DETAILS.PASSWORD.FIELDSET') }}</legend>
       <form @submit.prevent="changePassword">
         <div class="single-input-item">
-          <label for="current-pwd" class="required">Current Password</label>
+          <label for="current-pwd" class="required">{{ $t('ACCOUNT.DETAILS.PASSWORD.FORM.CURRENT_PASSWORD') }}</label>
           <input v-model="formData.password.current_password" type="password" id="current-pwd" />
         </div>
         <div class="row">
           <div class="col-lg-6">
             <div class="single-input-item">
-              <label for="new-pwd" class="required">New Password</label>
+              <label for="new-pwd" class="required">{{ $t('ACCOUNT.DETAILS.PASSWORD.FORM.NEW_PASSWORD') }}</label>
               <input v-model="formData.password.password" type="password" id="new-pwd" />
             </div>
           </div>
           <div class="col-lg-6">
             <div class="single-input-item">
-              <label for="confirm-pwd" class="required">Confirm Password</label>
+              <label for="confirm-pwd" class="required">{{ $t('ACCOUNT.DETAILS.PASSWORD.FORM.CONFIRM_PASSWORD') }}</label>
               <input v-model="formData.password.password_confirmation" type="password" id="confirm-pwd" />
             </div>
           </div>
