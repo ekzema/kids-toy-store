@@ -33,6 +33,15 @@ class Order < ApplicationRecord
     attributes.values_at('first_name', 'last_name', 'patronymic').compact.join(' ')&.strip
   end
 
+  def products
+    cart.line_items.map do |line_item|
+      order_product = products_info&.find { |item| item['id'] == line_item.product.id }
+      product, quantity, line_item_id = line_item.values_at(:product, :quantity, :id)
+      price = order_product ? order_product['price'] : line_item.product.price
+      { price: price, quantity: quantity, line_item_id: line_item_id }.merge(product.slice('id', 'name', 'slug', 'logo'))
+    end
+  end
+
   private
 
   def delivery_method?

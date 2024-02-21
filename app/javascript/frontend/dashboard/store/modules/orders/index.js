@@ -7,8 +7,7 @@ const state = {
     count: 0,
     items: []
   },
-  order: {},
-  parentCategories: []
+  order: {}
 }
 
 export default {

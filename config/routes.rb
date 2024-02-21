@@ -14,7 +14,7 @@ Rails.application.routes.draw do
       end
       resources :sessions, only: [:create] do
         collection do
-          match "/", to: "sessions#destroy", via: "delete"
+          match '/', to: 'sessions#destroy', via: 'delete'
         end
       end
       resources :users, only: [:destroy] do
@@ -33,7 +33,7 @@ Rails.application.routes.draw do
       namespace :admin do
         resources :product_images, only: [:destroy]
         resources :brands, only: [:index]
-        resources :orders, only: [:index]
+        resources :orders, only: [:index, :show]
         resources :products do
           collection do
             get :detail_constructor

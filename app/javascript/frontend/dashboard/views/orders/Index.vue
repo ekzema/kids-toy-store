@@ -23,7 +23,7 @@
         <v-btn
             icon
             variant="text"
-            to=""
+            :to="{ name: 'OrdersEdit', params: { id: order.id }}"
         >
           <v-icon color="teal">mdi-pencil</v-icon>
         </v-btn>
