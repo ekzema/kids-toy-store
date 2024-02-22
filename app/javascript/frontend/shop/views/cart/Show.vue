@@ -33,7 +33,7 @@
                   <td class="product-name">
                     <h5>
                       <router-link :to="{ name: 'ProductsShow', params: { id: product.slug }}">
-                        {{ product.name.ru }}
+                        {{ product.name[language] }}
                       </router-link>
                     </h5>
                   </td>
@@ -96,7 +96,8 @@ export default {
     ...mapGetters([
       'cart',
       'user',
-      'cartProducts'
+      'cartProducts',
+      'language'
     ])
   },
   created() {

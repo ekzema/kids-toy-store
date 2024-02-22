@@ -8,6 +8,6 @@ class Api::V1::Admin::OrdersController < AdminController
 
   def show
     order = Order.find(params[:id])
-    render_response(order, OrderSerializer)
+    render_response(order, OrderSerializer, { except: :amount })
   end
 end

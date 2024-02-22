@@ -23,7 +23,26 @@
         {{ product.name[language] }}
       </td>
       <td>{{ product.price }}</td>
-      <td>x{{ product.quantity }}</td>
+      <td>
+        <v-responsive
+            class="mx-auto quantity-res"
+            max-width="50"
+        >
+          <v-text-field
+              @input="handleQuantity($event, product)"
+              :model-value="product.quantity"
+              type="number"
+              variant="underlined"
+              color="primary"
+              max="99"
+              min="1"
+          >
+            <template v-slot:prepend>
+              <span class="quantity-x">x</span>
+            </template>
+          </v-text-field>
+        </v-responsive>
+      </td>
       <td>{{ product.price * product.quantity }}</td>
     </tr>
     </tbody>
@@ -41,7 +60,7 @@
     <div class="grand-total-wrap">
       <div class="grand-total-content">
         <div class="grand-total">
-          <h4>Total: <span>{{ order.amount }} грн</span></h4>
+          <h4>Total: <span>{{ orderSum }} грн</span></h4>
           <hr>
         </div>
         <div class="order-info">
@@ -73,7 +92,12 @@ export default {
   computed: {
     ...mapGetters([
       'order'
-    ])
+    ]),
+    orderSum() {
+      return this.$store.getters.order.products?.reduce((accumulator, item) => {
+        return accumulator + (item.price * item.quantity)
+      }, 0)
+    }
   },
   created () {
     this.fetchOrder()
@@ -81,6 +105,12 @@ export default {
   methods: {
     fetchOrder() {
       this.$store.dispatch('fetchOrder', this.$route.params.id)
+    },
+    handleQuantity(e, product) {
+      const { id, line_item_id } = product
+      const quantity = e.target.value
+      this.$store.dispatch('updateLineItems', { id: line_item_id, quantity })
+      this.$store.commit('updateQuantityItem', { productId: id, quantity })
     }
   }
 }
@@ -95,9 +125,6 @@ export default {
 .order-table-thead {
   color: white !important;
   background-color: #f3f3f3;
-}
-.v-table--density-default > .v-table__wrapper > table > thead > tr > th {
-  //color: white;
 }
 
 .grand-total-wrap {
@@ -118,5 +145,14 @@ export default {
   margin-bottom:  auto;
   background-color: white;
   width: 100%;
+}
+
+.quantity-x {
+  padding: 0;
+  margin-top: 70%;
+}
+
+.quantity-res .v-input__prepend{
+  margin-inline-end: 7px;
 }
 </style>

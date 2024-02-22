@@ -1,4 +1,5 @@
 import Orders from '../../../api/orders'
+import LineItems from '../../../api/lineItems'
 
 const actions = {
   async fetchOrders({ commit }, params) {
@@ -13,6 +14,14 @@ const actions = {
     try {
       const { data } = await Orders.show(id)
       commit('setOrder', data)
+    } catch (error) {
+      commit('setErrorMessage')
+    }
+  },
+  async updateLineItems({ commit }, data) {
+    try {
+      const { id, quantity } = data
+      await LineItems.update(id, { quantity })
     } catch (error) {
       commit('setErrorMessage')
     }

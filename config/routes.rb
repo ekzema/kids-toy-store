@@ -34,6 +34,7 @@ Rails.application.routes.draw do
         resources :product_images, only: [:destroy]
         resources :brands, only: [:index]
         resources :orders, only: [:index, :show]
+        resources :line_items, only: [:update, :destroy]
         resources :products do
           collection do
             get :detail_constructor
