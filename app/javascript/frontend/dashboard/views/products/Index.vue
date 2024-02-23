@@ -81,7 +81,7 @@ import { perPage } from "../../config"
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'index',
+  name: 'ProductsIndex',
   components: {
     SearchPanel,
     Pagination

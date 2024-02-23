@@ -12,10 +12,17 @@ class Api::V1::Admin::LineItemsController < ApiController
   end
 
   def destroy
-    @line_item.destroy
+    update_order_products if @line_item.destroy
   end
 
   private
+
+  def update_order_products
+    products_info = @line_item.cart.order.products_info
+    product_id = @line_item.product_id
+
+    @line_item.cart.order.update(products_info: products_info.reject { |item| item['id'] == product_id })
+  end
 
   def set_line_item
     @line_item = LineItem.find(params[:id])

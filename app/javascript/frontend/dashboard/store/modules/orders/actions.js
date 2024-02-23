@@ -26,6 +26,13 @@ const actions = {
       commit('setErrorMessage')
     }
   },
+  async deleteLineItems({ commit }, { id, options }) {
+    try {
+      await LineItems.delete(id, options)
+    } catch (error) {
+      commit('setErrorMessage')
+    }
+  }
 }
 
 export default actions

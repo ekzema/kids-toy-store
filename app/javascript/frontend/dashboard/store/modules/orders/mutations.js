@@ -8,7 +8,10 @@ const mutations = {
   updateQuantityItem(state, { productId, quantity }) {
     const product = state.order.products.find(product => product.id === productId)
     if (product) product.quantity = quantity
-  }
+  },
+  removeFromOrder(state, payload) {
+    state.order.products = state.order.products.filter(({ id }) => id !== payload)
+  },
 }
 
 export default mutations
