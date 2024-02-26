@@ -18,6 +18,15 @@ const actions = {
       commit('setErrorMessage')
     }
   },
+  async updateOrder({ commit }, data) {
+    try {
+      const response = await Orders.update(data.id, data.form)
+      commit('setOrder', response.data)
+      commit('setSuccessMessage', 'Order updated successfully')
+    } catch (error) {
+      commit('setErrorMessage')
+    }
+  },
   async updateLineItems({ commit }, data) {
     try {
       const { id, quantity } = data

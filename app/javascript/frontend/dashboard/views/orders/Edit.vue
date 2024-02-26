@@ -72,6 +72,21 @@
           <hr>
         </div>
         <div class="order-info">
+          <div>
+            <v-select
+                :model-value="order.status"
+                variant="underlined"
+                :items="order.statuses"
+                item-value="id"
+                item-title="title"
+                color="primary"
+                @update:modelValue="onStatus"
+            >
+              <template v-slot:prepend>
+                <span class="order-status-input">Status:</span>
+              </template>
+            </v-select>
+          </div>
           <p>Delivery: <span>{{ order.delivery }}</span></p>
           <p v-if="order.city">City: <span>{{ order.city }}</span></p>
           <p v-if="order.department_number">Department: <span>{{ order.department_number }}</span></p>
@@ -153,6 +168,10 @@ export default {
       await this.$store.dispatch('deleteLineItems', { id: this.selectProduct.line_item_id })
       this.$store.commit('removeFromOrder', this.selectProduct.id)
     },
+    onStatus(e) {
+      const data = { id: this.$route.params.id, form: { status: e } }
+      this.$store.dispatch('updateOrder', data)
+    }
   }
 }
 </script>
@@ -190,6 +209,12 @@ export default {
 .quantity-x {
   padding: 0;
   margin-top: 70%;
+}
+
+.order-status-input {
+  margin-top: 11px;
+  font-weight: bold;
+  font-size: 14px;
 }
 
 .quantity-res .v-input__prepend{
