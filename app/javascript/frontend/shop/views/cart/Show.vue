@@ -16,10 +16,10 @@
                 <thead>
                 <tr>
                   <th class="width-thumbnail"></th>
-                  <th class="width-name">Product</th>
-                  <th class="width-price"> Price</th>
-                  <th class="width-quantity">Quantity</th>
-                  <th class="width-subtotal">Subtotal</th>
+                  <th class="width-name">{{ $t('CART.HEADER.PRODUCT') }}</th>
+                  <th class="width-price"> {{ $t('CART.HEADER.PRICE') }}</th>
+                  <th class="width-quantity">{{ $t('CART.HEADER.QUANTITY') }}</th>
+                  <th class="width-subtotal">{{ $t('CART.HEADER.TOTAL') }}</th>
                   <th class="width-remove"></th>
                 </tr>
                 </thead>
@@ -61,12 +61,12 @@
               <div class="grand-total-wrap">
                 <div class="grand-total-content">
                   <div class="grand-total">
-                    <h4>Всего: <span>{{ cartSum }} грн</span></h4>
+                    <h4>{{ $t('CART.TOTAL_ALL') }}: <span>{{ cartSum }} грн</span></h4>
                   </div>
                 </div>
                 <div class="grand-total-btn">
                   <router-link class="btn btn-link" :to="{ name: 'CheckoutShow'}">
-                    Оформить заказ
+                    {{ $t('CART.CHECKOUT') }}
                   </router-link>
                 </div>
               </div>

@@ -31,11 +31,17 @@
     </tr>
     </tbody>
   </v-table>
+
+  <pagination v-if="totalPages > 1"
+              v-model:page="page"
+              :total-pages="totalPages"
+  />
 </template>
 
 <script>
-import Pagination from "../../components/Pagination.vue"
+import Pagination from '../../components/Pagination'
 import { mapGetters } from 'vuex'
+import {perPage} from '../../config'
 
 export default {
   name: 'OrdersIndex',
@@ -43,6 +49,7 @@ export default {
     Pagination
   },
   data: () => ({
+    page: 1,
     searchText: '',
     headers: [
       'ID',
@@ -56,7 +63,15 @@ export default {
   computed: {
     ...mapGetters([
       'orders'
-    ])
+    ]),
+    totalPages() {
+      return Math.ceil(this.orders.count / perPage)
+    }
+  },
+  watch: {
+    page() {
+      this.fetchOrders(this.page)
+    }
   },
   created () {
     this.fetchOrders()

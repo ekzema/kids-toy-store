@@ -38,6 +38,7 @@ const actions = {
   async deleteLineItems({ commit }, { id, options }) {
     try {
       await LineItems.delete(id, options)
+      commit('setSuccessMessage', 'The product has been removed from the order')
     } catch (error) {
       commit('setErrorMessage')
     }

@@ -21,7 +21,7 @@ class Api::V1::Admin::LineItemsController < ApiController
     products_info = @line_item.cart.order.products_info
     product_id = @line_item.product_id
 
-    @line_item.cart.order.update(products_info: products_info.reject { |item| item['id'] == product_id })
+    @line_item.cart.order.update(products_info: products_info&.reject { |item| item['id'] == product_id })
   end
 
   def set_line_item

@@ -70,13 +70,13 @@
   </v-dialog>
   <pagination v-if="totalPages > 1"
       v-model:page="page"
-      :totalPages="totalPages"
+      :total-pages="totalPages"
   />
 </template>
 
 <script>
 import SearchPanel from '../../components/SearchPanel'
-import Pagination from "../../components/Pagination.vue"
+import Pagination from '../../components/Pagination'
 import { perPage } from "../../config"
 import { mapGetters } from 'vuex'
 
@@ -106,6 +106,11 @@ export default {
     ]),
     totalPages() {
       return Math.ceil(this.products.count / perPage)
+    }
+  },
+  watch: {
+    page() {
+      this.fetchProducts(this.page)
     }
   },
   created () {
@@ -142,11 +147,6 @@ export default {
     search(text) {
       this.searchText = text
       this.fetchProducts()
-    }
-  },
-  watch: {
-    page() {
-      this.fetchProducts(this.page)
     }
   }
 }
