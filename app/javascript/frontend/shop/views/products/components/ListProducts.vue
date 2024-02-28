@@ -26,7 +26,11 @@
           </router-link>
         </h4>
         <div class="prices">
-          <span class="price">{{ product.price }}</span><span class="currency">грн</span>
+          <template v-if="product.discount">
+            <div class="old-price">{{ product.price }} <span class="currency">грн</span></div>
+            <div class="price old-price-line">{{ product.discount_price }} <span class="currency">грн</span></div>
+          </template>
+          <div v-else class="price">{{ product.price }} <span class="currency">грн</span></div>
         </div>
         <div class="cart">
           <button v-if="!product.inCart" class="btn btn-theme" @click="addToCart(product)">

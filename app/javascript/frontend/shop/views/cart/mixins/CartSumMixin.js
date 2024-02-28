@@ -3,7 +3,9 @@ export default {
   computed: {
     cartSum() {
       return this.$store.getters.cartProducts.reduce((accumulator, item) => {
-        return accumulator + (item.price * item.quantity)
+        const price = item.discount ? item.discount_price : item.price
+
+        return accumulator + (price * item.quantity)
       }, 0)
     }
   }

@@ -36,11 +36,19 @@
                     <td class="product-name">
                       <h5>
                         <router-link :to="{ name: 'ProductsShow', params: { id: product.slug }}">
-                          {{ product.name.ru }}
+                          {{ product.name[language] }}
                         </router-link>
                       </h5>
                     </td>
-                    <td class="product-price"><span class="amount">{{ product.price }} грн</span></td>
+                    <td class="product-price">
+                      <template v-if="product.discount">
+                        <div class="old-price">{{ product.price }}  грн</div>
+                        <div class="price old-price-line">{{ product.discount_price }} грн</div>
+                      </template>
+                      <div v-else class="price">
+                        {{ product.price }} грн
+                      </div>
+                    </td>
                     <td class="stock-status">
                       <span>{{ product.status }}</span>
                     </td>
@@ -70,13 +78,15 @@
 import AddToCartMixin from '../products/mixins/AddToCartMixin'
 import ProductsInCartMixin from '../products/mixins/ProductsInCartMixin'
 import { mapGetters } from "vuex"
+import {languages} from "../../../dashboard/config";
 
 export default {
   name: 'WishlistShow',
   mixins: [AddToCartMixin, ProductsInCartMixin],
   computed: {
     ...mapGetters([
-      'user'
+      'user',
+      'language'
     ])
   },
   data: () => ({
@@ -85,6 +95,9 @@ export default {
     this.$store.dispatch('fetchWishlists')
   },
   methods: {
+    languages() {
+      return languages
+    },
     handleWashlist(id) {
       this.$store.dispatch('deleteWishlists', { product_id: id })
     }

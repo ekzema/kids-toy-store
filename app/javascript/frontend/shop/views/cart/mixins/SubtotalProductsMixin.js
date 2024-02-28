@@ -3,7 +3,9 @@ export default {
   methods: {
     subTotalProduct(product) {
       const quantity = product.quantity || 1
-      return  product.price * quantity
+      const price = product.discount ? product.discount_price : product.price
+
+      return  price * quantity
     }
   }
 }

@@ -41,7 +41,11 @@
               <div class="single-product-info">
                 <h4 class="title">{{product.name[language]}}</h4>
                 <div class="prices">
-                  <span class="price">{{product.price}} грн</span>
+                  <template v-if="product.discount_price">
+                    <span class="price">{{ product.discount_price }} грн</span>
+                    <span> – </span>
+                  </template>
+                  <span  :class="{ 'price-old': product.discount }" class="price">{{ product.price }} грн</span>
                 </div>
                 <div class="single-product-featured">
                   <ul>

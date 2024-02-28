@@ -27,7 +27,7 @@ class ApiClient {
 
         let timeoutID = setTimeout(() => {
             if (this.loader) store.dispatch('showLoader')
-        }, 500)
+        }, 100)
         try {
             const response = await this.axios[method](url, payload)
             this.loader = this.defaultLoader

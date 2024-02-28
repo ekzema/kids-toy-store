@@ -37,13 +37,21 @@
                       </router-link>
                     </h5>
                   </td>
-                  <td class="product-price"><span class="amount">{{ product.price }} грн</span></td>
+                  <td class="product-price">
+                    <template v-if="product.discount">
+                      <div class="old-price">{{ product.price }}  грн</div>
+                      <div class="price old-price-line">{{ product.discount_price }} грн</div>
+                    </template>
+                    <div v-else class="price">
+                      {{ product.price }} грн
+                    </div>
+                  </td>
                   <td class="cart-quality">
                     <div class="product-details-quality">
                       <input @input="handleQuantity($event, product)" type="number" class="input-text qty text" step="1" min="1" max="100" name="quantity" :value="product.quantity" title="Qty" placeholder="">
                     </div>
                   </td>
-                  <td class="product-total"><span>{{ subTotalProduct(product) }} грн</span></td>
+                  <td class="product-total">{{ subTotalProduct(product) }} грн</td>
                   <td class="product-remove"><span @click="removeFromCart(product.line_item_id, product.id)"><i class="ion-ios-trash-outline"></i></span></td>
                 </tr>
                 </tbody>

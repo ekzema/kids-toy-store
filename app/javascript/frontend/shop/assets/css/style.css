@@ -5881,6 +5881,23 @@ table p {
   font-size: 20px;
   margin-right: 5px;
 }
+
+.product-item .product-info .prices .old-price,
+.cart-table-wrap .cart-table table tbody > tr td.product-price .old-price,
+.wishlist-table-content .table-content table tbody > tr td.product-price .old-price {
+  line-height: 20px;
+  font-size: 14px;
+  color: #797878;
+  text-decoration: line-through;
+}
+
+.product-item .product-info .prices .old-price-line,
+.cart-table-wrap .cart-table table tbody > tr td.product-price .old-price-line,
+.wishlist-table-content .table-content table tbody > tr td.product-price .old-price-line{
+  color: #fd686d;
+  line-height: 20px;
+}
+
 .product-item .product-info .prices .currency {
   font-size: 14px;
 }
