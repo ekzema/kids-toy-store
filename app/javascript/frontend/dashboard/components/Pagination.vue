@@ -27,7 +27,7 @@ export default {
   },
   data() {
     return {
-      selectPage: this.page,
+      selectPage: parseInt(this.page) || 1,
       selectTotalPages: this.totalPages
     }
   },
@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     onPage() {
-      this.$emit('update:page', this.selectPage)
+      this.$emit('paginationEvent', this.selectPage)
     }
   }
 }

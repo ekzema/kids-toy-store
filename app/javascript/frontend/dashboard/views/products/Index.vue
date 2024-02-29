@@ -69,8 +69,9 @@
     </v-card>
   </v-dialog>
   <pagination v-if="totalPages > 1"
-      v-model:page="page"
+      :page="page"
       :total-pages="totalPages"
+      @pagination-event="paginationEvent"
   />
 </template>
 
@@ -79,6 +80,7 @@ import SearchPanel from '../../components/SearchPanel'
 import Pagination from '../../components/Pagination'
 import { perPage } from "../../config"
 import { mapGetters } from 'vuex'
+import PaginationMixin from '../../mixins/paginationMixin'
 
 export default {
   name: 'ProductsIndex',
@@ -86,12 +88,12 @@ export default {
     SearchPanel,
     Pagination
   },
+  mixins: [PaginationMixin],
   data: () => ({
     language: 'ua',
     selectProduct: {},
     dialog: false,
     searchText: '',
-    page: 1,
     headers: [
       'ID',
       'Logo',
@@ -109,17 +111,19 @@ export default {
     }
   },
   watch: {
-    page() {
-      this.fetchProducts(this.page)
+    '$route.params'() {
+      if (!this.$route.query.page) this.page = null
+      this.fetchProducts()
     }
   },
   created () {
+    if (this.$route.query.page ) this.page = this.$route.query.page
     this.fetchProducts()
   },
   methods: {
-    fetchProducts(page) {
+    fetchProducts() {
       const params = this.searchText ? {q: this.searchText} : {}
-      if (page) params['page'] = page
+      if (this.page) params.page = this.page
 
       this.$store.dispatch('fetchProducts', params)
     },

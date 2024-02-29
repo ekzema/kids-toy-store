@@ -80,9 +80,10 @@
                 item-value="id"
                 item-title="title"
                 color="primary"
+                class="status-select-wrap"
                 @update:modelValue="onStatus"
             >
-              <template v-slot:prepend>
+              <template v-slot:prepend class="sssssssssssss">
                 <span class="order-status-input">Status:</span>
               </template>
             </v-select>
@@ -212,12 +213,26 @@ export default {
 }
 
 .order-status-input {
-  margin-top: 11px;
   font-weight: bold;
   font-size: 14px;
 }
 
 .quantity-res .v-input__prepend{
   margin-inline-end: 7px;
+}
+
+.status-select-wrap, .status-select-wrap .v-input__control {
+  height: 25px;
+  margin-bottom: 5px;
+}
+
+.status-select-wrap .v-field__input,
+.status-select-wrap .v-field__append-inner,
+.status-select-wrap .v-input__prepend {
+  padding-top: 0;
+}
+
+.status-select-wrap .v-select__selection-text, .status-select-wrap .v-field, .v-list-item-title {
+  font-size: 14px;
 }
 </style>

@@ -33,8 +33,9 @@
   </v-table>
 
   <pagination v-if="totalPages > 1"
-              v-model:page="page"
+              :page="page"
               :total-pages="totalPages"
+              @pagination-event="paginationEvent"
   />
 </template>
 
@@ -42,14 +43,15 @@
 import Pagination from '../../components/Pagination'
 import { mapGetters } from 'vuex'
 import {perPage} from '../../config'
+import PaginationMixin from '../../mixins/paginationMixin'
 
 export default {
   name: 'OrdersIndex',
   components: {
     Pagination
   },
+  mixins: [PaginationMixin],
   data: () => ({
-    page: 1,
     searchText: '',
     headers: [
       'ID',
@@ -69,17 +71,19 @@ export default {
     }
   },
   watch: {
-    page() {
-      this.fetchOrders(this.page)
+    '$route.params'() {
+      if (!this.$route.query.page) this.page = null
+      this.fetchOrders()
     }
   },
   created () {
+    if (this.$route.query.page ) this.page = this.$route.query.page
     this.fetchOrders()
   },
   methods: {
-    fetchOrders(page) {
+    fetchOrders() {
       const params = this.searchText ? { q: this.searchText } : {}
-      if (page) params['page'] = page
+      if (this.page) params.page = this.page
 
       this.$store.dispatch('fetchOrders', params)
     },
