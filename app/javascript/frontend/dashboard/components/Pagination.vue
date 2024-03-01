@@ -27,8 +27,13 @@ export default {
   },
   data() {
     return {
-      selectPage: parseInt(this.page) || 1,
+      selectPage: this.formatPage(),
       selectTotalPages: this.totalPages
+    }
+  },
+  watch: {
+    page() {
+      this.selectPage = this.formatPage()
     }
   },
   created () {
@@ -36,6 +41,9 @@ export default {
   methods: {
     onPage() {
       this.$emit('paginationEvent', this.selectPage)
+    },
+    formatPage() {
+      return parseInt(this.page) || 1
     }
   }
 }
