@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ProductListSerializer < ApplicationSerializer
-  attributes :id, :name, :price, :code, :discount, :discount_price, :logo, :slug, :status, :wishlist
+  attributes :id, :name, :price, :code, :discount, :discount_price, :logo, :slug, :status, :wishlist, :new
 
   def wishlist
     return false unless current_user

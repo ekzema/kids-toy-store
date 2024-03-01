@@ -1,0 +1,14 @@
+{
+  "WISHLIST": {
+    "TITLE": "Список бажань",
+    "HEADER": {
+      "PRODUCT": "Товар",
+      "PRICE": "Ціна",
+      "STATUS": "Статус"
+    },
+    "BUTTON": {
+      "BUY": "Купити",
+      "IN_CART": "В кошику"
+    }
+  }
+}

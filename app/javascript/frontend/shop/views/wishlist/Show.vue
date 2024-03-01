@@ -5,7 +5,7 @@
       <div class="row">
         <div class="col-lg-6 m-auto">
           <div class="section-title text-center">
-            <h2 class="title">Wishlist</h2>
+            <h2 class="title">{{ $t('WISHLIST.TITLE') }}</h2>
           </div>
         </div>
       </div>
@@ -19,9 +19,9 @@
                   <tr>
                     <th class="width-remove"></th>
                     <th class="width-thumbnail"></th>
-                    <th class="width-name">Товар</th>
-                    <th class="width-price"> Цена </th>
-                    <th class="width-stock-status"> Статус </th>
+                    <th class="width-name">{{ $t('WISHLIST.HEADER.PRODUCT') }}</th>
+                    <th class="width-price">{{ $t('WISHLIST.HEADER.PRICE') }}</th>
+                    <th class="width-stock-status">{{ $t('WISHLIST.HEADER.STATUS') }}</th>
                     <th class="width-wishlist-cart"></th>
                   </tr>
                   </thead>
@@ -55,10 +55,10 @@
                     <td class="wishlist-cart">
                       <router-link v-if="!product.inCart" to="" @click="addToCart(product)">
                         <i class="pe-7s-cart"></i>
-                        Купить
+                        {{ $t('WISHLIST.BUTTON.BUY') }}
                       </router-link>
                       <router-link v-else to="" class="in-cart">
-                        В корзине
+                        {{ $t('WISHLIST.BUTTON.IN_CART') }}
                       </router-link>
                     </td>
                   </tr>

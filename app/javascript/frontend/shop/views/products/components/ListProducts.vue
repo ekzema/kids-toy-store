@@ -8,6 +8,9 @@
     <div class="product-item">
       <div class="product-thumb">
         <img :src="product.logo.pre_medium.url" alt="Image">
+        <div v-if="product.new" class="tag-wrap">
+          <span class="tag-title">Новинка</span>
+        </div>
         <span v-if="user" class="items-wishlist" @click="handleWashlist(product.id)">
           <i v-if="product.wishlist" class="fa fa-heart"></i>
           <i v-else class="fa fa-heart-o"></i>
@@ -66,3 +69,20 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+ .tag-wrap {
+   position: absolute;
+   border-radius: 20px;
+   padding: 0 10px;
+   top: 10px;
+   left: 10px;
+   background-color: #78C6DE;
+ }
+
+ .tag-wrap .tag-title {
+   font-size: 12px;
+   color: white;
+   text-transform: uppercase;
+ }
+</style>
