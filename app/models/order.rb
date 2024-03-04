@@ -19,7 +19,7 @@ class Order < ApplicationRecord
 
   default_scope { order(created_at: :desc) }
 
-  serialize :products_info, JSON
+  serialize :products_info, coder: JSON
 
   def amount
     cart&.line_items&.sum do |line_item|

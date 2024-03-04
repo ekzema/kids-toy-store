@@ -16,7 +16,7 @@ class Category < ApplicationRecord
 
   after_destroy :clean_dependence_child
 
-  serialize :name, JSON
+  serialize :name, coder: JSON
 
   def normalize_friendly_id(value)
     I18n.locale = :ru

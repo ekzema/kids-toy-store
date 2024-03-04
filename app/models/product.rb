@@ -29,9 +29,9 @@ class Product < ApplicationRecord
 
   AGE = (0..14).to_a.freeze
 
-  serialize :specifications, JSON
-  serialize :description, JSON
-  serialize :name, JSON
+  serialize :specifications, coder: JSON
+  serialize :description, coder: JSON
+  serialize :name, coder: JSON
 
   def slug_candidates
     I18n.locale = :ru

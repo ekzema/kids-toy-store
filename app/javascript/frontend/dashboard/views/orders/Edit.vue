@@ -83,7 +83,7 @@
                 class="status-select-wrap"
                 @update:modelValue="onStatus"
             >
-              <template v-slot:prepend class="sssssssssssss">
+              <template v-slot:prepend>
                 <span class="order-status-input">Status:</span>
               </template>
             </v-select>
@@ -229,7 +229,8 @@ export default {
 .status-select-wrap .v-field__input,
 .status-select-wrap .v-field__append-inner,
 .status-select-wrap .v-input__prepend {
-  padding-top: 0;
+  padding-top: 0 !important;
+  padding-bottom: 25px;
 }
 
 .status-select-wrap .v-select__selection-text, .status-select-wrap .v-field, .v-list-item-title {
