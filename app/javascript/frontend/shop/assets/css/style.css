@@ -5896,6 +5896,30 @@ table p {
 .wishlist-table-content .table-content table tbody > tr td.product-price .old-price-line{
   color: #fd686d;
   line-height: 20px;
+  margin-bottom: 6px;
+}
+
+.product-item .product-info .status {
+  position: absolute;
+  font-size: 12px;
+  bottom: 0;
+  left: 30px;
+}
+
+.product-item .product-info .status.not_available {
+  color: red;
+}
+
+.product-item .product-info .status.available {
+  color: green;
+}
+
+.product-item .product-info .status.ends {
+  color: #ff9d00;
+}
+
+.product-item .product-info .status.on_the_way {
+  color: #52b2cf;
 }
 
 .product-item .product-info .prices .currency {

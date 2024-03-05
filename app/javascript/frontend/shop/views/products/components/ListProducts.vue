@@ -42,6 +42,9 @@
           </button>
           <span v-else class="btn btn-theme in-cart">{{ $t('PRODUCT.BUTTON.IN_CART') }}</span>
         </div>
+        <div class="status" :class="product.status">
+          {{ $t(`PRODUCT.STATUS.${ product.status.toUpperCase() }`) }}
+        </div>
       </div>
     </div>
     <!-- End Product Item -->
