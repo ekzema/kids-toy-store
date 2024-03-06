@@ -6,6 +6,8 @@ export default {
   name: 'add-to-cart-mixin',
   methods: {
     addToCart(product, quantity = 1) {
+      if (product.status === 'not_available' || product.status === 'on_the_way') return
+
       const toast = useToast()
       const payload = { product_id: product.id, quantity: quantity }
       if (this.user) {

@@ -36,7 +36,7 @@
           <div v-else class="price">{{ product.price }} <span class="currency">грн</span></div>
         </div>
         <div class="cart">
-          <button v-if="!product.inCart" class="btn btn-theme" @click="addToCart(product)">
+          <button v-if="!product.inCart" class="btn btn-theme" :disabled="product.status === 'not_available' || product.status === 'on_the_way'" @click="addToCart(product)">
             <i class="pe-7s-cart"></i>
             {{ $t('PRODUCT.BUTTON.BUY') }}
           </button>

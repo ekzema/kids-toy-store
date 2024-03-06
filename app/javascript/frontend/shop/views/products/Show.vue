@@ -46,6 +46,9 @@
                     <span> – </span>
                   </template>
                   <span  :class="{ 'price-old': product.discount }" class="price">{{ product.price }} грн</span>
+                  <div class="status" :class="product.status">
+                    {{ $t(`PRODUCT.STATUS.${ product.status.toUpperCase() }`) }}
+                  </div>
                 </div>
                 <div class="single-product-featured">
                   <ul>
@@ -62,7 +65,9 @@
                       <span class= "dec qty-btn" @click="quantity--"><i class="fa fa-minus"></i></span>
                       <input v-model="quantity" id="quantity" readonly type="text" title="Quantity" />
                     </div>
-                    <button v-if="!product.inCart" class="btn btn-theme" @click="addToCart(product, quantity)">{{ $t('PRODUCT.BUTTON.BUY') }}</button>
+                    <button v-if="!product.inCart" class="btn btn-theme" :disabled="product.status === 'not_available' || product.status === 'on_the_way'" @click="addToCart(product, quantity)">
+                      {{ $t('PRODUCT.BUTTON.BUY') }}
+                    </button>
                     <span v-else class="btn btn-theme in-cart bold-text-cart">{{ $t('PRODUCT.BUTTON.IN_CART') }}</span>
                     <span v-if="user" class="item-wishlist" @click="handleWashlist(product.id)">
                       <i v-if="product.wishlist" class="fa fa-heart"></i>

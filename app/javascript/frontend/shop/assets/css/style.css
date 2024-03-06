@@ -5906,19 +5906,19 @@ table p {
   left: 30px;
 }
 
-.product-item .product-info .status.not_available {
+.product-item .product-info .status.not_available, .single-product-info .prices .status.not_available {
   color: red;
 }
 
-.product-item .product-info .status.available {
+.product-item .product-info .status.available, .single-product-info .prices .status.available {
   color: green;
 }
 
-.product-item .product-info .status.ends {
+.product-item .product-info .status.ends, .single-product-info .prices .status.ends {
   color: #ff9d00;
 }
 
-.product-item .product-info .status.on_the_way {
+.product-item .product-info .status.on_the_way, .single-product-info .prices .status.on_the_way {
   color: #52b2cf;
 }
 
@@ -10031,12 +10031,24 @@ table p {
   cursor: pointer;
   color: #f379a7;
   font-size: 30px;
-
 }
 
 .in-cart {
   background-color: #95b3e0;
   border-color: white;
+  color: white;
+  opacity: 1;
+}
+
+.cart button:disabled,
+.cart button[disabled],
+.quick-product-action .action-top button:disabled,
+.quick-product-action .action-top button[disabled]
+{
+  background-color: #95b3e0;
+  border-color: white;
+  color: white;
+  opacity: 1;
 }
 
 .in-cart.bold-text-cart {
