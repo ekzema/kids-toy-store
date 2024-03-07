@@ -23,6 +23,11 @@ class Api::V1::OrdersController < ApiController
     end
   end
 
+  def detail_constructor
+    detail = Orders::DetailBuilder.new.perform
+    render_response(detail)
+  end
+
   private
 
   def set_order

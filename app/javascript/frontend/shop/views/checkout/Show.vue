@@ -64,10 +64,12 @@
                     <label>Delivery <abbr class="required" title="required">*</abbr></label>
                     <div class="select-style">
                       <select v-model="v$.formData.delivery.$model" class="select-active">
-                        <option disabled value="">Выберите способ доставки:</option>
-                        <option value="self_delivery">Самовывоз</option>
-                        <option value="novaya_pochta">Новая почта</option>
-                        <option value="ukrpochta">Укрпочта</option>
+                        <option value="">{{ $t('CHECKOUT.DELIVERY.DEFAULT') }}:</option>
+                        <option v-for="delivery in detailConstructor.deliveries"
+                                :key="delivery"
+                                :value="delivery">
+                          {{ $t(`CHECKOUT.DELIVERY.${ delivery.toUpperCase() }`) }}
+                        </option>
                       </select>
                       <div v-for="(error, index) of v$.formData.delivery.$errors" :key="index" class="input-errors">
                         <div class="error-msg">{{ error.$message }}</div>
@@ -80,10 +82,12 @@
                     <label>Payment method <abbr class="required" title="required">*</abbr></label>
                     <div class="select-style">
                       <select v-model="v$.formData.pay_type.$model" class="select-active">
-                        <option disabled value="">Выберите способ оплаты:</option>
-                        <option value="privat_bank">Приват банк</option>
-                        <option value="cash_on_delivery">Наложеный платеж</option>
-                        <option value="other_payment_method">Другой способ оплаты</option>
+                        <option selected value="">{{ $t('CHECKOUT.PAY_TYPE.DEFAULT') }}:</option>
+                        <option v-for="pay_type in detailConstructor.pay_types"
+                                :key="pay_type"
+                                :value="pay_type">
+                          {{ $t(`CHECKOUT.PAY_TYPE.${ pay_type.toUpperCase() }`) }}
+                        </option>
                       </select>
                       <div v-for="(error, index) of v$.formData.pay_type.$errors" :key="index" class="input-errors">
                         <div class="error-msg">{{ error.$message }}</div>
@@ -188,7 +192,8 @@ export default {
     ...mapGetters([
       'cart',
       'user',
-      'cartProducts'
+      'cartProducts',
+      'detailConstructor'
     ]),
     isDelivery() {
       const deliveryMethods = ['novaya_pochta', 'ukrpochta']
@@ -241,13 +246,14 @@ export default {
   },
   created() {
     this.setFormData()
+    this.$store.dispatch('fetchDetailConstructor')
   },
   methods: {
     setFormData() {
       if (!this.user) return
 
       const { email, phone, first_name, last_name, patronymic } = this.user
-      this.formData = { email, phone, first_name, last_name, patronymic }
+      this.formData = { ...this.formData, email, phone, first_name, last_name, patronymic }
     },
     onSubmit() {
       if (this.v$.$invalid) {

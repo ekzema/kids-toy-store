@@ -5,6 +5,7 @@ import header from './header.json'
 import account from './account.json'
 import product from './product.json'
 import wishlist from './wishlist.json'
+import checkout from './checkout.json'
 
 export default {
   ...main,
@@ -13,5 +14,6 @@ export default {
   ...header,
   ...account,
   ...product,
-  ...wishlist
+  ...wishlist,
+  ...checkout
 }

@@ -35,5 +35,13 @@ const actions = {
       commit('setErrorMessage')
     }
   },
+  async fetchDetailConstructor({ commit }, params) {
+    try {
+      const { data } = await Orders.detailConstructor(params)
+      commit('setDetailConstructor', data)
+    } catch (error) {
+      commit('setErrorMessage')
+    }
+  }
 }
 export default actions

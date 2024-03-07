@@ -1,0 +1,16 @@
+{
+  "CHECKOUT": {
+    "DELIVERY": {
+      "DEFAULT": "Выберите способ доставки",
+      "SELF_DELIVERY": "Самовывоз",
+      "NOVAYA_POCHTA": "Новая почта",
+      "UKRPOCHTA": "Укрпочта"
+    },
+    "PAY_TYPE": {
+      "DEFAULT": "Выберите способ оплаты",
+      "PRIVAT_BANK": "Приват банк",
+      "CASH_ON_DELIVERY": "Наложеный платеж",
+      "OTHER_PAYMENT_METHOD": "Другой способ оплаты"
+    }
+  }
+}

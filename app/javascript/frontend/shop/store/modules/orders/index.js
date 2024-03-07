@@ -3,7 +3,8 @@ import getters from './getters'
 import mutations from './mutations'
 const state = {
   orders: [],
-  order: {}
+  order: {},
+  detailConstructor: {}
 }
 
 export default {

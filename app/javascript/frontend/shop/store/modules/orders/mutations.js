@@ -7,6 +7,9 @@ const mutations = {
   },
   clearOrder(state) {
     state.order = {}
+  },
+  setDetailConstructor(state, payload) {
+    state.detailConstructor = payload
   }
 }
 
