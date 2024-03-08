@@ -1,5 +1,6 @@
 {
   "CHECKOUT": {
+    "TITLE": "Оформить заказ",
     "DELIVERY": {
       "DEFAULT": "Выберите способ доставки",
       "SELF_DELIVERY": "Самовывоз",
@@ -11,6 +12,53 @@
       "PRIVAT_BANK": "Приват банк",
       "CASH_ON_DELIVERY": "Наложеный платеж",
       "OTHER_PAYMENT_METHOD": "Другой способ оплаты"
+    },
+    "DETAIL": {
+      "TITLE": "Детали заказа",
+      "FORM": {
+        "FIRST_NAME": {
+          "LABEL": "Имя"
+        },
+        "LAST_NAME": {
+          "LABEL": "Фамилия"
+        },
+        "PATRONYMIC": {
+          "LABEL": "Отчество"
+        },
+        "PHONE": {
+          "LABEL": "Телефон"
+        },
+        "EMAIL": {
+          "LABEL": "Почта"
+        },
+        "DELIVERY": {
+          "LABEL": "Доставка"
+        },
+        "PAY_TYPE": {
+          "LABEL": "Способ оплаты"
+        },
+        "CITY": {
+          "LABEL": "Город"
+        },
+        "DEPARTMENT_NUMBER": {
+          "LABEL": "Номер отделения"
+        },
+        "NOTE": {
+          "LABEL": "Комментарий к заказу",
+          "PLACEHOLDER": "Например примечания к доставке"
+        }
+      }
+    },
+    "ORDER": {
+      "TITLE": "Ваш заказ",
+      "HEADER": {
+        "PRODUCT": "Товар",
+        "TOTAL": "Всего",
+        "TOTAL_ALL": "Всего к оплате"
+      },
+      "BUTTON": {
+        "PLACE_ORDER": "Заказать"
+      }
     }
   }
 }

@@ -1,5 +1,6 @@
 {
   "CHECKOUT": {
+    "TITLE": "Оформити замовлення",
     "DELIVERY": {
       "DEFAULT": "Оберіть спосіб доставки",
       "SELF_DELIVERY": "Самовивіз",
@@ -11,6 +12,53 @@
       "PRIVAT_BANK": "Приват банк",
       "CASH_ON_DELIVERY": "Накладений платіж",
       "OTHER_PAYMENT_METHOD": "Інший спосіб оплати"
+    },
+    "DETAIL": {
+      "TITLE": "Деталі замовлення",
+      "FORM": {
+        "FIRST_NAME": {
+          "LABEL": "Ім'я"
+        },
+        "LAST_NAME": {
+          "LABEL": "Прізвище"
+        },
+        "PATRONYMIC": {
+          "LABEL": "По-батькові"
+        },
+        "PHONE": {
+          "LABEL": "Телефон"
+        },
+        "EMAIL": {
+          "LABEL": "Пошта"
+        },
+        "DELIVERY": {
+          "LABEL": "Доставка"
+        },
+        "PAY_TYPE": {
+          "LABEL": "Спосіб оплати"
+        },
+        "CITY": {
+          "LABEL": "Місто"
+        },
+        "DEPARTMENT_NUMBER": {
+          "LABEL": "Номер відділення"
+        },
+        "NOTE": {
+          "LABEL": "Коментар до замовлення",
+          "PLACEHOLDER": "Наприклад, примітки до доставки"
+        }
+      }
+    },
+    "ORDER": {
+      "TITLE": "Ваше замовлення",
+      "HEADER": {
+        "PRODUCT": "Товар",
+        "TOTAL": "Усього",
+        "TOTAL_ALL": "Всього до сплати"
+      },
+      "BUTTON": {
+        "PLACE_ORDER": "Замовити"
+      }
     }
   }
 }

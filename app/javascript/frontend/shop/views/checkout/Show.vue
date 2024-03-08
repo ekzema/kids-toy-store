@@ -4,19 +4,19 @@
       <div class="row">
         <div class="col-lg-6 m-auto">
           <div class="section-title text-center">
-            <h2 class="title">Checkout</h2>
+            <h2 class="title">{{ $t('CHECKOUT.TITLE') }}</h2>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-lg-7">
           <div class="billing-info-wrap">
-            <h3>Billing Details</h3>
+            <h3>{{ $t('CHECKOUT.DETAIL.TITLE') }}:</h3>
             <div class="row">
               <form @keydown.enter="onSubmit">
                 <div class="col-12">
                   <div class="billing-info mb-20" :class="{'input-error': v$.formData.first_name.$error}">
-                    <label>First name <abbr class="required" title="required">*</abbr></label>
+                    <label>{{ $t('CHECKOUT.DETAIL.FORM.FIRST_NAME.LABEL') }} <abbr class="required" title="required">*</abbr></label>
                     <input v-model="v$.formData.first_name.$model" type="text">
                     <div v-for="(error, index) of v$.formData.first_name.$errors" :key="index" class="input-errors">
                       <div class="error-msg">{{ error.$message }}</div>
@@ -25,7 +25,7 @@
                 </div>
                 <div class="col-12">
                   <div class="billing-info mb-20" :class="{'input-error': v$.formData.last_name.$error}">
-                    <label>Last name <abbr class="required" title="required">*</abbr></label>
+                    <label>{{ $t('CHECKOUT.DETAIL.FORM.LAST_NAME.LABEL') }} <abbr class="required" title="required">*</abbr></label>
                     <input v-model="v$.formData.last_name.$model" type="text">
                     <div v-for="(error, index) of v$.formData.last_name.$errors" :key="index" class="input-errors">
                       <div class="error-msg">{{ error.$message }}</div>
@@ -34,7 +34,7 @@
                 </div>
                 <div class="col-12">
                   <div class="billing-info mb-20" :class="{'input-error': v$.formData.patronymic.$error}">
-                    <label>Patronymic <abbr class="required" title="required">*</abbr></label>
+                    <label>{{ $t('CHECKOUT.DETAIL.FORM.PATRONYMIC.LABEL') }} <abbr class="required" title="required">*</abbr></label>
                     <input v-model="v$.formData.patronymic.$model" type="text">
                     <div v-for="(error, index) of v$.formData.patronymic.$errors" :key="index" class="input-errors">
                       <div class="error-msg">{{ error.$message }}</div>
@@ -43,7 +43,7 @@
                 </div>
                 <div class="col-12">
                   <div class="billing-info mb-20" :class="{'input-error': v$.formData.phone.$error}">
-                    <label>Phone <abbr class="required" title="required">*</abbr></label>
+                    <label>{{ $t('CHECKOUT.DETAIL.FORM.PHONE.LABEL') }} <abbr class="required" title="required">*</abbr></label>
                     <input v-model="v$.formData.phone.$model" type="tel" v-maska data-maska="+38(0##)###-##-##" placeholder="+38(0">
                     <div v-for="(error, index) of v$.formData.phone.$errors" :key="index" class="input-errors">
                       <div class="error-msg">{{ error.$message }}</div>
@@ -52,7 +52,7 @@
                 </div>
                 <div class="col-12">
                   <div class="billing-info mb-20" :class="{'input-error': v$.formData.email.$error}">
-                    <label>Email Address <abbr class="required" title="required">*</abbr></label>
+                    <label>{{ $t('CHECKOUT.DETAIL.FORM.EMAIL.LABEL') }} <abbr class="required" title="required">*</abbr></label>
                     <input v-model="v$.formData.email.$model" type="text">
                     <div v-for="(error, index) of v$.formData.email.$errors" :key="index" class="input-errors">
                       <div class="error-msg">{{ error.$message }}</div>
@@ -61,7 +61,7 @@
                 </div>
                 <div class="col-12">
                   <div class="billing-select mb-20" :class="{'input-error': v$.formData.delivery.$error}">
-                    <label>Delivery <abbr class="required" title="required">*</abbr></label>
+                    <label>{{ $t('CHECKOUT.DETAIL.FORM.DELIVERY.LABEL') }} <abbr class="required" title="required">*</abbr></label>
                     <div class="select-style">
                       <select v-model="v$.formData.delivery.$model" class="select-active">
                         <option value="">{{ $t('CHECKOUT.DELIVERY.DEFAULT') }}:</option>
@@ -79,7 +79,7 @@
                 </div>
                 <div class="col-12">
                   <div class="billing-select mb-20" :class="{'input-error': v$.formData.pay_type.$error}">
-                    <label>Payment method <abbr class="required" title="required">*</abbr></label>
+                    <label>{{ $t('CHECKOUT.DETAIL.FORM.PAY_TYPE.LABEL') }} <abbr class="required" title="required">*</abbr></label>
                     <div class="select-style">
                       <select v-model="v$.formData.pay_type.$model" class="select-active">
                         <option selected value="">{{ $t('CHECKOUT.PAY_TYPE.DEFAULT') }}:</option>
@@ -97,7 +97,7 @@
                 </div>
                 <div v-if="isDelivery" class="col-12">
                   <div class="billing-info mb-20" :class="{'input-error': v$.formData.city.$error}">
-                    <label>City <abbr class="required" title="required">*</abbr></label>
+                    <label>{{ $t('CHECKOUT.DETAIL.FORM.CITY.LABEL') }} <abbr class="required" title="required">*</abbr></label>
                     <input v-model="v$.formData.city.$model" type="text">
                     <div v-for="(error, index) of v$.formData.city.$errors" :key="index" class="input-errors">
                       <div class="error-msg">{{ error.$message }}</div>
@@ -106,7 +106,7 @@
                 </div>
                 <div v-if="isDelivery" class="col-12">
                   <div class="billing-info mb-20" :class="{'input-error': v$.formData.department_number.$error}">
-                    <label>Department number <abbr class="required" title="required">*</abbr></label>
+                    <label>{{ $t('CHECKOUT.DETAIL.FORM.DEPARTMENT_NUMBER.LABEL') }} <abbr class="required" title="required">*</abbr></label>
                     <input v-model="v$.formData.department_number.$model" type="text">
                     <div v-for="(error, index) of v$.formData.department_number.$errors" :key="index" class="input-errors">
                       <div class="error-msg">{{ error.$message }}</div>
@@ -116,18 +116,18 @@
               </form>
             </div>
             <div class="additional-info-wrap">
-              <label>Order notes (optional)</label>
-              <textarea v-model="formData.note" placeholder="Notes about your order, e.g. special notes for delivery. " name="message"></textarea>
+              <label>{{ $t('CHECKOUT.DETAIL.FORM.NOTE.LABEL') }}</label>
+              <textarea v-model="formData.note" :placeholder="$t('CHECKOUT.DETAIL.FORM.NOTE.PLACEHOLDER')" name="message"></textarea>
             </div>
           </div>
         </div>
         <div class="col-lg-5">
           <div class="your-order-area">
-            <h3>Your order</h3>
+            <h3>{{ $t('CHECKOUT.ORDER.TITLE') }}:</h3>
             <div class="your-order-wrap">
               <div class="your-order-info-wrap">
                 <div class="your-order-title">
-                  <h4>Product <span>Subtotal</span></h4>
+                  <h4>{{ $t('CHECKOUT.ORDER.HEADER.PRODUCT') }} <span>{{ $t('CHECKOUT.ORDER.HEADER.TOTAL') }}</span></h4>
                 </div>
                 <div class="your-order-product">
                   <ul>
@@ -137,13 +137,13 @@
                   </ul>
                 </div>
                 <div class="your-order-total">
-                  <h3>Total <span>{{ cartSum }} грн </span></h3>
+                  <h3>{{ $t('CHECKOUT.ORDER.HEADER.TOTAL_ALL') }} <span>{{ cartSum }} грн </span></h3>
                 </div>
               </div>
             </div>
             <div class="place-order">
               <router-link @click="onSubmit" to="">
-                Place Order
+                {{ $t('CHECKOUT.ORDER.BUTTON.PLACE_ORDER') }}
               </router-link>
             </div>
           </div>
