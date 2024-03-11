@@ -149,7 +149,9 @@
                 <li>
                   <router-link :to="{ name: 'ProductsIndex'}">{{ $t('HEADER.MAIN_PAGE') }}</router-link>
                 </li>
-                <li><a href="contact.html">{{ $t('HEADER.CONTACT') }}</a></li>
+                <li>
+                  <router-link :to="{ name: 'ContactShow'}">{{ $t('HEADER.CONTACT') }}</router-link>
+                </li>
                 <li><a href="contact.html">{{ $t('HEADER.ABOUT') }}</a></li>
                 <li><a href="contact.html">Blogs</a></li>
                 <li><a href="contact.html">Stock</a></li>

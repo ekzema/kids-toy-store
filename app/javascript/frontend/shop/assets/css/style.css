@@ -5121,7 +5121,7 @@ table p {
 -----------------------------------------------------------------------
 */
 .contact-form {
-  padding: 104px 0 80px;
+  padding: 20px 0 80px;
 }
 @media only screen and (max-width: 991px) {
   .contact-form {
@@ -9300,10 +9300,10 @@ table p {
 -----------------------------------------------------------------------
 */
 .contact-page-wrap {
-  background-color: #fbfbfb;
+  /*background-color: #fbfbfb;*/
 }
 .contact-page-wrap .contact-info-items {
-  padding: 110px 0 107px;
+  padding: 40px 0 40px;
 }
 @media only screen and (max-width: 991px) {
   .contact-page-wrap .contact-info-items {

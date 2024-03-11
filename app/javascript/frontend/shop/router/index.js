@@ -14,9 +14,10 @@ import CheckoutShow from '../views/checkout/Show'
 import AccountMain from '../views/account/Main'
 import AccountDashboard from '../views/account/Dashboard'
 import OrdersIndex from '../views/account/orders/Index'
-import OrdersShow from "../views/account/orders/Show"
+import OrdersShow from '../views/account/orders/Show'
 import AccountDetails from '../views/account/AccountDetails'
-import PageNotFound from "../../errors/PageNotFound"
+import ContactShow from '../views/contact/Show'
+import PageNotFound from '../../errors/PageNotFound'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -86,6 +87,11 @@ const router = createRouter({
       path: '/account/password',
       component: AccountPassword,
       beforeEnter: guards.notLoggedIn
+    },
+    {
+      name: 'ContactShow',
+      path: '/contact',
+      component: ContactShow
     },
     {
       name: 'AccountMain',
