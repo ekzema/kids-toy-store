@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :wishlists,  only: [:index, :create]
       resources :line_items, only: [:create, :update, :destroy]
       resources :passwords,  only: [:create, :update], param: :token
+      resources :feedbacks,  only: [:create]
       resources :orders,  only: [:create, :index, :show] do
         collection do
           get :detail_constructor
