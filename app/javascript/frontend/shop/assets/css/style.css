@@ -9947,7 +9947,7 @@ table p {
 
 /*END Categories menu*/
 
-.input-error input, .input-error select {
+.input-error input, .input-error select, .input-error textarea {
   border: 1px solid red !important;
 }
 .error-msg {

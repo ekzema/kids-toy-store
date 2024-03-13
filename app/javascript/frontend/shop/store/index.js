@@ -10,6 +10,7 @@ import wishlists from './modules/wishlists'
 import users from './modules/users'
 import carts from './modules/carts'
 import orders from './modules/orders'
+import feedbacks from './modules/feedbacks'
 
 const toast = useToast()
 
@@ -47,6 +48,7 @@ const store = createStore({
         sessions,
         products,
         wishlists,
+        feedbacks,
         passwords,
         categories,
         defaultStore,

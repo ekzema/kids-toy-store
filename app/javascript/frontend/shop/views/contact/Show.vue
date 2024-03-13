@@ -46,7 +46,7 @@
         <div class="row">
           <div class="col-lg-10 m-auto">
             <div class="contact-form">
-              <form class="contact-form-wrapper" id="contact-form" action="https://whizthemes.com/mail-php/raju/arden/mail.php" method="post">
+              <form ref="form" class="contact-form-wrapper" id="contact-form" @submit.prevent="onSubmit">
                 <div class="row">
                   <div class="col-lg-12">
                     <div class="section-title">
@@ -58,28 +58,37 @@
                   <div class="col-lg-12">
                     <div class="row">
                       <div class="col-md-6">
-                        <div class="form-group">
-                          <input class="form-control" type="text" name="con_name" placeholder="Name *">
+                        <div class="form-group" :class="{'input-error': v$.formData.name.$error}">
+                          <input class="form-control" type="text" v-model="v$.formData.name.$model" placeholder="Name *">
+                          <div v-for="(error, index) of v$.formData.name.$errors" :key="index" class="input-errors">
+                            <div class="error-msg">{{ error.$message }}</div>
+                          </div>
                         </div>
                       </div>
                       <div class="col-md-6">
-                        <div class="form-group">
-                          <input class="form-control" type="email" name="con_email" placeholder="Email *">
+                        <div class="form-group" :class="{'input-error': v$.formData.email.$error}">
+                          <input class="form-control" type="email" v-model="v$.formData.email.$model" placeholder="Email *">
+                          <div v-for="(error, index) of v$.formData.email.$errors" :key="index" class="input-errors">
+                            <div class="error-msg">{{ error.$message }}</div>
+                          </div>
                         </div>
                       </div>
                       <div class="col-md-12">
                         <div class="form-group">
-                          <input class="form-control" type="text" placeholder="Subject (Optinal)">
+                          <input class="form-control" v-model="formData.subject" type="text" placeholder="Subject (Optinal)">
                         </div>
                       </div>
                       <div class="col-md-12">
-                        <div class="form-group">
-                          <textarea class="form-control" name="con_message" placeholder="Message"></textarea>
+                        <div class="form-group" :class="{'input-error': v$.formData.message.$error}">
+                          <textarea class="form-control" v-model="v$.formData.message.$model" placeholder="Message"></textarea>
+                          <div v-for="(error, index) of v$.formData.message.$errors" :key="index" class="input-errors">
+                            <div class="error-msg">{{ error.$message }}</div>
+                          </div>
                         </div>
                       </div>
                       <div class="col-md-12">
                         <div class="form-group text-center">
-                          <button class="btn btn-theme" type="submit">Send Message</button>
+                          <button class="btn btn-theme" type="submit" >Send Message</button>
                         </div>
                       </div>
                     </div>
@@ -96,17 +105,65 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { emailRegexTemplate } from '../../helpers/utils'
+import { helpers, required } from '@vuelidate/validators'
+import { useVuelidate } from "@vuelidate/core";
 
 export default {
   name: 'ContactShow',
+  setup: () => ({
+    v$: useVuelidate()
+  }),
   computed: {
     ...mapGetters([
-      'language'
     ])
+  },
+  data: () => ({
+    formData: {
+      name: '',
+      email: '',
+      subject: '',
+      message: '',
+    }
+  }),
+  validations() {
+    return {
+      formData: {
+        email: {
+          email: helpers.withMessage('Custom message for email rule.', helpers.regex(emailRegexTemplate)),
+          required
+        },
+        name: {
+          required
+        },
+        message: {
+          required
+        }
+      }
+    }
   },
   created() {
   },
   methods: {
+    async onSubmit() {
+      if (this.v$.$invalid) {
+        this.v$.$touch()
+        return
+      }
+
+      await this.$store.dispatch('createFeedbacks', this.formData)
+      this.resetForm()
+    },
+    resetForm() {
+      const formData = this.formData
+      formData.name = ''
+      formData.email = ''
+      formData.subject = ''
+      formData.message = ''
+
+      this.v$.formData.$reset()
+    }
   }
 }
 </script>
+

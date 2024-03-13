@@ -42,7 +42,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_11_201458) do
     t.string "email"
     t.string "subject"
     t.text "message"
-    t.boolean "moderation"
+    t.boolean "moderation", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -5,7 +5,7 @@ class CreateFeedbacks < ActiveRecord::Migration[7.1]
       t.string :email
       t.string :subject
       t.text :message
-      t.boolean :moderation
+      t.boolean :moderation, default: false
 
       t.timestamps
     end
