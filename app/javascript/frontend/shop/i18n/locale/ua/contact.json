@@ -1,0 +1,34 @@
+{
+  "CONTACT": {
+    "TITLE": "Написати нам",
+    "ADDRESS": "Адреса",
+    "PHONE": "Телефон",
+    "EMAIL": "Пошта",
+    "FORM": {
+      "NAME": {
+        "PLACEHOLDER": "Ім'я",
+        "VALIDATION": {
+          "REQUIRED": "Введіть ім'я"
+        }
+      },
+      "EMAIL": {
+        "PLACEHOLDER": "Пошта",
+        "VALIDATION": {
+          "REQUIRED": "Введите Пошту",
+          "WRONG_FORMAT": "Неправильний формат пошти"
+        }
+      },
+      "SUBJECT": {
+        "PLACEHOLDER": "Тема"
+      },
+      "MESSAGE": {
+        "PLACEHOLDER": "Ваше повідомлення",
+        "VALIDATION": {
+          "REQUIRED": "Будь ласка, введіть своє повідомлення"
+        }
+      },
+      "SUBMIT": "Відправити",
+      "SENT_SUCCESSFULLY": "Ваше повідомлення відправлено"
+    }
+  }
+}

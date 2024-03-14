@@ -4,7 +4,7 @@ const actions = {
   async createFeedbacks({ commit }, data) {
     try {
       await Feedbacks.create(data)
-      commit('setSuccessMessage', 'Your message has been sent')
+      commit('setSuccessMessage', 'CONTACT.FORM.SENT_SUCCESSFULLY')
     } catch (error) {
       commit('setErrorMessage')
     }

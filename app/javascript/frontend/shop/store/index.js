@@ -11,6 +11,14 @@ import users from './modules/users'
 import carts from './modules/carts'
 import orders from './modules/orders'
 import feedbacks from './modules/feedbacks'
+import { createI18n } from 'vue-i18n'
+import i18nMessages from '../i18n'
+import { defaultLang } from '../config'
+
+const i18n = createI18n({
+    locale: defaultLang,
+    messages: i18nMessages
+})
 
 const toast = useToast()
 
@@ -24,14 +32,20 @@ const actions = {
 }
 
 const mutations = {
+    setI18nLocale() {
+        i18n.global.locale = defaultStore.state.language
+    },
     setErrorMessage(state, payload = 'Unknown error') {
-        toast.error(payload)
+        this.commit('setI18nLocale')
+        toast.error(i18n.global.t(payload))
     },
     setSuccessMessage(state, payload = 'Ok') {
+        this.commit('setI18nLocale')
+
         if (typeof payload === 'object') {
-            toast.success(payload.message, payload.options)
+            toast.success(i18n.global.t(payload.message), payload.options)
         } else {
-            toast.success(payload)
+            toast.success(i18n.global.t(payload))
         }
     }
 }

@@ -1,0 +1,34 @@
+{
+  "CONTACT": {
+    "TITLE": "Написать нам",
+    "ADDRESS": "Адрес",
+    "PHONE": "Телефон",
+    "EMAIL": "Почта",
+    "FORM": {
+      "NAME": {
+        "PLACEHOLDER": "Имя",
+        "VALIDATION": {
+          "REQUIRED": "Введите имя"
+        }
+      },
+      "EMAIL": {
+        "PLACEHOLDER": "Почта",
+        "VALIDATION": {
+          "REQUIRED": "Введите почту",
+          "WRONG_FORMAT": "Неправильный формат почты"
+        }
+      },
+      "SUBJECT": {
+        "PLACEHOLDER": "Тема"
+      },
+      "MESSAGE": {
+        "PLACEHOLDER": "Ваше сообщение",
+        "VALIDATION": {
+          "REQUIRED": "Пожалуйста, введите свой сообщение"
+        }
+      },
+      "SUBMIT": "Отправить",
+      "SENT_SUCCESSFULLY": "Ваше сообщение отправлено"
+    }
+  }
+}

@@ -5,6 +5,7 @@ import store from './store'
 import Toast from 'vue-toastification'
 import { createI18n } from 'vue-i18n'
 import i18n from './i18n'
+import { defaultLang } from './config'
 import "vue-toastification/dist/index.css"
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap'
@@ -31,7 +32,7 @@ const toastConfig = {
 }
 
 const i18nConfig = createI18n({
-  locale: 'ua',
+  locale: defaultLang,
   messages: i18n,
 });
 

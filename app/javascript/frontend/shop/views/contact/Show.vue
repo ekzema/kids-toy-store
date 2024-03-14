@@ -11,7 +11,7 @@
                     <div class="icon">
                       <img class="icon-img" src="./../../assets/img/icons/5.png" alt="Icon">
                     </div>
-                    <h2>Address</h2>
+                    <h2>{{ $t('CONTACT.ADDRESS') }}</h2>
                     <div class="content">
                       <p>Your address goes here</p>
                     </div>
@@ -22,7 +22,7 @@
                     <div class="icon">
                       <img class="icon-img" src="./../../assets/img/icons/6.png" alt="Icon">
                     </div>
-                    <h2>Phone No</h2>
+                    <h2>{{ $t('CONTACT.PHONE') }}</h2>
                     <div class="content">
                       <a href="tel://+00123456789">+ 00 123 456 789</a>
                     </div>
@@ -33,7 +33,7 @@
                     <div class="icon">
                       <img class="icon-img" src="./../../assets/img/icons/7.png" alt="Icon">
                     </div>
-                    <h2>Email / Web</h2>
+                    <h2>{{ $t('CONTACT.EMAIL') }}</h2>
                     <div class="content">
                       <a href="mailto://demo@example.com">demo@example.com</a>
                     </div>
@@ -50,7 +50,7 @@
                 <div class="row">
                   <div class="col-lg-12">
                     <div class="section-title">
-                      <h2 class="title">Send a message</h2>
+                      <h2 class="title">{{ $t('CONTACT.TITLE') }}</h2>
                     </div>
                   </div>
                 </div>
@@ -59,7 +59,7 @@
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group" :class="{'input-error': v$.formData.name.$error}">
-                          <input class="form-control" type="text" v-model="v$.formData.name.$model" placeholder="Name *">
+                          <input v-model="v$.formData.name.$model" class="form-control" type="text" :placeholder="$t('CONTACT.FORM.NAME.PLACEHOLDER') + ' *'">
                           <div v-for="(error, index) of v$.formData.name.$errors" :key="index" class="input-errors">
                             <div class="error-msg">{{ error.$message }}</div>
                           </div>
@@ -67,7 +67,7 @@
                       </div>
                       <div class="col-md-6">
                         <div class="form-group" :class="{'input-error': v$.formData.email.$error}">
-                          <input class="form-control" type="email" v-model="v$.formData.email.$model" placeholder="Email *">
+                          <input class="form-control" type="email" v-model="v$.formData.email.$model" :placeholder="$t('CONTACT.FORM.EMAIL.PLACEHOLDER') + ' *'">
                           <div v-for="(error, index) of v$.formData.email.$errors" :key="index" class="input-errors">
                             <div class="error-msg">{{ error.$message }}</div>
                           </div>
@@ -75,12 +75,12 @@
                       </div>
                       <div class="col-md-12">
                         <div class="form-group">
-                          <input class="form-control" v-model="formData.subject" type="text" placeholder="Subject (Optinal)">
+                          <input class="form-control" v-model="formData.subject" type="text" :placeholder="$t('CONTACT.FORM.SUBJECT.PLACEHOLDER')">
                         </div>
                       </div>
                       <div class="col-md-12">
                         <div class="form-group" :class="{'input-error': v$.formData.message.$error}">
-                          <textarea class="form-control" v-model="v$.formData.message.$model" placeholder="Message"></textarea>
+                          <textarea class="form-control" v-model="v$.formData.message.$model" :placeholder="$t('CONTACT.FORM.MESSAGE.PLACEHOLDER') + ' *'"></textarea>
                           <div v-for="(error, index) of v$.formData.message.$errors" :key="index" class="input-errors">
                             <div class="error-msg">{{ error.$message }}</div>
                           </div>
@@ -88,7 +88,7 @@
                       </div>
                       <div class="col-md-12">
                         <div class="form-group text-center">
-                          <button class="btn btn-theme" type="submit" >Send Message</button>
+                          <button class="btn btn-theme" type="submit" >{{ $t('CONTACT.FORM.SUBMIT') }}</button>
                         </div>
                       </div>
                     </div>
@@ -129,15 +129,15 @@ export default {
   validations() {
     return {
       formData: {
-        email: {
-          email: helpers.withMessage('Custom message for email rule.', helpers.regex(emailRegexTemplate)),
-          required
-        },
         name: {
-          required
+          required: helpers.withMessage(this.$t('CONTACT.FORM.NAME.VALIDATION.REQUIRED'), required)
+        },
+        email: {
+          email: helpers.withMessage(this.$t('CONTACT.FORM.EMAIL.VALIDATION.WRONG_FORMAT'), helpers.regex(emailRegexTemplate)),
+          required: helpers.withMessage(this.$t('CONTACT.FORM.EMAIL.VALIDATION.REQUIRED'), required)
         },
         message: {
-          required
+          required: helpers.withMessage(this.$t('CONTACT.FORM.MESSAGE.VALIDATION.REQUIRED'), required)
         }
       }
     }
