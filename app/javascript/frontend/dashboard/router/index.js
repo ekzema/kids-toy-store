@@ -1,15 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import MainIndex from '../views/main/Index'
-import PageNotFound from "../../errors/PageNotFound"
-import CategoriesIndex from "../views/categories/Index"
-import CategoriesNew from "../views/categories/New"
-import CategoriesEdit from "../views/categories/Edit"
-import ProductsIndex from "../views/products/Index"
-import ProductsNew from "../views/products/New"
-import ProductsEdit from "../views/products/Edit"
-import Settings from "../views/settings/Index"
-import OrdersIndex from "../views/orders/Index.vue"
-import OrdersEdit from "../views/orders/Edit.vue"
+import PageNotFound from '../../errors/PageNotFound'
+import CategoriesIndex from '../views/categories/Index'
+import CategoriesNew from '../views/categories/New'
+import CategoriesEdit from '../views/categories/Edit'
+import ProductsIndex from '../views/products/Index'
+import ProductsNew from '../views/products/New'
+import ProductsEdit from '../views/products/Edit'
+import Settings from '../views/settings/Index'
+import OrdersIndex from '../views/orders/Index'
+import OrdersEdit from '../views/orders/Edit'
+import FeedbacksIndex from '../views/feedbacks/Index'
 import store from '../store'
 
 const router = createRouter({
@@ -64,6 +65,11 @@ const router = createRouter({
             name: 'OrdersEdit',
             path: '/dashboard/orders/edit/:id',
             component: OrdersEdit
+        },
+        {
+            name: 'Feedbacks',
+            path: '/dashboard/feedbacks',
+            component: FeedbacksIndex
         },
         {
             name: 'Settings',

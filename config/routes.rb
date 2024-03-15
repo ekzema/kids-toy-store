@@ -40,6 +40,7 @@ Rails.application.routes.draw do
         resources :brands, only: [:index]
         resources :orders, only: [:index, :show, :update]
         resources :line_items, only: [:update, :destroy]
+        resources :feedbacks,  except: [:create]
         resources :products do
           collection do
             get :detail_constructor

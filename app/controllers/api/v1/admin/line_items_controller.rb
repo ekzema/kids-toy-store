@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::Admin::LineItemsController < ApiController
+class Api::V1::Admin::LineItemsController < AdminController
   before_action :set_line_item, only: %i[destroy update]
 
   def update

@@ -5,6 +5,7 @@ import products from './modules/products'
 import productImages from './modules/product_images'
 import brands from './modules/brands'
 import orders from './modules/orders'
+import feedbacks from './modules/feedbacks'
 
 const state = {
     alert: {
@@ -47,7 +48,8 @@ const store = createStore({
         products,
         productImages,
         brands,
-        orders
+        orders,
+        feedbacks
     }
 })
 

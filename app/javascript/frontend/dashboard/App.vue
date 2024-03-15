@@ -63,7 +63,7 @@ export default {
     drawer: true,
     drawerItems: [
       {
-        title: 'home',
+        title: 'Home',
         value: 'primary',
         icon: 'mdi-home-city-outline',
         path: '/dashboard'
@@ -85,6 +85,12 @@ export default {
         value: 'orders',
         icon: 'mdi-cart-outline',
         path: '/dashboard/orders'
+      },
+      {
+        title: 'Feedbacks',
+        value: 'feedbacks',
+        icon: 'mdi-email-outline',
+        path: '/dashboard/feedbacks'
       },
       {
         title: 'Settings',
