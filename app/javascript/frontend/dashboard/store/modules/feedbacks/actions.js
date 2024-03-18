@@ -8,7 +8,15 @@ const actions = {
     } catch (error) {
       commit('setErrorMessage')
     }
-  }
+  },
+  async deleteFeedback({ commit }, id) {
+    try {
+      await Feedbacks.delete(id)
+      commit('setSuccessMessage', 'Feedback deleted successfully')
+    } catch (error) {
+      commit('setErrorMessage')
+    }
+  },
 }
 
 export default actions

@@ -42,7 +42,7 @@
 <script>
 import Pagination from '../../components/Pagination'
 import { mapGetters } from 'vuex'
-import {perPage} from '../../config'
+import { perPage } from '../../config'
 import PaginationMixin from '../../mixins/paginationMixin'
 
 export default {

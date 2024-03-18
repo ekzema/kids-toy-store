@@ -14,6 +14,7 @@
         v-for="(feedback, index) in feedbacks.items"
         :key="index"
     >
+      <td>{{ feedback.id }}</td>
       <td>{{ feedback.name }}</td>
       <td>{{ feedback.subject || ''}}</td>
       <td>{{ feedback.message }}</td>
@@ -37,9 +38,15 @@
     </tbody>
   </v-table>
 
+  <pagination v-if="totalPages > 1"
+              :page="page"
+              :total-pages="totalPages"
+              @pagination-event="paginationEvent"
+  />
+
   <v-dialog v-model="dialog" max-width="400">
     <v-card>
-      <v-card-text class="headline text-center">Delete <strong>{{ selectCategory.name[language] }}</strong> category?</v-card-text>
+      <v-card-text class="headline text-center">Are you sure you want to delete the feedback?</v-card-text>
       <v-card-actions class="justify-center">
         <v-btn color="primary" @click="onCancel">Cancel</v-btn>
         <v-btn color="red" @click="onDelete">Delete</v-btn>
@@ -50,13 +57,21 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import Pagination from '../../components/Pagination'
+import { perPage } from '../../config'
+import PaginationMixin from '../../mixins/paginationMixin'
 
 export default {
   name: 'FeedbacksIndex',
   components: {
+    Pagination
   },
+  mixins: [PaginationMixin],
   data: () => ({
+    dialog: false,
+    selectFeedback: {},
     headers: [
+      'ID',
       'Name',
       'Subject',
       'Message',
@@ -68,18 +83,47 @@ export default {
     ...mapGetters([
         'feedbacks'
     ]),
+    totalPages() {
+      return Math.ceil(this.feedbacks.count / perPage)
+    }
+  },
+  watch: {
+    '$route.params'() {
+      if (!this.$route.query.page) this.page = null
+      this.fetchFeedbacks()
+    }
   },
   created () {
+    if (this.$route.query.page ) this.page = this.$route.query.page
     this.fetchFeedbacks()
   },
   methods: {
+    showDialog() {
+      this.dialog = true
+    },
+    hideDialog() {
+      this.dialog = false
+    },
+    onCancel() {
+      this.hideDialog()
+    },
+    async onDelete() {
+      await this.deleteFeedback()
+      this.fetchFeedbacks()
+      this.hideDialog()
+    },
     fetchFeedbacks() {
       const params = {}
+      if (this.page) params.page = this.page
 
       this.$store.dispatch('fetchFeedbacks', params)
     },
-    handleDelete(feedback) {
-      console.log('delete', feedback)
+    async handleDelete(feedback) {
+      this.selectFeedback = feedback
+      this.showDialog()
+    },
+    async deleteFeedback() {
+      await this.$store.dispatch('deleteFeedback', this.selectFeedback.id)
     },
   },
 }
