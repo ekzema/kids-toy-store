@@ -23,7 +23,7 @@
         <v-btn
             icon
             variant="text"
-            :to="'/dashboard/categories/edit/' + feedback.id"
+            :to="{ name: 'FeedbacksEdit', params: { id: feedback.id }}"
         >
           <v-icon color="teal">mdi-pencil</v-icon>
         </v-btn>

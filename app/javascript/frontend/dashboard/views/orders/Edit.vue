@@ -1,4 +1,5 @@
 <template>
+  <h1 class="text-center mb-3">Edit order</h1>
   <v-table>
     <thead class="order-table-thead">
     <tr>

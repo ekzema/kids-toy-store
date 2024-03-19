@@ -11,6 +11,7 @@ import Settings from '../views/settings/Index'
 import OrdersIndex from '../views/orders/Index'
 import OrdersEdit from '../views/orders/Edit'
 import FeedbacksIndex from '../views/feedbacks/Index'
+import FeedbacksEdit from '../views/feedbacks/Edit'
 import store from '../store'
 
 const router = createRouter({
@@ -70,6 +71,11 @@ const router = createRouter({
             name: 'Feedbacks',
             path: '/dashboard/feedbacks',
             component: FeedbacksIndex
+        },
+        {
+            name: 'FeedbacksEdit',
+            path: '/dashboard/feedbacks/edit/:id',
+            component: FeedbacksEdit
         },
         {
             name: 'Settings',

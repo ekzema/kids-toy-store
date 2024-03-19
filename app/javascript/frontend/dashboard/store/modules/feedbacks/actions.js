@@ -9,6 +9,14 @@ const actions = {
       commit('setErrorMessage')
     }
   },
+  async fetchFeedback({ commit }, id) {
+    try {
+      const { data } = await Feedbacks.show(id)
+      commit('setFeedback', data)
+    } catch (error) {
+      commit('setErrorMessage')
+    }
+  },
   async deleteFeedback({ commit }, id) {
     try {
       await Feedbacks.delete(id)
