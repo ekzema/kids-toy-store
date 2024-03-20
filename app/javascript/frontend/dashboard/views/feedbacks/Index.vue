@@ -18,7 +18,7 @@
       <td>{{ feedback.name }}</td>
       <td>{{ feedback.subject || ''}}</td>
       <td>{{ feedback.message }}</td>
-      <td>{{ feedback.moderation }}</td>
+      <td><v-icon icon="mdi-check" :color="feedback.moderation ? 'light-blue-darken-2' : 'grey'"></v-icon></td>
       <td class="d-flex justify-center">
         <v-btn
             icon

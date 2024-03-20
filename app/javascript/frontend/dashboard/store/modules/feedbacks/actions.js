@@ -17,6 +17,15 @@ const actions = {
       commit('setErrorMessage')
     }
   },
+  async updateFeedback({ commit }, data) {
+    try {
+      const response = await Feedbacks.update(data.id, data.form)
+      commit('setFeedback', response.data)
+      commit('setSuccessMessage', 'Feedback updated successfully')
+    } catch (error) {
+      commit('setErrorMessage')
+    }
+  },
   async deleteFeedback({ commit }, id) {
     try {
       await Feedbacks.delete(id)
@@ -24,7 +33,7 @@ const actions = {
     } catch (error) {
       commit('setErrorMessage')
     }
-  },
+  }
 }
 
 export default actions

@@ -10,8 +10,10 @@
       <span class="mb-8"><strong>Message: </strong>{{ feedback.message }}</span>
       <div>
         <v-switch
+            :model-value="feedback.moderation"
             color="primary"
             :label="feedback.moderation ? 'Mark unread' : 'Mark read'"
+            @update:model-value="onModeration"
         ></v-switch>
       </div>
     </v-sheet>
@@ -35,6 +37,10 @@ export default {
   methods: {
     fetchFeedback() {
       this.$store.dispatch('fetchFeedback', this.$route.params.id)
+    },
+    onModeration(e) {
+      const payload = { id: this.feedback.id, form: { moderation: e } }
+      this.$store.dispatch('updateFeedback', payload)
     }
   }
 }
