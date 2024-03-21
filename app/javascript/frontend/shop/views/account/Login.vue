@@ -5,28 +5,28 @@
         <div class="col-md-6">
           <div class="login-register-content">
             <div class="login-register-title mb-30">
-              <h2 class="text-center">Login</h2>
-              <p class="text-center">Welcome back! Please enter your email and password to login. </p>
+              <h2 class="text-center">{{ $t('ACCOUNT.LOGIN.TITLE') }}</h2>
+              <p class="text-center">{{ $t('ACCOUNT.LOGIN.DESCRIPTION') }}</p>
             </div>
             <div class="login-register-style">
               <form ref="form" @submit.prevent="onSubmit">
                 <div id="login" class="login-register-input" :class="{'input-error': v$.formData.email.$error}">
-                  <input id="input-email" v-model="v$.formData.email.$model" type="text" placeholder="Email address">
+                  <input id="input-email" v-model="v$.formData.email.$model" type="text" :placeholder="$t('ACCOUNT.LOGIN.FORM.EMAIL.PLACEHOLDER')">
                 </div>
                 <div v-for="(error, index) of v$.formData.email.$errors" :key="index">
                   <div class="error-msg">{{ error.$message }}</div>
                 </div>
                 <div class="login-register-input" :class="{'input-error': v$.formData.password.$error}">
-                  <input v-model="v$.formData.password.$model" type="password" placeholder="Password">
+                  <input v-model="v$.formData.password.$model" type="password" :placeholder="$t('ACCOUNT.LOGIN.FORM.PASSWORD.PLACEHOLDER')">
                   <div class="forgot">
-                    <router-link :to="{ name: 'AccountForgot'}">Forgot?</router-link>
+                    <router-link :to="{ name: 'AccountForgot'}">{{ $t('ACCOUNT.LOGIN.FORGOT_PASSWORD') }}</router-link>
                   </div>
                 </div>
                 <div v-for="(error, index) of v$.formData.password.$errors" :key="index" class="input-errors">
                   <div class="error-msg">{{ error.$message }}</div>
                 </div>
                 <div class="btn-style-3">
-                  <button class="btn" type="submit">Login</button>
+                  <button class="btn" type="submit">{{ $t('ACCOUNT.LOGIN.FORM.SUBMIT') }}</button>
                 </div>
               </form>
             </div>
@@ -57,10 +57,12 @@ export default {
     return {
       formData: {
         email: {
-          email: helpers.withMessage('Custom message for email rule.', helpers.regex(emailRegexTemplate)),
-          required,
+          email: helpers.withMessage(this.$t('ACCOUNT.LOGIN.FORM.EMAIL.VALIDATION.WRONG_FORMAT'), helpers.regex(emailRegexTemplate)),
+          required: helpers.withMessage(this.$t('ACCOUNT.LOGIN.FORM.EMAIL.VALIDATION.REQUIRED'), required)
         },
-        password: { required }
+        password: {
+          required: helpers.withMessage(this.$t('ACCOUNT.LOGIN.FORM.PASSWORD.VALIDATION.REQUIRED'), required)
+        }
       }
     }
   },
@@ -79,7 +81,7 @@ export default {
         this.$router.push('/')
       } catch (error) {
         if (error.response.status === 404) {
-          this.$store.commit('setErrorMessage', 'Invalid email or password.')
+          this.$store.commit('setErrorMessage', this.$t('ACCOUNT.LOGIN.ERROR'))
         } else {
           this.$store.commit('setErrorMessage')
         }

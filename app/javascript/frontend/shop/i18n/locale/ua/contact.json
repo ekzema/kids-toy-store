@@ -14,8 +14,8 @@
       "EMAIL": {
         "PLACEHOLDER": "Пошта",
         "VALIDATION": {
-          "REQUIRED": "Введите Пошту",
-          "WRONG_FORMAT": "Неправильний формат пошти"
+          "REQUIRED": "Введіть Пошту",
+          "WRONG_FORMAT": "Невірний формат пошти"
         }
       },
       "SUBJECT": {

@@ -47,6 +47,29 @@
           "CONFIRM_PASSWORD": "Підтвердіть пароль"
         }
       }
+    },
+    "LOGIN": {
+      "TITLE": "Вхід",
+      "DESCRIPTION": "Будь ласка, введіть свою адресу електронної пошти та пароль для входу.",
+      "FORGOT_PASSWORD": "Забули пароль?",
+      "SUCCESS": "Ласкаво просимо!",
+      "ERROR": "Невірна адреса електронної пошти або пароль!",
+      "FORM": {
+        "EMAIL": {
+          "PLACEHOLDER": "Пошта",
+          "VALIDATION": {
+            "REQUIRED": "Введіть Пошту",
+            "WRONG_FORMAT": "Невірний формат пошти"
+          }
+        },
+        "PASSWORD": {
+          "PLACEHOLDER": "Пароль",
+          "VALIDATION": {
+            "REQUIRED": "Введіть Пароль"
+          }
+        },
+        "SUBMIT": "Увійти"
+      }
     }
   }
 }

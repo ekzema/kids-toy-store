@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::OrdersController < ApiController
-  before_action :authorize_by_access_header!, except: [:create]
+  before_action :authorize_by_access_header!, except: %i[create detail_constructor]
   before_action :set_order, only: %i[show]
 
   def index

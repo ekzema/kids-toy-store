@@ -45,6 +45,29 @@
         "NEW_PASSWORD": "Новый пароль",
         "CONFIRM_PASSWORD": "Подтвердите пароль"
       }
+    },
+    "LOGIN": {
+      "TITLE": "Вход",
+      "DESCRIPTION": "Пожалуйста, введите свой адрес электронной почты и пароль для входа.",
+      "FORGOT_PASSWORD": "Забыли пароль?",
+      "SUCCESS": "Добро пожаловать!",
+      "ERROR": "Неверный адрес электронной почты или пароль!",
+      "FORM": {
+        "EMAIL": {
+          "PLACEHOLDER": "Почта",
+          "VALIDATION": {
+            "REQUIRED": "Введите почту",
+            "WRONG_FORMAT": "Неправильный формат почты"
+          }
+        },
+        "PASSWORD": {
+          "PLACEHOLDER": "Пароль",
+          "VALIDATION": {
+            "REQUIRED": "Введите Пароль"
+          }
+        },
+        "SUBMIT": "Войти"
+      }
     }
   }
 }
