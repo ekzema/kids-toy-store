@@ -43,7 +43,7 @@ const mutations = {
         this.commit('setI18nLocale')
 
         if (typeof payload === 'object') {
-            toast.success(i18n.global.t(payload.message), payload.options)
+            toast.success(payload.message, payload.options)
         } else {
             toast.success(i18n.global.t(payload))
         }

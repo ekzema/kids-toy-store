@@ -207,34 +207,38 @@ export default {
     return {
       formData: {
         first_name: {
-          required, minLength: minLength(3)
+          required: helpers.withMessage(this.$t('CHECKOUT.DETAIL.FORM.FIRST_NAME.VALIDATION.REQUIRED'), required),
+          minLength: helpers.withMessage(this.$t('CHECKOUT.DETAIL.FORM.VALIDATION.MIN_LENGTH', { LENGTH: 3 }), minLength(3))
         },
         last_name: {
-          required, minLength: minLength(3)
+          required: helpers.withMessage(this.$t('CHECKOUT.DETAIL.FORM.LAST_NAME.VALIDATION.REQUIRED'), required),
+          minLength: helpers.withMessage(this.$t('CHECKOUT.DETAIL.FORM.VALIDATION.MIN_LENGTH', { LENGTH: 3 }), minLength(3))
         },
         patronymic: {
-          required, minLength: minLength(3)
+          required: helpers.withMessage(this.$t('CHECKOUT.DETAIL.FORM.PATRONYMIC.VALIDATION.REQUIRED'), required),
+          minLength: helpers.withMessage(this.$t('CHECKOUT.DETAIL.FORM.VALIDATION.MIN_LENGTH', { LENGTH: 3 }), minLength(3))
         },
         phone: {
-          required, maxLength: maxLength(17),
-          minLength: minLength(17)
+          required: helpers.withMessage(this.$t('CHECKOUT.DETAIL.FORM.PHONE.VALIDATION.REQUIRED'), required),
+          maxLength: helpers.withMessage(this.$t('CHECKOUT.DETAIL.FORM.VALIDATION.MAX_LENGTH', { LENGTH: 17 }), maxLength(17)),
+          minLength: helpers.withMessage(this.$t('CHECKOUT.DETAIL.FORM.VALIDATION.MIN_LENGTH', { LENGTH: 17 }), minLength(17))
         },
         city: {
-          required: requiredIf(this.isDelivery),
-          minLength: minLength(3)
+          required: helpers.withMessage(this.$t('CHECKOUT.DETAIL.FORM.CITY.VALIDATION.REQUIRED'), requiredIf(this.isDelivery)),
+          minLength: helpers.withMessage(this.$t('CHECKOUT.DETAIL.FORM.VALIDATION.MIN_LENGTH', { LENGTH: 3 }), minLength(3))
         },
         department_number: {
-          required: requiredIf(this.isDelivery)
+          required: helpers.withMessage(this.$t('CHECKOUT.DETAIL.FORM.DEPARTMENT_NUMBER.VALIDATION.REQUIRED'), requiredIf(this.isDelivery)),
         },
         email: {
-          email: helpers.withMessage('Custom message for email rule.', helpers.regex(emailRegexTemplate)),
-          required
+          required: helpers.withMessage(this.$t('CHECKOUT.DETAIL.FORM.EMAIL.VALIDATION.REQUIRED'), required),
+          email: helpers.withMessage(this.$t('CHECKOUT.DETAIL.FORM.EMAIL.VALIDATION.WRONG_FORMAT'), helpers.regex(emailRegexTemplate)),
         },
         pay_type: {
-          required
+          required: helpers.withMessage(this.$t('CHECKOUT.DETAIL.FORM.PAY_TYPE.VALIDATION.REQUIRED'), required),
         },
         delivery: {
-          required
+          required: helpers.withMessage(this.$t('CHECKOUT.DETAIL.FORM.DELIVERY.VALIDATION.REQUIRED'), required),
         }
       }
     }

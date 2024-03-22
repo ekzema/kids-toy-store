@@ -1,5 +1,10 @@
 {
   "CHECKOUT": {
+    "SUCCESS": {
+      "TITLE": "Вітаємо!",
+      "STATUS": "Ваше замовлення прийнято.",
+      "BODY": "Чекайте на дзвінок від нашого менеджера."
+    },
     "TITLE": "Оформити замовлення",
     "DELIVERY": {
       "DEFAULT": "Оберіть спосіб доставки",
@@ -16,32 +21,64 @@
     "DETAIL": {
       "TITLE": "Деталі замовлення",
       "FORM": {
+        "VALIDATION": {
+          "MIN_LENGTH": "Це поле має бути довжиною не менше {LENGTH} символів",
+          "MAX_LENGTH": "Это поле должно быть длиной не больше {LENGTH} символов."
+        },
         "FIRST_NAME": {
-          "LABEL": "Ім'я"
+          "LABEL": "Ім'я",
+          "VALIDATION": {
+            "REQUIRED": "Введіть ім'я"
+          }
         },
         "LAST_NAME": {
-          "LABEL": "Прізвище"
+          "LABEL": "Прізвище",
+          "VALIDATION": {
+            "REQUIRED": "Введіть прізвище"
+          }
         },
         "PATRONYMIC": {
-          "LABEL": "По-батькові"
+          "LABEL": "По-батькові",
+          "VALIDATION": {
+            "REQUIRED": "Введіть по-батькові"
+          }
         },
         "PHONE": {
-          "LABEL": "Телефон"
+          "LABEL": "Телефон",
+          "VALIDATION": {
+            "REQUIRED": "Введіть телефон"
+          }
         },
         "EMAIL": {
-          "LABEL": "Пошта"
+          "LABEL": "Пошта",
+          "VALIDATION": {
+            "REQUIRED": "Введіть пошту",
+            "WRONG_FORMAT": "Невірний формат пошти"
+          }
         },
         "DELIVERY": {
-          "LABEL": "Доставка"
+          "LABEL": "Доставка",
+          "VALIDATION": {
+            "REQUIRED": "Оберіть спосіб доставки"
+          }
         },
         "PAY_TYPE": {
-          "LABEL": "Спосіб оплати"
+          "LABEL": "Спосіб оплати",
+          "VALIDATION": {
+            "REQUIRED": "Оберіть спосіб оплати"
+          }
         },
         "CITY": {
-          "LABEL": "Місто"
+          "LABEL": "Місто",
+          "VALIDATION": {
+            "REQUIRED": "Введіть місто"
+          }
         },
         "DEPARTMENT_NUMBER": {
-          "LABEL": "Номер відділення"
+          "LABEL": "Номер відділення",
+          "VALIDATION": {
+            "REQUIRED": "Введіть номер відділення"
+          }
         },
         "NOTE": {
           "LABEL": "Коментар до замовлення",
