@@ -5,13 +5,13 @@
         <div class="col-md-7">
           <div class="login-register-content login-register-pl">
             <div class="login-register-title mb-30">
-              <h2 class="text-center">Register</h2>
-              <p>Create new account today to reap the benefits of a personalized shopping experience. </p>
+              <h2 class="text-center">{{ $t('ACCOUNT.REGISTRATION.TITLE') }}</h2>
+              <p>{{ $t('ACCOUNT.REGISTRATION.DESCRIPTION') }}</p>
             </div>
             <div class="login-register-style">
               <form ref="form" @submit.prevent="onSubmit">
                 <div class="login-register-input" :class="{'input-error': v$.formData.email.$error}">
-                  <input id="input-email" v-model="v$.formData.email.$model" type="text" placeholder="E-mail address">
+                  <input id="input-email" v-model="v$.formData.email.$model" type="text" :placeholder="$t('ACCOUNT.REGISTRATION.FORM.EMAIL.PLACEHOLDER')">
                   <div v-if="spinner" class="input-spinner spinner-border-sm spinner-border" role="status">
                     <span class="visually-hidden">Loading...</span>
                   </div>
@@ -20,31 +20,27 @@
                   <div class="error-msg">{{ error.$message }}</div>
                 </div>
                 <div class="login-register-input" :class="{'input-error': v$.formData.password.$error}">
-                  <input v-model="v$.formData.password.$model" type="password" placeholder="Password">
+                  <input v-model="v$.formData.password.$model" type="password" :placeholder="$t('ACCOUNT.REGISTRATION.FORM.PASSWORD.PLACEHOLDER')">
                 </div>
                 <div v-for="(error, index) of v$.formData.password.$errors" :key="index" class="input-errors">
                   <div class="error-msg">{{ error.$message }}</div>
                 </div>
                 <div class="login-register-input" :class="{'input-error': v$.formData.password_confirmation.$error}">
-                  <input v-model="v$.formData.password_confirmation.$model" type="password" placeholder="Password confirmation">
+                  <input v-model="v$.formData.password_confirmation.$model" type="password" :placeholder="$t('ACCOUNT.REGISTRATION.FORM.PASSWORD_CONFIRMATION.PLACEHOLDER')">
                 </div>
                 <div v-for="(error, index) of v$.formData.password_confirmation.$errors" :key="index" class="input-errors">
                   <div class="error-msg">{{ error.$message }}</div>
                 </div>
-                <div class="login-register-paragraph">
-                  <p>Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our <a href="#">privacy policy.</a></p>
-                </div>
                 <div class="btn-style-3">
-                  <button class="btn" type="submit">Register</button>
+                  <button class="btn" type="submit">{{ $t('ACCOUNT.REGISTRATION.FORM.SUBMIT') }}</button>
                 </div>
               </form>
               <div class="register-benefits">
-                <h3>Sign up today and you will be able to :</h3>
-                <p>The Loke Buyer Protection has you covered from click to delivery. Sign up <br>or sign in and you will be able to:</p>
+                <h3>{{ $t('ACCOUNT.REGISTRATION.BENEFITS.TITLE') }}:</h3>
                 <ul>
-                  <li><i class="pe-7s-check icons"></i> Speed your way through checkout</li>
-                  <li><i class="pe-7s-check icons"></i> Track your orders easily</li>
-                  <li><i class="pe-7s-check icons"></i> Keep a record of all your purchases</li>
+                  <li><i class="pe-7s-check icons"></i>{{ $t('ACCOUNT.REGISTRATION.BENEFITS.SPEED') }}</li>
+                  <li><i class="pe-7s-check icons"></i>{{ $t('ACCOUNT.REGISTRATION.BENEFITS.TRACK') }}</li>
+                  <li><i class="pe-7s-check icons"></i>{{ $t('ACCOUNT.REGISTRATION.BENEFITS.RECORD') }}</li>
                 </ul>
               </div>
             </div>
@@ -80,14 +76,17 @@ export default {
     return {
       formData: {
         email: {
-          email: helpers.withMessage('Custom message for email rule.', helpers.regex(emailRegexTemplate)),
-          required,
+          email: helpers.withMessage(this.$t('ACCOUNT.REGISTRATION.FORM.EMAIL.VALIDATION.WRONG_FORMAT'), helpers.regex(emailRegexTemplate)),
+          required: helpers.withMessage(this.$t('ACCOUNT.REGISTRATION.FORM.EMAIL.VALIDATION.REQUIRED'), required),
           isUnique: helpers.withAsync(this.isUnique),
         },
-        password: { required, minLength: minLength(6) },
+        password: {
+          required: helpers.withMessage(this.$t('ACCOUNT.REGISTRATION.FORM.PASSWORD.VALIDATION.REQUIRED'), required),
+          minLength: helpers.withMessage(this.$t('ACCOUNT.REGISTRATION.FORM.PASSWORD.VALIDATION.MIN_LENGTH'), minLength(6))
+        },
         password_confirmation: {
-          required,
-          sameAsPassword: helpers.withMessage('Custom message for password_confirmation rule.', sameAs(this.formData.password))
+          required: helpers.withMessage(this.$t('ACCOUNT.REGISTRATION.FORM.PASSWORD_CONFIRMATION.VALIDATION.REQUIRED'), required),
+          sameAsPassword: helpers.withMessage(this.$t('ACCOUNT.REGISTRATION.FORM.PASSWORD_CONFIRMATION.VALIDATION.NOT_MATCH'), sameAs(this.formData.password))
         }
       }
     }
@@ -107,8 +106,8 @@ export default {
       })
       this.spinner = false
       const errorMessages = {
-        bad_domain: 'Email has a domain that cannot be verified.',
-        unique: 'This email already exists'
+        bad_domain: this.$t('ACCOUNT.REGISTRATION.FORM.EMAIL.VALIDATION.BAD_DOMAIN'),
+        unique: this.$t('ACCOUNT.REGISTRATION.FORM.EMAIL.VALIDATION.UNIQUE')
       }
       if (response.valid) this.v$.formData.email.$reset()
       if (!response.valid) this.v$.formData.email.isUnique.$message = errorMessages[response.type]
