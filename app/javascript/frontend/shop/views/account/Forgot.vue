@@ -5,19 +5,19 @@
         <div class="col-md-6">
           <div class="login-register-content">
             <div class="login-register-title mb-30">
-              <h2 class="text-center">Forgot</h2>
-              <p class="text-center">If you forgot your password, leave your email from the account and wait for instructions to reset the password for it.. </p>
+              <h2 class="text-center">{{ $t('ACCOUNT.FORGOT_PASSWORD.TITLE') }}</h2>
+              <p class="text-center">{{ $t('ACCOUNT.FORGOT_PASSWORD.DESCRIPTION') }}</p>
             </div>
             <div class="login-register-style">
               <form ref="form" @submit.prevent="onSubmit">
                 <div class="login-register-input" :class="{'input-error': v$.formData.email.$error}">
-                  <input v-model="v$.formData.email.$model" type="text" placeholder="Email address">
+                  <input v-model="v$.formData.email.$model" type="text" :placeholder="$t('ACCOUNT.FORGOT_PASSWORD.FORM.EMAIL.PLACEHOLDER')">
                 </div>
                 <div v-for="(error, index) of v$.formData.email.$errors" :key="index">
                   <div class="error-msg">{{ error.$message }}</div>
                 </div>
                 <div class="btn-style-3">
-                  <button class="btn" type="submit">Send</button>
+                  <button class="btn" type="submit">{{ $t('ACCOUNT.FORGOT_PASSWORD.FORM.SUBMIT') }}</button>
                 </div>
               </form>
             </div>
@@ -47,8 +47,8 @@ export default {
     return {
       formData: {
         email: {
-          email: helpers.withMessage('Custom message for email rule.', helpers.regex(emailRegexTemplate)),
-          required
+          email: helpers.withMessage(this.$t('ACCOUNT.FORGOT_PASSWORD.FORM.EMAIL.VALIDATION.WRONG_FORMAT'), helpers.regex(emailRegexTemplate)),
+          required: helpers.withMessage(this.$t('ACCOUNT.FORGOT_PASSWORD.FORM.EMAIL.VALIDATION.REQUIRED'), required)
         }
       }
     }

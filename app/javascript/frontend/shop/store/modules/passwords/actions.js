@@ -11,7 +11,7 @@ const actions = {
             commit('setSuccessMessage', { message: message, options: options })
         } catch (error) {
             if (error.response.status === 404) {
-                commit('setErrorMessage', 'No user found with this email')
+                commit('setErrorMessage', 'ACCOUNT.FORGOT_PASSWORD.ERROR.USER_NOT_FOUND')
             } else {
                 commit('setErrorMessage')
             }
