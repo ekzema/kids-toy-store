@@ -12,7 +12,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr v-for="order in orders" :key="order.id">
+      <tr v-for="order in orders.items" :key="order.id">
         <td>{{ order.id }}</td>
         <td>{{ formattedDate(order.created_at) }}</td>
         <td>{{ order.status }}</td>
@@ -25,21 +25,47 @@
       </tr>
       </tbody>
     </table>
+    <pagination
+        v-show="showPagination"
+        :page="page"
+        :total-items="orders.count"
+        @pagination-event="paginationEvent"
+    />
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import Pagination from '../../../components/Pagination'
+import { perPage } from '../../../config'
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Orders',
+  components: {
+    Pagination
+  },
+  data() {
+    return {
+      page: null
+    }
+  },
   computed: {
     ...mapGetters([
       'orders'
     ]),
+    showPagination() {
+      return this.orders.count > perPage
+    }
+  },
+  watch: {
+    '$route.params'() {
+      if (!this.$route.query.page) this.page = null
+      this.fetchOrders()
+    }
   },
   created() {
+    if (this.$route.query.page) this.page = this.$route.query.page
     this.fetchOrders()
   },
   methods: {
@@ -49,10 +75,18 @@ export default {
         month: '2-digit',
         day: '2-digit',
       })
-      return formatted.replace(/'.'/g, '-');
+      return formatted.replace(/'.'/g, '-')
     },
     fetchOrders() {
-      this.$store.dispatch('fetchOrders')
+      const params = this.page ? { page: this.page } : {}
+      this.$store.dispatch('fetchOrders', params)
+    },
+    paginationEvent(page) {
+      const currentPath = this.$route.path;
+      const newPath = `${currentPath}?page=${page}`
+
+      this.$router.push(newPath)
+      this.page = page
     }
   }
 }

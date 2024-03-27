@@ -17,9 +17,9 @@ const actions = {
   },
   async fetchOrders({ commit, dispatch }, params) {
     try {
-      dispatch('hideFooter')
-      const { data } = await Orders.get(params)
-      commit('setOrders', data)
+      if (!params.page) dispatch('hideFooter')
+      const { data, count } = await Orders.get(params)
+      commit('setOrders', { items: data, count })
     } catch (error) {
       commit('setErrorMessage')
     }
