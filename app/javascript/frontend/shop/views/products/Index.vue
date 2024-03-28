@@ -103,7 +103,7 @@ export default {
     }
   },
   created() {
-    if (this.$route.query.page) this.page = this.$route.query.page
+    if (this.$route.query.page) this.page = Number(this.$route.query.page)
     this.$route.params.category ? this.fetchProductsByCategory() : this.fetchProducts()
   },
   methods: {
@@ -129,7 +129,7 @@ export default {
       const newPath = `${currentPath}?page=${page}`
 
       this.$router.push(newPath)
-      this.page = page
+      this.page = Number(page)
     }
   }
 }

@@ -3,7 +3,15 @@
     <div class="sidebar-area shop-sidebar-area">
       <div class="widget-item">
         <div class="widget-title">
-          <h3 class="title">Product Categories</h3>
+          <h3 class="title">
+            <router-link
+                v-if="parentCategory"
+                :to="{ name: 'Category', params: { category: $route.params.category }}"
+                :title="parentCategory.name[language]"
+            >
+              {{ parentCategory.name[language] }}
+            </router-link>
+          </h3>
         </div>
         <div class="widget-body">
           <div class="widget-categories">
@@ -87,8 +95,10 @@ export default {
       'language'
     ]),
     subcategories() {
-      const category = this.categories.find(category => category.slug === this.$route.params.category)
-      return category ? category.subcategories : []
+      return this.parentCategory ? this.parentCategory.subcategories : []
+    },
+    parentCategory() {
+      return this.categories.find(category => category.slug === this.$route.params.category)
     }
   },
   watch: {

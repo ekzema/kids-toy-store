@@ -1,5 +1,5 @@
 import Orders from '../../../api/orders'
-import CheckoutToast from '../../../views/checkout/components/CheckoutToast.vue'
+import CheckoutToast from '../../../views/checkout/components/CheckoutToast'
 
 const actions = {
   async createOrders({ commit }, data) {

@@ -1,6 +1,13 @@
 <template>
   <div class="wrapper-paginate">
-    <vue-awesome-paginate v-model="currentPage" :on-click="onClickHandler" :total-items="totalItems" :items-per-page="perPage">
+    <vue-awesome-paginate
+        v-model="currentPage"
+        :on-click="onClickHandler"
+        :total-items="totalItems"
+        :items-per-page="perPage"
+        :next-button-class="lastPage ? 'next-button-disabled' : 'back-button'"
+        :back-button-class="firstPage ? 'back-button-disabled' : 'back-button'"
+    >
       <template #prev-button>
         <span>
           <i class="fa fa-angle-left"></i>
@@ -39,13 +46,23 @@ export default {
       currentPage: 1
     }
   },
+  computed: {
+    lastPage() {
+      const lastPage = Math.ceil(this.totalItems / this.perPage)
+      const page = this.page ? this.page : 1
+      return lastPage === page
+    },
+    firstPage() {
+      return this.page === 1 || !this.page
+    }
+  },
   watch: {
     page() {
-      this.page ? this.currentPage = Number(this.page) : this.currentPage = 1
+      this.page ? this.currentPage = this.page : this.currentPage = 1
     }
   },
   created() {
-    if (this.page) this.currentPage = Number(this.page)
+    if (this.page) this.currentPage = this.page
   },
   methods: {
     onClickHandler(e) {
@@ -78,6 +95,15 @@ export default {
   border-radius: 25px;
 }
 
+.wrapper-paginate .back-button-disabled,
+.wrapper-paginate .next-button-disabled
+{
+  margin-inline: 10px;
+  border-radius: 25px;
+  cursor: not-allowed;
+  background-color: #f5f5f5;
+}
+
 .wrapper-paginate .first-button {
   border-start-start-radius: 25px;
   border-end-start-radius: 25px;
@@ -104,11 +130,6 @@ export default {
 .wrapper-paginate li:nth-last-child(2) > .paginate-buttons.number-buttons {
   border-start-end-radius: 25px;
   border-end-end-radius: 25px;
-}
-
-.wrapper-paginate .active-page {
-  background-color: #f379a7;
-  color: #fff;
 }
 
 .wrapper-paginate .active-page {
