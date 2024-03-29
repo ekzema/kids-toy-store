@@ -5749,6 +5749,7 @@ table p {
 .product-item {
   position: relative;
   margin-bottom: 30px;
+  padding-bottom: 10px;
   transition: box-shadow .3s;
   background-color: #e4f6fe;
   width: 100%;
@@ -5862,7 +5863,7 @@ table p {
 }
 .product-item .product-info .cart {
   position: absolute;
-  bottom: 13px;
+  bottom: 20px;
   right: 30px;
 }
 .product-item .product-info .cart .btn-theme {
@@ -5880,6 +5881,7 @@ table p {
   font-weight: 500;
   font-size: 20px;
   margin-right: 5px;
+  padding-bottom: 10px;
 }
 
 .product-item .product-info .prices .old-price,
@@ -5902,7 +5904,7 @@ table p {
 .product-item .product-info .status {
   position: absolute;
   font-size: 12px;
-  bottom: 0;
+  bottom: 10px;
   left: 30px;
 }
 

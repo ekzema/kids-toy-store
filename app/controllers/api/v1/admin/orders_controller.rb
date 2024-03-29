@@ -4,7 +4,7 @@ class Api::V1::Admin::OrdersController < AdminController
   before_action :set_order, only: %i[show update]
 
   def index
-    orders = Order.all
+    orders = Order.includes(cart: :line_items).all
     render_paginate(orders, Admin::OrderListSerializer)
   end
 

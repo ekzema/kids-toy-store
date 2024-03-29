@@ -37,7 +37,7 @@ class Api::V1::OrdersController < ApiController
   def orders
     # Order.includes(:cart).where('carts.user_id': current_user.id).where.not('carts.deleted_at': nil)
     # Order.joins('INNER JOIN carts ON carts.id = orders.cart_id').where('carts.user_id': current_user.id)
-    Order.includes(:cart).where('carts.user_id': current_user.id)
+    Order.includes(cart: :line_items).where('carts.user_id': current_user.id)
   end
 
   def order_params

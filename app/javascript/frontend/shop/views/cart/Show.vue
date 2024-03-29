@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-lg-6 m-auto">
           <div class="section-title text-center">
-            <h2 class="title">Cart</h2>
+            <h2 class="title">{{ $t('CART.TITLE') }}</h2>
           </div>
         </div>
       </div>
@@ -56,13 +56,13 @@
                 </tr>
                 </tbody>
               </table>
-              <h3 v-if="!cart?.length" class="text-center">Корзина пустая!</h3>
+              <h3 v-if="!cart?.length" class="text-center">{{ $t('CART.EMPTY') }}</h3>
             </div>
           </div>
           <div class="cart-shiping-update-wrapper">
             <div class="cart-shiping-btn continure-btn">
               <router-link :to="{ name: 'ProductsIndex'}" class="btn btn-link">
-                <i class="ion-ios-arrow-left"></i> Назад к покупкам
+                <i class="ion-ios-arrow-left"></i> {{ $t('CART.BUTTON.BACK') }}
               </router-link>
             </div>
             <div v-if="cart?.length" class="cart-shiping-btn update-btn">
@@ -74,7 +74,7 @@
                 </div>
                 <div class="grand-total-btn">
                   <router-link class="btn btn-link" :to="{ name: 'CheckoutShow'}">
-                    {{ $t('CART.CHECKOUT') }}
+                    {{ $t('CART.BUTTON.CHECKOUT') }}
                   </router-link>
                 </div>
               </div>
