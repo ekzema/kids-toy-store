@@ -87,8 +87,12 @@
                 <div class="widget">
                   <h3 class="title">{{ $t('PRODUCT.CATEGORIES') }}:</h3>
                   <div class="widget-tags">
-                    <a href="blog.html">Toys.</a>
-                    <a href="blog.html">Dresss</a>
+                    <router-link v-for="(category, index) in product.product_categories" :key="index"
+                                 :to="category.parent ? { name: 'Category', params: { category: category.parent.slug, subcategory: category.slug }} : { name: 'Category', params: { category: category.slug }}"
+                                 :title="category.name[language]"
+                                 >
+                                 {{ category.name[language] }}<span v-if="index !== product.product_categories.length - 1">, </span>
+                    </router-link>
                   </div>
                 </div>
                 <div class="widget">
