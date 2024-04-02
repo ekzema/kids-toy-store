@@ -23,7 +23,19 @@
       <th v-for="(header, index) in headers"
           :key="index"
           class="text-left">
-        {{ header }}
+        <v-select
+            v-if="header === 'Status'"
+            v-model="status"
+            @update:modelValue="onStatus"
+            class="statusWrap"
+            placeholder="Status"
+            density="compact"
+            :items="statuses"
+            item-value="id"
+            item-title="title"
+            variant="underlined"
+        ></v-select>
+        <span v-else>{{ header }}</span>
       </th>
     </tr>
     </thead>
@@ -40,6 +52,7 @@
       </td>
       <td>{{ product.name[language] }}</td>
       <td>{{ product.description[language].substring(0, 150) + '...' }}</td>
+      <td>{{ product.status }}</td>
       <td class="d-flex justify-center">
         <v-btn
             icon
@@ -93,36 +106,47 @@ export default {
     language: 'ua',
     selectProduct: {},
     dialog: false,
+    status: null,
     searchText: '',
     headers: [
       'ID',
       'Logo',
       'Title',
       'Description',
+      'Status',
       ''
     ],
   }),
   computed: {
     ...mapGetters([
-      'products'
+      'products',
+      'detailConstructor'
     ]),
     totalPages() {
       return Math.ceil(this.products.count / perPage)
+    },
+    statuses() {
+      return this.status ? [{ id: null, title: 'All statuses' }, ...this.detailConstructor.statuses] : this.detailConstructor.statuses
     }
   },
   watch: {
     '$route.params'() {
       if (!this.$route.query.page) this.page = null
+      if (!this.$route.query.status) this.status = null
       this.fetchProducts()
     }
   },
   created () {
     if (this.$route.query.page ) this.page = this.$route.query.page
+    if (this.$route.query.status ) this.status = this.$route.query.status
+
+    this.$store.dispatch('fetchDetailConstructor')
     this.fetchProducts()
   },
   methods: {
     fetchProducts() {
       const params = this.searchText ? {q: this.searchText} : {}
+      if (this.status) params.status = this.status
       if (this.page) params.page = this.page
 
       this.$store.dispatch('fetchProducts', params)
@@ -151,7 +175,33 @@ export default {
     search(text) {
       this.searchText = text
       this.fetchProducts()
+    },
+    onStatus() {
+      if (!this.status) return this.cleanStatus()
+
+      const currentPath = this.$route.path
+      const newPath = `${currentPath}?status=${this.status}`
+
+      this.$router.push(newPath)
+      this.fetchProducts()
+    },
+    cleanStatus() {
+      const query = { ...this.$route.query }
+      delete query.status
+
+      this.$router.replace({ query })
     }
   }
 }
 </script>
+
+<style scoped>
+.statusWrap {
+  width: 130px;
+  height: 40px;
+}
+
+.statusWrap input::placeholder {
+  opacity: 1;
+}
+</style>

@@ -5,10 +5,10 @@ export default {
   }),
   methods: {
     paginationEvent(page) {
-      const currentPath = this.$route.path
-      const newPath = `${currentPath}?page=${page}`
+      const query = { ...this.$route.query }
+      query.page = page
+      this.$router.replace({ query })
 
-      this.$router.push(newPath)
       this.page = page
     }
   }

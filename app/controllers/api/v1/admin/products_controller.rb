@@ -43,6 +43,7 @@ class Api::V1::Admin::ProductsController < AdminController
 
   def products
     products = Product.all
+    products = Product.where(status: params[:status]) if params[:status]
     products = products.search(params[:q]) if params[:q]
 
     products

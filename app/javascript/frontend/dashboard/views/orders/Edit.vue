@@ -73,22 +73,20 @@
           <hr>
         </div>
         <div class="order-info">
-          <div>
-            <v-select
-                :model-value="order.status"
-                variant="underlined"
-                :items="order.statuses"
-                item-value="id"
-                item-title="title"
-                color="primary"
-                class="status-select-wrap"
-                @update:modelValue="onStatus"
-            >
-              <template v-slot:prepend>
-                <span class="order-status-input">Status:</span>
-              </template>
-            </v-select>
-          </div>
+          <v-select
+              :model-value="order.status"
+              variant="underlined"
+              :items="order.statuses"
+              item-value="id"
+              item-title="title"
+              color="primary"
+              class="status-select-wrap"
+              @update:modelValue="onStatus"
+          >
+            <template v-slot:prepend>
+              <span class="order-status-input">Status:</span>
+            </template>
+          </v-select>
           <p>Delivery: <span>{{ order.delivery }}</span></p>
           <p v-if="order.city">City: <span>{{ order.city }}</span></p>
           <p v-if="order.department_number">Department: <span>{{ order.department_number }}</span></p>

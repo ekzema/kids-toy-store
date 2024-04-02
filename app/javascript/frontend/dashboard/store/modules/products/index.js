@@ -8,7 +8,13 @@ const state = {
         items: []
     },
     product: {},
-    detailConstructor: {}
+    detailConstructor: {
+        age: [],
+        categories: [],
+        countries: [],
+        genders: [],
+        statuses: []
+    }
 }
 
 export default {
