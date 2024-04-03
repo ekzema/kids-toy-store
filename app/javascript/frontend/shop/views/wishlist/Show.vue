@@ -49,8 +49,8 @@
                         {{ product.price }} грн
                       </div>
                     </td>
-                    <td class="stock-status">
-                      <span>{{ product.status }}</span>
+                    <td class="stock-status" >
+                      <div class="status" :class="product.status">{{ $t(`WISHLIST.STATUS.${ product.status.toUpperCase() }`) }}</div>
                     </td>
                     <td class="wishlist-cart">
                       <router-link v-if="!product.inCart" to="" @click="addToCart(product)">

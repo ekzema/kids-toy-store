@@ -5908,19 +5908,27 @@ table p {
   left: 30px;
 }
 
-.product-item .product-info .status.not_available, .single-product-info .prices .status.not_available {
+.product-item .product-info .status.not_available,
+.single-product-info .prices .status.not_available,
+.wishlist-table-content .stock-status .status.not_available {
   color: red;
 }
 
-.product-item .product-info .status.available, .single-product-info .prices .status.available {
+.product-item .product-info .status.available,
+.single-product-info .prices .status.available,
+.wishlist-table-content .stock-status .status.available {
   color: green;
 }
 
-.product-item .product-info .status.ends, .single-product-info .prices .status.ends {
+.product-item .product-info .status.ends,
+.single-product-info .prices .status.ends,
+.wishlist-table-content .stock-status .status.ends {
   color: #ff9d00;
 }
 
-.product-item .product-info .status.on_the_way, .single-product-info .prices .status.on_the_way {
+.product-item .product-info .status.on_the_way,
+.single-product-info .prices .status.on_the_way,
+.wishlist-table-content .stock-status .status.on_the_way {
   color: #52b2cf;
 }
 
@@ -6406,7 +6414,7 @@ table p {
 .single-product-slider .single-product-nav .swiper-container .swiper-wrapper .swiper-slide-thumb-active .nav-item img {
   opacity: 1;
   border-color: #f379a7;
-  filter: contrast(200%);
+  filter: none;
 }
 
 .single-product-slider .single-product-nav .nav-item {
