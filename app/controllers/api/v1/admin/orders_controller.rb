@@ -5,6 +5,8 @@ class Api::V1::Admin::OrdersController < AdminController
 
   def index
     orders = Order.includes(cart: :line_items).all
+    orders = orders.where(status: params[:status]) if params[:status]
+
     render_paginate(orders, Admin::OrderListSerializer)
   end
 
@@ -18,6 +20,11 @@ class Api::V1::Admin::OrdersController < AdminController
     else
       render json: @order.errors, status: :unprocessable_entity
     end
+  end
+
+  def detail_constructor
+    detail = Orders::DetailBuilder.new.perform
+    render_response(detail)
   end
 
   private

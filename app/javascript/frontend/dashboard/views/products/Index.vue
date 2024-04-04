@@ -133,6 +133,7 @@ export default {
     '$route.params'() {
       if (!this.$route.query.page) this.page = null
       if (!this.$route.query.status) this.status = null
+
       this.fetchProducts()
     }
   },

@@ -12,6 +12,9 @@ const mutations = {
   removeFromOrder(state, payload) {
     state.order.products = state.order.products.filter(({ id }) => id !== payload)
   },
+  setOrderDetailConstructor(state, payload) {
+    state.orderDetailConstructor = payload
+  }
 }
 
 export default mutations

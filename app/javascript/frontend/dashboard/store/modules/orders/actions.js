@@ -27,6 +27,14 @@ const actions = {
       commit('setErrorMessage')
     }
   },
+  async fetchOrderDetailConstructor({ commit }, params) {
+    try {
+      const { data } = await Orders.detailConstructor(params)
+      commit('setOrderDetailConstructor', data)
+    } catch (error) {
+      commit('setErrorMessage')
+    }
+  },
   async updateLineItems({ commit }, data) {
     try {
       const { id, quantity } = data
