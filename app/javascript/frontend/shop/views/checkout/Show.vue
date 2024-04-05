@@ -65,7 +65,7 @@
                     <div class="select-style">
                       <select v-model="v$.formData.delivery.$model" class="select-active">
                         <option value="">{{ $t('CHECKOUT.DELIVERY.DEFAULT') }}:</option>
-                        <option v-for="delivery in detailConstructor.deliveries"
+                        <option v-for="delivery in deliveries"
                                 :key="delivery"
                                 :value="delivery">
                           {{ $t(`CHECKOUT.DELIVERY.${ delivery.toUpperCase() }`) }}
@@ -83,7 +83,7 @@
                     <div class="select-style">
                       <select v-model="v$.formData.pay_type.$model" class="select-active">
                         <option selected value="">{{ $t('CHECKOUT.PAY_TYPE.DEFAULT') }}:</option>
-                        <option v-for="pay_type in detailConstructor.pay_types"
+                        <option v-for="pay_type in payTypes"
                                 :key="pay_type"
                                 :value="pay_type">
                           {{ $t(`CHECKOUT.PAY_TYPE.${ pay_type.toUpperCase() }`) }}
@@ -201,6 +201,12 @@ export default {
       if (!result) this.cleanDependentDelivery()
 
       return result
+    },
+    deliveries() {
+      return this.detailConstructor.deliveries.map(method => method.id)
+    },
+    payTypes() {
+      return this.detailConstructor.pay_types.map(method => method.id)
     }
   },
   validations() {

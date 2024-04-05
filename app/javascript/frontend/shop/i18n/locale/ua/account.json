@@ -25,7 +25,19 @@
           "TOTAL": "Усього"
         },
         "TOTAL_ALL": "Всього до сплати",
-        "BACK": "Назад"
+        "BACK": "Назад",
+        "COMMENT": "Коментар до замовлення",
+        "DELIVERY": "Доставка",
+        "CITY": "Місто",
+        "DEPARTMENT_NUMBER": "Відділення",
+        "PAY_TYPE": "Оплата"
+      },
+      "STATUS": {
+        "PENDING": "В очікуванні",
+        "CANCELED": "Скасовано",
+        "APPROVED": "Підтверджено",
+        "SENT": "Надіслано",
+        "COMPLETED": "Виповнений"
       }
     },
     "DETAILS": {

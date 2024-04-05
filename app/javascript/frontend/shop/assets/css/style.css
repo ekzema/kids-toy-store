@@ -10124,3 +10124,19 @@ table p {
 .grand-total h4 span {
   margin-left: 10px;
 }
+
+.orderStatus .sent, .orderWrap .sent{
+  color: #007affc4;
+}
+
+.orderStatus .pending, .approved, .orderWrap .pending, .approved {
+  color: #e9b207;
+}
+
+.orderStatus .canceled, .orderWrap .canceled {
+  color: #ff6b6b;
+}
+
+.orderStatus .completed, .orderWrap .completed {
+  color: #62bd14;
+}

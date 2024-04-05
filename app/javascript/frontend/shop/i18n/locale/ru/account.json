@@ -25,7 +25,19 @@
           "TOTAL": "Всего"
         },
         "TOTAL_ALL": "Всего к оплате",
-        "BACK": "Назад"
+        "BACK": "Назад",
+        "COMMENT": "Комментарий к заказу",
+        "DELIVERY": "Доставка",
+        "CITY": "Город",
+        "DEPARTMENT_NUMBER": "Отделение",
+        "PAY_TYPE": "Оплата"
+      },
+      "STATUS": {
+        "PENDING": "В ожидании",
+        "CANCELED": "Отменен",
+        "APPROVED": "Подтвержден",
+        "SENT": "Отправлен",
+        "COMPLETED": "Выполнен"
       }
     },
     "DETAILS": {

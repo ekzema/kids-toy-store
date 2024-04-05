@@ -7,7 +7,11 @@ const state = {
     items: []
   },
   order: {},
-  detailConstructor: {}
+  detailConstructor: {
+    deliveries: [],
+    pay_types: [],
+    statuses: []
+  }
 }
 
 export default {

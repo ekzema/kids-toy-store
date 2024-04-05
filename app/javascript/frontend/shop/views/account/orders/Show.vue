@@ -1,6 +1,6 @@
 <template>
   <h3>{{ $t('ACCOUNT.ORDERS.TITLE') }} №{{ order.id }}</h3>
-  <p class="orderStatus"><strong>{{ $t('ACCOUNT.ORDERS.SHOW.STATUS') }}: </strong><span :class="order.status">{{ order.status }}</span></p>
+  <p class="orderStatus"><strong>{{ $t('ACCOUNT.ORDERS.SHOW.STATUS') }}: </strong><span v-if="order.status" :class="order.status">{{ $t(`ACCOUNT.ORDERS.STATUS.${ order.status.toUpperCase() }`) }}</span></p>
   <div class="row">
     <div class="col-lg-12">
       <div class="cart-table-wrap">
@@ -40,7 +40,7 @@
             </tbody>
           </table>
           <div v-if="order.note" class="commentOrder">
-            <p><strong>Комментарий к заказу: </strong>{{ order.note }}</p>
+            <p><strong>{{ $t('ACCOUNT.ORDERS.SHOW.COMMENT') }}: </strong>{{ order.note }}</p>
           </div>
         </div>
       </div>
@@ -54,14 +54,14 @@
           <div class="grand-total-wrap">
             <div class="grand-total-content">
               <div class="grand-total">
-                <h4>Всего: <span>{{ order.amount }} грн</span></h4>
+                <h4>{{ $t('ACCOUNT.ORDERS.SHOW.TOTAL_ALL') }}: <span>{{ order.amount }} грн</span></h4>
               </div>
               <hr>
               <div class="order-info">
-                <p>Доставка: <span>{{ order.delivery }}</span></p>
-                <p v-if="order.city">Город: <span>{{ order.city }}</span></p>
-                <p v-if="order.department_number">Отделение: <span>{{ order.department_number }}</span></p>
-                <p>Оплата: <span>{{ order.pay_type }}</span></p>
+                <p>{{ $t('ACCOUNT.ORDERS.SHOW.DELIVERY') }}: <span>{{ order.delivery }}</span></p>
+                <p v-if="order.city">{{ $t('ACCOUNT.ORDERS.SHOW.CITY') }}: <span>{{ order.city }}</span></p>
+                <p v-if="order.department_number">{{ $t('ACCOUNT.ORDERS.SHOW.DEPARTMENT_NUMBER') }}: <span>{{ order.department_number }}</span></p>
+                <p>{{ $t('ACCOUNT.ORDERS.SHOW.PAY_TYPE') }}: <span>{{ order.pay_type }}</span></p>
               </div>
               <hr>
             </div>
@@ -131,22 +131,6 @@ export default {
 
 .order-info p span {
   font-weight: normal;
-}
-
-.sent {
-  color: #007affc4;
-}
-
-.pending, .approved {
-  color: #e9b207;
-}
-
-.canceled {
-  color: #ff6b6b;
-}
-
-.completed {
-  color: #62bd14;
 }
 
 .commentOrder {

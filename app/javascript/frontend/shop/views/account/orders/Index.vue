@@ -12,10 +12,10 @@
       </tr>
       </thead>
       <tbody>
-      <tr v-for="order in orders.items" :key="order.id">
+      <tr v-for="order in orders.items" :key="order.id" class="orderWrap">
         <td>{{ order.id }}</td>
         <td>{{ formattedDate(order.created_at) }}</td>
-        <td>{{ order.status }}</td>
+        <td :class="order.status">{{ $t(`ACCOUNT.ORDERS.STATUS.${ order.status.toUpperCase() }`) }}</td>
         <td>{{ order.amount }} грн</td>
         <td>
           <router-link class="check-btn sqr-btn order-more" :to="{ name: 'OrdersShow', params: { id: order.id } }">
