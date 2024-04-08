@@ -2,6 +2,6 @@
 
 FactoryBot.define do
   factory :category do
-    name { Faker::Superhero.name }
+    name { { ua: Faker::Superhero.name, ru: Faker::Superhero.name } }
   end
 end

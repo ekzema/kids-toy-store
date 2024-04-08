@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::Admin::CategoriesController do
-  let(:user) { create(:user) }
+  let(:user) { create(:user, admin: true) }
   let(:headers) { { 'Authorization' => fetch_token(user) } }
 
   before { request.headers.merge! headers }
@@ -19,10 +19,11 @@ RSpec.describe Api::V1::Admin::CategoriesController do
 
   describe 'GET#index' do
     let(:params) { nil }
+    let(:constructors) { Constants::CATEGORY_NAMES.first.transform_keys(&:to_s) }
     let(:send_request) { get :index, params: params, format: :json }
 
     before do
-      %w[books constructors puzzles].each do |name|
+      Constants::CATEGORY_NAMES.each do |name|
         create(:category, name: name)
       end
     end
@@ -39,12 +40,12 @@ RSpec.describe Api::V1::Admin::CategoriesController do
     end
 
     context 'with search' do
-      let(:params) { { 'q' => 'constructors' } }
+      let(:params) { { 'q' => constructors['ua'] } }
 
       before { send_request }
 
       it { expect(response.parsed_body['data'].count).to eq(1) }
-      it { expect(response.parsed_body['data'].first['name']).to eq('constructors') }
+      it { expect(response.parsed_body['data'].first['name']).to eq(constructors) }
     end
 
     context 'without search' do

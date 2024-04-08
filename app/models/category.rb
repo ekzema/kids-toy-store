@@ -19,6 +19,8 @@ class Category < ApplicationRecord
   serialize :name, coder: JSON
 
   def normalize_friendly_id(value)
+    return if name.blank?
+
     I18n.locale = :ru
     value = JSON.parse(value.gsub('=>', ':'))['ua']
     super
@@ -46,5 +48,9 @@ class Category < ApplicationRecord
 
     category = Category.find(parent_id)
     errors.add(:category, 'The selected category is already a child!') if category.parent_id
+  end
+
+  def name_presence?
+    errors.add(:category, 'Incorrect name format') if name.blank?
   end
 end

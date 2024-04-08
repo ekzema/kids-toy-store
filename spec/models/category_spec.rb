@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Category do
-  let(:category) { create(:category) }
+  let!(:category) { create(:category) }
 
   describe 'associations' do
     it { should have_many(:product_categories).dependent(:restrict_with_exception) }
