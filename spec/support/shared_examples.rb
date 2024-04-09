@@ -20,3 +20,19 @@ RSpec.shared_examples 'with raised error' do
   it { expect(subject.parsed_body['error']).to be_present && be_instance_of(String) }
 end
 
+RSpec.shared_examples 'with token provided' do
+  before { send_request }
+
+  it { expect(response.content_type).to include('application/json') }
+  it { expect(response).to have_http_status(:success) }
+end
+
+RSpec.shared_examples 'without token provided' do
+  let(:headers) { {} }
+
+  before { send_request }
+
+  it { expect(response.content_type).to include('application/json') }
+  it { expect(response).to have_http_status(:unauthorized) }
+end
+
