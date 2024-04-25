@@ -13,7 +13,7 @@ const actions = {
     async createWishlists({ commit }, payload) {
         try {
             const { data } = await Wishlists.create(payload)
-            const msg = data.wishlist ? 'Товар добавлен в список желаний.' : 'Товар удалён из списка желаний.'
+            const msg = data.wishlist ? 'WISHLIST.SUCCESS.ADDED' : 'WISHLIST.SUCCESS.DELETED'
             commit('setWishlist', data)
             commit('setWishListCounter', data.wishlist_counter)
             commit('setSuccessMessage', msg)
