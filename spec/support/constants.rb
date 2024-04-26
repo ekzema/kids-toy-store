@@ -6,4 +6,6 @@ module Constants
     { ua: 'Пазли', ru: 'Пазлы' },
     { ua: 'Іграшки', ru: 'Игрушки' }
   ].freeze
+
+  BRAND_NAMES = %w[lego g-toys].freeze
 end
