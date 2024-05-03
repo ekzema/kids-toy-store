@@ -51,4 +51,10 @@ RSpec.describe Order do
       end
     end
   end
+
+  describe 'enums' do
+    %i[pay_type delivery status].each do |field|
+      it { should define_enum_for(field) }
+    end
+  end
 end
