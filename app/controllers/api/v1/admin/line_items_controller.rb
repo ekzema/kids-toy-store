@@ -18,6 +18,8 @@ class Api::V1::Admin::LineItemsController < AdminController
   private
 
   def update_order_products
+    return unless @line_item.cart.order
+
     products_info = @line_item.cart.order.products_info
     product_id = @line_item.product_id
 
