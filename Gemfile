@@ -49,6 +49,7 @@ gem 'active_model_serializers', '~> 0.10.14'
 
 # Upload files
 gem 'carrierwave', '~> 2.2', '>= 2.2.2'
+gem 'carrierwave-aws', '~> 1.6'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors', '~> 1.1', '>= 1.1.1'
@@ -77,6 +78,9 @@ gem 'capistrano-bundler', '~> 2.1', require: false
 gem 'capistrano-rbenv', '~> 2.2', require: false
 gem 'capistrano-nvm', '~> 0.0.7', require: false
 gem 'capistrano-yarn', '~> 2.0', '>= 2.0.2', require: false
+
+# Aws
+gem 'aws-sdk-s3', '~> 1.151'
 
 group :development, :test do
   gem 'rspec-rails', '~> 6.0', '>= 6.0.1'
