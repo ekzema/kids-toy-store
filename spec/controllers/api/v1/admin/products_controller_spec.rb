@@ -70,13 +70,13 @@ RSpec.describe Api::V1::Admin::ProductsController do
   describe 'POST#create' do
     let(:params) do
       {
-        name: { ua: Faker::Commerce.product_name, ru: Faker::Commerce.product_name }.to_json,
-        description: { ua: Faker::Lorem.paragraph, ru: Faker::Lorem.paragraph }.to_json,
-        code: Faker::Number.number(digits: 4),
-        price: Faker::Number.number(digits: 3),
-        status: :available,
-        for_gender: :boy,
-        for_age: 3,
+        name:               { ua: Faker::Commerce.product_name, ru: Faker::Commerce.product_name }.to_json,
+        description:        { ua: Faker::Lorem.paragraph, ru: Faker::Lorem.paragraph }.to_json,
+        code:               Faker::Number.number(digits: 4),
+        price:              Faker::Number.number(digits: 3),
+        status:             :available,
+        for_gender:         :boy,
+        for_age:            3,
         production_country: :china
       }
     end
