@@ -7,7 +7,7 @@
             <div class="widget-item item-style3">
               <div class="about-widget">
                 <a class="footer-logo" href="/">
-                  <img src="./../../assets/img/logo-light.png" alt="Logo">
+                  <img src="./../../assets/img/pusha_x49.png" alt="Logo">
                 </a>
                 <p>Lorem ipsum dolor sit amet, consecl adipisicing elit, sed do eiusmod teml incididunt ut labore et dolore magna aliqua Ut enim</p>
                 <div class="widget-social-icons">

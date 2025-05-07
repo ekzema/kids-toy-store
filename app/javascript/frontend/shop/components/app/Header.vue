@@ -40,8 +40,8 @@
               <div class="header-align-left">
                 <div class="header-logo-area">
                   <router-link :to="{ name: 'ProductsIndex'}">
-                      <img class="logo-main" src="./../../assets/img/logo.png" alt="Logo" />
-                      <img class="logo-light" src="./../../assets/img/logo.png" alt="Logo" />
+                      <img class="logo-main" src="./../../assets/img/pusha_x49.png" alt="Logo" />
+                      <img class="logo-light" src="./../../assets/img/pusha_x49.png" alt="Logo" />
                   </router-link>
                 </div>
               </div>
