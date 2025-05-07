@@ -59,6 +59,8 @@ Rails.application.routes.draw do
     end
   end
 
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+
   get 'dashboard', to: 'dashboard#index'
   match "/dashboard/*path", to: "dashboard#index", format: false, via: :get
 

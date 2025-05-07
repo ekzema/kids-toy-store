@@ -13,9 +13,9 @@ class Order < ApplicationRecord
   validates :city, :department_number, presence: true, if: :delivery_method?
   validates :city, length: { minimum: 3 }, if: :delivery_method?
 
-  enum pay_type: { privat_bank: 1, cash_on_delivery: 2, other_payment_method: 3 }
-  enum delivery: { novaya_pochta: 1, ukrpochta: 2, self_delivery: 3 }
-  enum status: { pending: 1, canceled: 2, approved: 3, sent: 4, completed: 5 }
+  enum :pay_type, { privat_bank: 1, cash_on_delivery: 2, other_payment_method: 3 }
+  enum :delivery, { novaya_pochta: 1, ukrpochta: 2, self_delivery: 3 }
+  enum :status, { pending: 1, canceled: 2, approved: 3, sent: 4, completed: 5 }
 
   default_scope { order(created_at: :desc) }
 
