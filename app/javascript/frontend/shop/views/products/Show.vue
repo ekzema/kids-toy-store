@@ -158,6 +158,7 @@ import { mapGetters } from 'vuex'
 import Swiper from "swiper"
 import AddToCartMixin from './mixins/AddToCartMixin'
 import WishlistMixin from "./mixins/WishlistMixin"
+import { headTitleDefault } from '../../config'
 
 export default {
   name: 'ProductsShow',
@@ -182,11 +183,18 @@ export default {
   watch: {
     product(product) {
         if (product) {
+          document.title = `${product.name[this.language]} | ${headTitleDefault}`
+
           this.images = [this.product.logo, ...this.product.product_images.map(product_image => product_image.image )]
           this.$nextTick(() => {
               if (this.picturesIsMany) this.setSwiper()
           })
         }
+    },
+    language(newLanguage) {
+      if (this.product) {
+        document.title = `${this.product.name[newLanguage]} - KidsToyStore`
+      }
     },
     quantity(value) {
       if (value < 1 || typeof value !== 'number') this.quantity = 1

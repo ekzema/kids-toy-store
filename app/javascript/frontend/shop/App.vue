@@ -26,6 +26,7 @@ import AppHeader from './components/app/Header'
 import AppFooter from './components/app/Footer'
 import { user } from '../helpers/utils'
 import { cart } from './helpers/utils'
+import { headTitleDefault } from './config'
 
 export default {
   components: {
@@ -47,6 +48,11 @@ export default {
         document.body.classList.add('preloader-deactive')
         document.body.classList.remove('overflow_hidden')
       }
+    },
+    '$route'(to) {
+      if (to.name !== 'ProductsShow') {
+        document.title = headTitleDefault
+      }
     }
   },
   created() {
@@ -59,7 +65,6 @@ export default {
       this.$store.commit('setLanguage', lang)
       this.$i18n.locale = lang
     }
-
   }
 }
 </script>

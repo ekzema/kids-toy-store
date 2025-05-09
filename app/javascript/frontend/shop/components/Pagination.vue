@@ -2,7 +2,7 @@
   <div class="wrapper-paginate">
     <vue-awesome-paginate
         v-model="currentPage"
-        :on-click="onClickHandler"
+        @click="onClickHandler"
         :total-items="totalItems"
         :items-per-page="perPage"
         :next-button-class="lastPage ? 'next-button-disabled' : 'back-button'"
