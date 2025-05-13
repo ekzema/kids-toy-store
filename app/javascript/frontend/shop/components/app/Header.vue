@@ -152,7 +152,9 @@
                 <li>
                   <router-link :to="{ name: 'ContactShow'}">{{ $t('HEADER.CONTACT') }}</router-link>
                 </li>
-                <li><a href="contact.html">{{ $t('HEADER.ABOUT') }}</a></li>
+                <li>
+                  <router-link :to="{ name: 'AboutShow'}">{{ $t('HEADER.ABOUT') }}</router-link>
+                </li>
               </ul>
             </div>
           </div>

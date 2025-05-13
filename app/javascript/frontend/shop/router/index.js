@@ -17,6 +17,7 @@ import OrdersIndex from '../views/account/orders/Index'
 import OrdersShow from '../views/account/orders/Show'
 import AccountDetails from '../views/account/AccountDetails'
 import ContactShow from '../views/contact/Show'
+import AboutShow from '../views/about/Show'
 import PageNotFound from '../../errors/PageNotFound'
 
 const router = createRouter({
@@ -92,6 +93,11 @@ const router = createRouter({
       name: 'ContactShow',
       path: '/contact',
       component: ContactShow
+    },
+    {
+      name: 'AboutShow',
+      path: '/about',
+      component: AboutShow
     },
     {
       name: 'AccountMain',
