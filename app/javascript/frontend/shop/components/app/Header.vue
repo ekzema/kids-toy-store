@@ -74,7 +74,9 @@
                       </div>
                     </li>
                     <li v-if="productsAutocomplete.found > productsAutocomplete.show" class="text-center">
-                      <a href="#">Покаазать все результаты</a>
+                      <router-link class="disable-cleaner" to="" @click="submitSearchForm">
+                        Показать все результаты
+                      </router-link>
                     </li>
                   </ul>
                 </div>
